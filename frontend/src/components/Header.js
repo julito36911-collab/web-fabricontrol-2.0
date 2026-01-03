@@ -14,12 +14,12 @@ function Header() {
             </Link>
           </div>
           <ul className="nav-menu">
-            <li><Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}>Inicio</Link></li>
-            <li><Link to="/caracteristicas" className={`nav-link ${location.pathname === '/caracteristicas' ? 'active' : ''}`}>Características</Link></li>
-            <li><Link to="/precios" className={`nav-link ${location.pathname === '/precios' ? 'active' : ''}`}>Precios</Link></li>
-            <li><a href="/productos/" className="nav-link">Productos</a></li>
-            <li><a href="/recursos/" className="nav-link">Recursos</a></li>
-            <li><Link to="/descargar" className="btn btn-primary btn-small">Probar Gratis</Link></li>
+            <li><Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}>Home</Link></li>
+            <li><Link to="/caracteristicas" className={`nav-link ${location.pathname === '/caracteristicas' ? 'active' : ''}`}>Features</Link></li>
+            <li><Link to="/precios" className={`nav-link ${location.pathname === '/precios' ? 'active' : ''}`}>Pricing</Link></li>
+            <li><a href="/productos/" className="nav-link">Products</a></li>
+            <li><a href="/recursos/" className="nav-link">Resources</a></li>
+            <li><Link to="/descargar" className="btn btn-primary btn-small">Try Free</Link></li>
           </ul>
         </nav>
       </div>
