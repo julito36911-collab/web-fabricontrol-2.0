@@ -24,10 +24,10 @@ function Footer() {
           <div className="footer-section">
             <h4>Recursos</h4>
             <ul className="footer-links">
-              <li><a href="#">Calculadoras Gratis</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Videos Tutoriales</a></li>
+              <li><a href="/recursos/">Campus Gratuito</a></li>
+              <li><a href="/productos/">Catálogo de Productos</a></li>
               <li><Link to="/faq">FAQ</Link></li>
+              <li><a href="#">Blog</a></li>
             </ul>
           </div>
           
