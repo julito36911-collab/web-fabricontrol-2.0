@@ -21,8 +21,8 @@ function Header() {
             <li><a href="/recursos/" className="nav-link">Resources</a></li>
             <li><Link to="/descargar" className="btn btn-primary btn-small">Try Free</Link></li>
             <li>
-              <a href="/en/resources/" className="nav-link" style={{display: 'flex', alignItems: 'center', gap: '0.3rem'}}>
-                🌐 <span style={{fontWeight: 600}}>EN</span>
+              <a href="/en/resources/" className="nav-link" style={{padding: '0.5rem 0.75rem', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '6px', fontSize: '0.875rem', fontWeight: 600}}>
+                🌐 EN
               </a>
             </li>
           </ul>
