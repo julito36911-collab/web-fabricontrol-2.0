@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus de Recursos - FabriControl</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/logos/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    .campus-header { 
+      background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+      color: white; padding: 4rem 0; text-align: center; 
+    }
+    .dept-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+      gap: 2rem; 
+      padding: 3rem 0; 
+    }
+    .dept-card { 
+      border: 2px solid #eee; 
+      border-radius: 16px; 
+      padding: 2rem; 
+      text-align: center; 
+      transition: all 0.3s ease;
+      background: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .dept-card:hover { 
+      border-color: var(--primary); 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+      transform: translateY(-5px); 
+    }
+    .dept-icon { 
+      width: 80px; 
+      height: 80px; 
+      margin: 0 auto 1rem; 
+      background: var(--bg-light); 
+      border-radius: 50%; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      font-size: 2.5rem;
+    }
+    .resource-count { 
+      position: absolute; 
+      top: 1rem; 
+      right: 1rem; 
+      background: var(--highlight); 
+      color: var(--text-dark); 
+      padding: 4px 12px; 
+      border-radius: 20px; 
+      font-size: 0.75rem; 
+      font-weight: 700;
+    }
+    .coming-soon {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .coming-soon .dept-card:hover {
+      transform: none;
+      border-color: #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER NAVIGATION -->
+  <header class="header">
+    <div class="container">
+      <nav class="nav">
+        <div class="nav-logo">
+          <a href="../index.html">
+            <img src="../assets/img/logos/fabricontrol-logo.svg" alt="FabriControl" style="height: 50px;">
+          </a>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="../index.html" class="nav-link">Inicio</a></li>
+          <li><a href="../caracteristicas.html" class="nav-link">Características</a></li>
+          <li><a href="../precios.html" class="nav-link">Precios</a></li>
+          <li><a href="../productos/index.html" class="nav-link">Productos</a></li>
+          <li><a href="index.html" class="nav-link active">Recursos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <header class="campus-header">
+    <div class="container">
+      <h1 style="font-family: 'Montserrat'; font-size: 3rem; margin-bottom: 1rem;">🎓 Campus de Recursos Gratuitos</h1>
+      <p style="font-size: 1.25rem; opacity: 0.95;">Herramientas, plantillas y guías para cada departamento de tu taller</p>
+    </div>
+  </header>
+
+  <!-- DEPARTAMENTOS -->
+  <section class="section">
+    <div class="container">
+      <div class="dept-grid">
+        
+        <!-- INGENIERÍA -->
+        <a href="ingenieria/" class="coming-soon" style="text-decoration: none; color: inherit;">
+          <div class="dept-card">
+            <span class="resource-count">Próximamente</span>
+            <div class="dept-icon" style="background: #EEF2FF; color: var(--primary);">
+              📐
+            </div>
+            <h3 style="font-family: 'Montserrat'; margin-bottom: 0.5rem;">Ingeniería</h3>
+            <p style="color: #666; font-size: 0.95rem;">Calculadoras de materiales, resistencia y tolerancias</p>
+            <ul style="list-style: none; padding: 0; margin-top: 1rem; text-align: left; font-size: 0.9rem;">
+              <li style="padding: 0.25rem 0;">✓ Calc. de peso de chapa</li>
+              <li style="padding: 0.25rem 0;">✓ Tabla de tolerancias</li>
+              <li style="padding: 0.25rem 0;">✓ Convertidor de unidades</li>
+            </ul>
+          </div>
+        </a>
+
+        <!-- VENTAS -->
+        <a href="ventas/" class="coming-soon" style="text-decoration: none; color: inherit;">
+          <div class="dept-card">
+            <span class="resource-count">Próximamente</span>
+            <div class="dept-icon" style="background: #FEF3C7; color: #D97706;">
+              💼
+            </div>
+            <h3 style="font-family: 'Montserrat'; margin-bottom: 0.5rem;">Ventas</h3>
+            <p style="color: #666; font-size: 0.95rem;">Plantillas de cotización y propuestas comerciales</p>
+            <ul style="list-style: none; padding: 0; margin-top: 1rem; text-align: left; font-size: 0.9rem;">
+              <li style="padding: 0.25rem 0;">✓ Plantillas de cotización</li>
+              <li style="padding: 0.25rem 0;">✓ Scripts de venta</li>
+              <li style="padding: 0.25rem 0;">✓ Calc. de márgenes</li>
+            </ul>
+          </div>
+        </a>
+
+        <!-- PRODUCCIÓN -->
+        <a href="produccion/" class="coming-soon" style="text-decoration: none; color: inherit;">
+          <div class="dept-card">
+            <span class="resource-count">Próximamente</span>
+            <div class="dept-icon" style="background: #DCFCE7; color: #16A34A;">
+              🏭
+            </div>
+            <h3 style="font-family: 'Montserrat'; margin-bottom: 0.5rem;">Producción</h3>
+            <p style="color: #666; font-size: 0.95rem;">Guías de procesos y optimización de planta</p>
+            <ul style="list-style: none; padding: 0; margin-top: 1rem; text-align: left; font-size: 0.9rem;">
+              <li style="padding: 0.25rem 0;">✓ Checklists de QC</li>
+              <li style="padding: 0.25rem 0;">✓ Guías de mantenimiento</li>
+              <li style="padding: 0.25rem 0;">✓ Calc. de OEE</li>
+            </ul>
+          </div>
+        </a>
+
+        <!-- DIRECCIÓN -->
+        <a href="direccion/" class="coming-soon" style="text-decoration: none; color: inherit;">
+          <div class="dept-card">
+            <span class="resource-count">Próximamente</span>
+            <div class="dept-icon" style="background: #FCE7F3; color: #DB2777;">
+              📊
+            </div>
+            <h3 style="font-family: 'Montserrat'; margin-bottom: 0.5rem;">Dirección</h3>
+            <p style="color: #666; font-size: 0.95rem;">Plantillas ISO, KPIs y dashboards gerenciales</p>
+            <ul style="list-style: none; padding: 0; margin-top: 1rem; text-align: left; font-size: 0.9rem;">
+              <li style="padding: 0.25rem 0;">✓ Templates ISO 9001</li>
+              <li style="padding: 0.25rem 0;">✓ Dashboard de KPIs</li>
+              <li style="padding: 0.25rem 0;">✓ Plantillas de reportes</li>
+            </ul>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- NOTA -->
+      <div class="card" style="max-width: 800px; margin: 3rem auto 0; padding: 2rem; background: linear-gradient(135deg, #FEF3C7, #FDE68A); border: none;">
+        <h3 style="margin-bottom: 1rem; color: #92400E;">🚀 Estamos Preparando Todo</h3>
+        <p style="color: #78350F; line-height: 1.6;">
+          Nuestro equipo está desarrollando herramientas y recursos específicos para cada departamento. 
+          <strong>Suscríbete a nuestro newsletter</strong> para recibir un aviso cuando lancemos el primer departamento.
+        </p>
+        <a href="mailto:recursos@fabricontrol.com?subject=Quiero recibir notificaciones del Campus" class="btn btn-primary" style="margin-top: 1rem;">
+          📧 Notificarme del Lanzamiento
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>FabriControl</h4>
+          <p style="opacity: 0.8;">El ERP diseñado específicamente para talleres y fábricas latinoamericanas.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Producto</h4>
+          <ul class="footer-links">
+            <li><a href="../caracteristicas.html">Características</a></li>
+            <li><a href="../precios.html">Precios</a></li>
+            <li><a href="../descargar.html">Descargar</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Recursos</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Campus Gratuito</a></li>
+            <li><a href="../productos/index.html">Catálogo de Productos</a></li>
+            <li><a href="../faq.html">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <ul class="footer-links">
+            <li>📧 ventas@fabricontrol.com</li>
+            <li>📧 soporte@fabricontrol.com</li>
+            <li>📧 recursos@fabricontrol.com</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 FabriControl. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
