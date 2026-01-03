@@ -29,9 +29,9 @@ function Home() {
       <section className="section">
         <div className="container">
           <div className="text-center mb-4">
-            <h2>See FabriControl in Action</h2>
+            <h2>Mira FabriControl en Acción</h2>
             <p style={{color: 'var(--text-medium)', fontSize: '1.125rem'}}>
-              Real-time dashboard with all your metrics
+              Dashboard en tiempo real con todas tus métricas
             </p>
           </div>
           <div style={{maxWidth: '1100px', margin: '0 auto'}}>
