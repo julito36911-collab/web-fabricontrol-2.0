@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing - FabriControl ERP</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logos/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    .header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+    .nav-link:hover {
+      opacity: 0.8;
+    }
+    .nav-link.active {
+      font-weight: 700;
+    }
+    .toggle-btn {
+      padding: 8px 16px;
+      border-radius: 16px;
+      border: none;
+      cursor: pointer;
+      background: transparent;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .toggle-btn.active {
+      background: white;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="/en/index.html">
+          <img src="/assets/img/logos/fabricontrol-logo.svg" alt="FabriControl" style="height: 50px;">
+        </a>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="/en/index.html" class="nav-link">Home</a></li>
+        <li><a href="/en/features.html" class="nav-link">Features</a></li>
+        <li><a href="/en/pricing.html" class="nav-link active">Pricing</a></li>
+        <li><a href="/en/products/" class="nav-link">Products</a></li>
+        <li><a href="/en/resources/" class="nav-link">Resources</a></li>
+        <li><a href="/en/download.html" class="btn btn-primary btn-small">Try Free</a></li>
+        <li><a href="/precios" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; font-size: 0.875rem; font-weight: 600;">🌐 ES</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding: 4rem 0 2rem;">
+  <div class="container text-center">
+    <h1 style="font-family: 'Montserrat'; font-size: 3rem; color: white; margin-bottom: 1rem;">Simple, Transparent Pricing</h1>
+    <p style="font-size: 1.25rem; color: white; opacity: 0.95; max-width: 700px; margin: 0 auto;">
+      No hidden fees. Cancel anytime.
+    </p>
+  </div>
+</section>
+
+<!-- TOGGLE -->
+<section class="section" style="padding-top: 2rem;">
+  <div class="container">
+    <div style="margin-bottom: 3rem; display: flex; justify-content: center; align-items: center; gap: 1rem;">
+      <span style="font-weight: 600;">Monthly</span>
+      <div style="background: #eee; padding: 4px; border-radius: 20px; display: flex;">
+        <button id="btn-monthly" class="toggle-btn active">Monthly</button>
+        <button id="btn-annual" class="toggle-btn">Yearly <span style="background: var(--accent); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin-left: 4px;">Save 20%</span></button>
+      </div>
+      <span style="font-weight: 600;">Yearly</span>
+    </div>
+
+    <!-- PRICING CARDS -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+      
+      <!-- TRIAL -->
+      <div class="card" style="padding: 2rem; text-align: center; border: 2px solid var(--bg-gray);">
+        <div style="background: var(--highlight); color: var(--text-dark); font-weight: 700; font-size: 0.875rem; padding: 8px 16px; border-radius: var(--radius-md); display: inline-block; margin-bottom: 1rem;">
+          🆓 TRIAL
+        </div>
+        <h3 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem; color: var(--text-dark);">
+          $0<span style="font-size: 1rem; font-weight: 400; color: var(--text-medium);">/month</span>
+        </h3>
+        <p style="color: var(--text-medium); margin-bottom: 2rem; font-size: 0.95rem;">30 days free</p>
+        
+        <ul style="text-align: left; list-style: none; margin-bottom: 2rem; padding: 0;">
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span>Unlimited users</span>
+          </li>
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span><strong>ALL</strong> modules</span>
+          </li>
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span>No order limits</span>
+          </li>
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span>No credit card</span>
+          </li>
+        </ul>
+        
+        <a href="/en/download.html" class="btn btn-secondary btn-large" style="width: 100%;">Try Now</a>
+      </div>
+
+      <!-- BASIC -->
+      <div class="card" style="padding: 2rem; text-align: center; border: 2px solid var(--primary);">
+        <div style="background: var(--primary); color: white; font-weight: 700; font-size: 0.875rem; padding: 8px 16px; border-radius: var(--radius-md); display: inline-block; margin-bottom: 1rem;">
+          💼 BASIC
+        </div>
+        <h3 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem; color: var(--text-dark);">
+          <span class="price-monthly">$29</span>
+          <span class="price-annual" style="display: none;">$23</span>
+          <span style="font-size: 1rem; font-weight: 400; color: var(--text-medium);">/month</span>
+        </h3>
+        <p class="savings-annual" style="color: var(--accent); margin-bottom: 2rem; font-size: 0.875rem; font-weight: 600; display: none;">
+          Save $72/year
+        </p>
+        <p class="desc-monthly" style="color: var(--text-medium); margin-bottom: 2rem; font-size: 0.95rem;">
+          For small workshops
+        </p>
+        
+        <ul style="text-align: left; list-style: none; margin-bottom: 2rem; padding: 0;">
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span>Up to <strong>5 users</strong></span>
+          </li>
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span>Quotes</span>
+          </li>
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span>Production Orders</span>
+          </li>
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span>Inventory</span>
+          </li>
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span>Mobile App PWA</span>
+          </li>
+          <li style="padding: 0.5rem 0; color: var(--text-light);">
+            • Email Support (48h)
+          </li>
+          <li style="padding: 0.5rem 0; color: var(--text-light);">
+            • Limit: 100 orders/month
+          </li>
+        </ul>
+        
+        <a href="https://gumroad.com/l/fabricontrol-basic" class="btn btn-primary btn-large" style="width: 100%;" target="_blank">Buy Now</a>
+      </div>
+
+      <!-- PRO -->
+      <div class="card" style="padding: 2rem; text-align: center; border: 3px solid var(--accent); transform: scale(1.05); position: relative;">
+        <div style="position: absolute; top: -12px; right: 20px; background: var(--accent); color: white; padding: 6px 16px; border-radius: var(--radius-lg); font-size: 0.875rem; font-weight: 600;">
+          ⭐ MOST POPULAR
+        </div>
+        <div style="background: var(--accent); color: white; font-weight: 700; font-size: 0.875rem; padding: 8px 16px; border-radius: var(--radius-md); display: inline-block; margin-bottom: 1rem;">
+          🚀 PRO
+        </div>
+        <h3 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem; color: var(--text-dark);">
+          <span class="price-monthly">$99</span>
+          <span class="price-annual" style="display: none;">$79</span>
+          <span style="font-size: 1rem; font-weight: 400; color: var(--text-medium);">/month</span>
+        </h3>
+        <p class="savings-annual" style="color: var(--accent); margin-bottom: 2rem; font-size: 0.875rem; font-weight: 600; display: none;">
+          Save $240/year
+        </p>
+        <p class="desc-monthly" style="color: var(--text-medium); margin-bottom: 2rem; font-size: 0.95rem;">
+          For growing workshops
+        </p>
+        
+        <ul style="text-align: left; list-style: none; margin-bottom: 2rem; padding: 0;">
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span><strong>Unlimited users</strong></span>
+          </li>
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span><strong>All Basic features</strong></span>
+          </li>
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span>Project Portal</span>
+          </li>
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span>Parametric Parts</span>
+          </li>
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span>AI Chat with Gemini</span>
+          </li>
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span>Custom permissions</span>
+          </li>
+          <li style="padding: 0.5rem 0; color: var(--text-light);">
+            • Email Support (24h)
+          </li>
+          <li style="padding: 0.5rem 0; color: var(--text-light);">
+            • Unlimited orders
+          </li>
+        </ul>
+        
+        <a href="https://gumroad.com/l/fabricontrol-pro" class="btn btn-accent btn-large" style="width: 100%;" target="_blank">Buy Now</a>
+      </div>
+
+    </div>
+
+    <!-- ENTERPRISE -->
+    <div style="margin-top: 4rem; text-align: center;">
+      <div class="card" style="max-width: 900px; margin: 0 auto; padding: 3rem; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white;">
+        <h2 style="color: white; margin-bottom: 1rem;">🏢 Enterprise</h2>
+        <p style="font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.95;">
+          Custom solution for large factories with specific needs
+        </p>
+        <div class="grid grid-3" style="margin-bottom: 2rem;">
+          <div>
+            <h4 style="color: white; font-size: 1rem;">✓ Private installation</h4>
+          </div>
+          <div>
+            <h4 style="color: white; font-size: 1rem;">✓ Training included</h4>
+          </div>
+          <div>
+            <h4 style="color: white; font-size: 1rem;">✓ Priority support</h4>
+          </div>
+        </div>
+        <a href="/en/enterprise.html" class="btn btn-accent btn-large">Request Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>FabriControl</h4>
+        <p style="opacity: 0.8;">The ERP designed specifically for Latin American workshops and factories.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul class="footer-links">
+          <li><a href="/en/features.html">Features</a></li>
+          <li><a href="/en/pricing.html">Pricing</a></li>
+          <li><a href="/en/download.html">Download</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="/en/resources/">Free Campus</a></li>
+          <li><a href="/en/products/">Product Catalog</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li>📧 sales@fabricontrol.com</li>
+          <li>📧 support@fabricontrol.com</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 FabriControl. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const btnMonthly = document.getElementById('btn-monthly');
+  const btnAnnual = document.getElementById('btn-annual');
+  const pricesMonthly = document.querySelectorAll('.price-monthly');
+  const pricesAnnual = document.querySelectorAll('.price-annual');
+  const savingsAnnual = document.querySelectorAll('.savings-annual');
+  const descMonthly = document.querySelectorAll('.desc-monthly');
+  
+  btnAnnual.addEventListener('click', () => {
+    btnMonthly.classList.remove('active');
+    btnAnnual.classList.add('active');
+    pricesMonthly.forEach(el => el.style.display = 'none');
+    pricesAnnual.forEach(el => el.style.display = 'inline');
+    savingsAnnual.forEach(el => el.style.display = 'block');
+    descMonthly.forEach(el => el.style.display = 'none');
+  });
+  
+  btnMonthly.addEventListener('click', () => {
+    btnAnnual.classList.remove('active');
+    btnMonthly.classList.add('active');
+    pricesMonthly.forEach(el => el.style.display = 'inline');
+    pricesAnnual.forEach(el => el.style.display = 'none');
+    savingsAnnual.forEach(el => el.style.display = 'none');
+    descMonthly.forEach(el => el.style.display = 'block');
+  });
+</script>
+
+</body>
+</html>
