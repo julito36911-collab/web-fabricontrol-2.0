@@ -1,0 +1,57 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-content">
+          <div className="footer-section">
+            <h4>FabriControl</h4>
+            <p style={{opacity: 0.8}}>El ERP diseñado específicamente para talleres y fábricas latinoamericanas.</p>
+          </div>
+          
+          <div className="footer-section">
+            <h4>Producto</h4>
+            <ul className="footer-links">
+              <li><Link to="/caracteristicas">Características</Link></li>
+              <li><Link to="/precios">Precios</Link></li>
+              <li><Link to="/descargar">Descargar</Link></li>
+              <li><a href="#">Documentación</a></li>
+            </ul>
+          </div>
+          
+          <div className="footer-section">
+            <h4>Recursos</h4>
+            <ul className="footer-links">
+              <li><a href="#">Calculadoras Gratis</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Videos Tutoriales</a></li>
+              <li><Link to="/faq">FAQ</Link></li>
+            </ul>
+          </div>
+          
+          <div className="footer-section">
+            <h4>Contacto</h4>
+            <ul className="footer-links">
+              <li>📧 ventas@fabricontrol.com</li>
+              <li>📧 soporte@fabricontrol.com</li>
+              <li>📱 WhatsApp: +52-XXX-XXX-XXXX</li>
+              <li><a href="mailto:info@fabricontrol.com">Formulario de Contacto</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="footer-bottom">
+          <p>&copy; 2026 FabriControl. Todos los derechos reservados.</p>
+          <p style={{marginTop: '0.5rem'}}>
+            <a href="#">Términos y Condiciones</a> · 
+            <a href="#">Política de Privacidad</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+export default Footer;
