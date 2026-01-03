@@ -20,6 +20,11 @@ function Header() {
             <li><a href="/productos/" className="nav-link">Products</a></li>
             <li><a href="/recursos/" className="nav-link">Resources</a></li>
             <li><Link to="/descargar" className="btn btn-primary btn-small">Try Free</Link></li>
+            <li>
+              <a href="/en/resources/" className="nav-link" style={{display: 'flex', alignItems: 'center', gap: '0.3rem'}}>
+                🌐 <span style={{fontWeight: 600}}>EN</span>
+              </a>
+            </li>
           </ul>
         </nav>
       </div>
