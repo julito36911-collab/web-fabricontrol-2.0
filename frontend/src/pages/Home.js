@@ -46,29 +46,29 @@ function Home() {
       <section className="section">
         <div className="container">
           <div className="text-center mb-4">
-            <h2>Why Choose FabriControl?</h2>
+            <h2>¿Por Qué Elegir FabriControl?</h2>
             <p style={{color: 'var(--text-medium)', fontSize: '1.125rem'}}>
-              Designed specifically for Latin American workshops
+              Diseñado específicamente para talleres latinoamericanos
             </p>
           </div>
           
           <div className="grid grid-3">
             <div className="card text-center">
               <div className="feature-icon" style={{background: 'var(--primary)', color: 'white', margin: '0 auto'}}>⚡</div>
-              <h3 className="feature-title">Quote 50% Faster</h3>
-              <p>Automatic calculation of material and machine costs. Generate professional PDFs in minutes.</p>
+              <h3 className="feature-title">Cotiza 50% Más Rápido</h3>
+              <p>Cálculo automático de costos de materiales y máquinas. Genera PDFs profesionales en minutos.</p>
             </div>
             
             <div className="card text-center">
               <div className="feature-icon" style={{background: 'var(--accent)', color: 'white', margin: '0 auto'}}>📊</div>
-              <h3 className="feature-title">Never Lose an Order</h3>
-              <p>Visual tracking of every project in real-time. Customizable statuses according to your workflow.</p>
+              <h3 className="feature-title">Nunca Pierdas una Orden</h3>
+              <p>Seguimiento visual de cada proyecto en tiempo real. Estados personalizables según tu flujo.</p>
             </div>
             
             <div className="card text-center">
               <div className="feature-icon" style={{background: 'var(--secondary)', color: 'white', margin: '0 auto'}}>📱</div>
-              <h3 className="feature-title">Connected Operators</h3>
-              <p>Mobile app to update statuses from the production floor. Works on any phone.</p>
+              <h3 className="feature-title">Operarios Conectados</h3>
+              <p>App móvil para actualizar estados desde el piso de producción. Funciona en cualquier celular.</p>
             </div>
           </div>
         </div>
