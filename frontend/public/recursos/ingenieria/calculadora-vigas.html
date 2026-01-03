@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Vigas Online - FabriControl Ingeniería</title>
+  <meta name="description" content="Calcula resistencia y deflexión de vigas IPR, IPE, HEB y Tubulares. Herramienta gratuita para Ingenieros.">
+  
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="../../assets/img/logos/favicon.svg">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Estilos específicos de la Calculadora */
+    .calc-container { max-width: 1100px; margin: 4rem auto; padding: 0 1.5rem; }
+    .calc-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; margin-top: 2rem; }
+    
+    .calc-card { 
+      background: white; padding: 2.5rem; border-radius: 16px; 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #f0f0f0;
+    }
+    
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; font-weight: 700; margin-bottom: 0.5rem; color: #1F2937; }
+    .form-control { 
+      width: 100%; padding: 1rem; border: 2px solid #e5e7eb; border-radius: 8px; 
+      font-family: 'Poppins', sans-serif; font-size: 1rem; transition: 0.3s;
+    }
+    .form-control:focus { border-color: #5A8AA0; outline: none; }
+    
+    .btn-calc { 
+      width: 100%; padding: 1.2rem; background: #5A8AA0; color: white; border: none; 
+      border-radius: 8px; font-weight: 700; font-size: 1.1rem; cursor: pointer; 
+      transition: 0.3s; margin-top: 1rem;
+    }
+    .btn-calc:hover { background: #4a7589; transform: translateY(-2px); }
+    
+    /* Resultados */
+    .result-box { 
+      background: #f0f9ff; border-left: 5px solid #5A8AA0; 
+      padding: 1.5rem; margin-top: 2rem; border-radius: 4px; display: none;
+    }
+    .result-row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem; }
+    .result-main { font-size: 2.5rem; font-weight: 800; color: #1F2937; margin: 1rem 0; }
+    .status-pass { color: #059669; font-weight: 700; background: #d1fae5; padding: 0.5rem; border-radius: 6px; display: inline-block; }
+    .status-fail { color: #dc2626; font-weight: 700; background: #fee2e2; padding: 0.5rem; border-radius: 6px; display: inline-block; }
+
+    /* Sidebar */
+    .promo-box { background: #1F2937; color: white; padding: 2rem; border-radius: 16px; text-align: center; position: sticky; top: 2rem; }
+    .promo-btn { 
+      display: inline-block; background: #F5E6A8; color: #1F2937; 
+      padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; 
+      font-weight: 700; margin-top: 1.5rem; transition: 0.3s;
+    }
+    .promo-btn:hover { transform: scale(1.05); }
+
+    @media (max-width: 900px) { .calc-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav style="padding: 1rem; border-bottom: 1px solid #eee;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <a href="index.html" style="font-weight: 700; text-decoration: none; color: #555;">← Volver a Ingeniería</a>
+      <a href="../../index.html" style="font-weight: 900; text-decoration: none; color: #5A8AA0;">FabriControl</a>
+    </div>
+  </nav>
+
+  <div class="calc-container">
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <h1 style="font-family: 'Montserrat'; font-size: 2.5rem; color: #1F2937;">Calculadora de Vigas</h1>
+      <p style="font-size: 1.1rem; color: #666;">Verifica la deflexión de perfiles estructurales bajo carga puntual.</p>
+    </div>
+
+    <div class="calc-grid">
+      <div class="calc-card">
+        <form id="beamForm">
+          <div class="form-group">
+            <label>1. Selecciona el Perfil Estructural</label>
+            <select class="form-control" id="perfilSelect">
+              <optgroup label="Perfiles IPE (Europeo)">
+                <option value="IPE80">IPE 80 (h=80mm)</option>
+                <option value="IPE100">IPE 100 (h=100mm)</option>
+                <option value="IPE120">IPE 120 (h=120mm)</option>
+                <option value="IPE160">IPE 160 (h=160mm)</option>
+                <option value="IPE200">IPE 200 (h=200mm)</option>
+              </optgroup>
+              <optgroup label="Perfiles HEB (Europeo Pesado)">
+                <option value="HEB100">HEB 100</option>
+                <option value="HEB140">HEB 140</option>
+                <option value="HEB200">HEB 200</option>
+              </optgroup>
+              <optgroup label="Perfiles W / IPR (Americano)">
+                <option value="W8x31">W 8x31 (8 pulg)</option>
+                <option value="W10x49">W 10x49 (10 pulg)</option>
+                <option value="W12x65">W 12x65 (12 pulg)</option>
+              </optgroup>
+              <optgroup label="Tubular Cuadrado (PTR/HSS)">
+                <option value="HSS100x100x6">PTR 100x100x6 mm</option>
+                <option value="HSS4x4x1/4">HSS 4" x 4" x 1/4"</option>
+                <option value="HSS6x6x3/8">HSS 6" x 6" x 3/8"</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>2. Longitud del claro (metros)</label>
+            <input type="number" class="form-control" id="lengthInput" value="3.0" step="0.1" min="0.5">
+          </div>
+
+          <div class="form-group">
+            <label>3. Carga aplicada al centro (kg)</label>
+            <input type="number" class="form-control" id="loadInput" value="500" step="10">
+            <small style="color: #666;">Considerando carga puntual en L/2</small>
+          </div>
+
+          <button type="button" class="btn-calc" onclick="calcularViga()">CALCULAR DEFLEXIÓN</button>
+        </form>
+
+        <div id="results" class="result-box">
+          <div class="result-row">
+            <span>Inercia del perfil (Ix):</span>
+            <span id="resIx" style="font-weight: 700;">-</span>
+          </div>
+          <div class="result-row">
+            <span>Límite permitido (L/360):</span>
+            <span id="resLimit">-</span>
+          </div>
+          
+          <hr style="margin: 1rem 0; border-color: #ddd;">
+          
+          <label style="font-size: 0.9rem; font-weight: 700; color: #5A8AA0;">DEFLEXIÓN CALCULADA:</label>
+          <div class="result-main" id="resDeflection">0.00 mm</div>
+          
+          <div id="resStatus" class="status-pass">✅ DISEÑO SEGURO</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="promo-box">
+          <h3 style="margin-bottom: 1rem;">¿Haces esto a mano?</h3>
+          <p style="opacity: 0.9; margin-bottom: 1.5rem;">En <strong>FabriControl</strong>, el módulo de Ingeniería hace este cálculo automáticamente mientras diseñas la pieza y genera la lista de corte.</p>
+          <ul style="text-align: left; margin-bottom: 2rem; list-style: none;">
+            <li style="margin-bottom: 0.5rem;">✅ Base de datos ASTM/DIN incluida</li>
+            <li style="margin-bottom: 0.5rem;">✅ Cálculo de peso y costos</li>
+            <li>✅ Exportación a Planos PDF</li>
+          </ul>
+          <img src="../../assets/img/screenshots/desktop/parametric-pieces-es.jpg" alt="Modulo Ingenieria" style="width: 100%; border-radius: 8px; margin-bottom: 1rem; opacity: 0.8;">
+          <a href="../../descargar.html" class="promo-btn">Descargar FabriControl Gratis</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // BASE DE DATOS DE PERFILES (Ix en cm4)
+    const perfilesDB = {
+      "IPE80": { nombre: "IPE 80", Ix: 80.1 },
+      "IPE100": { nombre: "IPE 100", Ix: 171 },
+      "IPE120": { nombre: "IPE 120", Ix: 318 },
+      "IPE160": { nombre: "IPE 160", Ix: 869 },
+      "IPE200": { nombre: "IPE 200", Ix: 1940 },
+      
+      "HEB100": { nombre: "HEB 100", Ix: 450 },
+      "HEB140": { nombre: "HEB 140", Ix: 1510 },
+      "HEB200": { nombre: "HEB 200", Ix: 5700 },
+
+      "W8x31": { nombre: "W 8x31", Ix: 4580 },
+      "W10x49": { nombre: "W 10x49", Ix: 11300 },
+      "W12x65": { nombre: "W 12x65", Ix: 22200 },
+
+      "HSS100x100x6": { nombre: "PTR 100x100x6mm", Ix: 331 },
+      "HSS4x4x1/4": { nombre: "HSS 4x4x1/4", Ix: 366 },
+      "HSS6x6x3/8": { nombre: "HSS 6x6x3/8", Ix: 1750 }
+    };
+
+    function calcularViga() {
+      // 1. Obtener valores
+      const perfilKey = document.getElementById('perfilSelect').value;
+      const L_metros = parseFloat(document.getElementById('lengthInput').value);
+      const P_kg = parseFloat(document.getElementById('loadInput').value);
+
+      // 2. Validar
+      if (!L_metros || !P_kg || L_metros <= 0) {
+        alert("Por favor ingresa valores válidos.");
+        return;
+      }
+
+      // 3. Constantes y Conversiones
+      const perfil = perfilesDB[perfilKey];
+      const E = 2100000; // Modulo elasticidad Acero (kg/cm2)
+      const Ix = perfil.Ix; // Inercia en cm4
+      
+      const L_cm = L_metros * 100; // Convertir m a cm
+      
+      // 4. Fórmula: Deflexión PL^3 / 48EI (Carga puntual al centro)
+      // Resultado en cm
+      const deflexion_cm = (P_kg * Math.pow(L_cm, 3)) / (48 * E * Ix);
+      
+      const deflexion_mm = deflexion_cm * 10; // Convertir a mm
+      
+      // 5. Criterio de Aceptación (L/360)
+      // L/360 es estándar común para vigas de piso/techo
+      const limite_cm = L_cm / 360;
+      const limite_mm = limite_cm * 10;
+
+      // 6. Mostrar Resultados
+      document.getElementById('resIx').innerText = Ix + " cm⁴";
+      document.getElementById('resLimit').innerText = limite_mm.toFixed(2) + " mm";
+      document.getElementById('resDeflection').innerText = deflexion_mm.toFixed(2) + " mm";
+
+      const statusBox = document.getElementById('resStatus');
+      
+      if (deflexion_mm < limite_mm) {
+        statusBox.className = 'status-pass';
+        statusBox.innerHTML = `✅ DISEÑO SEGURO<br><small>La viga soporta la carga sin deformarse excesivamente.</small>`;
+      } else {
+        statusBox.className = 'status-fail';
+        statusBox.innerHTML = `⚠️ DEFLEXIÓN EXCESIVA<br><small>El perfil es muy débil o el claro muy largo. Prueba un perfil mayor.</small>`;
+      }
+
+      document.getElementById('results').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
