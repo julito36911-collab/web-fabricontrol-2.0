@@ -12,14 +12,14 @@ function Home() {
       <section className="hero" id="inicio">
         <div className="container">
           <div className="hero-content">
-            <h1>The ERP Your Workshop Deserves, at a Price You Can Afford</h1>
-            <p>Control quotes, production and inventory from <strong>$29/month</strong>. No complications.</p>
+            <h1>El ERP que tu Taller Merece, al Precio que Puedes Pagar</h1>
+            <p>Controla cotizaciones, producción e inventario desde <strong>$29/mes</strong>. Sin complicaciones.</p>
             <div className="hero-cta">
-              <Link to="/descargar" className="btn btn-accent btn-large">🆓 Try 30 Days FREE</Link>
-              <Link to="/precios" className="btn btn-secondary btn-large">View Plans</Link>
+              <Link to="/descargar" className="btn btn-accent btn-large">🆓 Prueba 30 Días GRATIS</Link>
+              <Link to="/precios" className="btn btn-secondary btn-large">Ver Planes</Link>
             </div>
             <p style={{marginTop: '1rem', opacity: 0.9, fontSize: '0.95rem'}}>
-              ✅ No credit card · ✅ Full access · ✅ No commitments
+              ✅ Sin tarjeta de crédito · ✅ Acceso completo · ✅ Sin compromisos
             </p>
           </div>
         </div>
