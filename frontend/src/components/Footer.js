@@ -43,10 +43,10 @@ function Footer() {
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; 2026 FabriControl. All rights reserved.</p>
+          <p>&copy; 2026 FabriControl. Todos los derechos reservados.</p>
           <p style={{marginTop: '0.5rem'}}>
-            <a href="#">Terms and Conditions</a> · 
-            <a href="#">Privacy Policy</a>
+            <a href="#">Términos y Condiciones</a> · 
+            <a href="#">Política de Privacidad</a>
           </p>
         </div>
       </div>
