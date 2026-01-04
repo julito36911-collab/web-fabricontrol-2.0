@@ -200,7 +200,7 @@ function Home() {
           {/* Galería adicional de app móvil */}
           <div style={{marginTop: 'var(--spacing-xxl)'}}>
             <h3 className="text-center mb-3">App Móvil en Acción</h3>
-            <div className="grid grid-4">
+            <div className="grid grid-5" style={{gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))'}}>
               <div style={{textAlign: 'center'}}>
                 <div style={{borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-md)', display: 'inline-block'}}>
                   <img src="/assets/img/screenshots/mobile/mobile-login.jpg" alt="Login Móvil" style={{maxWidth: '200px', height: 'auto', display: 'block'}} />
@@ -209,15 +209,21 @@ function Home() {
               </div>
               <div style={{textAlign: 'center'}}>
                 <div style={{borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-md)', display: 'inline-block'}}>
-                  <img src="/assets/img/screenshots/mobile/mobile-orders.jpg" alt="Órdenes Móvil" style={{maxWidth: '200px', height: 'auto', display: 'block'}} />
+                  <img src="/assets/img/screenshots/mobile/mobile-orders.jpg" alt="Mis Órdenes" style={{maxWidth: '200px', height: 'auto', display: 'block'}} />
                 </div>
                 <p style={{marginTop: '0.5rem', fontSize: '0.875rem', color: 'var(--text-medium)'}}>Mis Órdenes</p>
               </div>
               <div style={{textAlign: 'center'}}>
                 <div style={{borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-md)', display: 'inline-block'}}>
-                  <img src="/assets/img/screenshots/mobile/mobile-scan-qr-1.jpg" alt="Escanear QR" style={{maxWidth: '200px', height: 'auto', display: 'block'}} />
+                  <img src="/assets/img/screenshots/mobile/mobile-machines.jpg" alt="Actualización Estado Máquinas" style={{maxWidth: '200px', height: 'auto', display: 'block'}} />
                 </div>
-                <p style={{marginTop: '0.5rem', fontSize: '0.875rem', color: 'var(--text-medium)'}}>Escanear QR</p>
+                <p style={{marginTop: '0.5rem', fontSize: '0.875rem', color: 'var(--text-medium)'}}>Actualización de Estado</p>
+              </div>
+              <div style={{textAlign: 'center'}}>
+                <div style={{borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-md)', display: 'inline-block'}}>
+                  <img src="/assets/img/screenshots/mobile/mobile-scan-qr.jpg" alt="Cámara QR" style={{maxWidth: '200px', height: 'auto', display: 'block'}} />
+                </div>
+                <p style={{marginTop: '0.5rem', fontSize: '0.875rem', color: 'var(--text-medium)'}}>Cámara para QR</p>
               </div>
               <div style={{textAlign: 'center'}}>
                 <div style={{borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-md)', display: 'inline-block'}}>
