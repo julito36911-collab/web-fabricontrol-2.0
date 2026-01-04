@@ -320,5 +320,460 @@
   </div>
 </footer>
 
+<!-- ENTERPRISE QUOTE MODAL -->
+<div id="quoteModal" class="quote-modal-overlay" style="display: none;">
+  <div class="quote-modal-content">
+    <button class="quote-modal-close" onclick="closeQuoteModal()">✕</button>
+    
+    <div class="quote-modal-header">
+      <h2>🏢 Enterprise Quote</h2>
+      <p>Fill out the form and we'll contact you within 48 hours</p>
+    </div>
+
+    <form id="quoteForm" class="quote-form-en">
+      <div class="form-section">
+        <h3>📋 Company Information</h3>
+        
+        <div class="form-group">
+          <label for="companyName">Company Name *</label>
+          <input type="text" id="companyName" name="companyName" placeholder="e.g., Industrial Steel Inc." required>
+        </div>
+
+        <div class="form-group">
+          <label for="contactName">Contact Name *</label>
+          <input type="text" id="contactName" name="contactName" placeholder="e.g., John Smith" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="contact@company.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="industry">Industry / Sector</label>
+          <select id="industry" name="industry">
+            <option value="">Select an option</option>
+            <option value="metalurgia">Metal & Manufacturing</option>
+            <option value="carpinteria">Industrial Woodworking</option>
+            <option value="plasticos">Plastics & Polymers</option>
+            <option value="textil">Textile</option>
+            <option value="alimentos">Food & Beverage</option>
+            <option value="electronica">Electronics</option>
+            <option value="automotriz">Automotive</option>
+            <option value="construccion">Construction</option>
+            <option value="otro">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h3>📊 Project Details</h3>
+
+        <div class="form-group">
+          <label for="currentUsers">Estimated Number of Users</label>
+          <input type="text" id="currentUsers" name="currentUsers" placeholder="e.g., 15-20 users">
+        </div>
+
+        <div class="form-group">
+          <label for="requirements">Specific Requirements</label>
+          <textarea id="requirements" name="requirements" placeholder="Describe the custom modules or specific features you need..." rows="4"></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="timeline">Desired Timeline</label>
+            <select id="timeline" name="timeline">
+              <option value="">Select</option>
+              <option value="inmediato">Immediate (1-2 weeks)</option>
+              <option value="1-mes">1 month</option>
+              <option value="2-3-meses">2-3 months</option>
+              <option value="6-meses">6 months or more</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="budget">Approximate Budget (USD)</label>
+            <select id="budget" name="budget">
+              <option value="">Select</option>
+              <option value="menos-5k">Less than $5,000</option>
+              <option value="5k-10k">$5,000 - $10,000</option>
+              <option value="10k-25k">$10,000 - $25,000</option>
+              <option value="25k-50k">$25,000 - $50,000</option>
+              <option value="mas-50k">More than $50,000</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="formMessage" class="form-message" style="display: none;"></div>
+
+      <div class="form-actions">
+        <button type="button" onclick="downloadAsPDF()" class="btn btn-secondary">
+          💾 Download to my PC
+        </button>
+        <button type="submit" id="submitBtn" class="btn btn-primary">
+          📧 Send by Email
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+.quote-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 9999;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.quote-modal-content {
+  background: white;
+  border-radius: 16px;
+  max-width: 800px;
+  width: 100%;
+  margin: 2rem auto;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.quote-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--bg-gray);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 1;
+}
+
+.quote-modal-close:hover {
+  background: #fee2e2;
+  color: #dc2626;
+  transform: rotate(90deg);
+}
+
+.quote-modal-header {
+  padding: 2.5rem 2.5rem 1.5rem;
+  border-bottom: 2px solid var(--bg-gray);
+  background: linear-gradient(135deg, #eef2ff 0%, #f9fafb 100%);
+  text-align: center;
+  border-radius: 16px 16px 0 0;
+}
+
+.quote-modal-header h2 {
+  margin: 0 0 0.5rem;
+  color: var(--primary);
+  font-size: 2rem;
+}
+
+.quote-modal-header p {
+  margin: 0;
+  color: var(--text-medium);
+  font-size: 1rem;
+}
+
+.quote-form-en {
+  padding: 2rem 2.5rem 2.5rem;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+}
+
+.form-section h3 {
+  font-size: 1.25rem;
+  color: var(--text-dark);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--bg-gray);
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--bg-gray);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s;
+  background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--bg-gray);
+}
+
+.form-actions button {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.form-message {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.form-message.success {
+  background: #dcfce7;
+  color: #166534;
+  border: 2px solid #86efac;
+}
+
+.form-message.error {
+  background: #fee2e2;
+  color: #dc2626;
+  border: 2px solid #fca5a5;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .quote-modal-header {
+    padding: 2rem 1.5rem 1rem;
+  }
+  
+  .quote-form-en {
+    padding: 1.5rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+}
+</style>
+
+<script>
+function openQuoteModal() {
+  document.getElementById('quoteModal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeQuoteModal() {
+  document.getElementById('quoteModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// Cerrar modal al hacer clic fuera
+document.getElementById('quoteModal')?.addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeQuoteModal();
+  }
+});
+
+function downloadAsPDF() {
+  const form = document.getElementById('quoteForm');
+  const formData = new FormData(form);
+  
+  const content = `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>Enterprise Quote - FabriControl</title>
+      <style>
+        body { font-family: Arial, sans-serif; padding: 40px; line-height: 1.6; }
+        h1 { color: #3B82F6; border-bottom: 3px solid #3B82F6; padding-bottom: 10px; }
+        h2 { color: #6366F1; margin-top: 30px; }
+        .field { margin-bottom: 20px; }
+        .label { font-weight: bold; color: #4B5563; }
+        .value { margin-top: 5px; padding: 10px; background: #F3F4F6; border-radius: 5px; }
+      </style>
+    </head>
+    <body>
+      <h1>🏢 Enterprise Quote Request - FabriControl</h1>
+      <p><strong>Date:</strong> ${new Date().toLocaleDateString('en-US')}</p>
+      
+      <h2>📋 Company Information</h2>
+      <div class="field">
+        <div class="label">Company Name:</div>
+        <div class="value">${formData.get('companyName') || 'N/A'}</div>
+      </div>
+      <div class="field">
+        <div class="label">Contact Name:</div>
+        <div class="value">${formData.get('contactName') || 'N/A'}</div>
+      </div>
+      <div class="field">
+        <div class="label">Email:</div>
+        <div class="value">${formData.get('email') || 'N/A'}</div>
+      </div>
+      <div class="field">
+        <div class="label">Phone:</div>
+        <div class="value">${formData.get('phone') || 'N/A'}</div>
+      </div>
+      <div class="field">
+        <div class="label">Industry:</div>
+        <div class="value">${formData.get('industry') || 'N/A'}</div>
+      </div>
+      
+      <h2>📊 Project Details</h2>
+      <div class="field">
+        <div class="label">Number of Users:</div>
+        <div class="value">${formData.get('currentUsers') || 'N/A'}</div>
+      </div>
+      <div class="field">
+        <div class="label">Specific Requirements:</div>
+        <div class="value">${formData.get('requirements') || 'N/A'}</div>
+      </div>
+      <div class="field">
+        <div class="label">Desired Timeline:</div>
+        <div class="value">${formData.get('timeline') || 'N/A'}</div>
+      </div>
+      <div class="field">
+        <div class="label">Approximate Budget:</div>
+        <div class="value">${formData.get('budget') || 'N/A'}</div>
+      </div>
+      
+      <hr style="margin: 40px 0; border: none; border-top: 2px solid #E5E7EB;">
+      <p style="color: #6B7280; font-size: 0.9rem;">This document will be reviewed by our Enterprise sales team. We will contact you within 48 hours.</p>
+    </body>
+    </html>
+  `;
+
+  const blob = new Blob([content], { type: 'text/html' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `FabriControl_Enterprise_Quote_${Date.now()}.html`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  window.URL.revokeObjectURL(url);
+
+  showMessage('✅ File downloaded successfully', 'success');
+}
+
+async function sendByEmail(e) {
+  e.preventDefault();
+  
+  const form = document.getElementById('quoteForm');
+  const formData = new FormData(form);
+  const submitBtn = document.getElementById('submitBtn');
+  
+  // Validación básica
+  if (!formData.get('companyName') || !formData.get('contactName') || !formData.get('email')) {
+    showMessage('⚠️ Please complete the required fields (Company, Contact, Email)', 'error');
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = '📧 Sending...';
+
+  try {
+    // Obtener BACKEND_URL del .env
+    const response = await fetch('/api/enterprise-quote', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        companyName: formData.get('companyName'),
+        contactName: formData.get('contactName'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        industry: formData.get('industry'),
+        currentUsers: formData.get('currentUsers'),
+        requirements: formData.get('requirements'),
+        timeline: formData.get('timeline'),
+        budget: formData.get('budget')
+      })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      showMessage('✅ Quote sent successfully. We will contact you within 48h.', 'success');
+      setTimeout(() => {
+        form.reset();
+        closeQuoteModal();
+      }, 2000);
+    } else {
+      showMessage(`❌ Error: ${data.message || 'Could not send quote'}`, 'error');
+    }
+  } catch (error) {
+    console.error('Error sending quote:', error);
+    showMessage('❌ Connection error. Try downloading the form and sending it manually.', 'error');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = '📧 Send by Email';
+  }
+}
+
+function showMessage(text, type) {
+  const messageDiv = document.getElementById('formMessage');
+  messageDiv.textContent = text;
+  messageDiv.className = `form-message ${type}`;
+  messageDiv.style.display = 'block';
+  
+  setTimeout(() => {
+    messageDiv.style.display = 'none';
+  }, 5000);
+}
+
+// Agregar event listener al formulario
+document.getElementById('quoteForm')?.addEventListener('submit', sendByEmail);
+</script>
+
 </body>
 </html>
