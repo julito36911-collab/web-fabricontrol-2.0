@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-function Header() {
+function Header({ onRequestLicense }) {
   const location = useLocation();
   
   return (
@@ -20,7 +20,13 @@ function Header() {
             <li><a href="/productos/" className="nav-link">Productos</a></li>
             <li><a href="/recursos/" className="nav-link">Recursos</a></li>
             <li><a href="/documentacion.html" className="nav-link">Documentación</a></li>
-            <li><Link to="/descargar" className="btn btn-primary btn-small">Probar Gratis</Link></li>
+            <li>
+              {onRequestLicense ? (
+                <button onClick={onRequestLicense} className="btn btn-primary btn-small">Probar Gratis</button>
+              ) : (
+                <Link to="/descargar" className="btn btn-primary btn-small">Probar Gratis</Link>
+              )}
+            </li>
             <li>
               <a href="/en/resources/" className="nav-link" style={{padding: '0.5rem 0.75rem', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '6px', fontSize: '0.875rem', fontWeight: 600}}>
                 🌐 EN
