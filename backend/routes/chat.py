@@ -2,8 +2,12 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional
 import os
+from dotenv import load_dotenv
 import google.generativeai as genai
 from pathlib import Path
+
+# Load environment variables
+load_dotenv()
 
 router = APIRouter()
 
