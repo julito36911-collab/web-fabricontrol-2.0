@@ -632,6 +632,195 @@ Usuario escribe en el navegador:
       </div>
     </div>
 
+    <!-- SECTION 7: SISTEMA DE LICENCIAS -->
+    <div class="doc-section" id="licencias">
+      <h2>🔐 7. Sistema de Licencias y Activación</h2>
+      
+      <h3>¿Cómo funciona el sistema de licencias?</h3>
+      <p>FabriControl utiliza un sistema de licencias centralizado que verifica tu suscripción cada vez que inicias sesión.</p>
+
+      <div class="warning-box">
+        <strong>⚠️ IMPORTANTE - Conexión a Internet REQUERIDA:</strong><br>
+        FabriControl SIEMPRE necesita conexión a internet para validar tu licencia al iniciar sesión. Sin internet, no podrás acceder al sistema, incluso si está instalado localmente.
+      </div>
+
+      <h3>Flujo Completo de Activación</h3>
+      
+      <div class="diagram">
+        <h4>📥 PASO 1: Descarga e Instalación (30 días gratis)</h4>
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+1. Cliente se interesa en FabriControl
+   ↓
+2. Descarga el instalador desde www.fabricontrol.com/descargar
+   ↓
+3. Instala en su PC/Servidor
+   ↓
+4. Al primer inicio recibe una licencia TRIAL:
+   
+   📧 Email automático:
+   ┌──────────────────────────────────────────┐
+   │ Tu licencia TRIAL:                       │
+   │ FABRI-1234-5678-ABCD                    │
+   │                                          │
+   │ ✅ 30 días gratis                        │
+   │ ✅ Todas las características             │
+   │ ✅ Sin tarjeta de crédito                │
+   └──────────────────────────────────────────┘
+   ↓
+5. Cliente usa FabriControl durante 30 días
+        </pre>
+      </div>
+
+      <div class="diagram">
+        <h4>🔓 PASO 2: Validación en Cada Inicio de Sesión</h4>
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+Usuario abre FabriControl
+  ↓
+Sistema verifica licencia_key
+  ↓
+🌐 Conecta a servidor de licencias (REQUIERE INTERNET)
+  ↓
+Busca licencia en base de datos central
+  ↓
+Verifica ESTADO de la licencia:
+
+  ✅ ESTADO = "trial" + no expirada
+     → Usuario puede entrar
+  
+  ✅ ESTADO = "activa" (cliente pagó)
+     → Usuario puede entrar
+  
+  ❌ ESTADO = "trial" + expirada
+     → BLOQUEADO
+     → Mensaje: "Período de prueba expirado"
+  
+  ❌ ESTADO = "suspendida"
+     → BLOQUEADO
+     → Mensaje: "Licencia desactivada - Pago pendiente"
+  
+  ❌ ESTADO = "inactiva"
+     → BLOQUEADO
+     → Mensaje: "Licencia cancelada"
+
+  ❌ Sin conexión a internet
+     → BLOQUEADO
+     → Mensaje: "Error verificando licencia - 
+                 Verifique conexión a internet"
+        </pre>
+      </div>
+
+      <div class="diagram">
+        <h4>💳 PASO 3: Activación Después del Trial (Día 31)</h4>
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+OPCIÓN A: Cliente decide comprar
+┌─────────────────────────────────────┐
+│ Cliente envía pago ($49 o $129)    │
+│          ↓                          │
+│ Soporte verifica pago               │
+│          ↓                          │
+│ Soporte ACTIVA la licencia          │
+│ (cambia estado a "activa")          │
+│          ↓                          │
+│ Cliente recibe confirmación         │
+│          ↓                          │
+│ Cliente puede seguir usando         │
+└─────────────────────────────────────┘
+
+OPCIÓN B: Cliente NO paga
+┌─────────────────────────────────────┐
+│ Día 31: Trial expira                │
+│          ↓                          │
+│ Estado cambia a "suspendida"        │
+│          ↓                          │
+│ Cliente NO puede iniciar sesión     │
+│          ↓                          │
+│ Mensaje: "Licencia desactivada"     │
+│          ↓                          │
+│ Si cliente paga después             │
+│ → Soporte reactiva manualmente      │
+└─────────────────────────────────────┘
+        </pre>
+      </div>
+
+      <h3>Estados de Licencia Posibles</h3>
+      <table class="comparison-table">
+        <tr>
+          <th>Estado</th>
+          <th>Significado</th>
+          <th>¿Puede usar el sistema?</th>
+        </tr>
+        <tr>
+          <td><strong>trial</strong></td>
+          <td>Cliente nuevo en período de prueba (30 días)</td>
+          <td>✅ Sí (si no expiró)</td>
+        </tr>
+        <tr>
+          <td><strong>activa</strong></td>
+          <td>Cliente pagó su mensualidad</td>
+          <td>✅ Sí</td>
+        </tr>
+        <tr>
+          <td><strong>suspendida</strong></td>
+          <td>Cliente no pagó, suspendido temporalmente</td>
+          <td>❌ No</td>
+        </tr>
+        <tr>
+          <td><strong>inactiva</strong></td>
+          <td>Cliente canceló el servicio</td>
+          <td>❌ No</td>
+        </tr>
+        <tr>
+          <td><strong>expirada</strong></td>
+          <td>Trial terminó sin pago</td>
+          <td>❌ No</td>
+        </tr>
+      </table>
+
+      <h3>Formato de Licencia</h3>
+      <div class="info-box">
+        <strong>📋 Formato estándar:</strong><br>
+        <code>FABRI-XXXX-XXXX-XXXX</code><br><br>
+        <strong>Ejemplo:</strong> <code>FABRI-1234-5678-ABCD</code>
+      </div>
+
+      <h3>Renovación Mensual</h3>
+      <p>Cada mes, antes del día de renovación:</p>
+      <ol>
+        <li>El sistema envía un recordatorio de pago automático</li>
+        <li>El cliente realiza el pago mensual ($49 o $129)</li>
+        <li>El soporte verifica el pago recibido</li>
+        <li>El estado de la licencia se mantiene como "activa"</li>
+        <li>Si el cliente NO paga, el estado cambia a "suspendida"</li>
+      </ol>
+
+      <div class="warning-box">
+        <strong>⚠️ Sin Pago = Sin Acceso:</strong><br>
+        Si no se recibe el pago mensual, el acceso al sistema se bloqueará automáticamente el día de renovación. Todos los datos se mantienen seguros y se reactivan al recibir el pago.
+      </div>
+
+      <h3>Preguntas Frecuentes sobre Licencias</h3>
+      
+      <div class="success-box">
+        <strong>❓ ¿Puedo usar FabriControl sin internet?</strong><br>
+        <strong>NO.</strong> FabriControl SIEMPRE requiere conexión a internet para validar tu licencia al iniciar sesión. Sin internet, no podrás acceder al sistema.
+      </div>
+
+      <div class="success-box">
+        <strong>❓ ¿Qué pasa con mis datos si no pago?</strong><br>
+        Tus datos (cotizaciones, órdenes, inventario) están 100% seguros. Se mantienen intactos en tu servidor local o en la nube. Cuando reactives tu licencia, podrás acceder a todo como antes.
+      </div>
+
+      <div class="success-box">
+        <strong>❓ ¿Cómo cancelo mi suscripción?</strong><br>
+        Simplemente deja de pagar y tu licencia pasará a estado "suspendida". Si quieres eliminar definitivamente tu cuenta y datos, contacta a soporte.
+      </div>
+
+      <div class="success-box">
+        <strong>❓ ¿Puedo reactivar después de cancelar?</strong><br>
+        Sí, en cualquier momento. Realiza el pago mensual correspondiente y el soporte reactivará tu licencia. Todos tus datos estarán disponibles.
+      </div>
+    </div>
+
     <!-- FOOTER CTA -->
     <div style="text-align: center; margin-top: 4rem; padding: 3rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: var(--radius-xl); color: white;">
       <h2 style="color: white; margin-bottom: 1rem;">¿Listo para instalar FabriControl?</h2>
