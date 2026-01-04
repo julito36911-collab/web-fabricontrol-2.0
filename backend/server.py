@@ -72,6 +72,9 @@ async def get_status_checks():
 # Include the router in the main app
 app.include_router(api_router)
 
+# Include chat router
+app.include_router(chat_router, prefix="/api", tags=["chat"])
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
