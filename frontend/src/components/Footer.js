@@ -17,7 +17,8 @@ function Footer() {
               <li><Link to="/caracteristicas">Características</Link></li>
               <li><Link to="/precios">Precios</Link></li>
               <li><Link to="/descargar">Descargar</Link></li>
-              <li><a href="#">Documentación</a></li>
+              <li><a href="/documentacion.html">Documentación Técnica</a></li>
+              <li><a href="/comparacion.html">Comparación</a></li>
             </ul>
           </div>
           
