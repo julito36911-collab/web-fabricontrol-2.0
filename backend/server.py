@@ -10,6 +10,9 @@ from typing import List
 import uuid
 from datetime import datetime, timezone
 
+# Import chat router
+from routes.chat import router as chat_router
+
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
