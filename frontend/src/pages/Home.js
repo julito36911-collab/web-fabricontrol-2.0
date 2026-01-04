@@ -320,6 +320,12 @@ function Home() {
         </div>
       </section>
 
+      {/* Modal de Solicitud de Licencia */}
+      <LicenseRequestModal 
+        isOpen={showLicenseModal} 
+        onClose={() => setShowLicenseModal(false)} 
+      />
+
       <Footer />
     </>
   );
