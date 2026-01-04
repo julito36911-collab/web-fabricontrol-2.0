@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import LicenseRequestModal from '../components/LicenseRequestModal';
 import { Link } from 'react-router-dom';
 
 function Home() {
+  const [showLicenseModal, setShowLicenseModal] = useState(false);
   return (
     <>
       <Header />
