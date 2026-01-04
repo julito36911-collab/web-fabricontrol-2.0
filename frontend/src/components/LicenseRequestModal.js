@@ -48,7 +48,7 @@ function LicenseRequestModal({ isOpen, onClose }) {
       if (response.ok) {
         setMessage({ 
           type: 'success', 
-          text: '✅ Solicitud enviada. Recibirás tu código de licencia por email en menos de 24 horas.' 
+          text: '✅ Solicitud enviada. Recibirás el enlace de descarga y tu código de activación por email en menos de 24 horas.' 
         });
         
         setTimeout(() => {
@@ -87,34 +87,34 @@ function LicenseRequestModal({ isOpen, onClose }) {
         <button className="license-modal-close" onClick={onClose}>✕</button>
         
         <div className="license-modal-header">
-          <h2>🎁 Descargar FabriControl - 30 Días GRATIS</h2>
-          <p>Complete el formulario y reciba su licencia por email en 24h</p>
+          <h2>📋 Solicitar Licencia de Prueba (30 Días Gratis)</h2>
+          <p>Complete el formulario y le enviaremos su licencia con el enlace de descarga</p>
         </div>
 
         <form onSubmit={sendRequest} className="license-form">
           
           <div className="license-info-box" style={{background: '#dcfce7', borderColor: '#16a34a'}}>
-            <strong style={{color: '#16a34a'}}>🎉 ¡30 DÍAS GRATIS!</strong>
+            <strong style={{color: '#16a34a'}}>✅ ¿Cómo funciona?</strong>
             <ul style={{marginTop: '0.5rem', paddingLeft: '1.2rem', marginBottom: 0}}>
-              <li>✅ Completa este formulario</li>
-              <li>✅ Recibirás por email (en 24h):
+              <li>1️⃣ Complete este formulario con sus datos</li>
+              <li>2️⃣ Recibirá por email en menos de 24h:
                 <ul style={{paddingLeft: '1.5rem', marginTop: '0.25rem'}}>
                   <li>📥 Link de descarga del instalador</li>
-                  <li>🔑 Tu LICENSE KEY personal</li>
+                  <li>🔑 Su código de activación</li>
                 </ul>
               </li>
-              <li>✅ Descarga, instala e ingresa tu LICENSE KEY</li>
-              <li>✅ ¡Listo! 30 días completos para probar</li>
+              <li>3️⃣ Descargue, instale e ingrese el código</li>
+              <li>4️⃣ ¡Listo! Disfrute de 30 días completos de prueba</li>
             </ul>
           </div>
 
           <div className="license-info-box" style={{background: '#fef3c7', borderColor: '#f59e0b', marginTop: '1rem'}}>
             <strong style={{color: '#d97706'}}>💰 Después de los 30 días:</strong>
             <ul style={{marginTop: '0.5rem', paddingLeft: '1.2rem', marginBottom: 0}}>
-              <li>📞 <strong>Contáctanos para continuar usando:</strong></li>
-              <li style={{marginLeft: '1.5rem'}}>• Mensual: $49 (Básico) o $129 (Profesional)</li>
-              <li style={{marginLeft: '1.5rem'}}>• Anual: <strong>20% descuento</strong> ($39/mes o $103/mes)</li>
-              <li>🔄 <strong>Mismo LICENSE KEY</strong> - solo extendemos la fecha de expiración</li>
+              <li>📞 Te contactaremos para que elijas tu plan:</li>
+              <li style={{marginLeft: '1.5rem'}}>• Plan Básico: $49/mes o $39/mes (anual)</li>
+              <li style={{marginLeft: '1.5rem'}}>• Plan Profesional: $129/mes o $103/mes (anual)</li>
+              <li>✅ Todos tus datos se mantienen intactos</li>
             </ul>
           </div>
 
