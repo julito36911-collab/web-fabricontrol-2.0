@@ -1,7 +1,7 @@
 /* Chat Button - Floating */
 .chat-button {
   position: fixed;
-  bottom: 24px;
+  bottom: 90px;  /* Subido de 24px a 90px para evitar overlap con "Made with Emergent" */
   right: 24px;
   width: 64px;
   height: 64px;
@@ -31,7 +31,7 @@
 /* Chat Widget */
 .chat-widget {
   position: fixed;
-  bottom: 24px;
+  bottom: 90px;  /* Subido de 24px a 90px */
   right: 24px;
   width: 380px;
   height: 600px;
