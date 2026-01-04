@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
 
-function Home({ openLicenseModal }) {
-  const [showLicenseModal, setShowLicenseModal] = useState(false);
+function Home() {
   return (
     <>
-      <Header onRequestLicense={openLicenseModal} />
+      <Header />
 
       {/* HERO SECTION */}
       <section className="hero" id="inicio">
@@ -16,8 +15,8 @@ function Home({ openLicenseModal }) {
             <h1>El ERP que tu Taller Merece, al Precio que Puedes Pagar</h1>
             <p>Controla cotizaciones, producción e inventario desde <strong>$49/mes</strong>. Sin complicaciones.</p>
             <div className="hero-cta">
-              <button onClick={openLicenseModal} className="btn btn-accent btn-large">🆓 Prueba 30 Días GRATIS</button>
-              <Link to="/precios" className="btn btn-secondary btn-large">Ver Planes</Link>
+              <Link to="/precios" className="btn btn-accent btn-large">🆓 Ver Planes (30 días gratis)</Link>
+              <Link to="/descargar" className="btn btn-secondary btn-large">Descargar Ahora</Link>
             </div>
             <p style={{marginTop: '1rem', opacity: 0.9, fontSize: '0.95rem'}}>
               ✅ Sin tarjeta de crédito · ✅ Acceso completo · ✅ Sin compromisos
@@ -313,8 +312,8 @@ function Home({ openLicenseModal }) {
             30 días de prueba gratuita. Sin tarjeta de crédito.
           </p>
           <div style={{display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap'}}>
-            <button onClick={openLicenseModal} className="btn btn-accent btn-large">🆓 Descargar y Probar Gratis</button>
-            <Link to="/precios" className="btn btn-secondary btn-large" style={{borderColor: 'white', color: 'white'}}>Ver Planes desde $49/mes</Link>
+            <Link to="/precios" className="btn btn-accent btn-large">Ver Planes desde $49/mes</Link>
+            <Link to="/descargar" className="btn btn-secondary btn-large" style={{borderColor: 'white', color: 'white'}}>Descargar Instalador</Link>
           </div>
         </div>
       </section>
