@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import ImageLightbox from '../components/ImageLightbox';
 import { Link } from 'react-router-dom';
 
 function Home() {
@@ -35,7 +36,7 @@ function Home() {
           </div>
           <div style={{maxWidth: '1100px', margin: '0 auto'}}>
             <div style={{borderRadius: 'var(--radius-xl)', overflow: 'hidden', boxShadow: 'var(--shadow-xl)'}}>
-              <img src="/assets/img/screenshots/desktop/dashboard-es.jpg" alt="Dashboard FabriControl - Vista Principal" style={{width: '100%', height: 'auto', display: 'block'}} />
+              <ImageLightbox src="/assets/img/screenshots/desktop/dashboard-es.jpg" alt="Dashboard FabriControl - Vista Principal" style={{width: '100%', height: 'auto', display: 'block'}} />
             </div>
           </div>
         </div>
@@ -93,12 +94,12 @@ function Home() {
               </ul>
             </div>
             <div style={{borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)'}}>
-              <img src="/assets/img/screenshots/desktop/quotations-es.jpg" alt="Módulo de Cotizaciones - FabriControl" style={{width: '100%', height: 'auto', display: 'block'}} />
+              <ImageLightbox src="/assets/img/screenshots/desktop/quotations-es.jpg" alt="Módulo de Cotizaciones - FabriControl" style={{width: '100%', height: 'auto', display: 'block'}} />
             </div>
 
             {/* Feature 2 */}
             <div style={{borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)'}}>
-              <img src="/assets/img/screenshots/desktop/production-orders-es.jpg" alt="Órdenes de Producción - FabriControl" style={{width: '100%', height: 'auto', display: 'block'}} />
+              <ImageLightbox src="/assets/img/screenshots/desktop/production-orders-es.jpg" alt="Órdenes de Producción - FabriControl" style={{width: '100%', height: 'auto', display: 'block'}} />
             </div>
             <div>
               <h3 style={{color: 'var(--primary)'}}>🏭 Órdenes de Producción Visuales</h3>
@@ -123,12 +124,12 @@ function Home() {
               </ul>
             </div>
             <div style={{borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)'}}>
-              <img src="/assets/img/screenshots/desktop/inventory-es.jpg" alt="Inventario con QR - FabriControl" style={{width: '100%', height: 'auto', display: 'block'}} />
+              <ImageLightbox src="/assets/img/screenshots/desktop/inventory-es.jpg" alt="Inventario con QR - FabriControl" style={{width: '100%', height: 'auto', display: 'block'}} />
             </div>
 
             {/* Feature 4 */}
             <div style={{borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)'}}>
-              <img src="/assets/img/screenshots/desktop/projects-portal-es.jpg" alt="Portal de Proyectos - FabriControl" style={{width: '100%', height: 'auto', display: 'block'}} />
+              <ImageLightbox src="/assets/img/screenshots/desktop/projects-portal-es.jpg" alt="Portal de Proyectos - FabriControl" style={{width: '100%', height: 'auto', display: 'block'}} />
             </div>
             <div>
               <h3 style={{color: 'var(--accent)'}}>📋 Portal de Proyectos (ÚNICO)</h3>
