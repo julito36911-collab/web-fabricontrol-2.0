@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './fabricontrol.css';
 import Home from './pages/Home';
@@ -8,29 +8,19 @@ import Descargar from './pages/Descargar';
 import FAQ from './pages/FAQ';
 import Enterprise from './pages/Enterprise';
 import ChatWidget from './components/ChatWidget';
-import LicenseRequestModal from './components/LicenseRequestModal';
 
 function App() {
-  const [showLicenseModal, setShowLicenseModal] = useState(false);
-  
-  const openLicenseModal = () => setShowLicenseModal(true);
-  const closeLicenseModal = () => setShowLicenseModal(false);
-  
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home openLicenseModal={openLicenseModal} />} />
-        <Route path="/caracteristicas" element={<Caracteristicas openLicenseModal={openLicenseModal} />} />
-        <Route path="/precios" element={<Precios openLicenseModal={openLicenseModal} />} />
-        <Route path="/descargar" element={<Descargar openLicenseModal={openLicenseModal} />} />
-        <Route path="/faq" element={<FAQ openLicenseModal={openLicenseModal} />} />
-        <Route path="/enterprise" element={<Enterprise openLicenseModal={openLicenseModal} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/caracteristicas" element={<Caracteristicas />} />
+        <Route path="/precios" element={<Precios />} />
+        <Route path="/descargar" element={<Descargar />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/enterprise" element={<Enterprise />} />
       </Routes>
       <ChatWidget />
-      <LicenseRequestModal 
-        isOpen={showLicenseModal} 
-        onClose={closeLicenseModal} 
-      />
     </BrowserRouter>
   );
 }
