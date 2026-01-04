@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 # Import routers
 from routes.chat import router as chat_router
 from routes.enterprise_quote import router as enterprise_quote_router
+from routes.license_request import router as license_request_router
 
 
 ROOT_DIR = Path(__file__).parent
@@ -76,6 +77,7 @@ app.include_router(api_router)
 # Include routers
 app.include_router(chat_router, prefix="/api", tags=["chat"])
 app.include_router(enterprise_quote_router, prefix="/api", tags=["enterprise"])
+app.include_router(license_request_router, prefix="/api", tags=["license"])
 
 app.add_middleware(
     CORSMiddleware,
