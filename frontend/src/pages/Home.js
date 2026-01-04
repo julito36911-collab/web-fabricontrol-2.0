@@ -8,7 +8,7 @@ function Home() {
   const [showLicenseModal, setShowLicenseModal] = useState(false);
   return (
     <>
-      <Header />
+      <Header onRequestLicense={() => setShowLicenseModal(true)} />
 
       {/* HERO SECTION */}
       <section className="hero" id="inicio">
