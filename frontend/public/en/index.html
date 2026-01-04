@@ -5,95 +5,174 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="FabriControl - Complete ERP for workshops and factories starting at $29/mo. Manage quotes, production, inventory, and more. Try 30 days free.">
   <title>FabriControl - The ERP Your Workshop Deserves</title>
-  
-  <link rel="stylesheet" href="../assets/css/main.css">
-  <link rel="icon" type="image/svg+xml" href="../assets/img/logos/favicon.svg">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logos/favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    .header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+    .nav-link:hover {
+      opacity: 0.8;
+    }
+    .nav-link.active {
+      font-weight: 700;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-  <nav class="nav">
-    <div class="nav-logo">
-      <img src="../assets/img/logos/fabricontrol-logo.svg" alt="FabriControl">
-    </div>
-    <ul class="nav-menu">
-      <li><a href="index.html" class="nav-link active">Home</a></li>
-      <li><a href="features.html" class="nav-link">Features</a></li>
-      <li><a href="pricing.html" class="nav-link">Pricing</a></li>
-      <li><a href="resources/" class="nav-link">Resources</a></li>
-      <li><a href="/" class="nav-link">🌐 ES</a></li>
-      <li><a href="download.html" class="btn btn-primary btn-sm">Download</a></li>
-    </ul>
-  </nav>
-</div>
-<div class="container">
-  <div class="hero-content">
-    <h1>Stop managing your workshop with <span class="highlight">Excel and Paper</span></h1>
-    <p class="hero-subtitle">The All-in-One system for metalworking workshops. Control quotes, production, and inventory in one place.</p>
-    <div class="hero-buttons">
-      <a href="download.html" class="btn btn-primary">Download Free Trial</a>
-      <a href="pricing.html" class="btn btn-secondary">View Plans</a>
-    </div>
-    <p class="hero-note"><small>✅ Windows Compatible · 🔒 Secure Data · ⚡ Setup in 5 min</small></p>
-  </div>
-  <div class="hero-image">
-    <img src="../assets/img/screenshots/desktop/dashboard-es.jpg" alt="FabriControl Dashboard">
-  </div>
-</div>
-<div class="container">
-  <div class="section-header">
-    <h2>Everything you need to grow</h2>
-    <p>Designed by engineers, for engineers.</p>
-  </div>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">📄</div>
-      <h3>Smart Quoting</h3>
-      <p>Calculate material costs, machine time, and overhead in seconds. Stop losing money on bad estimates.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🏭</div>
-      <h3>Production Control</h3>
-      <p>Digital Kanban board. Know exactly what stage every order is in (Cutting, Welding, Paint) in real-time.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📦</div>
-      <h3>Inventory & QR</h3>
-      <p>Generate QR codes for your materials. Scan with the mobile app to deduct stock automatically.</p>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <h2>Ready to modernize your workshop?</h2>
-  <p>Join hundreds of workshops that have already ditched Excel.</p>
-  <a href="download.html" class="btn btn-primary btn-lg">Start Free 30-Day Trial</a>
-</div>
-<div class="container">
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <h3>FabriControl</h3>
-      <p>The operating system for modern manufacturing.</p>
-    </div>
-    <div class="footer-links">
-      <h4>Product</h4>
-      <ul>
-        <li><a href="features.html">Features</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="download.html">Download</a></li>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="/en/index.html">
+          <img src="/assets/img/logos/fabricontrol-logo.svg" alt="FabriControl" style="height: 50px;">
+        </a>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="/en/index.html" class="nav-link active">Home</a></li>
+        <li><a href="/en/features.html" class="nav-link">Features</a></li>
+        <li><a href="/en/pricing.html" class="nav-link">Pricing</a></li>
+        <li><a href="/en/resources/" class="nav-link">Resources</a></li>
+        <li><a href="/" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; font-size: 0.875rem; font-weight: 600;">🌐 ES</a></li>
+        <li><a href="/en/download.html" class="btn btn-primary btn-small">Try Free</a></li>
       </ul>
-    </div>
-    <div class="footer-links">
-      <h4>Resources</h4>
-      <ul>
-        <li><a href="resources/">Free Tools</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="/">Versión en Español</a></li>
-      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+  <div class="container">
+    <div style="text-align: center; max-width: 900px; margin: 0 auto;">
+      <h1 style="font-size: 3rem; margin-bottom: 1.5rem;">The ERP Your Workshop Deserves, at a Price You Can Afford</h1>
+      <p style="font-size: 1.25rem; margin-bottom: 2rem;">Control quotes, production, and inventory from <strong>$29/month</strong>. No complications.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/en/download.html" class="btn btn-accent btn-large">🆓 Try 30 Days FREE</a>
+        <a href="/en/pricing.html" class="btn btn-secondary btn-large">View Plans</a>
+      </div>
+      <p style="margin-top: 1rem; opacity: 0.9; font-size: 0.95rem;">
+        ✅ No credit card · ✅ Full access · ✅ No commitments
+      </p>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p>&copy; 2026 FabriControl. All rights reserved.</p>
+</section>
+
+<!-- DASHBOARD SHOWCASE -->
+<section class="section">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2>See FabriControl in Action</h2>
+      <p style="color: var(--text-medium); font-size: 1.125rem;">
+        Real-time dashboard with all your metrics
+      </p>
+    </div>
+    <div style="max-width: 1100px; margin: 0 auto;">
+      <div style="border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-xl);">
+        <img src="/assets/img/screenshots/desktop/dashboard-es.jpg" alt="FabriControl Dashboard - Main View" style="width: 100%; height: auto; display: block;" />
+      </div>
+    </div>
   </div>
-</div>
+</section>
+
+<!-- MAIN BENEFITS -->
+<section class="section">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2>Why Choose FabriControl?</h2>
+      <p style="color: var(--text-medium); font-size: 1.125rem;">
+        Designed specifically for Latin American workshops
+      </p>
+    </div>
+    
+    <div class="grid grid-3">
+      <div class="card text-center">
+        <div class="feature-icon" style="background: var(--primary); color: white; margin: 0 auto;">⚡</div>
+        <h3 class="feature-title">Quote 50% Faster</h3>
+        <p>Automatic calculation of material and machine costs. Generate professional PDFs in minutes.</p>
+      </div>
+      
+      <div class="card text-center">
+        <div class="feature-icon" style="background: var(--accent); color: white; margin: 0 auto;">📊</div>
+        <h3 class="feature-title">Never Lose an Order</h3>
+        <p>Visual tracking of each project in real-time. Customizable states according to your workflow.</p>
+      </div>
+      
+      <div class="card text-center">
+        <div class="feature-icon" style="background: var(--secondary); color: white; margin: 0 auto;">📱</div>
+        <h3 class="feature-title">Connected Operators</h3>
+        <p>Mobile app to update states from the production floor. Works on any phone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="section section-light">
+  <div class="container text-center">
+    <h2>Ready to Modernize Your Workshop?</h2>
+    <p style="margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; font-size: 1.125rem;">
+      Join hundreds of workshops that have already ditched Excel.
+    </p>
+    <a href="/en/download.html" class="btn btn-primary btn-lg">Start Free 30-Day Trial</a>
+    <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">No credit card required.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>FabriControl</h3>
+        <p>The operating system for modern manufacturing.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="/en/features.html">Features</a></li>
+          <li><a href="/en/pricing.html">Pricing</a></li>
+          <li><a href="/en/download.html">Download</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/en/resources/">Free Tools</a></li>
+          <li><a href="/en/faq.html">FAQ</a></li>
+          <li><a href="/">Versión en Español</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 FabriControl. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
