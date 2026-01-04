@@ -3,7 +3,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 import os
 from dotenv import load_dotenv
-import google.generativeai as genai
+from google import genai
 from pathlib import Path
 
 # Load environment variables
@@ -13,11 +13,9 @@ router = APIRouter()
 
 # Configure Gemini
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-CHAT_MODEL = os.getenv("CHAT_MODEL", "gemini-1.5-flash-latest")
-CHAT_TEMPERATURE = float(os.getenv("CHAT_TEMPERATURE", "0.7"))
 
-if GEMINI_API_KEY:
-    genai.configure(api_key=GEMINI_API_KEY)
+# Initialize Gemini client
+client = genai.Client(api_key=GEMINI_API_KEY) if GEMINI_API_KEY else None
 
 # Load knowledge base
 def load_knowledge_base():
