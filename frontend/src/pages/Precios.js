@@ -181,9 +181,9 @@ function Precios({ openLicenseModal }) {
                 </li>
               </ul>
               
-              <a href="#" className="btn btn-primary btn-large" style={{width: '100%'}}>
-                Comprar Licencia Básica
-              </a>
+              <button onClick={openLicenseModal} className="btn btn-primary btn-large" style={{width: '100%'}}>
+                Solicitar Licencia Básica
+              </button>
             </div>
 
             {/* PLAN PRO */}
