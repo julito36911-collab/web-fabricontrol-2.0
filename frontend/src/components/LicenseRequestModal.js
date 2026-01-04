@@ -7,9 +7,8 @@ function LicenseRequestModal({ isOpen, onClose }) {
     empresa: '',
     email: '',
     telefono: '',
-    installationCode: '',
     cantidadUsuarios: '',
-    planDeseado: 'basico'
+    planDeseado: 'mensual'
   });
 
   const [sending, setSending] = useState(false);
@@ -26,8 +25,8 @@ function LicenseRequestModal({ isOpen, onClose }) {
     e.preventDefault();
     
     // Validación básica
-    if (!formData.nombre || !formData.email || !formData.installationCode || !formData.cantidadUsuarios) {
-      setMessage({ type: 'error', text: '⚠️ Por favor complete los campos obligatorios (Nombre, Email, Installation Code, Usuarios)' });
+    if (!formData.nombre || !formData.email || !formData.cantidadUsuarios) {
+      setMessage({ type: 'error', text: '⚠️ Por favor complete los campos obligatorios (Nombre, Email, Usuarios)' });
       return;
     }
 
@@ -58,9 +57,8 @@ function LicenseRequestModal({ isOpen, onClose }) {
             empresa: '',
             email: '',
             telefono: '',
-            installationCode: '',
             cantidadUsuarios: '',
-            planDeseado: 'basico'
+            planDeseado: 'mensual'
           });
           onClose();
         }, 3000);
@@ -96,33 +94,28 @@ function LicenseRequestModal({ isOpen, onClose }) {
         <form onSubmit={sendRequest} className="license-form">
           
           <div className="license-info-box" style={{background: '#dcfce7', borderColor: '#16a34a'}}>
-            <strong style={{color: '#16a34a'}}>🎉 ¡INCLUYE 30 DÍAS GRATIS!</strong>
+            <strong style={{color: '#16a34a'}}>🎉 ¡30 DÍAS GRATIS!</strong>
             <ul style={{marginTop: '0.5rem', paddingLeft: '1.2rem', marginBottom: 0}}>
-              <li>✅ Recibirás tu licencia en menos de 24 horas</li>
-              <li>✅ 30 días de prueba con todas las funciones</li>
-              <li>✅ Sin tarjeta de crédito</li>
-              <li>✅ Mismo código para siempre (solo se extiende la fecha)</li>
+              <li>✅ Completa este formulario</li>
+              <li>✅ Recibirás por email (en 24h):
+                <ul style={{paddingLeft: '1.5rem', marginTop: '0.25rem'}}>
+                  <li>📥 Link de descarga del instalador</li>
+                  <li>🔑 Tu LICENSE KEY personal</li>
+                </ul>
+              </li>
+              <li>✅ Descarga, instala e ingresa tu LICENSE KEY</li>
+              <li>✅ ¡Listo! 30 días completos para probar</li>
             </ul>
           </div>
 
           <div className="license-info-box" style={{background: '#fef3c7', borderColor: '#f59e0b', marginTop: '1rem'}}>
             <strong style={{color: '#d97706'}}>💰 Después de los 30 días:</strong>
             <ul style={{marginTop: '0.5rem', paddingLeft: '1.2rem', marginBottom: 0}}>
-              <li>📞 <strong>Contáctanos para activar tu plan:</strong></li>
+              <li>📞 <strong>Contáctanos para continuar usando:</strong></li>
               <li style={{marginLeft: '1.5rem'}}>• Mensual: $49 (Básico) o $129 (Profesional)</li>
               <li style={{marginLeft: '1.5rem'}}>• Anual: <strong>20% descuento</strong> ($39/mes o $103/mes)</li>
-              <li>🔄 <strong>NO necesitas nuevo código</strong> - solo extendemos tu licencia actual</li>
+              <li>🔄 <strong>Mismo LICENSE KEY</strong> - solo extendemos la fecha de expiración</li>
             </ul>
-          </div>
-
-          <div className="license-info-box">
-            <strong>📋 ¿Cómo obtener tu INSTALLATION CODE?</strong>
-            <ol style={{marginTop: '0.5rem', paddingLeft: '1.2rem', marginBottom: 0}}>
-              <li>Descarga e instala FabriControl (link en el email de confirmación)</li>
-              <li>Al abrir por primera vez, aparecerá tu <strong>INSTALLATION CODE</strong></li>
-              <li>Copia ese código y pégalo abajo</li>
-              <li>Ejemplo: <code>INST-ABC123-XYZ789</code></li>
-            </ol>
           </div>
 
           <div className="form-group">
