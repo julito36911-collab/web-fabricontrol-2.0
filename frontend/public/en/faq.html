@@ -8,6 +8,38 @@
   <link rel="icon" type="image/svg+xml" href="/assets/img/logos/favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+    .header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    .nav-link {
+      color: white !important;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+    .nav-link:hover {
+      opacity: 0.8;
+      color: white !important;
+    }
+    .nav-link.active {
+      font-weight: 700;
+      color: white !important;
+    }
     .faq-item { background: white; border: 1px solid #eee; margin-bottom: 1rem; border-radius: 8px; overflow: hidden; }
     .faq-question { padding: 1.5rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: #fafafa; }
     .faq-answer { padding: 1.5rem; display: none; border-top: 1px solid #eee; color: #555; line-height: 1.6; }
@@ -17,16 +49,24 @@
 </head>
 <body>
 
-<div class="container">
-  <nav class="nav">
-    <div class="nav-logo"><a href="index.html" style="font-weight:900; color:#1F2937; text-decoration:none; font-size:1.5rem;">FabriControl</a></div>
-    <ul class="nav-menu">
-      <li><a href="index.html" class="nav-link">Home</a></li>
-      <li><a href="pricing.html" class="nav-link">Pricing</a></li>
-      <li><a href="pricing.html" class="btn btn-primary btn-sm">Request Trial</a></li>
-    </ul>
-  </nav>
-</div>
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="/en/index.html">
+          <img src="/assets/img/logos/fabricontrol-logo.svg" alt="FabriControl" style="height: 50px;">
+        </a>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="/en/index.html" class="nav-link">Home</a></li>
+        <li><a href="/en/features.html" class="nav-link">Features</a></li>
+        <li><a href="/en/pricing.html" class="nav-link">Pricing</a></li>
+        <li><a href="/en/resources/" class="nav-link">Resources</a></li>
+        <li><a href="/" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; font-size: 0.875rem; font-weight: 600;">🌐 ES</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
 <div class="container" style="max-width: 800px; padding: 3rem 0;">
   <h1 style="font-family: 'Montserrat'; text-align: center; margin-bottom: 3rem;">Frequently Asked Questions</h1>
