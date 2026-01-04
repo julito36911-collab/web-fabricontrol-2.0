@@ -198,7 +198,7 @@
         <li><a href="#backups">5. Backups and Security</a></li>
         <li><a href="#architecture">6. System Architecture</a></li>
         <li><a href="#aichat">6.5. AI Chat with Gemini</a></li>
-        <li><a href="#licenses">7. License and Activation System</a></li>
+        <li><a href="#licenses">7. Licensing and Activation System</a></li>
       </ul>
     </div>
 
@@ -252,6 +252,21 @@
         <strong>⚠️ Important:</strong> FabriControl ALWAYS requires an internet connection for license validation when logging in, even in local mode.
       </div>
 
+      <h3>File Structure</h3>
+      <p>After installation, FabriControl creates the following structure:</p>
+      
+      <div class="diagram">
+        <pre style="text-align: left; font-family: monospace; font-size: 0.9rem;">
+C:\Program Files\FabriControl\
+├── 📁 frontend/          → Web interface (React)
+├── 📁 backend/           → Server (Python/FastAPI)
+├── 📁 mongodb/           → Database (if local)
+├── 📁 uploads/           → Uploaded files (PDFs, photos)
+├── 📁 backups/           → Automatic backups
+└── 📄 FabriControl.exe   → Main executable
+        </pre>
+      </div>
+
       <h3>Understanding "Desktop" vs "Cloud"</h3>
       <p>FabriControl is <strong>ONE installer</strong> that adapts to your business. During installation, you configure how you want to use it:</p>
       
@@ -293,24 +308,567 @@
       </table>
     </div>
 
-    <!-- SECTION 7: LICENSE SYSTEM -->
-    <div class="doc-section" id="licenses">
-      <h2>🔐 7. License and Activation System</h2>
+    <!-- SECTION 2: MONGODB -->
+    <div class="doc-section" id="mongodb">
+      <h2>🗄️ 2. MongoDB Database</h2>
       
-      <h3>How Does the License System Work?</h3>
-      <p>FabriControl uses a <strong>manual license activation system</strong> to provide maximum flexibility and control.</p>
+      <h3>What is MongoDB?</h3>
+      <p>MongoDB is the <strong>database</strong> where FabriControl stores all your business information:</p>
+      <ul>
+        <li>📋 Quotes and estimates</li>
+        <li>📦 Material inventory</li>
+        <li>👥 Customer and supplier data</li>
+        <li>🏭 Production orders</li>
+        <li>📊 Reports and statistics</li>
+      </ul>
+
+      <div class="info-box">
+        <strong>💡 Simple Analogy:</strong><br>
+        Think of MongoDB as a <strong>super-organized digital filing cabinet</strong> where all your business documents are stored. It's like having all your folders, but in electronic form and much faster to search.
+      </div>
+
+      <h3>MongoDB Options</h3>
+      <p>During installation, you can choose between 2 options:</p>
+
+      <table class="comparison-table">
+        <tr>
+          <th>Option</th>
+          <th>What does it mean?</th>
+          <th>Who is it for?</th>
+        </tr>
+        <tr>
+          <td><strong>🏠 Local MongoDB</strong></td>
+          <td>Database is installed on your server PC. All data is physically on your computer.</td>
+          <td>✅ Small workshops<br>⚠️ Requires internet to validate license<br>✅ Maximum privacy</td>
+        </tr>
+        <tr>
+          <td><strong>☁️ Cloud MongoDB</strong></td>
+          <td>Database is on the internet (MongoDB Atlas). Your data is on secure online servers.</td>
+          <td>✅ Multiple locations<br>✅ Remote access<br>✅ Automatic backups</td>
+        </tr>
+      </table>
+
+      <h3>Where is Your Data Stored?</h3>
+      
+      <div class="success-box">
+        <strong>🏠 If you chose Local MongoDB:</strong><br>
+        Data is stored at: <code>C:\Program Files\FabriControl\mongodb\data\</code><br>
+        Initial size: ~500 MB<br>
+        Growth: +10-50 MB per month (depends on usage)
+      </div>
+
+      <div class="success-box">
+        <strong>☁️ If you chose Cloud MongoDB:</strong><br>
+        Data is on MongoDB Atlas servers (AWS)<br>
+        Physical location: Selectable (USA, Europe, Brazil, etc.)<br>
+        Encryption: Yes, automatic
+      </div>
+
+      <h3>Database Size</h3>
+      <p>Typical growth example:</p>
+      <ul>
+        <li><strong>Small workshop</strong> (50 orders/month): ~2 GB per year</li>
+        <li><strong>Medium workshop</strong> (200 orders/month): ~8 GB per year</li>
+        <li><strong>Large factory</strong> (1000+ orders/month): ~40 GB per year</li>
+      </ul>
+
+      <div class="warning-box">
+        <strong>⚠️ Important:</strong> Attached files (photos, PDFs) are NOT stored in MongoDB. They are stored separately in the <code>uploads/</code> folder (see next section).
+      </div>
+    </div>
+
+    <!-- SECTION 3: STORAGE -->
+    <div class="doc-section" id="storage">
+      <h2>📁 3. File Storage</h2>
+      
+      <h3>What Files are Uploaded to the Program?</h3>
+      <p>FabriControl allows you to attach different types of files:</p>
+      <ul>
+        <li>📸 <strong>Photos:</strong> Product images, materials, work progress</li>
+        <li>📄 <strong>PDFs:</strong> Plans, quotes, contracts, invoices</li>
+        <li>📊 <strong>Excel:</strong> Material lists, budgets</li>
+        <li>🎨 <strong>DWG/DXF:</strong> Technical design drawings</li>
+      </ul>
+
+      <h3>Where Are These Files Stored?</h3>
+
+      <table class="comparison-table">
+        <tr>
+          <th>Option</th>
+          <th>Location</th>
+          <th>Advantages</th>
+        </tr>
+        <tr>
+          <td><strong>💾 Local Storage</strong></td>
+          <td><code>C:\Program Files\FabriControl\uploads\</code></td>
+          <td>✅ Fast access<br>✅ No extra cost<br>⚠️ Requires manual backups</td>
+        </tr>
+        <tr>
+          <td><strong>☁️ Cloud Storage</strong></td>
+          <td>AWS S3, Google Drive, Dropbox</td>
+          <td>✅ Remote access<br>✅ Automatic backups<br>✅ Unlimited space (with cost)</td>
+        </tr>
+      </table>
+
+      <h3>File Organization</h3>
+      <div class="diagram">
+        <pre style="text-align: left; font-family: monospace; font-size: 0.9rem;">
+C:\Program Files\FabriControl\uploads\
+├── 📁 clients/
+│   ├── 📁 client-001/
+│   │   ├── product-photo-001.jpg
+│   │   └── signed-contract.pdf
+│   └── 📁 client-002/
+│       └── kitchen-plan.dwg
+│
+├── 📁 orders/
+│   ├── 📁 order-2024-001/
+│   │   ├── progress-photo-1.jpg
+│   │   └── material-list.xlsx
+│   └── 📁 order-2024-002/
+│       └── final-plan.pdf
+│
+└── 📁 inventory/
+    ├── aluminum-profile-photo.jpg
+    └── hardware-catalog.pdf
+        </pre>
+      </div>
+
+      <h3>Limits and Capacity</h3>
+      <div class="info-box">
+        <strong>📊 Recommended limits:</strong><br>
+        • Maximum size per file: <strong>50 MB</strong><br>
+        • Allowed formats: <strong>JPG, PNG, PDF, XLSX, DWG, DXF</strong><br>
+        • Recommended disk space: <strong>50-200 GB</strong> (depends on file volume)
+      </div>
+    </div>
+
+    <!-- SECTION 4: SERVER OPTIONS -->
+    <div class="doc-section" id="server">
+      <h2>🌐 4. Server Options</h2>
+      
+      <p>FabriControl is <strong>ONE SINGLE installer</strong> that adapts to your business. During installation, you configure how you want to use it:</p>
+
+      <h3>Option 1: Individual PC (Local Mode)</h3>
+      <p>One person uses the program on their computer.</p>
+      <p><strong>Ideal for:</strong> Freelance designers, one-person workshops</p>
+
+      <h3>Option 2: LAN Network Server</h3>
+      <div class="diagram">
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+🏢 Local Network (LAN)
+
+┌─────────────────┐         ┌──────────────┐
+│  SERVER PC      │◄────────┤ WiFi Router  │
+│  (192.168.1.10) │         └──────────────┘
+│                 │                │
+│ FabriControl    │                │
+│ Local MongoDB   │                │
+│ Port: 3000      │                │
+└─────────────────┘                │
+        ▲                          │
+        │                          │
+        └──────┬──────┬───────────┘
+               │      │
+         ┌─────▼──┐ ┌─▼──────┐
+         │ PC #1  │ │ PC #2  │
+         │ Design │ │ Sales  │
+         └────────┘ └────────┘
+        </pre>
+      </div>
+
+      <p><strong>Configuration:</strong></p>
+      <ul>
+        <li>Installed on ONE server PC</li>
+        <li>Other employees access via browser: <code>http://192.168.1.10:3000</code></li>
+        <li>⚠️ Requires internet to validate license at login</li>
+        <li>Once inside, works on local network</li>
+      </ul>
+      <p><strong>Ideal for:</strong> Workshops with 3-20 employees in the same location</p>
+
+      <h3>Option 3: Cloud Server</h3>
+      <div class="diagram">
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+☁️ Cloud Server
+
+                 ☁️  INTERNET ☁️
+                       │
+            ┌──────────┴──────────┐
+            │  Cloud Server       │
+            │  (AWS / Azure)      │
+            │                     │
+            │  FabriControl       │
+            │  MongoDB Atlas      │
+            └──────────┬──────────┘
+                       │
+        ┌──────────────┼──────────────┐
+        │              │              │
+   ┌────▼───┐    ┌────▼───┐    ┌────▼───┐
+   │ Site A │    │ Site B │    │  Home  │
+   │ Office │    │Workshop│    │ Remote │
+   └────────┘    └────────┘    └────────┘
+        </pre>
+      </div>
+
+      <p><strong>Configuration:</strong></p>
+      <ul>
+        <li>Installed on cloud server (AWS, Azure, etc.)</li>
+        <li>Access via domain: <code>https://fabricontrol.mycompany.com</code></li>
+        <li>Requires internet</li>
+      </ul>
+      <p><strong>Ideal for:</strong> Companies with multiple locations or remote work</p>
+
+      <h3>Option Comparison</h3>
+      <table class="comparison-table">
+        <tr>
+          <th>Feature</th>
+          <th>Individual PC</th>
+          <th>LAN Network</th>
+          <th>Cloud</th>
+        </tr>
+        <tr>
+          <td>Same installer?</td>
+          <td>✅ Yes</td>
+          <td>✅ Yes</td>
+          <td>✅ Yes</td>
+        </tr>
+        <tr>
+          <td>Simultaneous users</td>
+          <td>1</td>
+          <td>3-20</td>
+          <td>Unlimited</td>
+        </tr>
+        <tr>
+          <td>Requires internet</td>
+          <td>⚠️ Only at login</td>
+          <td>⚠️ Only at login</td>
+          <td>✅ Always</td>
+        </tr>
+        <tr>
+          <td>Remote access</td>
+          <td>❌ No</td>
+          <td>⚠️ Only on local network</td>
+          <td>✅ From anywhere</td>
+        </tr>
+        <tr>
+          <td>Monthly cost</td>
+          <td>License only</td>
+          <td>License only</td>
+          <td>License + cloud server (~$50-200/month)</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- SECTION 5: BACKUPS -->
+    <div class="doc-section" id="backups">
+      <h2>💾 5. Backups and Security</h2>
+      
+      <h3>Automatic Backups</h3>
+      <p>FabriControl automatically backs up your information:</p>
+
+      <div class="success-box">
+        <strong>📦 Automatic Backups:</strong><br>
+        • Frequency: Daily (at 2:00 AM)<br>
+        • Location: <code>C:\Program Files\FabriControl\backups\</code><br>
+        • Retention: Last 7 days<br>
+        • What's included? Complete database (MongoDB)
+      </div>
+
+      <h3>How to Make a Manual Backup?</h3>
+      <p>From the administration panel:</p>
+      <ol>
+        <li>Go to Settings → Backups</li>
+        <li>Click "Create Backup Now"</li>
+        <li>Wait 1-5 minutes (depends on data size)</li>
+        <li>Download the <code>.backup</code> file and save it in a safe place</li>
+      </ol>
+
+      <h3>How to Restore a Backup?</h3>
+      <ol>
+        <li>Go to Settings → Backups → Restore</li>
+        <li>Select the <code>.backup</code> file</li>
+        <li>Confirm restoration</li>
+        <li>The system will restart automatically</li>
+      </ol>
+
+      <div class="warning-box">
+        <strong>⚠️ Important:</strong><br>
+        • Attached files (photos, PDFs) are NOT included in the automatic MongoDB backup<br>
+        • You must manually backup the <code>uploads/</code> folder<br>
+        • Recommendation: Copy the <code>uploads/</code> folder to an external disk weekly
+      </div>
+
+      <h3>Data Security</h3>
+      <ul>
+        <li>🔒 <strong>Encryption:</strong> All sensitive data is encrypted</li>
+        <li>👤 <strong>Access control:</strong> Each user has their password and permissions</li>
+        <li>📝 <strong>Activity log:</strong> Records who did what and when</li>
+        <li>🔐 <strong>Authentication:</strong> JWT tokens for maximum security</li>
+      </ul>
+    </div>
+
+    <!-- SECTION 6: ARCHITECTURE -->
+    <div class="doc-section" id="architecture">
+      <h2>🔧 6. System Architecture</h2>
+      
+      <h3>Technical Components</h3>
+      <p>FabriControl consists of 3 main parts:</p>
+
+      <div class="diagram">
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+┌─────────────────────────────────────────────┐
+│           FABRICONTROL                      │
+├─────────────────────────────────────────────┤
+│                                             │
+│  1️⃣ FRONTEND (Visual Interface)           │
+│     • Technology: React.js                  │
+│     • Port: 3000                            │
+│     • Browser: Chrome, Edge, Firefox        │
+│                                             │
+│  2️⃣ BACKEND (Server)                       │
+│     • Technology: Python + FastAPI          │
+│     • Port: 8001                            │
+│     • REST APIs for communication           │
+│                                             │
+│  3️⃣ DATABASE (MongoDB)                     │
+│     • Port: 27017 (local)                   │
+│     • Stores: Quotes, inventory,            │
+│       clients, orders, etc.                 │
+│                                             │
+└─────────────────────────────────────────────┘
+        </pre>
+      </div>
+
+      <h3>Data Flow</h3>
+      <div class="diagram">
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+User types in browser:
+     │
+     ▼
+[FRONTEND] → Sends data to server
+     │
+     ▼
+[BACKEND] → Processes and validates data
+     │
+     ▼
+[MONGODB] → Saves information
+     │
+     ▼
+[BACKEND] → Confirms save
+     │
+     ▼
+[FRONTEND] → Shows "✅ Saved" message
+        </pre>
+      </div>
+
+      <h3>Ports and Services</h3>
+      <table class="comparison-table">
+        <tr>
+          <th>Service</th>
+          <th>Port</th>
+          <th>What is it for?</th>
+        </tr>
+        <tr>
+          <td>Frontend</td>
+          <td>3000</td>
+          <td>Web interface where you work</td>
+        </tr>
+        <tr>
+          <td>Backend API</td>
+          <td>8001</td>
+          <td>Processes operations and business logic</td>
+        </tr>
+        <tr>
+          <td>MongoDB</td>
+          <td>27017</td>
+          <td>Database (only if local)</td>
+        </tr>
+      </table>
+
+      <div class="info-box">
+        <strong>💡 For advanced users:</strong><br>
+        If you need to configure Windows firewall, you must allow ports 3000 and 8001 so other users on the network can access.
+      </div>
+    </div>
+
+    <!-- SECTION 6.5: AI CHAT -->
+    <div class="doc-section" id="aichat">
+      <h2>🤖 6.5. AI Chat with Gemini</h2>
+      
+      <h3>What is the AI Chat?</h3>
+      <p>FabriControl includes an integrated intelligent assistant that answers questions about the system, guides users, and helps with common tasks.</p>
+
+      <div class="success-box">
+        <strong>✨ Available in ALL plans:</strong><br>
+        The AI Chat is included in Basic Plan ($49), Professional ($129), and Enterprise. No additional cost!
+      </div>
+
+      <h3>Main Features</h3>
+      <ul>
+        <li>🤖 <strong>Powered by Google Gemini</strong> - State-of-the-art artificial intelligence</li>
+        <li>🌐 <strong>Multilingual:</strong> Spanish, English, Hebrew (responds automatically in your language)</li>
+        <li>📚 <strong>Complete knowledge:</strong> Knows ALL FabriControl documentation</li>
+        <li>⚡ <strong>Instant responses:</strong> No waiting, 24/7</li>
+        <li>💬 <strong>Intelligent context:</strong> Understands complex questions</li>
+      </ul>
+
+      <h3>What CAN the AI Chat Do?</h3>
+      <table class="comparison-table">
+        <tr>
+          <th>Functionality</th>
+          <th>Example</th>
+        </tr>
+        <tr>
+          <td>Answer questions about the system</td>
+          <td>"How do I create a quote?"</td>
+        </tr>
+        <tr>
+          <td>Give step-by-step instructions</td>
+          <td>"Teach me to configure parametric parts"</td>
+        </tr>
+        <tr>
+          <td>Explain concepts</td>
+          <td>"What are parametric parts?"</td>
+        </tr>
+        <tr>
+          <td>Solve common problems</td>
+          <td>"I can't log in"</td>
+        </tr>
+        <tr>
+          <td>Explain roles and permissions</td>
+          <td>"What can an Operator do?"</td>
+        </tr>
+        <tr>
+          <td>Help with configuration</td>
+          <td>"How do I connect a scale?"</td>
+        </tr>
+        <tr>
+          <td>Suggest best practices</td>
+          <td>"How do I organize my inventory?"</td>
+        </tr>
+      </table>
+
+      <h3>What CAN'T the AI Chat Do?</h3>
+      <div class="warning-box">
+        <strong>⚠️ Important limitations:</strong><br>
+        • ❌ Cannot execute actions in the application (create quotes, orders, etc.)<br>
+        • ❌ Doesn't know the user's role when on the public website<br>
+        • ❌ Doesn't handle credentials or passwords<br>
+        • ❌ Only provides documented information (doesn't make up answers)
+      </div>
+
+      <h3>AI Chat Configuration</h3>
+      <p>To activate the AI Chat within the FabriControl application:</p>
+
+      <div class="diagram">
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+1. Obtain API Key (2 options):
+
+   OPTION A: Emergent LLM Key (Universal)
+   ┌─────────────────────────────────────────┐
+   │ • Single key for Gemini                 │
+   │ • Provided automatically                │
+   │ • No additional cost                    │
+   │ • Limit: according to your Emergent plan│
+   └─────────────────────────────────────────┘
+
+   OPTION B: Google Gemini API Key (Your Own)
+   ┌─────────────────────────────────────────┐
+   │ 1. Go to: ai.google.dev                 │
+   │ 2. Create Google account (free)         │
+   │ 3. Get API Key                          │
+   │ 4. Billing: $0.10 per 1M characters     │
+   └─────────────────────────────────────────┘
+
+2. Configure in FabriControl:
+   • Go to: Menu > Settings > AI Chat
+   • Provider: Gemini
+   • API Key: (paste your key)
+   • Model: Gemini 1.5 Flash (recommended)
+   • Language: Spanish/English/Hebrew
+   • Tone: Professional
+   • Save
+
+3. Test:
+   • Click the chat icon (💬)
+   • Type: "Hello, how does this work?"
+   • You should receive a response in seconds
+        </pre>
+      </div>
+
+      <h3>Recommended Models</h3>
+      <table class="comparison-table">
+        <tr>
+          <th>Model</th>
+          <th>Speed</th>
+          <th>Cost</th>
+          <th>Recommended for</th>
+        </tr>
+        <tr>
+          <td>Gemini 1.5 Flash ⭐</td>
+          <td>Very fast</td>
+          <td>Very economical</td>
+          <td>Daily use, quick questions</td>
+        </tr>
+        <tr>
+          <td>Gemini 1.5 Pro</td>
+          <td>Fast</td>
+          <td>Moderate</td>
+          <td>Complex queries, detailed analysis</td>
+        </tr>
+      </table>
+
+      <div class="info-box">
+        <strong>💡 Recommendation:</strong><br>
+        Use Gemini 1.5 Flash for 95% of your queries. It's fast, economical, and smart enough for all typical questions.
+      </div>
+
+      <h3>AI Chat Advantages</h3>
+      <div class="success-box">
+        <strong>⚡ Benefits for Your Workshop:</strong><br>
+        • ✅ Time savings: No searching in manuals or tutorials<br>
+        • ✅ Continuous training: Employees learn while working<br>
+        • ✅ Error reduction: Correct guidance from the start<br>
+        • ✅ 24/7 support: Even outside business hours<br>
+        • ✅ No additional cost: Included in all plans<br>
+        • ✅ Multilingual: Responds in Spanish, English, or Hebrew automatically
+      </div>
+
+      <h3>Privacy and Security</h3>
+      <div class="info-box">
+        <strong>🔒 Your information is secure:</strong><br>
+        • The AI Chat does NOT have access to your business data (quotes, clients, inventory)<br>
+        • Only knows FabriControl public documentation<br>
+        • Doesn't store personal conversations<br>
+        • Complies with GDPR and privacy regulations
+      </div>
+    </div>
+
+    <!-- SECTION 7: LICENSES -->
+    <div class="doc-section" id="licenses">
+      <h2>🔐 7. Licensing and Activation System</h2>
+      
+      <h3>How Does the Licensing System Work?</h3>
+      <p>FabriControl uses a centralized licensing system that verifies your subscription every time you log in.</p>
+
+      <div class="warning-box">
+        <strong>⚠️ IMPORTANT - Internet Connection REQUIRED:</strong><br>
+        FabriControl ALWAYS needs an internet connection to validate your license at login. Without internet, you won't be able to access the system, even if it's installed locally.
+      </div>
+
+      <h3>Complete Activation Flow</h3>
 
       <div class="diagram">
         <h4>📥 STEP 1: License Request (30 days free)</h4>
         <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
-1. Customer interested in FabriControl
+1. Client is interested in FabriControl
    ↓
-2. Complete form at www.fabricontrol.com/pricing
+2. Completes form at www.fabricontrol.com/pricing
    (Name, Email, Company, Phone, Number of Users)
    ↓
-3. Receive email within 24h with:
+3. Receives an email in less than 24h with:
    
-   📧 Email from FabriControl:
+   📧 FabriControl Email:
    ┌──────────────────────────────────────────┐
    │ Hello [Name]!                            │
    │                                          │
@@ -322,47 +880,166 @@
    │                                          │
    │ ✅ 30 days free                          │
    │ ✅ All features                          │
-   │ ✅ No credit card                        │
+   │ ✅ No credit card required               │
    └──────────────────────────────────────────┘
    ↓
-4. Download installer using the link
+4. Downloads installer using the link
    ↓
-5. Install on your PC/Server
+5. Installs on their PC/Server
    ↓
-6. Enter your license code when starting
+6. Enters their license code at startup
+   ↓
+7. Client uses FabriControl for 30 days
         </pre>
       </div>
 
-      <div class="success-box">
-        <strong>✅ What happens after 30 days?</strong><br>
-        When the trial ends, the system will block access. We will contact you to choose a plan (Basic $49/mo, Professional $129/mo, or Enterprise). Once payment is received, we will extend your license and you can continue using it with all your data intact.
+      <div class="diagram">
+        <h4>🔓 STEP 2: Validation at Every Login</h4>
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+User opens FabriControl
+  ↓
+System verifies license_key
+  ↓
+🌐 Connects to license server (REQUIRES INTERNET)
+  ↓
+Searches for license in central database
+  ↓
+Verifies license STATUS:
+
+  ✅ STATUS = "trial" + not expired
+     → User can enter
+
+  ✅ STATUS = "active" (client paid)
+     → User can enter
+
+  ❌ STATUS = "trial" + expired
+     → BLOCKED
+     → Message: "Trial period expired"
+
+  ❌ STATUS = "suspended"
+     → BLOCKED
+     → Message: "License deactivated - Payment pending"
+
+  ❌ STATUS = "inactive"
+     → BLOCKED
+     → Message: "License cancelled"
+
+  ❌ No internet connection
+     → BLOCKED
+     → Message: "Error verifying license -
+                 Check internet connection"
+        </pre>
       </div>
+
+      <div class="diagram">
+        <h4>💳 STEP 3: Activation After Trial (Day 31)</h4>
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+OPTION A: Client decides to buy
+┌─────────────────────────────────────┐
+│ Client sends payment ($49 or $129)  │
+│          ↓                          │
+│ Support verifies payment            │
+│          ↓                          │
+│ Support ACTIVATES the license       │
+│ (changes status to "active")        │
+│          ↓                          │
+│ Client receives confirmation        │
+│          ↓                          │
+│ Client can continue using           │
+└─────────────────────────────────────┘
+
+OPTION B: Client DOESN'T pay
+┌─────────────────────────────────────┐
+│ Day 31: Trial expires               │
+│          ↓                          │
+│ Status changes to "suspended"       │
+│          ↓                          │
+│ Client CANNOT log in                │
+│          ↓                          │
+│ Message: "License deactivated"      │
+│          ↓                          │
+│ If client pays later                │
+│ → Support reactivates manually      │
+└─────────────────────────────────────┘
+        </pre>
+      </div>
+
+      <h3>Possible License States</h3>
+      <table class="comparison-table">
+        <tr>
+          <th>Status</th>
+          <th>Meaning</th>
+          <th>Can use the system?</th>
+        </tr>
+        <tr>
+          <td><code>trial</code></td>
+          <td>New client in trial period (30 days)</td>
+          <td>✅ Yes (if not expired)</td>
+        </tr>
+        <tr>
+          <td><code>active</code></td>
+          <td>Client paid their monthly fee</td>
+          <td>✅ Yes</td>
+        </tr>
+        <tr>
+          <td><code>suspended</code></td>
+          <td>Client didn't pay, temporarily suspended</td>
+          <td>❌ No</td>
+        </tr>
+        <tr>
+          <td><code>inactive</code></td>
+          <td>Client cancelled the service</td>
+          <td>❌ No</td>
+        </tr>
+        <tr>
+          <td><code>expired</code></td>
+          <td>Trial ended without payment</td>
+          <td>❌ No</td>
+        </tr>
+      </table>
+
+      <h3>License Format</h3>
+      <div class="info-box">
+        <strong>📋 Standard format:</strong><br>
+        <code>FABRI-XXXX-XXXX-XXXX</code><br><br>
+        Example: <code>FABRI-1234-5678-ABCD</code>
+      </div>
+
+      <h3>Monthly Renewal</h3>
+      <p>Each month, before the renewal date:</p>
+      <ol>
+        <li>System sends automatic payment reminder</li>
+        <li>Client makes monthly payment ($49 or $129)</li>
+        <li>Support verifies payment received</li>
+        <li>License status remains as "active"</li>
+        <li>If client DOESN'T pay, status changes to "suspended"</li>
+      </ol>
 
       <div class="warning-box">
-        <strong>⚠️ Internet Always Required</strong><br>
-        Every time you log into FabriControl, the system validates your license with our servers. This means:
-        <ul style="margin-top: 0.5rem;">
-          <li>✓ You need internet when <strong>logging in</strong></li>
-          <li>✓ After login, you can work offline (local mode)</li>
-          <li>✓ This prevents unauthorized use and piracy</li>
-        </ul>
+        <strong>⚠️ No Payment = No Access:</strong><br>
+        If monthly payment is not received, system access will be automatically blocked on the renewal date. All data remains secure and will be reactivated upon receiving payment.
       </div>
 
-      <h3>FAQ - Licenses</h3>
+      <h3>Frequently Asked Questions about Licenses</h3>
       
       <div class="success-box">
-        <strong>❓ What if I don't pay after the trial?</strong><br>
-        Your access will be blocked, but your data is kept safe for 90 days. If you decide to activate later, all your information will be available.
+        <strong>❓ Can I use FabriControl without internet?</strong><br>
+        NO. FabriControl ALWAYS requires internet connection to validate your license at login. Without internet, you won't be able to access the system.
       </div>
 
       <div class="success-box">
-        <strong>❓ Can I cancel my subscription?</strong><br>
-        Yes, at any time. Your license will change to "suspended" status. If you want to permanently delete your account and data, contact support.
+        <strong>❓ What happens to my data if I don't pay?</strong><br>
+        Your data (quotes, orders, inventory) is 100% secure. It remains intact on your local server or in the cloud. When you reactivate your license, you can access everything as before.
       </div>
 
       <div class="success-box">
-        <strong>❓ Can I reactivate after canceling?</strong><br>
-        Yes, anytime. Make the monthly payment and support will reactivate your license. All your data will be available.
+        <strong>❓ How do I cancel my subscription?</strong><br>
+        Simply stop paying and your license will change to "suspended" status. If you want to permanently delete your account and data, contact support.
+      </div>
+
+      <div class="success-box">
+        <strong>❓ Can I reactivate after cancelling?</strong><br>
+        Yes, at any time. Make the corresponding monthly payment and support will reactivate your license. All your data will be available.
       </div>
     </div>
 
@@ -389,6 +1066,7 @@
         <ul>
           <li><a href="/en/features.html">Features</a></li>
           <li><a href="/en/pricing.html">Pricing</a></li>
+          <li><a href="/en/documentation.html">Documentation</a></li>
         </ul>
       </div>
       <div class="footer-links">
