@@ -636,6 +636,238 @@ Usuario escribe en el navegador:
       </div>
     </div>
 
+    <!-- SECTION 6.5: CHAT IA CON GEMINI -->
+    <div class="doc-section" id="chatia">
+      <h2>🤖 6.5. Chat IA con Gemini</h2>
+      
+      <h3>¿Qué es el Chat IA?</h3>
+      <p>FabriControl incluye un <strong>asistente inteligente</strong> integrado que responde preguntas sobre el sistema, guía a los usuarios y ayuda con tareas comunes.</p>
+
+      <div class="success-box">
+        <strong>✨ Disponible en TODOS los planes:</strong><br>
+        El Chat IA está incluido en Plan Básico ($49), Profesional ($129) y Enterprise. ¡Sin costo adicional!
+      </div>
+
+      <h3>Características Principales</h3>
+      <ul>
+        <li>🤖 <strong>Powered by Google Gemini</strong> - Inteligencia artificial de última generación</li>
+        <li>🌐 <strong>Multilingüe:</strong> Español, Inglés, Hebreo (responde automáticamente en tu idioma)</li>
+        <li>📚 <strong>Conocimiento completo:</strong> Sabe TODA la documentación de FabriControl</li>
+        <li>⚡ <strong>Respuestas instantáneas:</strong> Sin esperar, 24/7</li>
+        <li>💬 <strong>Contexto inteligente:</strong> Entiende preguntas complejas</li>
+      </ul>
+
+      <h3>¿Qué PUEDE hacer el Chat IA?</h3>
+      <table class="comparison-table">
+        <tr>
+          <th>Funcionalidad</th>
+          <th>Ejemplo</th>
+        </tr>
+        <tr>
+          <td><strong>Responder preguntas sobre el sistema</strong></td>
+          <td>"¿Cómo creo una cotización?"</td>
+        </tr>
+        <tr>
+          <td><strong>Dar instrucciones paso a paso</strong></td>
+          <td>"Enséñame a configurar piezas paramétricas"</td>
+        </tr>
+        <tr>
+          <td><strong>Explicar conceptos</strong></td>
+          <td>"¿Qué son las piezas paramétricas?"</td>
+        </tr>
+        <tr>
+          <td><strong>Resolver problemas comunes</strong></td>
+          <td>"No puedo iniciar sesión"</td>
+        </tr>
+        <tr>
+          <td><strong>Explicar roles y permisos</strong></td>
+          <td>"¿Qué puede hacer un Operario?"</td>
+        </tr>
+        <tr>
+          <td><strong>Ayudar con configuración</strong></td>
+          <td>"¿Cómo conecto una báscula?"</td>
+        </tr>
+        <tr>
+          <td><strong>Sugerir mejores prácticas</strong></td>
+          <td>"¿Cómo organizo mi inventario?"</td>
+        </tr>
+      </table>
+
+      <h3>¿Qué NO puede hacer el Chat IA?</h3>
+      <div class="warning-box">
+        <strong>⚠️ Limitaciones importantes:</strong><br>
+        ❌ No puede ejecutar acciones en la aplicación (crear cotizaciones, órdenes, etc.)<br>
+        ❌ No conoce el rol del usuario cuando está en la web pública<br>
+        ❌ No maneja credenciales o contraseñas<br>
+        ❌ Solo proporciona información documentada (no inventa respuestas)
+      </div>
+
+      <h3>Configuración del Chat IA</h3>
+      <p>Para activar el Chat IA dentro de la aplicación FabriControl:</p>
+
+      <div class="diagram">
+        <h4>📋 Pasos de Configuración</h4>
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+1. Obtener API Key (2 opciones):
+   
+   OPCIÓN A: Emergent LLM Key (Universal)
+   ┌─────────────────────────────────────────┐
+   │ • Una sola key para Gemini              │
+   │ • Provista automáticamente              │
+   │ • Sin costo adicional                   │
+   │ • Límite: según tu plan Emergent        │
+   └─────────────────────────────────────────┘
+   
+   OPCIÓN B: Google Gemini API Key (Propia)
+   ┌─────────────────────────────────────────┐
+   │ 1. Ir a: ai.google.dev                  │
+   │ 2. Crear cuenta Google (gratis)         │
+   │ 3. Obtener API Key                      │
+   │ 4. Facturación: $0.10 por 1M caracteres │
+   └─────────────────────────────────────────┘
+
+2. Configurar en FabriControl:
+   • Ve a: Menú > Configuración > Chat IA
+   • Proveedor: Gemini
+   • API Key: (pega tu key)
+   • Modelo: Gemini 1.5 Flash (recomendado)
+   • Idioma: Español/Inglés/Hebreo
+   • Tono: Profesional
+   • Guardar
+
+3. Probar:
+   • Haz clic en el ícono de chat (💬)
+   • Escribe: "Hola, ¿cómo funciona esto?"
+   • Deberías recibir respuesta en segundos
+        </pre>
+      </div>
+
+      <h3>Modelos Recomendados</h3>
+      <table class="comparison-table">
+        <tr>
+          <th>Modelo</th>
+          <th>Velocidad</th>
+          <th>Costo</th>
+          <th>Recomendado para</th>
+        </tr>
+        <tr>
+          <td><strong>Gemini 1.5 Flash</strong> ⭐</td>
+          <td>Muy rápido</td>
+          <td>Muy económico</td>
+          <td>Uso diario, preguntas rápidas</td>
+        </tr>
+        <tr>
+          <td><strong>Gemini 1.5 Pro</strong></td>
+          <td>Rápido</td>
+          <td>Moderado</td>
+          <td>Consultas complejas, análisis detallado</td>
+        </tr>
+      </table>
+
+      <div class="info-box">
+        <strong>💡 Recomendación:</strong><br>
+        Usa <strong>Gemini 1.5 Flash</strong> para el 95% de tus consultas. Es rápido, económico y suficientemente inteligente para todas las preguntas típicas.
+      </div>
+
+      <h3>Ejemplos de Uso Real</h3>
+
+      <div class="success-box">
+        <strong>💬 Usuario pregunta:</strong> "¿Cómo creo una cotización?"<br><br>
+        <strong>🤖 Chat IA responde:</strong><br>
+        Para crear una cotización en FabriControl:<br>
+        1. Ve a <strong>Cotizaciones</strong> en el menú lateral<br>
+        2. Haz clic en <strong>"Nueva Cotización"</strong><br>
+        3. Selecciona o crea un cliente<br>
+        4. Agrega items/productos con descripción, cantidad, material<br>
+        5. El sistema calcula automáticamente costos y margen<br>
+        6. Haz clic en <strong>"Generar PDF"</strong> para enviar al cliente<br>
+        7. Si acepta, usa <strong>"Convertir a Orden"</strong> para pasar a producción<br><br>
+        💡 <strong>Tip:</strong> Usa piezas paramétricas para cotizar más rápido.
+      </div>
+
+      <div class="success-box">
+        <strong>💬 Usuario pregunta:</strong> "No puedo iniciar sesión"<br><br>
+        <strong>🤖 Chat IA responde:</strong><br>
+        Si no puedes iniciar sesión, verifica:<br>
+        1. <strong>¿Tienes internet?</strong> FabriControl necesita conexión para validar tu licencia<br>
+        2. <strong>¿Tu licencia está activa?</strong> Si ves "Licencia desactivada", contacta a soporte<br>
+        3. <strong>¿Email y contraseña correctos?</strong><br>
+        4. <strong>¿El servidor está corriendo?</strong> (para instalación local)<br><br>
+        <strong>Errores comunes:</strong><br>
+        • "Error verificando licencia" → Verifica internet<br>
+        • "Licencia desactivada" → Contacta support@fabricontrol.com
+      </div>
+
+      <div class="success-box">
+        <strong>💬 Usuario pregunta:</strong> "¿Cuál es la diferencia entre Plan Básico y Profesional?"<br><br>
+        <strong>🤖 Chat IA responde:</strong><br>
+        La diferencia entre Plan Básico ($49/mes) y Profesional ($129/mes) es:<br><br>
+        <strong>📊 Características:</strong> ✅ Idénticas en AMBOS planes<br>
+        <strong>👥 Usuarios:</strong><br>
+        • Básico: Hasta 3 usuarios<br>
+        • Profesional: Hasta 10 usuarios<br><br>
+        <strong>🆘 Soporte:</strong><br>
+        • Básico: ❌ Sin soporte técnico humano<br>
+        • Profesional: ✅ Email en 24 horas<br><br>
+        💰 <strong>Recomendación:</strong> Elige Básico si eres taller pequeño (1-3 personas). Elige Profesional si tienes más empleados o necesitas soporte.
+      </div>
+
+      <h3>Casos de Uso Principales</h3>
+      <ol>
+        <li><strong>Capacitación de nuevos empleados:</strong> El chat responde preguntas 24/7 sin necesitar al gerente</li>
+        <li><strong>Soporte técnico inmediato:</strong> Resuelve problemas comunes sin esperar</li>
+        <li><strong>Guía de funcionalidades:</strong> Explica características avanzadas paso a paso</li>
+        <li><strong>Resolución de dudas rápidas:</strong> "¿Cómo exporto a Excel?" - Respuesta en 2 segundos</li>
+        <li><strong>Consulta de permisos:</strong> "¿Qué puede hacer un Vendedor en el sistema?"</li>
+      </ol>
+
+      <h3>Ventajas del Chat IA</h3>
+      <div class="diagram">
+        <h4>⚡ Beneficios para tu Taller</h4>
+        <ul style="text-align: left; list-style: none; padding-left: 0;">
+          <li>✅ <strong>Ahorro de tiempo:</strong> Sin buscar en manuales o tutoriales</li>
+          <li>✅ <strong>Capacitación continua:</strong> Empleados aprenden mientras trabajan</li>
+          <li>✅ <strong>Reducción de errores:</strong> Guía correcta desde el inicio</li>
+          <li>✅ <strong>Soporte 24/7:</strong> Incluso fuera de horario laboral</li>
+          <li>✅ <strong>Sin costo adicional:</strong> Incluido en todos los planes</li>
+          <li>✅ <strong>Multilingüe:</strong> Responde en español, inglés o hebreo automáticamente</li>
+        </ul>
+      </div>
+
+      <h3>Privacidad y Seguridad</h3>
+      <div class="warning-box">
+        <strong>🔒 Tu información está segura:</strong><br>
+        • El Chat IA NO tiene acceso a tus datos empresariales (cotizaciones, clientes, inventario)<br>
+        • Solo conoce la documentación pública de FabriControl<br>
+        • No almacena conversaciones personales<br>
+        • Cumple con GDPR y normativas de privacidad
+      </div>
+
+      <h3>Preguntas Frecuentes sobre el Chat IA</h3>
+      
+      <div class="info-box">
+        <strong>❓ ¿El Chat IA está en todos los planes?</strong><br>
+        ✅ Sí, está incluido en Plan Básico, Profesional y Enterprise sin costo adicional.
+      </div>
+
+      <div class="info-box">
+        <strong>❓ ¿Necesito pagar por usar Gemini?</strong><br>
+        Depende de la opción:<br>
+        • <strong>Emergent LLM Key:</strong> Sin costo extra (incluido en tu plan)<br>
+        • <strong>API Key propia:</strong> Google cobra aprox. $0.10 por millón de caracteres (muy económico)
+      </div>
+
+      <div class="info-box">
+        <strong>❓ ¿Puedo desactivar el Chat IA?</strong><br>
+        Sí, desde Configuración > Chat IA puedes desactivarlo si no lo necesitas.
+      </div>
+
+      <div class="info-box">
+        <strong>❓ ¿El chat conoce mi negocio específico?</strong><br>
+        No, solo conoce FabriControl en general. Para personalización con tus procesos, contacta Plan Enterprise.
+      </div>
+    </div>
+
     <!-- SECTION 7: SISTEMA DE LICENCIAS -->
     <div class="doc-section" id="licencias">
       <h2>🔐 7. Sistema de Licencias y Activación</h2>
