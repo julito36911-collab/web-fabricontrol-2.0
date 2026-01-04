@@ -129,7 +129,7 @@ function Caracteristicas({ openLicenseModal }) {
 
   return (
     <>
-      <Header />
+      <Header onRequestLicense={openLicenseModal} />
 
       {/* HERO */}
       <section className="hero" style={{padding: '4rem 0'}}>
