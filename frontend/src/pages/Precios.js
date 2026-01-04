@@ -308,12 +308,6 @@ function Precios({ openLicenseModal }) {
         onClose={() => setShowQuoteModal(false)} 
       />
 
-      {/* Modal de Solicitud de Licencia */}
-      <LicenseRequestModal 
-        isOpen={showLicenseModal} 
-        onClose={() => setShowLicenseModal(false)} 
-      />
-
       <Footer />
     </>
   );
