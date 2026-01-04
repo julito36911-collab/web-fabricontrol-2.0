@@ -47,7 +47,7 @@ Pago Preferido: {request.planDeseado}
 📋 SIGUIENTE PASO:
 
 1. Accede al Panel Super Admin:
-   URL: https://factory-sys-2.preview.emergentagent.com/super-admin-login
+   URL: https://fabricadmin.preview.emergentagent.com/super-admin-login
    Email: julito36911@gmail.com
    Password: 12345678
 
