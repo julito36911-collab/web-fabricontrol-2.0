@@ -313,7 +313,7 @@ function Home() {
           </p>
           <div style={{display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap'}}>
             <Link to="/descargar" className="btn btn-accent btn-large">🆓 Descargar y Probar Gratis</Link>
-            <Link to="/precios" className="btn btn-secondary btn-large" style={{borderColor: 'white', color: 'white'}}>Ver Planes desde $29/mes</Link>
+            <Link to="/precios" className="btn btn-secondary btn-large" style={{borderColor: 'white', color: 'white'}}>Ver Planes desde $49/mes</Link>
           </div>
         </div>
       </section>
