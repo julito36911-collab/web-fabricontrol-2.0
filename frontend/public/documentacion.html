@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentación Técnica - FabriControl</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logos/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    .header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+    .nav-link:hover {
+      opacity: 0.8;
+    }
+    .nav-link.active {
+      font-weight: 700;
+    }
+    .doc-section {
+      margin-bottom: 4rem;
+    }
+    .doc-section h2 {
+      color: var(--primary);
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    .doc-section h3 {
+      color: var(--text-dark);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    .info-box {
+      background: linear-gradient(135deg, #eef2ff 0%, #f9fafb 100%);
+      border-left: 4px solid var(--primary);
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      margin: 1.5rem 0;
+    }
+    .warning-box {
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      margin: 1.5rem 0;
+    }
+    .success-box {
+      background: #dcfce7;
+      border-left: 4px solid #16a34a;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      margin: 1.5rem 0;
+    }
+    .diagram {
+      background: white;
+      border: 2px solid var(--bg-gray);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--bg-gray);
+    }
+    .comparison-table th {
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+    }
+    .comparison-table tr:hover {
+      background: #f9fafb;
+    }
+    code {
+      background: #f3f4f6;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      color: #dc2626;
+    }
+    .toc {
+      background: #f9fafb;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      margin-bottom: 3rem;
+    }
+    .toc h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+    .toc ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .toc li {
+      padding: 0.5rem 0;
+    }
+    .toc a {
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .toc a:hover {
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="/">
+          <img src="/assets/img/logos/fabricontrol-logo.svg" alt="FabriControl" style="height: 50px;">
+        </a>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Inicio</a></li>
+        <li><a href="/#caracteristicas" class="nav-link">Características</a></li>
+        <li><a href="/precios" class="nav-link">Precios</a></li>
+        <li><a href="/recursos/" class="nav-link">Recursos</a></li>
+        <li><a href="/documentacion" class="nav-link active">Documentación</a></li>
+        <li><a href="/descargar" class="btn btn-primary btn-small">Probar Gratis</a></li>
+        <li><a href="/en/documentation.html" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; font-size: 0.875rem; font-weight: 600;">🌐 EN</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding: 4rem 0 2rem;">
+  <div class="container text-center">
+    <h1 style="font-family: 'Montserrat'; font-size: 3rem; color: white; margin-bottom: 1rem;">📚 Documentación Técnica</h1>
+    <p style="font-size: 1.25rem; color: white; opacity: 0.95; max-width: 800px; margin: 0 auto;">
+      Guía completa de instalación, arquitectura y configuración de FabriControl
+    </p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="section">
+  <div class="container" style="max-width: 1000px;">
+    
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+      <h3>📑 Tabla de Contenido</h3>
+      <ul>
+        <li><a href="#instalacion">1. Instalación y Ubicación</a></li>
+        <li><a href="#mongodb">2. Base de Datos MongoDB</a></li>
+        <li><a href="#almacenamiento">3. Almacenamiento de Archivos</a></li>
+        <li><a href="#servidor">4. Opciones de Servidor</a></li>
+        <li><a href="#respaldos">5. Respaldos y Seguridad</a></li>
+        <li><a href="#arquitectura">6. Arquitectura del Sistema</a></li>
+      </ul>
+    </div>
+
+    <!-- SECTION 1: INSTALACIÓN -->
+    <div class="doc-section" id="instalacion">
+      <h2>🏠 1. Instalación y Ubicación</h2>
+      
+      <h3>¿Dónde se instala FabriControl?</h3>
+      <p>FabriControl es una aplicación <strong>desktop</strong> que se instala directamente en una PC con Windows. Durante la instalación, todos los archivos se copian a:</p>
+      
+      <div class="info-box">
+        <strong>📁 Ubicación por defecto:</strong><br>
+        <code>C:\Program Files\FabriControl\</code>
+      </div>
+
+      <h3>Requisitos del Sistema</h3>
+      <table class="comparison-table">
+        <tr>
+          <th>Componente</th>
+          <th>Mínimo</th>
+          <th>Recomendado</th>
+        </tr>
+        <tr>
+          <td><strong>Sistema Operativo</strong></td>
+          <td>Windows 10</td>
+          <td>Windows 11</td>
+        </tr>
+        <tr>
+          <td><strong>Procesador</strong></td>
+          <td>Intel Core i3 o equivalente</td>
+          <td>Intel Core i5 o superior</td>
+        </tr>
+        <tr>
+          <td><strong>Memoria RAM</strong></td>
+          <td>4 GB</td>
+          <td>8 GB o más</td>
+        </tr>
+        <tr>
+          <td><strong>Disco Duro</strong></td>
+          <td>10 GB libres</td>
+          <td>50 GB libres (para archivos)</td>
+        </tr>
+        <tr>
+          <td><strong>Red</strong></td>
+          <td>No requerida (modo local)</td>
+          <td>Red LAN para múltiples usuarios</td>
+        </tr>
+      </table>
+
+      <h3>Estructura de Archivos</h3>
+      <p>Después de la instalación, FabriControl crea la siguiente estructura:</p>
+      
+      <div class="diagram">
+        <pre style="text-align: left; font-family: monospace; font-size: 0.9rem;">
+C:\Program Files\FabriControl\
+├── 📁 frontend/          → Interfaz web (React)
+├── 📁 backend/           → Servidor (Python/FastAPI)
+├── 📁 mongodb/           → Base de datos (si es local)
+├── 📁 uploads/           → Archivos subidos (PDFs, fotos)
+├── 📁 backups/           → Respaldos automáticos
+└── 📄 FabriControl.exe   → Ejecutable principal
+        </pre>
+      </div>
+    </div>
+
+    <!-- SECTION 2: MONGODB -->
+    <div class="doc-section" id="mongodb">
+      <h2>🗄️ 2. Base de Datos MongoDB</h2>
+      
+      <h3>¿Qué es MongoDB?</h3>
+      <p>MongoDB es la <strong>base de datos</strong> donde FabriControl guarda toda tu información de negocio:</p>
+      <ul>
+        <li>📋 Cotizaciones y presupuestos</li>
+        <li>📦 Inventario de materiales</li>
+        <li>👥 Datos de clientes y proveedores</li>
+        <li>🏭 Órdenes de producción</li>
+        <li>📊 Reportes y estadísticas</li>
+      </ul>
+
+      <div class="info-box">
+        <strong>💡 Analogía simple:</strong><br>
+        Piensa en MongoDB como un <strong>archivero digital</strong> súper organizado donde se guardan todos tus documentos del negocio. Es como tener todas tus carpetas, pero de forma electrónica y mucho más rápida de buscar.
+      </div>
+
+      <h3>Opciones de MongoDB</h3>
+      <p>Durante la instalación, puedes elegir entre 2 opciones:</p>
+
+      <table class="comparison-table">
+        <tr>
+          <th>Opción</th>
+          <th>¿Qué significa?</th>
+          <th>¿Para quién?</th>
+        </tr>
+        <tr>
+          <td><strong>🏠 MongoDB Local</strong></td>
+          <td>La base de datos se instala en tu PC servidor. Todos los datos están físicamente en tu computadora.</td>
+          <td>✅ Talleres pequeños<br>✅ No necesitas internet<br>✅ Máxima privacidad</td>
+        </tr>
+        <tr>
+          <td><strong>☁️ MongoDB en la Nube</strong></td>
+          <td>La base de datos está en internet (MongoDB Atlas). Tus datos están en servidores seguros en línea.</td>
+          <td>✅ Múltiples sedes<br>✅ Acceso remoto<br>✅ Backups automáticos</td>
+        </tr>
+      </table>
+
+      <h3>¿Dónde se guardan tus datos?</h3>
+      
+      <div class="success-box">
+        <strong>🏠 Si elegiste MongoDB Local:</strong><br>
+        Los datos se guardan en: <code>C:\Program Files\FabriControl\mongodb\data\</code><br>
+        Tamaño inicial: ~500 MB<br>
+        Crecimiento: +10-50 MB por mes (depende del uso)
+      </div>
+
+      <div class="success-box">
+        <strong>☁️ Si elegiste MongoDB en la Nube:</strong><br>
+        Los datos están en servidores de MongoDB Atlas (AWS)<br>
+        Ubicación física: Seleccionable (EE.UU., Europa, Brasil, etc.)<br>
+        Encriptación: Sí, automática
+      </div>
+
+      <h3>Tamaño de la Base de Datos</h3>
+      <p>Ejemplo de crecimiento típico:</p>
+      <ul>
+        <li><strong>Taller pequeño</strong> (50 órdenes/mes): ~2 GB por año</li>
+        <li><strong>Taller mediano</strong> (200 órdenes/mes): ~8 GB por año</li>
+        <li><strong>Fábrica grande</strong> (1000+ órdenes/mes): ~40 GB por año</li>
+      </ul>
+
+      <div class="warning-box">
+        <strong>⚠️ Importante:</strong> Los archivos adjuntos (fotos, PDFs) NO se guardan en MongoDB. Se guardan por separado en la carpeta <code>uploads/</code> (ver siguiente sección).
+      </div>
+    </div>
+
+    <!-- SECTION 3: ALMACENAMIENTO -->
+    <div class="doc-section" id="almacenamiento">
+      <h2>📁 3. Almacenamiento de Archivos</h2>
+      
+      <h3>¿Qué archivos se suben al programa?</h3>
+      <p>FabriControl te permite adjuntar diferentes tipos de archivos:</p>
+      <ul>
+        <li>📸 <strong>Fotos</strong>: Imágenes de productos, materiales, avances de obra</li>
+        <li>📄 <strong>PDFs</strong>: Planos, cotizaciones, contratos, facturas</li>
+        <li>📊 <strong>Excel</strong>: Listados de materiales, presupuestos</li>
+        <li>🎨 <strong>DWG/DXF</strong>: Planos técnicos de diseño</li>
+      </ul>
+
+      <h3>¿Dónde se guardan estos archivos?</h3>
+
+      <table class="comparison-table">
+        <tr>
+          <th>Opción</th>
+          <th>Ubicación</th>
+          <th>Ventajas</th>
+        </tr>
+        <tr>
+          <td><strong>💾 Almacenamiento Local</strong></td>
+          <td><code>C:\Program Files\FabriControl\uploads\</code></td>
+          <td>✅ Gratis<br>✅ Rápido<br>✅ No necesita internet</td>
+        </tr>
+        <tr>
+          <td><strong>☁️ Almacenamiento en Nube</strong></td>
+          <td>AWS S3, Google Drive, Dropbox</td>
+          <td>✅ Acceso remoto<br>✅ Backups automáticos<br>✅ Espacio ilimitado (con costo)</td>
+        </tr>
+      </table>
+
+      <h3>Organización de Archivos</h3>
+      <div class="diagram">
+        <pre style="text-align: left; font-family: monospace; font-size: 0.9rem;">
+C:\Program Files\FabriControl\uploads\
+├── 📁 clientes/
+│   ├── 📁 cliente-001/
+│   │   ├── foto-producto-001.jpg
+│   │   └── contrato-firmado.pdf
+│   └── 📁 cliente-002/
+│       └── plano-cocina.dwg
+│
+├── 📁 ordenes/
+│   ├── 📁 orden-2024-001/
+│   │   ├── foto-avance-1.jpg
+│   │   └── lista-materiales.xlsx
+│   └── 📁 orden-2024-002/
+│       └── plano-final.pdf
+│
+└── 📁 inventario/
+    ├── foto-perfil-aluminio.jpg
+    └── catalogo-herrajes.pdf
+        </pre>
+      </div>
+
+      <h3>Límites y Capacidad</h3>
+      <div class="info-box">
+        <strong>📊 Límites recomendados:</strong><br>
+        • Tamaño máximo por archivo: <strong>50 MB</strong><br>
+        • Formatos permitidos: <strong>JPG, PNG, PDF, XLSX, DWG, DXF</strong><br>
+        • Espacio recomendado en disco: <strong>50-200 GB</strong> (depende del volumen de archivos)
+      </div>
+    </div>
+
+    <!-- SECTION 4: OPCIONES DE SERVIDOR -->
+    <div class="doc-section" id="servidor">
+      <h2>🌐 4. Opciones de Servidor</h2>
+      
+      <p>FabriControl es <strong>UN SOLO instalador</strong> que se adapta a tu negocio. Durante la instalación, configuras cómo quieres usarlo:</p>
+
+      <h3>Opción 1: PC Individual (Modo Local)</h3>
+      <div class="diagram">
+        <h4>💻 PC Individual</h4>
+        <p>Una sola persona usa el programa en su computadora.</p>
+        <strong>Ideal para:</strong> Diseñadores freelance, talleres unipersonales
+      </div>
+
+      <h3>Opción 2: Servidor en Red Local (LAN)</h3>
+      <div class="diagram">
+        <h4>🏢 Red Local (LAN)</h4>
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+┌─────────────────┐         ┌──────────────┐
+│  PC SERVIDOR    │◄────────┤ Router WiFi  │
+│  (192.168.1.10) │         └──────────────┘
+│                 │                │
+│ FabriControl    │                │
+│ MongoDB Local   │                │
+│ Puerto: 3000    │                │
+└─────────────────┘                │
+        ▲                          │
+        │                          │
+        └──────┬──────┬───────────┘
+               │      │
+         ┌─────▼──┐ ┌─▼──────┐
+         │ PC #1  │ │ PC #2  │
+         │ Diseño │ │ Ventas │
+         └────────┘ └────────┘
+        </pre>
+        <strong>Configuración:</strong><br>
+        • Se instala en UNA PC servidor<br>
+        • Otros empleados acceden por navegador: <code>http://192.168.1.10:3000</code><br>
+        • Funciona sin internet<br>
+        <strong>Ideal para:</strong> Talleres de 3-20 empleados en un mismo lugar
+      </div>
+
+      <h3>Opción 3: Servidor en la Nube</h3>
+      <div class="diagram">
+        <h4>☁️ Servidor en la Nube</h4>
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+                 ☁️  INTERNET ☁️
+                       │
+            ┌──────────┴──────────┐
+            │  Servidor Cloud     │
+            │  (AWS / Azure)      │
+            │                     │
+            │  FabriControl       │
+            │  MongoDB Atlas      │
+            └──────────┬──────────┘
+                       │
+        ┌──────────────┼──────────────┐
+        │              │              │
+   ┌────▼───┐    ┌────▼───┐    ┌────▼───┐
+   │ Sede A │    │ Sede B │    │  Casa  │
+   │ Oficina│    │ Taller │    │Remoto  │
+   └────────┘    └────────┘    └────────┘
+        </pre>
+        <strong>Configuración:</strong><br>
+        • Se instala en servidor cloud (AWS, Azure, etc.)<br>
+        • Acceso por dominio: <code>https://fabricontrol.miempresa.com</code><br>
+        • Requiere internet<br>
+        <strong>Ideal para:</strong> Empresas con múltiples sedes o trabajo remoto
+      </div>
+
+      <h3>Comparación de Opciones</h3>
+      <table class="comparison-table">
+        <tr>
+          <th>Característica</th>
+          <th>PC Individual</th>
+          <th>Red Local (LAN)</th>
+          <th>Nube</th>
+        </tr>
+        <tr>
+          <td><strong>¿Mismo instalador?</strong></td>
+          <td>✅ Sí</td>
+          <td>✅ Sí</td>
+          <td>✅ Sí</td>
+        </tr>
+        <tr>
+          <td><strong>Usuarios simultáneos</strong></td>
+          <td>1</td>
+          <td>3-20</td>
+          <td>Ilimitados</td>
+        </tr>
+        <tr>
+          <td><strong>Requiere internet</strong></td>
+          <td>❌ No</td>
+          <td>❌ No</td>
+          <td>✅ Sí</td>
+        </tr>
+        <tr>
+          <td><strong>Acceso remoto</strong></td>
+          <td>❌ No</td>
+          <td>⚠️ Solo en red local</td>
+          <td>✅ Desde cualquier lugar</td>
+        </tr>
+        <tr>
+          <td><strong>Costo mensual</strong></td>
+          <td>Solo licencia</td>
+          <td>Solo licencia</td>
+          <td>Licencia + servidor cloud (~$50-200/mes)</td>
+        </tr>
+      </table>
+
+      <div class="success-box">
+        <strong>✅ Recuerda:</strong> Es el MISMO archivo <code>FabriControl_Setup.exe</code> para todas las opciones. Durante la instalación, TÚ eliges cómo configurarlo según tu necesidad.
+      </div>
+    </div>
+
+    <!-- SECTION 5: RESPALDOS -->
+    <div class="doc-section" id="respaldos">
+      <h2>💾 5. Respaldos y Seguridad</h2>
+      
+      <h3>Backups Automáticos</h3>
+      <p>FabriControl hace respaldos automáticos de tu información:</p>
+
+      <div class="info-box">
+        <strong>📦 Respaldos Automáticos:</strong><br>
+        • <strong>Frecuencia:</strong> Diario (a las 2:00 AM)<br>
+        • <strong>Ubicación:</strong> <code>C:\Program Files\FabriControl\backups\</code><br>
+        • <strong>Retención:</strong> Últimos 7 días<br>
+        • <strong>¿Qué incluye?</strong> Base de datos completa (MongoDB)
+      </div>
+
+      <h3>¿Cómo hacer un respaldo manual?</h3>
+      <p>Desde el panel de administración:</p>
+      <ol>
+        <li>Ve a <strong>Configuración → Respaldos</strong></li>
+        <li>Haz clic en <strong>"Crear Respaldo Ahora"</strong></li>
+        <li>Espera 1-5 minutos (depende del tamaño de datos)</li>
+        <li>Descarga el archivo <code>.backup</code> y guárdalo en lugar seguro</li>
+      </ol>
+
+      <h3>¿Cómo restaurar un respaldo?</h3>
+      <ol>
+        <li>Ve a <strong>Configuración → Respaldos → Restaurar</strong></li>
+        <li>Selecciona el archivo <code>.backup</code></li>
+        <li>Confirma la restauración</li>
+        <li>El sistema se reiniciará automáticamente</li>
+      </ol>
+
+      <div class="warning-box">
+        <strong>⚠️ Importante:</strong><br>
+        • Los archivos adjuntos (fotos, PDFs) NO están incluidos en el backup automático de MongoDB<br>
+        • Debes respaldar manualmente la carpeta <code>uploads/</code><br>
+        • <strong>Recomendación:</strong> Copia la carpeta <code>uploads/</code> a un disco externo semanalmente
+      </div>
+
+      <h3>Seguridad de los Datos</h3>
+      <ul>
+        <li>🔒 <strong>Encriptación:</strong> Todos los datos sensibles están encriptados</li>
+        <li>👤 <strong>Control de acceso:</strong> Cada usuario tiene su contraseña y permisos</li>
+        <li>📝 <strong>Registro de actividad:</strong> Se registra quién hizo qué y cuándo</li>
+        <li>🔐 <strong>Autenticación:</strong> Tokens JWT para máxima seguridad</li>
+      </ul>
+    </div>
+
+    <!-- SECTION 6: ARQUITECTURA -->
+    <div class="doc-section" id="arquitectura">
+      <h2>🔧 6. Arquitectura del Sistema</h2>
+      
+      <h3>Componentes Técnicos</h3>
+      <p>FabriControl está compuesto por 3 partes principales:</p>
+
+      <div class="diagram">
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+┌─────────────────────────────────────────────┐
+│           FABRICONTROL                      │
+├─────────────────────────────────────────────┤
+│                                             │
+│  1️⃣ FRONTEND (Interfaz Visual)            │
+│     • Tecnología: React.js                  │
+│     • Puerto: 3000                          │
+│     • Navegador: Chrome, Edge, Firefox      │
+│                                             │
+│  2️⃣ BACKEND (Servidor)                     │
+│     • Tecnología: Python + FastAPI          │
+│     • Puerto: 8001                          │
+│     • APIs REST para comunicación           │
+│                                             │
+│  3️⃣ BASE DE DATOS (MongoDB)                │
+│     • Puerto: 27017 (local)                 │
+│     • Almacena: Cotizaciones, inventario,   │
+│       clientes, órdenes, etc.               │
+│                                             │
+└─────────────────────────────────────────────┘
+        </pre>
+      </div>
+
+      <h3>Flujo de Datos</h3>
+      <div class="diagram">
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+Usuario escribe en el navegador:
+     │
+     ▼
+[FRONTEND] → Envía datos al servidor
+     │
+     ▼
+[BACKEND] → Procesa y valida datos
+     │
+     ▼
+[MONGODB] → Guarda información
+     │
+     ▼
+[BACKEND] → Confirma guardado
+     │
+     ▼
+[FRONTEND] → Muestra mensaje "✅ Guardado"
+        </pre>
+      </div>
+
+      <h3>Puertos y Servicios</h3>
+      <table class="comparison-table">
+        <tr>
+          <th>Servicio</th>
+          <th>Puerto</th>
+          <th>¿Para qué sirve?</th>
+        </tr>
+        <tr>
+          <td><strong>Frontend</strong></td>
+          <td>3000</td>
+          <td>Interfaz web donde trabajas</td>
+        </tr>
+        <tr>
+          <td><strong>Backend API</strong></td>
+          <td>8001</td>
+          <td>Procesa las operaciones y lógica de negocio</td>
+        </tr>
+        <tr>
+          <td><strong>MongoDB</strong></td>
+          <td>27017</td>
+          <td>Base de datos (solo si es local)</td>
+        </tr>
+      </table>
+
+      <div class="info-box">
+        <strong>💡 Para usuarios avanzados:</strong><br>
+        Si necesitas configurar el firewall de Windows, debes permitir los puertos <strong>3000</strong> y <strong>8001</strong> para que otros usuarios en la red puedan acceder.
+      </div>
+    </div>
+
+    <!-- FOOTER CTA -->
+    <div style="text-align: center; margin-top: 4rem; padding: 3rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: var(--radius-xl); color: white;">
+      <h2 style="color: white; margin-bottom: 1rem;">¿Listo para instalar FabriControl?</h2>
+      <p style="font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.95;">Descarga el instalador y prueba 30 días gratis sin tarjeta de crédito</p>
+      <a href="/descargar" class="btn btn-accent btn-large" style="background: white; color: var(--primary);">Descargar Ahora</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>FabriControl</h3>
+        <p>El ERP diseñado específicamente para talleres y fábricas latinoamericanas.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Producto</h4>
+        <ul>
+          <li><a href="/#caracteristicas">Características</a></li>
+          <li><a href="/precios">Precios</a></li>
+          <li><a href="/descargar">Descargar</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Recursos</h4>
+        <ul>
+          <li><a href="/recursos/">Herramientas Gratis</a></li>
+          <li><a href="/documentacion">Documentación</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/en/documentation.html">English Version</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 FabriControl. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
