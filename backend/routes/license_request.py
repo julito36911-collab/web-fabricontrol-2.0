@@ -18,81 +18,99 @@ class LicenseRequest(BaseModel):
 @router.post("/license-request")
 async def submit_license_request(request: LicenseRequest):
     """
-    Recibe solicitudes de c\u00f3digo de licencia de nuevos clientes.
+    Recibe solicitudes de código de licencia de nuevos clientes.
     
     El cliente proporciona su INSTALLATION CODE y el soporte 
-    le env\u00eda un LICENSE KEY por email.
+    le envía un LICENSE KEY por email con 30 días gratis.
     """
     try:
         # Crear el contenido del email
         email_content = f"""
-        \ud83d\udd10 Nueva Solicitud de C\u00f3digo de Licencia - FabriControl
-        ========================================================
-        
-        Fecha: {datetime.now().strftime('%d/%m/%Y %H:%M')}
-        
-        DATOS DEL CLIENTE
-        -----------------
-        Nombre: {request.nombre}
-        Empresa: {request.empresa or 'No proporcionada'}
-        Email: {request.email}
-        Tel\u00e9fono: {request.telefono or 'No proporcionado'}
-        
-        C\u00d3DIGO DE INSTALACI\u00d3N
-        ------------------------
-        Installation Code: {request.installationCode}
-        
-        PLAN SOLICITADO
-        ---------------
-        Plan: {request.planDeseado}
-        
-        ========================================================
-        
-        \ud83d\udcdd SIGUIENTE PASO:
-        
-        1. Accede al Panel Super Admin:
-           URL: https://factory-sys-2.preview.emergentagent.com/super-admin-login
-           Email: julito36911@gmail.com
-           Password: 12345678
-        
-        2. Crear Cliente:
-           - Haz clic en "Nuevo Cliente"
-           - Completa los datos del cliente
-           - D\u00edas Trial: 30 (para trial) o los que corresponda
-           - Usuarios M\u00e1x: 3 (B\u00e1sico), 10 (Pro), o seg\u00fan plan
-        
-        3. El sistema generar\u00e1 un LICENSE KEY:
-           Ejemplo: FABRI-8E4A-9B2C-7F1D
-        
-        4. Env\u00eda el LICENSE KEY al cliente:
-           Email: {request.email}
-           
-           Plantilla sugerida:
-           -------------------
-           \u00a1Hola {request.nombre}!
-           
-           Tu licencia de FabriControl est\u00e1 lista:
-           
-           \ud83d\udd11 LICENSE KEY: [PEGAR_AQUI]
-           
-           Plan: {request.planDeseado.upper()}
-           \u2705 30 d\u00edas gratis (si es trial)
-           \u2705 Todas las funciones incluidas
-           
-           Pasos para activar:
-           1. Abre FabriControl
-           2. Ve a: Men\u00fa > Configuraci\u00f3n > Licencia
-           3. Pega tu LICENSE KEY
-           4. \u00a1Listo! Comienza a usar el sistema
-           
-           \u00bfPreguntas? Responde a este email
-           
-           \u00a1\u00c9xitos!
-           Equipo FabriControl
-           -------------------
-        
-        ========================================================
-        """
+🎁 Nueva Solicitud de Licencia (30 DÍAS GRATIS) - FabriControl
+========================================================
+
+Fecha: {datetime.now().strftime('%d/%m/%Y %H:%M')}
+
+DATOS DEL CLIENTE
+-----------------
+Nombre: {request.nombre}
+Empresa: {request.empresa or 'No proporcionada'}
+Email: {request.email}
+Teléfono: {request.telefono or 'No proporcionado'}
+
+CÓDIGO DE INSTALACIÓN
+------------------------
+Installation Code: {request.installationCode}
+
+REQUERIMIENTOS
+---------------
+Cantidad de Usuarios: {request.cantidadUsuarios}
+Pago Preferido: {request.planDeseado}
+
+========================================================
+
+📋 SIGUIENTE PASO:
+
+1. Accede al Panel Super Admin:
+   URL: https://factory-sys-2.preview.emergentagent.com/super-admin-login
+   Email: julito36911@gmail.com
+   Password: 12345678
+
+2. Crear Cliente:
+   - Haz clic en "Nuevo Cliente"
+   - Completa los datos:
+     • Empresa: {request.empresa or request.nombre}
+     • Nombre: {request.nombre}
+     • Email: {request.email}
+     • Teléfono: {request.telefono or 'N/A'}
+     • Plan: Según usuarios ({request.cantidadUsuarios})
+     • Días Trial: 30
+     • Usuarios Máx: (según lo solicitado)
+
+3. El sistema generará un LICENSE KEY:
+   Ejemplo: FABRI-8E4A-9B2C-7F1D
+
+4. Envía el LICENSE KEY al cliente:
+   Email: {request.email}
+   
+   📧 PLANTILLA DE EMAIL:
+   -------------------
+   ¡Hola {request.nombre}!
+   
+   ¡Tu licencia de FabriControl está lista! 🎉
+   
+   🔑 LICENSE KEY: [PEGAR_AQUI_EL_CODIGO]
+   
+   🎁 30 DÍAS GRATIS
+   ✅ Todas las funciones incluidas
+   ✅ {request.cantidadUsuarios}
+   
+   📥 PASOS PARA ACTIVAR:
+   1. Descarga FabriControl: www.fabricontrol.com/descargar
+   2. Instala en tu PC/Servidor
+   3. Al abrir, ingresa tu LICENSE KEY
+   4. ¡Listo! Empieza a usar el sistema
+   
+   💰 DESPUÉS DE LOS 30 DÍAS:
+   Para continuar usando FabriControl, contacta a:
+   • Email: support@fabricontrol.com
+   • WhatsApp: [TU_NUMERO]
+   
+   Opciones de pago:
+   • Mensual: $49 o $129 (según usuarios)
+   • Anual: 20% descuento
+   
+   🔄 NO NECESITAS NUEVO CÓDIGO
+   Solo extenderemos la fecha de tu licencia actual.
+   
+   ¿Preguntas? Responde a este email
+   
+   ¡Éxitos!
+   Equipo FabriControl
+   -------------------
+
+========================================================
+"""
         
         # Log de la solicitud
         logger.info(f"Nueva solicitud de licencia: {request.email} - {request.installationCode}")
@@ -100,29 +118,30 @@ async def submit_license_request(request: LicenseRequest):
         print(email_content)
         print("="*60 + "\n")
         
-        # TODO: En producci\u00f3n, enviar email real al soporte
+        # TODO: En producción, enviar email real al soporte
         # await send_email(
         #     to="support@fabricontrol.com",
         #     subject=f"Nueva Solicitud de Licencia - {request.nombre}",
         #     body=email_content
         # )
         
-        # Tambi\u00e9n se podr\u00eda guardar en base de datos para seguimiento
+        # También se podría guardar en base de datos para seguimiento
         # await db.license_requests.insert_one({
         #     "nombre": request.nombre,
         #     "empresa": request.empresa,
         #     "email": request.email,
         #     "telefono": request.telefono,
         #     "installation_code": request.installationCode,
+        #     "cantidad_usuarios": request.cantidadUsuarios,
         #     "plan_deseado": request.planDeseado,
         #     "created_at": datetime.now(),
         #     "status": "pending",
-        #     "license_key": None  # Se llenar\u00e1 cuando se cree
+        #     "license_key": None  # Se llenará cuando se cree
         # })
         
         return {
             "success": True,
-            "message": "Solicitud recibida. Recibir\u00e1s tu LICENSE KEY por email en menos de 24 horas.",
+            "message": "Solicitud recibida. Recibirás tu LICENSE KEY por email en menos de 24 horas.",
             "request_id": datetime.now().strftime('%Y%m%d%H%M%S')
         }
         
