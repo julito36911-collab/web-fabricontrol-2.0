@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import EnterpriseQuoteModal from '../components/EnterpriseQuoteModal';
 import { Link } from 'react-router-dom';
 
 function Precios() {
   const [isAnual, setIsAnual] = useState(false);
+  const [showQuoteModal, setShowQuoteModal] = useState(false);
 
   return (
     <>
@@ -259,9 +261,13 @@ function Precios() {
                   <h4 style={{color: 'white', fontSize: '1rem'}}>✓ Módulos a medida</h4>
                 </div>
               </div>
-              <Link to="/enterprise" className="btn btn-accent btn-large">
+              <button 
+                onClick={() => setShowQuoteModal(true)} 
+                className="btn btn-accent btn-large"
+                style={{border: 'none', cursor: 'pointer'}}
+              >
                 Cotizar Solución
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -291,6 +297,12 @@ function Precios() {
           </div>
         </div>
       </section>
+
+      {/* Modal de Cotización Enterprise */}
+      <EnterpriseQuoteModal 
+        isOpen={showQuoteModal} 
+        onClose={() => setShowQuoteModal(false)} 
+      />
 
       <Footer />
     </>
