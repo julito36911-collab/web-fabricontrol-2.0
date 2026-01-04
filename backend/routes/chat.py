@@ -139,42 +139,35 @@ async def chat(request: ChatRequest):
     Chat endpoint using Gemini AI
     """
     try:
-        if not GEMINI_API_KEY:
+        if not client:
             raise HTTPException(status_code=500, detail="Gemini API key not configured")
         
-        # Initialize Gemini model
-        model = genai.GenerativeModel(
-            model_name=CHAT_MODEL,
-            generation_config={
-                "temperature": CHAT_TEMPERATURE,
-                "top_p": 0.95,
-                "top_k": 40,
+        # Build conversation history
+        contents = []
+        for msg in request.messages:
+            contents.append({
+                "role": "user" if msg.role == "user" else "model",
+                "parts": [{"text": msg.content}]
+            })
+        
+        # Add system prompt context to the first user message
+        if contents and contents[0]["role"] == "user":
+            contents[0]["parts"][0]["text"] = f"{SYSTEM_PROMPT}\n\n---\n\n**Usuario pregunta:** {contents[0]['parts'][0]['text']}"
+        
+        # Generate response
+        response = client.models.generate_content(
+            model="gemini-2.0-flash-exp",
+            contents=contents,
+            config={
+                "temperature": 0.7,
                 "max_output_tokens": 1024,
             }
         )
         
-        # Build conversation history
-        chat_history = []
-        for msg in request.messages[:-1]:  # All except last
-            chat_history.append({
-                "role": "user" if msg.role == "user" else "model",
-                "parts": [msg.content]
-            })
-        
-        # Start chat with history
-        chat = model.start_chat(history=chat_history)
-        
-        # Get last user message
-        user_message = request.messages[-1].content
-        
-        # Send message with system prompt context
-        full_prompt = f"{SYSTEM_PROMPT}\n\n---\n\n**Usuario pregunta:** {user_message}"
-        
-        response = chat.send_message(full_prompt)
-        
         # Detect language (simple heuristic)
+        user_message = request.messages[-1].content
         detected_lang = "es"  # default
-        if any(word in user_message.lower() for word in ["how", "what", "does", "can", "is"]):
+        if any(word in user_message.lower() for word in ["how", "what", "does", "can", "is", "price"]):
             detected_lang = "en"
         elif any(char in user_message for char in ["א", "ב", "ג", "ד"]):
             detected_lang = "he"
