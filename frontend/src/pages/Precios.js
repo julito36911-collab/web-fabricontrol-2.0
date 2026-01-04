@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import EnterpriseQuoteModal from '../components/EnterpriseQuoteModal';
+import LicenseRequestModal from '../components/LicenseRequestModal';
 import { Link } from 'react-router-dom';
 
 function Precios() {
   const [isAnual, setIsAnual] = useState(false);
   const [showQuoteModal, setShowQuoteModal] = useState(false);
+  const [showLicenseModal, setShowLicenseModal] = useState(false);
 
   return (
     <>
-      <Header />
+      <Header onRequestLicense={() => setShowLicenseModal(true)} />
 
       {/* HERO PRECIOS */}
       <section className="hero" style={{padding: '4rem 0 2rem'}}>
