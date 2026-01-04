@@ -119,20 +119,6 @@ function LicenseRequestModal({ isOpen, onClose }) {
           </div>
 
           <div className="form-group">
-            <label htmlFor="installationCode">Código de Instalación * <span style={{fontSize: '0.85rem', color: 'var(--text-medium)'}}>(Aparece al abrir la app)</span></label>
-            <input
-              type="text"
-              id="installationCode"
-              name="installationCode"
-              value={formData.installationCode}
-              onChange={handleChange}
-              placeholder="INST-ABC123-XYZ789"
-              required
-              style={{fontFamily: 'monospace', fontSize: '1.1rem'}}
-            />
-          </div>
-
-          <div className="form-group">
             <label htmlFor="nombre">Nombre Completo *</label>
             <input
               type="text"
