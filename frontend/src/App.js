@@ -7,6 +7,7 @@ import Precios from './pages/Precios';
 import Descargar from './pages/Descargar';
 import FAQ from './pages/FAQ';
 import Enterprise from './pages/Enterprise';
+import ChatWidget from './components/ChatWidget';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/enterprise" element={<Enterprise />} />
       </Routes>
+      <ChatWidget />
     </BrowserRouter>
   );
 }
