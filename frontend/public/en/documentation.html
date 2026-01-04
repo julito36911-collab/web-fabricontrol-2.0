@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technical Documentation - FabriControl</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logos/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    .header {
+      background: var(--bg-white);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: var(--spacing-sm) 0;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-logo img {
+      height: 50px;
+      width: auto;
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    .nav-link {
+      font-weight: 500;
+      color: var(--text-dark);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .nav-link:hover {
+      background: var(--bg-light);
+      color: var(--primary);
+    }
+    .nav-link.active {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .doc-section {
+      margin-bottom: 4rem;
+    }
+    .doc-section h2 {
+      color: var(--primary);
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    .doc-section h3 {
+      color: var(--text-dark);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    .info-box {
+      background: linear-gradient(135deg, #eef2ff 0%, #f9fafb 100%);
+      border-left: 4px solid var(--primary);
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      margin: 1.5rem 0;
+    }
+    .warning-box {
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      margin: 1.5rem 0;
+    }
+    .success-box {
+      background: #dcfce7;
+      border-left: 4px solid #16a34a;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      margin: 1.5rem 0;
+    }
+    .diagram {
+      background: white;
+      border: 2px solid var(--bg-gray);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--bg-gray);
+    }
+    .comparison-table th {
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+    }
+    .comparison-table tr:hover {
+      background: #f9fafb;
+    }
+    code {
+      background: #f3f4f6;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      color: #dc2626;
+    }
+    .toc {
+      background: #f9fafb;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      margin-bottom: 3rem;
+    }
+    .toc h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+    .toc ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .toc li {
+      padding: 0.5rem 0;
+    }
+    .toc a {
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .toc a:hover {
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="/en/index.html">
+          <img src="/assets/img/logos/fabricontrol-logo.svg" alt="FabriControl">
+        </a>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="/en/index.html" class="nav-link">Home</a></li>
+        <li><a href="/en/features.html" class="nav-link">Features</a></li>
+        <li><a href="/en/pricing.html" class="nav-link">Pricing</a></li>
+        <li><a href="/en/products/" class="nav-link">Products</a></li>
+        <li><a href="/en/resources/" class="nav-link">Resources</a></li>
+        <li><a href="/en/documentation.html" class="nav-link active">Documentation</a></li>
+        <li><a href="/documentacion.html" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid var(--bg-gray); border-radius: 6px; font-size: 0.875rem; font-weight: 600;">🌐 ES</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding: 4rem 0 2rem;">
+  <div class="container text-center">
+    <h1 style="font-family: 'Montserrat'; font-size: 3rem; color: white; margin-bottom: 1rem;">📚 Technical Documentation</h1>
+    <p style="font-size: 1.25rem; color: white; opacity: 0.95; max-width: 800px; margin: 0 auto;">
+      Complete guide for installation, architecture, and configuration of FabriControl
+    </p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="section">
+  <div class="container" style="max-width: 1000px;">
+    
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+      <h3>📑 Table of Contents</h3>
+      <ul>
+        <li><a href="#installation">1. Installation and Location</a></li>
+        <li><a href="#mongodb">2. MongoDB Database</a></li>
+        <li><a href="#storage">3. File Storage</a></li>
+        <li><a href="#server">4. Server Options</a></li>
+        <li><a href="#backups">5. Backups and Security</a></li>
+        <li><a href="#architecture">6. System Architecture</a></li>
+        <li><a href="#aichat">6.5. AI Chat with Gemini</a></li>
+        <li><a href="#licenses">7. License and Activation System</a></li>
+      </ul>
+    </div>
+
+    <!-- SECTION 1: INSTALLATION -->
+    <div class="doc-section" id="installation">
+      <h2>🏠 1. Installation and Location</h2>
+      
+      <h3>Where is FabriControl installed?</h3>
+      <p>FabriControl is a <strong>desktop</strong> application that installs directly on a Windows PC. During installation, all files are copied to:</p>
+      
+      <div class="info-box">
+        <strong>📁 Default location:</strong><br>
+        <code>C:\Program Files\FabriControl\</code>
+      </div>
+
+      <h3>System Requirements</h3>
+      <table class="comparison-table">
+        <tr>
+          <th>Component</th>
+          <th>Minimum</th>
+          <th>Recommended</th>
+        </tr>
+        <tr>
+          <td><strong>Operating System</strong></td>
+          <td>Windows 10</td>
+          <td>Windows 11</td>
+        </tr>
+        <tr>
+          <td><strong>Processor</strong></td>
+          <td>Intel Core i3 or equivalent</td>
+          <td>Intel Core i5 or higher</td>
+        </tr>
+        <tr>
+          <td><strong>RAM</strong></td>
+          <td>4 GB</td>
+          <td>8 GB or more</td>
+        </tr>
+        <tr>
+          <td><strong>Hard Drive</strong></td>
+          <td>10 GB free</td>
+          <td>50 GB free (for files)</td>
+        </tr>
+        <tr>
+          <td><strong>Network</strong></td>
+          <td>Not required (local mode)</td>
+          <td>LAN network for multiple users</td>
+        </tr>
+      </table>
+
+      <div class="warning-box">
+        <strong>⚠️ Important:</strong> FabriControl ALWAYS requires an internet connection for license validation when logging in, even in local mode.
+      </div>
+
+      <h3>Understanding "Desktop" vs "Cloud"</h3>
+      <p>FabriControl is <strong>ONE installer</strong> that adapts to your business. During installation, you configure how you want to use it:</p>
+      
+      <table class="comparison-table">
+        <tr>
+          <th>Aspect</th>
+          <th>💻 Local Mode</th>
+          <th>🌐 LAN Mode</th>
+          <th>☁️ Cloud Mode</th>
+        </tr>
+        <tr>
+          <td><strong>Where?</strong></td>
+          <td>One PC only</td>
+          <td>Server in your workshop</td>
+          <td>Cloud server (e.g., AWS)</td>
+        </tr>
+        <tr>
+          <td><strong>MongoDB</strong></td>
+          <td>On the same PC</td>
+          <td>On the server</td>
+          <td>MongoDB Atlas (cloud)</td>
+        </tr>
+        <tr>
+          <td><strong>Users</strong></td>
+          <td>1 person</td>
+          <td>Multiple on local network</td>
+          <td>Multiple from anywhere</td>
+        </tr>
+        <tr>
+          <td><strong>Internet Required?</strong></td>
+          <td>Yes, for license validation</td>
+          <td>Yes, for license validation</td>
+          <td>Always (cloud)</td>
+        </tr>
+        <tr>
+          <td><strong>Same installer?</strong></td>
+          <td colspan="3" style="text-align: center;">✅ Yes, the SAME .exe adapts to your configuration</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- SECTION 7: LICENSE SYSTEM -->
+    <div class="doc-section" id="licenses">
+      <h2>🔐 7. License and Activation System</h2>
+      
+      <h3>How Does the License System Work?</h3>
+      <p>FabriControl uses a <strong>manual license activation system</strong> to provide maximum flexibility and control.</p>
+
+      <div class="diagram">
+        <h4>📥 STEP 1: License Request (30 days free)</h4>
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+1. Customer interested in FabriControl
+   ↓
+2. Complete form at www.fabricontrol.com/pricing
+   (Name, Email, Company, Phone, Number of Users)
+   ↓
+3. Receive email within 24h with:
+   
+   📧 Email from FabriControl:
+   ┌──────────────────────────────────────────┐
+   │ Hello [Name]!                            │
+   │                                          │
+   │ Your TRIAL license:                      │
+   │ 🔑 FABRI-1234-5678-ABCD                 │
+   │                                          │
+   │ Download link:                           │
+   │ 📥 https://fabricontrol.com/dl/...      │
+   │                                          │
+   │ ✅ 30 days free                          │
+   │ ✅ All features                          │
+   │ ✅ No credit card                        │
+   └──────────────────────────────────────────┘
+   ↓
+4. Download installer using the link
+   ↓
+5. Install on your PC/Server
+   ↓
+6. Enter your license code when starting
+        </pre>
+      </div>
+
+      <div class="success-box">
+        <strong>✅ What happens after 30 days?</strong><br>
+        When the trial ends, the system will block access. We will contact you to choose a plan (Basic $49/mo, Professional $129/mo, or Enterprise). Once payment is received, we will extend your license and you can continue using it with all your data intact.
+      </div>
+
+      <div class="warning-box">
+        <strong>⚠️ Internet Always Required</strong><br>
+        Every time you log into FabriControl, the system validates your license with our servers. This means:
+        <ul style="margin-top: 0.5rem;">
+          <li>✓ You need internet when <strong>logging in</strong></li>
+          <li>✓ After login, you can work offline (local mode)</li>
+          <li>✓ This prevents unauthorized use and piracy</li>
+        </ul>
+      </div>
+
+      <h3>FAQ - Licenses</h3>
+      
+      <div class="success-box">
+        <strong>❓ What if I don't pay after the trial?</strong><br>
+        Your access will be blocked, but your data is kept safe for 90 days. If you decide to activate later, all your information will be available.
+      </div>
+
+      <div class="success-box">
+        <strong>❓ Can I cancel my subscription?</strong><br>
+        Yes, at any time. Your license will change to "suspended" status. If you want to permanently delete your account and data, contact support.
+      </div>
+
+      <div class="success-box">
+        <strong>❓ Can I reactivate after canceling?</strong><br>
+        Yes, anytime. Make the monthly payment and support will reactivate your license. All your data will be available.
+      </div>
+    </div>
+
+    <!-- FOOTER CTA -->
+    <div style="text-align: center; margin-top: 4rem; padding: 3rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: var(--radius-xl); color: white;">
+      <h2 style="color: white; margin-bottom: 1rem;">Ready to use FabriControl?</h2>
+      <p style="font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.95;">Request your 30-day free trial license with no credit card required</p>
+      <a href="/en/pricing.html" class="btn btn-accent btn-large" style="background: white; color: var(--primary);">Request Free License</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>FabriControl</h3>
+        <p>The ERP specifically designed for Latin American workshops and factories.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="/en/features.html">Features</a></li>
+          <li><a href="/en/pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/en/resources/">Free Tools</a></li>
+          <li><a href="/en/faq.html">FAQ</a></li>
+          <li><a href="/">Spanish Version</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 FabriControl. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
