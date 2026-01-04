@@ -156,7 +156,7 @@ async def chat(request: ChatRequest):
         
         # Generate response
         response = client.models.generate_content(
-            model="gemini-2.0-flash-exp",
+            model="gemini-1.5-flash",
             contents=contents,
             config={
                 "temperature": 0.7,
