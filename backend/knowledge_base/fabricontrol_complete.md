@@ -21,7 +21,10 @@ FabriControl es un sistema ERP integral diseñado específicamente para talleres
 - **Módulos:** TODOS los módulos completos
 - **Características:** 100% iguales a los planes de pago
 - **Requiere tarjeta:** NO
-- **Cómo obtenerlo:** Descarga desde www.fabricontrol.com/descargar
+- **Cómo obtenerlo:** 
+  1. Completa el formulario en www.fabricontrol.com/precios
+  2. Recibirás por email (en menos de 24h): enlace de descarga + código de activación
+  3. Descarga, instala e ingresa el código
 - **Al finalizar:** Si no pagas, el acceso se bloquea. Tus datos se mantienen seguros.
 
 ### 💼 PLAN BÁSICO ($49/mes o $39/mes anual)
