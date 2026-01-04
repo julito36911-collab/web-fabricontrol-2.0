@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import EnterpriseQuoteModal from '../components/EnterpriseQuoteModal';
+import LicenseRequestModal from '../components/LicenseRequestModal';
 import { Link } from 'react-router-dom';
 
-function Precios({ openLicenseModal }) {
+function Precios() {
   const [isAnual, setIsAnual] = useState(false);
   const [showQuoteModal, setShowQuoteModal] = useState(false);
+  const [showLicenseModal, setShowLicenseModal] = useState(false);
 
   return (
     <>
-      <Header onRequestLicense={openLicenseModal} />
+      <Header />
 
       {/* HERO PRECIOS */}
       <section className="hero" style={{padding: '4rem 0 2rem'}}>
@@ -181,7 +183,7 @@ function Precios({ openLicenseModal }) {
                 </li>
               </ul>
               
-              <button onClick={openLicenseModal} className="btn btn-primary btn-large" style={{width: '100%'}}>
+              <button onClick={() => setShowLicenseModal(true)} className="btn btn-primary btn-large" style={{width: '100%'}}>
                 Solicitar Licencia Básica
               </button>
             </div>
@@ -237,7 +239,7 @@ function Precios({ openLicenseModal }) {
                 </li>
               </ul>
               
-              <button onClick={openLicenseModal} className="btn btn-accent btn-large" style={{width: '100%'}}>
+              <button onClick={() => setShowLicenseModal(true)} className="btn btn-accent btn-large" style={{width: '100%'}}>
                 Solicitar Licencia Pro
               </button>
             </div>
@@ -306,6 +308,12 @@ function Precios({ openLicenseModal }) {
       <EnterpriseQuoteModal 
         isOpen={showQuoteModal} 
         onClose={() => setShowQuoteModal(false)} 
+      />
+
+      {/* Modal de Solicitud de Licencia */}
+      <LicenseRequestModal 
+        isOpen={showLicenseModal} 
+        onClose={() => setShowLicenseModal(false)} 
       />
 
       <Footer />
