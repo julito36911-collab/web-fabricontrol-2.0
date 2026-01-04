@@ -771,7 +771,190 @@ function showMessage(text, type) {
 
 // Agregar event listener al formulario
 document.getElementById('quoteForm')?.addEventListener('submit', sendByEmail);
+
+// License Request Modal Functions
+function openLicenseModal() {
+  document.getElementById('licenseModal').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLicenseModal() {
+  document.getElementById('licenseModal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// Cerrar modal al hacer clic fuera
+document.getElementById('licenseModal')?.addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeLicenseModal();
+  }
+});
+
+async function sendLicenseRequest(e) {
+  e.preventDefault();
+  
+  const form = document.getElementById('licenseForm');
+  const formData = new FormData(form);
+  const submitBtn = document.getElementById('licenseSubmitBtn');
+  
+  // Validación básica
+  if (!formData.get('nombre') || !formData.get('email') || !formData.get('cantidadUsuarios')) {
+    showLicenseMessage('⚠️ Please complete required fields (Name, Email, Users)', 'error');
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = '📧 Sending...';
+
+  try {
+    const response = await fetch('/api/license-request', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        nombre: formData.get('nombre'),
+        empresa: formData.get('empresa'),
+        email: formData.get('email'),
+        telefono: formData.get('telefono'),
+        cantidadUsuarios: formData.get('cantidadUsuarios'),
+        planDeseado: formData.get('planDeseado')
+      })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      showLicenseMessage('✅ Request sent successfully. You will receive your download link and activation code via email within 24 hours.', 'success');
+      setTimeout(() => {
+        form.reset();
+        closeLicenseModal();
+      }, 3000);
+    } else {
+      showLicenseMessage(`❌ Error: ${data.message || 'Could not send request'}`, 'error');
+    }
+  } catch (error) {
+    console.error('Error sending request:', error);
+    showLicenseMessage('❌ Connection error. Please contact support@fabricontrol.com', 'error');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = '📧 Send Request';
+  }
+}
+
+function showLicenseMessage(text, type) {
+  const messageDiv = document.getElementById('licenseFormMessage');
+  messageDiv.textContent = text;
+  messageDiv.className = `form-message ${type}`;
+  messageDiv.style.display = 'block';
+  
+  setTimeout(() => {
+    messageDiv.style.display = 'none';
+  }, 5000);
+}
+
+// Agregar event listener al formulario de licencia
+document.getElementById('licenseForm')?.addEventListener('submit', sendLicenseRequest);
 </script>
+
+<!-- LICENSE REQUEST MODAL -->
+<div id="licenseModal" class="quote-modal-overlay" style="display: none;">
+  <div class="quote-modal-content">
+    <button class="quote-modal-close" onclick="closeLicenseModal()">✕</button>
+    
+    <div class="quote-modal-header">
+      <h2>📋 Request Trial License (30 Days Free)</h2>
+      <p>Fill out the form and we'll send you your license with the download link</p>
+    </div>
+
+    <form id="licenseForm" class="quote-form-en">
+      <div class="form-section">
+        <div style="background: #dcfce7; border: 2px solid #16a34a; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+          <strong style="color: #16a34a;">✅ How it works:</strong>
+          <ul style="margin-top: 0.5rem; padding-left: 1.2rem; margin-bottom: 0;">
+            <li>1️⃣ Complete this form with your information</li>
+            <li>2️⃣ You will receive via email within 24h:
+              <ul style="padding-left: 1.5rem; margin-top: 0.25rem;">
+                <li>📥 Installer download link</li>
+                <li>🔑 Your activation code</li>
+              </ul>
+            </li>
+            <li>3️⃣ Download, install, and enter your code</li>
+            <li>4️⃣ Done! Enjoy 30 full days of trial</li>
+          </ul>
+        </div>
+
+        <div style="background: #fef3c7; border: 2px solid #f59e0b; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+          <strong style="color: #d97706;">💰 After 30 days:</strong>
+          <ul style="margin-top: 0.5rem; padding-left: 1.2rem; margin-bottom: 0;">
+            <li>📞 We will contact you to choose your plan:</li>
+            <li style="margin-left: 1.5rem;">• Basic Plan: $49/month or $39/month (annual)</li>
+            <li style="margin-left: 1.5rem;">• Professional Plan: $129/month or $103/month (annual)</li>
+            <li>✅ All your data remains intact</li>
+          </ul>
+        </div>
+
+        <div class="form-group">
+          <label for="nombre">Full Name *</label>
+          <input type="text" id="nombre" name="nombre" placeholder="John Smith" required>
+        </div>
+
+        <div class="form-group">
+          <label for="empresa">Company</label>
+          <input type="text" id="empresa" name="empresa" placeholder="Metal Works Inc.">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="john@company.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">Phone/WhatsApp</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+1 (555) 123-4567">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cantidadUsuarios">How many users do you need? *</label>
+          <select id="cantidadUsuarios" name="cantidadUsuarios" required>
+            <option value="">Select quantity</option>
+            <option value="1-3">1-3 users (Basic Plan - $49/mo)</option>
+            <option value="4-10">4-10 users (Professional Plan - $129/mo)</option>
+            <option value="10+">More than 10 users (Enterprise - Quote)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="planDeseado">Preferred Payment (after trial)</label>
+          <select id="planDeseado" name="planDeseado">
+            <option value="mensual">💳 Monthly ($49 or $129 depending on users)</option>
+            <option value="anual">💰 Annual (20% discount - $39 or $103/month)</option>
+            <option value="por-decidir">🤔 Decide after trial</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="licenseFormMessage" class="form-message" style="display: none;"></div>
+
+      <div class="form-actions">
+        <button type="button" onclick="closeLicenseModal()" class="btn btn-secondary">
+          Cancel
+        </button>
+        <button type="submit" id="licenseSubmitBtn" class="btn btn-primary">
+          📧 Send Request
+        </button>
+      </div>
+
+      <div style="margin-top: 1.5rem; padding: 1rem; background: #f3f4f6; border-radius: 8px; text-align: center;">
+        <strong>💡 Need help?</strong><br />
+        Contact: <a href="mailto:support@fabricontrol.com">support@fabricontrol.com</a><br />
+        WhatsApp: <a href="https://wa.me/541112345678">+54 11 1234-5678</a>
+      </div>
+    </form>
+  </div>
+</div>
 
 </body>
 </html>
