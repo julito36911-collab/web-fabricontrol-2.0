@@ -258,7 +258,7 @@ function Home() {
               <tbody>
                 <tr style={{borderBottom: '1px solid var(--bg-gray)'}}>
                   <td style={{padding: '1rem'}}>Precio/mes</td>
-                  <td style={{textAlign: 'center', padding: '1rem'}}><strong>$29-99</strong></td>
+                  <td style={{textAlign: 'center', padding: '1rem'}}><strong>$49-129</strong></td>
                   <td style={{textAlign: 'center', padding: '1rem'}}>$50-300+</td>
                   <td style={{textAlign: 'center', padding: '1rem'}}>$99-799</td>
                   <td style={{textAlign: 'center', padding: '1rem'}}>$10-25</td>
