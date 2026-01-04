@@ -39,18 +39,6 @@
     .nav-link.active {
       font-weight: 700;
     }
-    .toggle-btn {
-      padding: 8px 16px;
-      border-radius: 16px;
-      border: none;
-      cursor: pointer;
-      background: transparent;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-    .toggle-btn.active {
-      background: white;
-    }
   </style>
 </head>
 <body>
@@ -68,7 +56,6 @@
         <li><a href="/en/index.html" class="nav-link">Home</a></li>
         <li><a href="/en/features.html" class="nav-link">Features</a></li>
         <li><a href="/en/pricing.html" class="nav-link active">Pricing</a></li>
-        <li><a href="/en/products/" class="nav-link">Products</a></li>
         <li><a href="/en/resources/" class="nav-link">Resources</a></li>
         <li><a href="/en/download.html" class="btn btn-primary btn-small">Try Free</a></li>
         <li><a href="/precios" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; font-size: 0.875rem; font-weight: 600;">🌐 ES</a></li>
@@ -87,19 +74,43 @@
   </div>
 </section>
 
-<!-- TOGGLE -->
+<!-- ACTIVATION EXPLANATION -->
+<section class="section" style="padding-top: 3rem; padding-bottom: 1rem;">
+  <div class="container">
+    <div style="max-width: 900px; margin: 0 auto; padding: 2.5rem; background: linear-gradient(135deg, #eef2ff 0%, #f9fafb 100%); border-radius: var(--radius-xl); border: 2px solid #e0e7ff;">
+      <h2 style="text-align: center; color: var(--primary); margin-bottom: 0.5rem; font-size: 1.75rem;">Did your 30-day free trial end?</h2>
+      <p style="text-align: center; color: var(--text-medium); margin-bottom: 2.5rem; font-size: 1.1rem;">Get your permanent license in 3 steps:</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">1️⃣</div>
+          <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">Choose your Plan</h4>
+          <p style="color: var(--text-medium); font-size: 0.95rem;">Select the plan below that fits your workshop.</p>
+        </div>
+        
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">2️⃣</div>
+          <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">Make Payment</h4>
+          <p style="color: var(--text-medium); font-size: 0.95rem;">Monthly subscription with no forced contracts.</p>
+        </div>
+        
+        <div style="text-align: center;">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">3️⃣</div>
+          <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">Get your Code</h4>
+          <p style="color: var(--text-medium); font-size: 0.95rem;">We will email your Unique License Key within 24 hours. Enter it into the software and keep working seamlessly.</p>
+        </div>
+      </div>
+      
+      <div style="margin-top: 1.5rem; text-align: center; padding: 1rem; background: #dcfce7; border-radius: var(--radius-md);">
+        <p style="margin: 0; color: #166534; font-weight: 600;">✅ Your data is preserved! Everything stays intact.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING CARDS -->
 <section class="section" style="padding-top: 2rem;">
   <div class="container">
-    <div style="margin-bottom: 3rem; display: flex; justify-content: center; align-items: center; gap: 1rem;">
-      <span style="font-weight: 600;">Monthly</span>
-      <div style="background: #eee; padding: 4px; border-radius: 20px; display: flex;">
-        <button id="btn-monthly" class="toggle-btn active">Monthly</button>
-        <button id="btn-annual" class="toggle-btn">Yearly <span style="background: var(--accent); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; margin-left: 4px;">Save 20%</span></button>
-      </div>
-      <span style="font-weight: 600;">Yearly</span>
-    </div>
-
-    <!-- PRICING CARDS -->
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
       
       <!-- TRIAL -->
@@ -127,7 +138,7 @@
           </li>
         </ul>
         
-        <a href="/en/download.html" class="btn btn-secondary btn-large" style="width: 100%;">Try Now</a>
+        <a href="/en/download.html" class="btn btn-secondary btn-large" style="width: 100%;">Try Free</a>
       </div>
 
       <!-- BASIC -->
@@ -136,23 +147,16 @@
           💼 BASIC
         </div>
         <h3 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem; color: var(--text-dark);">
-          <span class="price-monthly">$29</span>
-          <span class="price-annual" style="display: none;">$23</span>
-          <span style="font-size: 1rem; font-weight: 400; color: var(--text-medium);">/month</span>
+          $49<span style="font-size: 1rem; font-weight: 400; color: var(--text-medium);">/month</span>
         </h3>
-        <p class="savings-annual" style="color: var(--accent); margin-bottom: 2rem; font-size: 0.875rem; font-weight: 600; display: none;">
-          Save $72/year
-        </p>
-        <p class="desc-monthly" style="color: var(--text-medium); margin-bottom: 2rem; font-size: 0.95rem;">
-          For small workshops
-        </p>
+        <p style="color: var(--text-medium); margin-bottom: 2rem; font-size: 0.95rem;">For Workshops Starting Out</p>
         
         <ul style="text-align: left; list-style: none; margin-bottom: 2rem; padding: 0;">
           <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Up to <strong>5 users</strong></span>
+            <span style="color: var(--success);">✓</span> <span>Up to <strong>3 users</strong></span>
           </li>
           <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Quotes</span>
+            <span style="color: var(--success);">✓</span> <span>Quotations</span>
           </li>
           <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
             <span style="color: var(--success);">✓</span> <span>Production Orders</span>
@@ -161,67 +165,69 @@
             <span style="color: var(--success);">✓</span> <span>Inventory</span>
           </li>
           <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Mobile App PWA</span>
+            <span style="color: var(--success);">✓</span> <span>Dashboard</span>
           </li>
-          <li style="padding: 0.5rem 0; color: var(--text-light);">
-            • Email Support (48h)
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span>Mobile PWA App</span>
           </li>
-          <li style="padding: 0.5rem 0; color: var(--text-light);">
-            • Limit: 100 orders/month
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span><strong>AI Assistant 24/7</strong></span>
+          </li>
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; background: #fee2e2; padding: 0.75rem; border-radius: 6px; margin-top: 0.5rem;">
+            <span style="color: #dc2626;">✗</span> <span style="color: #dc2626; font-weight: 600;">No human technical support</span>
+          </li>
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; color: var(--text-light);">
+            <span>•</span> <span>Email only (no guaranteed response)</span>
           </li>
         </ul>
         
-        <a href="https://gumroad.com/l/fabricontrol-basic" class="btn btn-primary btn-large" style="width: 100%;" target="_blank">Buy Now</a>
+        <a href="#" class="btn btn-primary btn-large" style="width: 100%;">Buy Basic License</a>
       </div>
 
-      <!-- PRO -->
-      <div class="card" style="padding: 2rem; text-align: center; border: 3px solid var(--accent); transform: scale(1.05); position: relative;">
+      <!-- PROFESSIONAL -->
+      <div class="card" style="padding: 2rem; text-align: center; border: 3px solid var(--accent); position: relative; transform: scale(1.05);">
         <div style="position: absolute; top: -12px; right: 20px; background: var(--accent); color: white; padding: 6px 16px; border-radius: var(--radius-lg); font-size: 0.875rem; font-weight: 600;">
           ⭐ MOST POPULAR
         </div>
         <div style="background: var(--accent); color: white; font-weight: 700; font-size: 0.875rem; padding: 8px 16px; border-radius: var(--radius-md); display: inline-block; margin-bottom: 1rem;">
-          🚀 PRO
+          🚀 PROFESSIONAL
         </div>
         <h3 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem; color: var(--text-dark);">
-          <span class="price-monthly">$99</span>
-          <span class="price-annual" style="display: none;">$79</span>
-          <span style="font-size: 1rem; font-weight: 400; color: var(--text-medium);">/month</span>
+          $129<span style="font-size: 1rem; font-weight: 400; color: var(--text-medium);">/month</span>
         </h3>
-        <p class="savings-annual" style="color: var(--accent); margin-bottom: 2rem; font-size: 0.875rem; font-weight: 600; display: none;">
-          Save $240/year
-        </p>
-        <p class="desc-monthly" style="color: var(--text-medium); margin-bottom: 2rem; font-size: 0.95rem;">
-          For growing workshops
-        </p>
+        <p style="color: var(--text-medium); margin-bottom: 2rem; font-size: 0.95rem;">For Growing Factories</p>
         
         <ul style="text-align: left; list-style: none; margin-bottom: 2rem; padding: 0;">
           <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span><strong>Unlimited users</strong></span>
+            <span style="color: var(--success);">✓</span> <span>Up to <strong>10 users</strong></span>
           </li>
           <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span><strong>All Basic features</strong></span>
+            <span style="color: var(--success);">✓</span> <span><strong>Everything in Basic +</strong></span>
+          </li>
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; background: #dcfce7; padding: 0.75rem; border-radius: 6px; margin-top: 0.5rem;">
+            <span style="color: #166534;">✓</span> <span style="color: #166534; font-weight: 600;">Priority Human Technical Support</span>
           </li>
           <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Project Portal</span>
+            <span style="color: var(--success);">✓</span> <span>Integrated AI Chat</span>
           </li>
           <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Parametric Parts</span>
+            <span style="color: var(--success);">✓</span> <span><strong>Parametric Parts</strong> (exclusive)</span>
           </li>
           <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>AI Chat with Gemini</span>
+            <span style="color: var(--success);">✓</span> <span>Projects Portal</span>
           </li>
           <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Custom permissions</span>
+            <span style="color: var(--success);">✓</span> <span>Granular permissions</span>
           </li>
-          <li style="padding: 0.5rem 0; color: var(--text-light);">
-            • Email Support (24h)
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+            <span style="color: var(--success);">✓</span> <span>Automatic backup</span>
           </li>
-          <li style="padding: 0.5rem 0; color: var(--text-light);">
-            • Unlimited orders
+          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; color: var(--text-light);">
+            <span>•</span> <span>Priority email (24h)</span>
           </li>
         </ul>
         
-        <a href="https://gumroad.com/l/fabricontrol-pro" class="btn btn-accent btn-large" style="width: 100%;" target="_blank">Buy Now</a>
+        <a href="#" class="btn btn-accent btn-large" style="width: 100%;">Buy Pro License</a>
       </div>
 
     </div>
@@ -229,22 +235,48 @@
     <!-- ENTERPRISE -->
     <div style="margin-top: 4rem; text-align: center;">
       <div class="card" style="max-width: 900px; margin: 0 auto; padding: 3rem; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white;">
-        <h2 style="color: white; margin-bottom: 1rem;">🏢 Enterprise</h2>
-        <p style="font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.95;">
-          Custom solution for large factories with specific needs
-        </p>
-        <div class="grid grid-3" style="margin-bottom: 2rem;">
+        <h2 style="color: white; margin-bottom: 0.5rem;">🏢 Enterprise</h2>
+        <p style="font-size: 1.125rem; margin-bottom: 0.5rem; opacity: 0.95; font-weight: 600;">Industrial & Custom</p>
+        <p style="font-size: 1rem; margin-bottom: 2rem; opacity: 0.9;">Tailored solution with custom module development</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
           <div>
-            <h4 style="color: white; font-size: 1rem;">✓ Private installation</h4>
+            <h4 style="color: white; font-size: 1rem;">✓ Unlimited users</h4>
           </div>
           <div>
-            <h4 style="color: white; font-size: 1rem;">✓ Training included</h4>
+            <h4 style="color: white; font-size: 1rem;">✓ Dedicated account manager</h4>
           </div>
           <div>
-            <h4 style="color: white; font-size: 1rem;">✓ Priority support</h4>
+            <h4 style="color: white; font-size: 1rem;">✓ Custom modules</h4>
           </div>
         </div>
-        <a href="/en/enterprise.html" class="btn btn-accent btn-large">Request Quote</a>
+        <a href="/en/enterprise.html" class="btn btn-accent btn-large">
+          Request Quote
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-light">
+  <div class="container">
+    <h2 class="text-center mb-4">Pricing FAQs</h2>
+    <div style="max-width: 800px; margin: 0 auto;">
+      <div class="card" style="margin-bottom: 1rem;">
+        <h4>Can I change plans later?</h4>
+        <p>Yes, you can upgrade or downgrade at any time.</p>
+      </div>
+      <div class="card" style="margin-bottom: 1rem;">
+        <h4>How does the 30-day free trial work?</h4>
+        <p>Download the software, install it, and you have 30 full days to try it without needing a credit card.</p>
+      </div>
+      <div class="card" style="margin-bottom: 1rem;">
+        <h4>What happens after the trial?</h4>
+        <p>If you decide to continue, purchase your preferred license and receive your code by email within 24h. If not, simply stop using the software.</p>
+      </div>
+      <div class="card" style="margin-bottom: 1rem;">
+        <h4>Do I lose my data when activating the license?</h4>
+        <p><strong>No.</strong> All your data (quotes, orders, inventory) remains intact when you activate your license.</p>
       </div>
     </div>
   </div>
@@ -253,70 +285,33 @@
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h4>FabriControl</h4>
-        <p style="opacity: 0.8;">The ERP designed specifically for Latin American workshops and factories.</p>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>FabriControl</h3>
+        <p>The operating system for modern manufacturing.</p>
       </div>
-      
-      <div class="footer-section">
+      <div class="footer-links">
         <h4>Product</h4>
-        <ul class="footer-links">
+        <ul>
           <li><a href="/en/features.html">Features</a></li>
           <li><a href="/en/pricing.html">Pricing</a></li>
           <li><a href="/en/download.html">Download</a></li>
         </ul>
       </div>
-      
-      <div class="footer-section">
+      <div class="footer-links">
         <h4>Resources</h4>
-        <ul class="footer-links">
-          <li><a href="/en/resources/">Free Campus</a></li>
-          <li><a href="/en/products/">Product Catalog</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h4>Contact</h4>
-        <ul class="footer-links">
-          <li>📧 sales@fabricontrol.com</li>
-          <li>📧 support@fabricontrol.com</li>
+        <ul>
+          <li><a href="/en/resources/">Free Tools</a></li>
+          <li><a href="/en/faq.html">FAQ</a></li>
+          <li><a href="/">Versión en Español</a></li>
         </ul>
       </div>
     </div>
-    
     <div class="footer-bottom">
       <p>&copy; 2026 FabriControl. All rights reserved.</p>
     </div>
   </div>
 </footer>
-
-<script>
-  const btnMonthly = document.getElementById('btn-monthly');
-  const btnAnnual = document.getElementById('btn-annual');
-  const pricesMonthly = document.querySelectorAll('.price-monthly');
-  const pricesAnnual = document.querySelectorAll('.price-annual');
-  const savingsAnnual = document.querySelectorAll('.savings-annual');
-  const descMonthly = document.querySelectorAll('.desc-monthly');
-  
-  btnAnnual.addEventListener('click', () => {
-    btnMonthly.classList.remove('active');
-    btnAnnual.classList.add('active');
-    pricesMonthly.forEach(el => el.style.display = 'none');
-    pricesAnnual.forEach(el => el.style.display = 'inline');
-    savingsAnnual.forEach(el => el.style.display = 'block');
-    descMonthly.forEach(el => el.style.display = 'none');
-  });
-  
-  btnMonthly.addEventListener('click', () => {
-    btnAnnual.classList.remove('active');
-    btnMonthly.classList.add('active');
-    pricesMonthly.forEach(el => el.style.display = 'inline');
-    pricesAnnual.forEach(el => el.style.display = 'none');
-    savingsAnnual.forEach(el => el.style.display = 'none');
-    descMonthly.forEach(el => el.style.display = 'block');
-  });
-</script>
 
 </body>
 </html>
