@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import LicenseRequestModal from '../components/LicenseRequestModal';
 import { Link } from 'react-router-dom';
 
-function Home() {
+function Home({ openLicenseModal }) {
   const [showLicenseModal, setShowLicenseModal] = useState(false);
   return (
     <>
-      <Header onRequestLicense={() => setShowLicenseModal(true)} />
+      <Header onRequestLicense={openLicenseModal} />
 
       {/* HERO SECTION */}
       <section className="hero" id="inicio">
@@ -17,7 +16,7 @@ function Home() {
             <h1>El ERP que tu Taller Merece, al Precio que Puedes Pagar</h1>
             <p>Controla cotizaciones, producción e inventario desde <strong>$49/mes</strong>. Sin complicaciones.</p>
             <div className="hero-cta">
-              <button onClick={() => setShowLicenseModal(true)} className="btn btn-accent btn-large">🆓 Prueba 30 Días GRATIS</button>
+              <button onClick={openLicenseModal} className="btn btn-accent btn-large">🆓 Prueba 30 Días GRATIS</button>
               <Link to="/precios" className="btn btn-secondary btn-large">Ver Planes</Link>
             </div>
             <p style={{marginTop: '1rem', opacity: 0.9, fontSize: '0.95rem'}}>
@@ -314,17 +313,11 @@ function Home() {
             30 días de prueba gratuita. Sin tarjeta de crédito.
           </p>
           <div style={{display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap'}}>
-            <button onClick={() => setShowLicenseModal(true)} className="btn btn-accent btn-large">🆓 Descargar y Probar Gratis</button>
+            <button onClick={openLicenseModal} className="btn btn-accent btn-large">🆓 Descargar y Probar Gratis</button>
             <Link to="/precios" className="btn btn-secondary btn-large" style={{borderColor: 'white', color: 'white'}}>Ver Planes desde $49/mes</Link>
           </div>
         </div>
       </section>
-
-      {/* Modal de Solicitud de Licencia */}
-      <LicenseRequestModal 
-        isOpen={showLicenseModal} 
-        onClose={() => setShowLicenseModal(false)} 
-      />
 
       <Footer />
     </>
