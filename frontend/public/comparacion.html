@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparación de Precios - FabriControl vs Competencia</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logos/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    .header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+    .nav-link:hover {
+      opacity: 0.8;
+    }
+    
+    .comparison-table-container {
+      overflow-x: auto;
+      margin: 3rem 0;
+    }
+    
+    .comparison-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: white;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .comparison-table thead {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+    
+    .comparison-table th {
+      padding: 1.5rem 1rem;
+      text-align: center;
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+      border-right: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .comparison-table th:first-child {
+      text-align: left;
+      font-size: 1rem;
+    }
+    
+    .comparison-table th:last-child {
+      border-right: none;
+    }
+    
+    .comparison-table th.fabricontrol-col {
+      background: var(--accent);
+      position: relative;
+    }
+    
+    .comparison-table th.fabricontrol-col::before {
+      content: "⭐ RECOMENDADO";
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fbbf24;
+      color: #78350f;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    
+    .comparison-table tbody tr {
+      border-bottom: 1px solid var(--bg-gray);
+    }
+    
+    .comparison-table tbody tr:hover {
+      background: #f9fafb;
+    }
+    
+    .comparison-table td {
+      padding: 1.25rem 1rem;
+      text-align: center;
+      vertical-align: middle;
+      border-right: 1px solid var(--bg-gray);
+    }
+    
+    .comparison-table td:first-child {
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-dark);
+      background: #f9fafb;
+    }
+    
+    .comparison-table td:last-child {
+      border-right: none;
+    }
+    
+    .comparison-table .fabricontrol-col {
+      background: #fef3c7;
+      font-weight: 600;
+    }
+    
+    .check-icon {
+      color: #16a34a;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .cross-icon {
+      color: #dc2626;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .warning-icon {
+      color: #f59e0b;
+      font-size: 1.25rem;
+    }
+    
+    .price-highlight {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--primary);
+    }
+    
+    .fabricontrol-col .price-highlight {
+      color: var(--accent);
+    }
+    
+    .extra-cost {
+      color: #f59e0b;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    .feature-detail {
+      font-size: 0.85rem;
+      color: var(--text-medium);
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="/">
+          <img src="/assets/img/logos/fabricontrol-logo.svg" alt="FabriControl" style="height: 50px;">
+        </a>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="/" class="nav-link">Inicio</a></li>
+        <li><a href="/#caracteristicas" class="nav-link">Características</a></li>
+        <li><a href="/precios" class="nav-link">Precios</a></li>
+        <li><a href="/recursos/" class="nav-link">Recursos</a></li>
+        <li><a href="/descargar" class="btn btn-primary btn-small">Probar Gratis</a></li>
+        <li><a href="/en/comparison.html" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; font-size: 0.875rem; font-weight: 600;">🌐 EN</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding: 4rem 0 2rem;">
+  <div class="container text-center">
+    <h1 style="font-family: 'Montserrat'; font-size: 3rem; color: white; margin-bottom: 1rem;">📊 FabriControl vs Competencia</h1>
+    <p style="font-size: 1.25rem; color: white; opacity: 0.95; max-width: 800px; margin: 0 auto;">
+      Comparación completa de características y precios con los principales ERPs del mercado
+    </p>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="section">
+  <div class="container" style="max-width: 1200px;">
+    
+    <div class="comparison-table-container">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Característica</th>
+            <th class="fabricontrol-col" style="width: 18.75%;">FabriControl</th>
+            <th style="width: 18.75%;">Odoo</th>
+            <th style="width: 18.75%;">Katana</th>
+            <th style="width: 18.75%;">ERPNext</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- PRICING -->
+          <tr>
+            <td><strong>💰 Precio/mes</strong></td>
+            <td class="fabricontrol-col">
+              <div class="price-highlight">$49-129</div>
+            </td>
+            <td>
+              <div class="price-highlight" style="font-size: 1.25rem;">$50-300+</div>
+            </td>
+            <td>
+              <div class="price-highlight" style="font-size: 1.25rem;">$99-799</div>
+            </td>
+            <td>
+              <div class="price-highlight" style="font-size: 1.25rem;">$10-25</div>
+            </td>
+          </tr>
+          
+          <!-- SPANISH SUPPORT -->
+          <tr>
+            <td><strong>🇪🇸 Español Nativo</strong></td>
+            <td class="fabricontrol-col">
+              <span class="check-icon">✓</span>
+              <div class="feature-detail">100% nativo</div>
+            </td>
+            <td>
+              <span class="warning-icon">⚠</span>
+              <div class="feature-detail">Traducido</div>
+            </td>
+            <td>
+              <span class="cross-icon">✗</span>
+              <div class="feature-detail">Solo inglés</div>
+            </td>
+            <td>
+              <span class="warning-icon">⚠</span>
+              <div class="feature-detail">Traducido</div>
+            </td>
+          </tr>
+          
+          <!-- LEARNING CURVE -->
+          <tr>
+            <td><strong>📚 Curva de Aprendizaje</strong></td>
+            <td class="fabricontrol-col">
+              <strong>2-3 días</strong>
+            </td>
+            <td>2-4 semanas</td>
+            <td>1 semana</td>
+            <td>2-3 semanas</td>
+          </tr>
+          
+          <!-- PARAMETRIC PIECES -->
+          <tr>
+            <td><strong>🔧 Piezas Paramétricas</strong></td>
+            <td class="fabricontrol-col">
+              <span class="check-icon">✓</span>
+              <div class="feature-detail">Incluido</div>
+            </td>
+            <td>
+              <span class="cross-icon">✗</span>
+            </td>
+            <td>
+              <span class="cross-icon">✗</span>
+            </td>
+            <td>
+              <span class="cross-icon">✗</span>
+            </td>
+          </tr>
+          
+          <!-- AI CHAT -->
+          <tr>
+            <td><strong>🤖 Chat IA Integrado</strong></td>
+            <td class="fabricontrol-col">
+              <span class="check-icon">✓</span>
+              <div class="feature-detail">Gemini incluido</div>
+            </td>
+            <td>
+              <span class="cross-icon">✗</span>
+            </td>
+            <td>
+              <span class="cross-icon">✗</span>
+            </td>
+            <td>
+              <span class="cross-icon">✗</span>
+            </td>
+          </tr>
+          
+          <!-- MOBILE APP -->
+          <tr>
+            <td><strong>📱 App Móvil para Operarios</strong></td>
+            <td class="fabricontrol-col">
+              <span class="check-icon">✓</span>
+              <div class="feature-detail">Incluida (PWA)</div>
+            </td>
+            <td>
+              <span class="warning-icon">⚠</span>
+              <div class="extra-cost">Costo extra</div>
+            </td>
+            <td>
+              <span class="warning-icon">⚠</span>
+              <div class="extra-cost">Costo extra</div>
+            </td>
+            <td>
+              <span class="cross-icon">✗</span>
+            </td>
+          </tr>
+          
+          <!-- QUOTATIONS -->
+          <tr>
+            <td><strong>📋 Cotizaciones</strong></td>
+            <td class="fabricontrol-col"><span class="check-icon">✓</span></td>
+            <td><span class="check-icon">✓</span></td>
+            <td><span class="check-icon">✓</span></td>
+            <td><span class="check-icon">✓</span></td>
+          </tr>
+          
+          <!-- INVENTORY -->
+          <tr>
+            <td><strong>📦 Gestión de Inventario</strong></td>
+            <td class="fabricontrol-col"><span class="check-icon">✓</span></td>
+            <td><span class="check-icon">✓</span></td>
+            <td><span class="check-icon">✓</span></td>
+            <td><span class="check-icon">✓</span></td>
+          </tr>
+          
+          <!-- PRODUCTION ORDERS -->
+          <tr>
+            <td><strong>🏭 Órdenes de Producción</strong></td>
+            <td class="fabricontrol-col"><span class="check-icon">✓</span></td>
+            <td><span class="check-icon">✓</span></td>
+            <td><span class="check-icon">✓</span></td>
+            <td><span class="check-icon">✓</span></td>
+          </tr>
+          
+          <!-- HOSTING -->
+          <tr>
+            <td><strong>☁️ Hosting</strong></td>
+            <td class="fabricontrol-col">
+              Local o Nube
+            </td>
+            <td>Solo Nube</td>
+            <td>Solo Nube</td>
+            <td>Local o Nube</td>
+          </tr>
+          
+          <!-- CUSTOMIZATION -->
+          <tr>
+            <td><strong>⚙️ Personalización</strong></td>
+            <td class="fabricontrol-col">Media</td>
+            <td>Alta (con costo)</td>
+            <td>Baja</td>
+            <td>Alta (técnico)</td>
+          </tr>
+          
+          <!-- SUPPORT -->
+          <tr>
+            <td><strong>🆘 Soporte Técnico</strong></td>
+            <td class="fabricontrol-col">
+              Email 24h (Plan Pro)
+            </td>
+            <td>Pago adicional</td>
+            <td>Email + Chat</td>
+            <td>Foros comunidad</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- KEY ADVANTAGES -->
+    <div style="margin-top: 4rem;">
+      <h2 style="text-align: center; margin-bottom: 2rem; color: var(--primary);">🏆 ¿Por qué FabriControl?</h2>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        <div class="card" style="text-align: center; padding: 2rem;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">💰</div>
+          <h3 style="color: var(--accent);">Mejor Precio-Calidad</h3>
+          <p>$49-129/mes con TODAS las funciones incluidas. Sin costos ocultos ni módulos extras.</p>
+        </div>
+        
+        <div class="card" style="text-align: center; padding: 2rem;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🇪🇸</div>
+          <h3 style="color: var(--accent);">100% en Español</h3>
+          <p>Diseñado por y para talleres latinoamericanos. No es una traducción automática.</p>
+        </div>
+        
+        <div class="card" style="text-align: center; padding: 2rem;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
+          <h3 style="color: var(--accent);">Rápido de Aprender</h3>
+          <p>2-3 días vs 2-4 semanas de otros ERPs. Tu equipo productivo desde el día 1.</p>
+        </div>
+        
+        <div class="card" style="text-align: center; padding: 2rem;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🤖</div>
+          <h3 style="color: var(--accent);">IA Incluida</h3>
+          <p>Chat inteligente con Gemini para ayudar a tu equipo. Único en el mercado.</p>
+        </div>
+        
+        <div class="card" style="text-align: center; padding: 2rem;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🔧</div>
+          <h3 style="color: var(--accent);">Piezas Paramétricas</h3>
+          <p>Cotiza productos complejos en minutos. Funcionalidad exclusiva de FabriControl.</p>
+        </div>
+        
+        <div class="card" style="text-align: center; padding: 2rem;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">📱</div>
+          <h3 style="color: var(--accent);">App Móvil Incluida</h3>
+          <p>Operarios pueden registrar avances desde el taller con su celular.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div style="text-align: center; margin-top: 4rem; padding: 3rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: var(--radius-xl); color: white;">
+      <h2 style="color: white; margin-bottom: 1rem;">¿Listo para probar FabriControl?</h2>
+      <p style="font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.95;">30 días gratis, sin tarjeta de crédito</p>
+      <a href="/descargar" class="btn btn-accent btn-large" style="background: white; color: var(--primary);">Descargar Ahora</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>FabriControl</h3>
+        <p>El ERP diseñado específicamente para talleres y fábricas latinoamericanas.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Producto</h4>
+        <ul>
+          <li><a href="/#caracteristicas">Características</a></li>
+          <li><a href="/precios">Precios</a></li>
+          <li><a href="/comparacion.html">Comparación</a></li>
+          <li><a href="/descargar">Descargar</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Recursos</h4>
+        <ul>
+          <li><a href="/recursos/">Herramientas Gratis</a></li>
+          <li><a href="/documentacion.html">Documentación</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/en/comparison.html">English Version</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 FabriControl. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
