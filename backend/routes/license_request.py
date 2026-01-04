@@ -12,7 +12,8 @@ class LicenseRequest(BaseModel):
     email: EmailStr
     telefono: str = ""
     installationCode: str
-    planDeseado: str = "trial"
+    cantidadUsuarios: str
+    planDeseado: str = "mensual"
 
 @router.post("/license-request")
 async def submit_license_request(request: LicenseRequest):
