@@ -21,11 +21,7 @@ function Header({ onRequestLicense }) {
             <li><a href="/recursos/" className="nav-link">Recursos</a></li>
             <li><a href="/documentacion.html" className="nav-link">Documentación</a></li>
             <li>
-              {onRequestLicense ? (
-                <button onClick={onRequestLicense} className="btn btn-primary btn-small">Probar Gratis</button>
-              ) : (
-                <Link to="/descargar" className="btn btn-primary btn-small">Probar Gratis</Link>
-              )}
+              <Link to="/descargar" className="btn btn-primary btn-small">Descargar</Link>
             </li>
             <li>
               <a href="/en/resources/" className="nav-link" style={{padding: '0.5rem 0.75rem', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '6px', fontSize: '0.875rem', fontWeight: 600}}>
