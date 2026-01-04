@@ -13,7 +13,7 @@ router = APIRouter()
 
 # Configure Gemini
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-CHAT_MODEL = os.getenv("CHAT_MODEL", "gemini-1.5-flash")
+CHAT_MODEL = os.getenv("CHAT_MODEL", "gemini-1.5-flash-latest")
 CHAT_TEMPERATURE = float(os.getenv("CHAT_TEMPERATURE", "0.7"))
 
 if GEMINI_API_KEY:
