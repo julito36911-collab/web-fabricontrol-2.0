@@ -1,19 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-function Enterprise({ openLicenseModal }) {
-  const [formData, setFormData] = useState({
-    nombre: '',
-    empresa: '',
-    email: '',
-    telefono: ''
-  });
-
+function Enterprise() {
   return (
     <>
-      <Header onRequestLicense={openLicenseModal} />
-      {/* Resto del contenido de Enterprise */}
+      <Header />
       <Footer />
     </>
   );
