@@ -15,8 +15,7 @@ function Home() {
             <h1>El ERP que tu Taller Merece, al Precio que Puedes Pagar</h1>
             <p>Controla cotizaciones, producción e inventario desde <strong>$49/mes</strong>. Sin complicaciones.</p>
             <div className="hero-cta">
-              <Link to="/precios" className="btn btn-accent btn-large">🆓 Ver Planes (30 días gratis)</Link>
-              <Link to="/descargar" className="btn btn-secondary btn-large">Descargar Ahora</Link>
+              <Link to="/precios" className="btn btn-accent btn-large">🆓 Solicitar Prueba Gratis (30 días)</Link>
             </div>
             <p style={{marginTop: '1rem', opacity: 0.9, fontSize: '0.95rem'}}>
               ✅ Sin tarjeta de crédito · ✅ Acceso completo · ✅ Sin compromisos
@@ -312,8 +311,7 @@ function Home() {
             30 días de prueba gratuita. Sin tarjeta de crédito.
           </p>
           <div style={{display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap'}}>
-            <Link to="/precios" className="btn btn-accent btn-large">Ver Planes desde $49/mes</Link>
-            <Link to="/descargar" className="btn btn-secondary btn-large" style={{borderColor: 'white', color: 'white'}}>Descargar Instalador</Link>
+            <Link to="/precios" className="btn btn-accent btn-large">Solicitar Licencia Gratis</Link>
           </div>
         </div>
       </section>

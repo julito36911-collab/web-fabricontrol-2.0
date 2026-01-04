@@ -127,9 +127,9 @@ function Precios() {
                 </li>
               </ul>
               
-              <Link to="/descargar" className="btn btn-secondary btn-large" style={{width: '100%'}}>
-                Prueba Gratis
-              </Link>
+              <button onClick={() => setShowLicenseModal(true)} className="btn btn-secondary btn-large" style={{width: '100%'}}>
+                Solicitar Licencia Gratis
+              </button>
             </div>
 
             {/* PLAN BÁSICO */}
