@@ -11,7 +11,6 @@ class LicenseRequest(BaseModel):
     empresa: str = ""
     email: EmailStr
     telefono: str = ""
-    installationCode: str
     cantidadUsuarios: str
     planDeseado: str = "mensual"
 
@@ -37,10 +36,6 @@ Nombre: {request.nombre}
 Empresa: {request.empresa or 'No proporcionada'}
 Email: {request.email}
 Teléfono: {request.telefono or 'No proporcionado'}
-
-CÓDIGO DE INSTALACIÓN
-------------------------
-Installation Code: {request.installationCode}
 
 REQUERIMIENTOS
 ---------------
@@ -86,9 +81,19 @@ Pago Preferido: {request.planDeseado}
    ✅ {request.cantidadUsuarios}
    
    📥 PASOS PARA ACTIVAR:
-   1. Descarga FabriControl: www.fabricontrol.com/descargar
-   2. Instala en tu PC/Servidor
-   3. Al abrir, ingresa tu LICENSE KEY
+   
+   1. Descarga FabriControl:
+      Link: [TU_LINK_DE_DESCARGA]
+   
+   2. Instala en tu PC/Servidor:
+      - Ejecuta el instalador
+      - Sigue el asistente (5 minutos)
+   
+   3. Abre FabriControl y activa tu licencia:
+      - Ve a: Menú > Configuración > Licencia
+      - Pega tu LICENSE KEY: [EL_CODIGO]
+      - Clic en "Activar"
+   
    4. ¡Listo! Empieza a usar el sistema
    
    💰 DESPUÉS DE LOS 30 DÍAS:
@@ -100,8 +105,9 @@ Pago Preferido: {request.planDeseado}
    • Mensual: $49 o $129 (según usuarios)
    • Anual: 20% descuento
    
-   🔄 NO NECESITAS NUEVO CÓDIGO
-   Solo extenderemos la fecha de tu licencia actual.
+   🔄 MISMO LICENSE KEY
+   No necesitas nuevo código. Solo extenderemos
+   la fecha de expiración de tu licencia actual.
    
    ¿Preguntas? Responde a este email
    
