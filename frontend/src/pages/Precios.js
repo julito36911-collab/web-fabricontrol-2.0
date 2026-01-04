@@ -151,22 +151,25 @@ function Precios() {
                   <span style={{color: 'var(--success)'}}>✓</span> <span>Hasta <strong>3 usuarios</strong></span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span>Cotizaciones</span>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span><strong>Todas las funcionalidades completas</strong></span>
+                </li>
+                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span>Cotizaciones e Inventario</span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
                   <span style={{color: 'var(--success)'}}>✓</span> <span>Órdenes de Producción</span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span>Inventario</span>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span>Portal de Proyectos</span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span>Dashboard</span>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span><strong>Piezas Paramétricas</strong></span>
+                </li>
+                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span><strong>Chat IA con Gemini</strong></span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
                   <span style={{color: 'var(--success)'}}>✓</span> <span>App Móvil PWA</span>
-                </li>
-                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span><strong>Asistente IA 24/7</strong></span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#fee2e2', padding: '0.75rem', borderRadius: '6px', marginTop: '0.5rem'}}>
                   <span style={{color: '#dc2626'}}>✗</span> <span style={{color: '#dc2626', fontWeight: 600}}>Sin soporte técnico humano</span>
@@ -207,28 +210,28 @@ function Precios() {
                   <span style={{color: 'var(--success)'}}>✓</span> <span>Hasta <strong>10 usuarios</strong></span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span><strong>Todo del plan Básico +</strong></span>
-                </li>
-                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#dcfce7', padding: '0.75rem', borderRadius: '6px', marginTop: '0.5rem'}}>
-                  <span style={{color: '#166534'}}>✓</span> <span style={{color: '#166534', fontWeight: 600}}>Soporte Técnico Humano Prioritario</span>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span><strong>Todas las funcionalidades completas</strong></span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span>Chat IA Integrado</span>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span>Cotizaciones e Inventario</span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span><strong>Piezas Paramétricas</strong> (exclusivo)</span>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span>Órdenes de Producción</span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
                   <span style={{color: 'var(--success)'}}>✓</span> <span>Portal de Proyectos</span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span>Permisos granulares</span>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span><strong>Piezas Paramétricas</strong></span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span>Backup automático</span>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span><strong>Chat IA con Gemini</strong></span>
                 </li>
-                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-light)'}}>
-                  <span>•</span> <span>Email prioritario (24h)</span>
+                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span>App Móvil PWA</span>
+                </li>
+                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#dcfce7', padding: '0.75rem', borderRadius: '6px', marginTop: '0.5rem'}}>
+                  <span style={{color: '#166534'}}>✓</span> <span style={{color: '#166534', fontWeight: 600}}>Soporte Técnico Humano (Email 24h)</span>
                 </li>
               </ul>
               
