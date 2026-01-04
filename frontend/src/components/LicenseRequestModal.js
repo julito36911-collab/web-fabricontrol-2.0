@@ -246,8 +246,8 @@ function LicenseRequestModal({ isOpen, onClose }) {
           </div>
 
           <div className="license-help-box">
-            <strong>💡 ¿Necesitas ayuda?</strong><br>
-            Contacta a: <a href="mailto:support@fabricontrol.com">support@fabricontrol.com</a><br>
+            <strong>💡 ¿Necesitas ayuda?</strong><br />
+            Contacta a: <a href="mailto:support@fabricontrol.com">support@fabricontrol.com</a><br />
             WhatsApp: <a href="https://wa.me/541112345678">+54 11 1234-5678</a>
           </div>
         </form>
