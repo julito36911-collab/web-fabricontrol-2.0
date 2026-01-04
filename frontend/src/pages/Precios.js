@@ -294,6 +294,10 @@ function Precios() {
               <h4>¿Pierdo mis datos al activar la licencia?</h4>
               <p><strong>No.</strong> Todos tus datos (cotizaciones, órdenes, inventario) se mantienen intactos al activar tu licencia.</p>
             </div>
+            <div className="card" style={{marginBottom: '1rem', background: 'linear-gradient(135deg, #eef2ff 0%, #f9fafb 100%)', border: '2px solid var(--primary)'}}>
+              <h4 style={{color: 'var(--primary)'}}>📚 ¿Quieres saber más sobre la instalación?</h4>
+              <p>Lee nuestra <a href="/documentacion.html" style={{color: 'var(--accent)', fontWeight: 600, textDecoration: 'underline'}}>Documentación Técnica completa</a> con información sobre MongoDB, opciones de servidor (Local/LAN/Nube), y arquitectura del sistema.</p>
+            </div>
           </div>
         </div>
       </section>
