@@ -655,9 +655,9 @@ Precios en USD. Aceptamos transferencias bancarias y pasarelas de pago internaci
 
 ## Acceso a Demo (Solo para referencia interna)
 
-- **App Principal:** https://fabricadmin.preview.emergentagent.com/login
-- **Super Admin:** https://fabricadmin.preview.emergentagent.com/super-admin-login
-- **App Móvil:** https://fabricadmin.preview.emergentagent.com/m
+- **App Principal:** https://fabri-site.preview.emergentagent.com/login
+- **Super Admin:** https://fabri-site.preview.emergentagent.com/super-admin-login
+- **App Móvil:** https://fabri-site.preview.emergentagent.com/m
 - **Usuario:** julito36911@gmail.com
 - **Password:** 12345678
 
