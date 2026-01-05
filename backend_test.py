@@ -266,7 +266,7 @@ def test_backend_health():
         return False, f"Backend not accessible: {str(e)}"
 
 def main():
-    print("🧪 Starting Enterprise Quote Backend Tests")
+    print("🧪 Starting FabriControl AI Chatbot Backend Tests")
     print("=" * 60)
     
     results = TestResults()
@@ -280,51 +280,48 @@ def main():
         print("\n❌ Backend is not accessible. Stopping tests.")
         return False
     
-    # Test valid data scenarios
-    success, message = test_enterprise_quote_valid_data()
+    # Test chat health
+    success, message = test_chat_health()
     if success:
-        results.add_pass("Enterprise Quote - Valid Complete Data")
+        results.add_pass("Chat Service Health Check")
     else:
-        results.add_fail("Enterprise Quote - Valid Complete Data", message)
+        results.add_fail("Chat Service Health Check", message)
     
-    success, message = test_enterprise_quote_minimal_data()
+    # Test Spanish installation question
+    success, message = test_chat_spanish_installation()
     if success:
-        results.add_pass("Enterprise Quote - Minimal Required Data")
+        results.add_pass("Spanish Installation Question")
     else:
-        results.add_fail("Enterprise Quote - Minimal Required Data", message)
+        results.add_fail("Spanish Installation Question", message)
     
-    # Test validation scenarios (should fail)
-    success, message = test_enterprise_quote_missing_company()
+    # Test English installation question
+    success, message = test_chat_english_installation()
     if success:
-        results.add_pass("Enterprise Quote - Missing Company Validation")
+        results.add_pass("English Installation Question")
     else:
-        results.add_fail("Enterprise Quote - Missing Company Validation", message)
+        results.add_fail("English Installation Question", message)
     
-    success, message = test_enterprise_quote_missing_contact()
+    # Test offline functionality question
+    success, message = test_chat_offline_functionality()
     if success:
-        results.add_pass("Enterprise Quote - Missing Contact Validation")
+        results.add_pass("Offline Functionality Question")
     else:
-        results.add_fail("Enterprise Quote - Missing Contact Validation", message)
+        results.add_fail("Offline Functionality Question", message)
     
-    success, message = test_enterprise_quote_missing_email()
+    # Test pricing question
+    success, message = test_chat_pricing()
     if success:
-        results.add_pass("Enterprise Quote - Missing Email Validation")
+        results.add_pass("Pricing Question")
     else:
-        results.add_fail("Enterprise Quote - Missing Email Validation", message)
-    
-    success, message = test_enterprise_quote_invalid_email()
-    if success:
-        results.add_pass("Enterprise Quote - Invalid Email Validation")
-    else:
-        results.add_fail("Enterprise Quote - Invalid Email Validation", message)
+        results.add_fail("Pricing Question", message)
     
     print("\n" + "=" * 60)
     success = results.summary()
     
     if success:
-        print("🎉 All backend tests passed!")
+        print("🎉 All chatbot tests passed!")
     else:
-        print("⚠️  Some backend tests failed. Check the details above.")
+        print("⚠️  Some chatbot tests failed. Check the details above.")
     
     return success
 
