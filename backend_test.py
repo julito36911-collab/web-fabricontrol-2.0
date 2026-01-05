@@ -129,7 +129,7 @@ def test_chat_english_installation():
             has_cloud = any(word in response_text for word in ["cloud", "atlas", "150 mb"])
             
             # Check it doesn't claim 100% cloud-based
-            not_100_cloud = "100% cloud" not in response_text
+            not_100_cloud = "not 100%" in response_text or "no es 100%" in response_text
             
             if has_local and has_cloud and not_100_cloud:
                 return True, f"Correctly explains both installation options. Response: {data.get('response', '')[:200]}..."
