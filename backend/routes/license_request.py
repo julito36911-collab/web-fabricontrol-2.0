@@ -119,14 +119,15 @@ Pago Preferido: {request.planDeseado}
 """
         
         # Log de la solicitud
-        logger.info(f"Nueva solicitud de licencia: {request.email} - {request.installationCode}")
+        logger.info(f"Nueva solicitud de licencia: {request.email}")
         print("\n" + "="*60)
         print(email_content)
         print("="*60 + "\n")
         
         # TODO: En producción, enviar email real al soporte
+        # Email de destino: julito36911@gmail.com
         # await send_email(
-        #     to="support@fabricontrol.com",
+        #     to="julito36911@gmail.com",
         #     subject=f"Nueva Solicitud de Licencia - {request.nombre}",
         #     body=email_content
         # )

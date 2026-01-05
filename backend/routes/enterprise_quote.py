@@ -62,9 +62,10 @@ async def submit_enterprise_quote(quote: EnterpriseQuote):
         print("="*60 + "\n")
         
         # TODO: En producción, integrar con servicio de email
+        # Email de destino: julito36911@gmail.com
         # Ejemplo con SendGrid o SES:
         # await send_email(
-        #     to="sales@fabricontrol.com",
+        #     to="julito36911@gmail.com",
         #     subject=f"Nueva Cotización Enterprise - {quote.companyName}",
         #     body=email_content
         # )
