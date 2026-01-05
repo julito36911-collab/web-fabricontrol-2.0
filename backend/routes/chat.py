@@ -201,7 +201,7 @@ async def chat(request: ChatRequest):
     """
     try:
         if not client:
-            raise HTTPException(status_code=500, detail="Gemini API key not configured")
+            raise HTTPException(status_code=500, detail=f"API de chat no configurada. Contacta soporte: {SUPPORT_EMAIL}")
         
         # Build conversation history
         contents = []
@@ -215,31 +215,55 @@ async def chat(request: ChatRequest):
         if contents and contents[0]["role"] == "user":
             contents[0]["parts"][0]["text"] = f"{SYSTEM_PROMPT}\n\n---\n\n**Usuario pregunta:** {contents[0]['parts'][0]['text']}"
         
-        # Generate response
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=contents,
-            config={
-                "temperature": 0.7,
-                "max_output_tokens": 1024,
-            }
-        )
+        # Generate response with retry logic for rate limits
+        max_retries = 3
+        retry_delay = 5
+        last_error = None
         
-        # Detect language (simple heuristic)
-        user_message = request.messages[-1].content
-        detected_lang = "es"  # default
-        if any(word in user_message.lower() for word in ["how", "what", "does", "can", "is", "price"]):
-            detected_lang = "en"
-        elif any(char in user_message for char in ["א", "ב", "ג", "ד"]):
-            detected_lang = "he"
+        for attempt in range(max_retries):
+            try:
+                # Use gemini-1.5-flash which has higher rate limits
+                response = client.models.generate_content(
+                    model="gemini-1.5-flash",
+                    contents=contents,
+                    config={
+                        "temperature": 0.7,
+                        "max_output_tokens": 1024,
+                    }
+                )
+                
+                # Detect language (simple heuristic)
+                user_message = request.messages[-1].content
+                detected_lang = "es"  # default
+                if any(word in user_message.lower() for word in ["how", "what", "does", "can", "is", "price"]):
+                    detected_lang = "en"
+                elif any(char in user_message for char in ["א", "ב", "ג", "ד"]):
+                    detected_lang = "he"
+                
+                return ChatResponse(
+                    response=response.text,
+                    language_detected=detected_lang
+                )
+                
+            except Exception as e:
+                last_error = str(e)
+                if "429" in last_error or "RESOURCE_EXHAUSTED" in last_error:
+                    if attempt < max_retries - 1:
+                        await asyncio.sleep(retry_delay * (attempt + 1))
+                        continue
+                raise
         
-        return ChatResponse(
-            response=response.text,
-            language_detected=detected_lang
-        )
+        # If all retries failed
+        raise Exception(last_error)
         
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Chat error: {str(e)}")
+        error_msg = str(e)
+        if "429" in error_msg or "RESOURCE_EXHAUSTED" in error_msg or "quota" in error_msg.lower():
+            raise HTTPException(
+                status_code=503, 
+                detail=f"El servicio de chat está temporalmente ocupado. Por favor intenta en unos segundos o contacta a {SUPPORT_EMAIL} | WhatsApp: {SUPPORT_WHATSAPP}"
+            )
+        raise HTTPException(status_code=500, detail=f"Error en el chat. Contacta soporte: {SUPPORT_EMAIL}")
 
 @router.get("/chat/health")
 async def chat_health():
