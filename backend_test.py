@@ -54,166 +54,203 @@ class TestResults:
                 print(f"   - {error}")
         return self.failed == 0
 
-def test_enterprise_quote_valid_data():
-    """Test POST /api/enterprise-quote with valid complete data"""
+def test_chat_spanish_installation():
+    """Test Spanish installation question - should mention BOTH Local and Cloud options"""
     test_data = {
-        "companyName": "Test Industries S.A.",
-        "contactName": "Juan Test",
-        "email": "test@testcompany.com",
-        "phone": "+54 11 1234-5678",
-        "industry": "Metalurgia y Fabricación",
-        "currentUsers": "20-25 users",
-        "requirements": "Necesitamos integración con sistema legacy",
-        "timeline": "2-3 meses",
-        "budget": "$10,000 - $25,000"
+        "messages": [
+            {
+                "role": "user",
+                "content": "¿Cómo se instala FabriControl? ¿Es 100% basado en la nube?"
+            }
+        ]
     }
     
     try:
         response = requests.post(
-            f"{API_BASE}/enterprise-quote",
+            f"{API_BASE}/chat",
             json=test_data,
             headers={"Content-Type": "application/json"},
-            timeout=10
+            timeout=30
         )
         
         if response.status_code == 200:
             data = response.json()
-            if data.get("success") and data.get("message") and data.get("quote_id"):
-                return True, "Valid data accepted successfully"
+            response_text = data.get("response", "").lower()
+            
+            # Check for both installation options
+            has_local = any(word in response_text for word in ["local", "pc", "500 mb", "mongodb"])
+            has_cloud = any(word in response_text for word in ["nube", "cloud", "atlas", "150 mb"])
+            
+            # Check it doesn't claim 100% cloud-based
+            not_100_cloud = "100%" not in response_text or "100% basado en la nube" not in response_text
+            
+            if has_local and has_cloud and not_100_cloud:
+                return True, f"Correctly explains both installation options. Response: {data.get('response', '')[:200]}..."
             else:
-                return False, f"Invalid response format: {data}"
+                issues = []
+                if not has_local:
+                    issues.append("Missing Local installation info")
+                if not has_cloud:
+                    issues.append("Missing Cloud installation info")
+                if not not_100_cloud:
+                    issues.append("Still claims 100% cloud-based")
+                return False, f"Issues: {', '.join(issues)}. Response: {data.get('response', '')[:200]}..."
         else:
             return False, f"HTTP {response.status_code}: {response.text}"
             
     except requests.exceptions.RequestException as e:
         return False, f"Request failed: {str(e)}"
 
-def test_enterprise_quote_minimal_data():
-    """Test POST /api/enterprise-quote with minimal required data"""
+def test_chat_english_installation():
+    """Test English installation question - should mention BOTH Local and Cloud options"""
     test_data = {
-        "companyName": "Minimal Corp",
-        "contactName": "Jane Doe",
-        "email": "jane@minimal.com"
+        "messages": [
+            {
+                "role": "user",
+                "content": "How is FabriControl installed? Is it cloud-based?"
+            }
+        ]
     }
     
     try:
         response = requests.post(
-            f"{API_BASE}/enterprise-quote",
+            f"{API_BASE}/chat",
             json=test_data,
             headers={"Content-Type": "application/json"},
-            timeout=10
+            timeout=30
         )
         
         if response.status_code == 200:
             data = response.json()
-            if data.get("success") and data.get("message") and data.get("quote_id"):
-                return True, "Minimal data accepted successfully"
+            response_text = data.get("response", "").lower()
+            
+            # Check for both installation options
+            has_local = any(word in response_text for word in ["local", "pc", "500 mb", "mongodb"])
+            has_cloud = any(word in response_text for word in ["cloud", "atlas", "150 mb"])
+            
+            # Check it doesn't claim 100% cloud-based
+            not_100_cloud = "100% cloud" not in response_text
+            
+            if has_local and has_cloud and not_100_cloud:
+                return True, f"Correctly explains both installation options. Response: {data.get('response', '')[:200]}..."
             else:
-                return False, f"Invalid response format: {data}"
+                issues = []
+                if not has_local:
+                    issues.append("Missing Local installation info")
+                if not has_cloud:
+                    issues.append("Missing Cloud installation info")
+                if not not_100_cloud:
+                    issues.append("Still claims 100% cloud-based")
+                return False, f"Issues: {', '.join(issues)}. Response: {data.get('response', '')[:200]}..."
         else:
             return False, f"HTTP {response.status_code}: {response.text}"
             
     except requests.exceptions.RequestException as e:
         return False, f"Request failed: {str(e)}"
 
-def test_enterprise_quote_missing_company():
-    """Test POST /api/enterprise-quote with missing companyName (should fail)"""
+def test_chat_offline_functionality():
+    """Test offline functionality question - should explain Local installation works offline"""
     test_data = {
-        "contactName": "John Test",
-        "email": "john@test.com"
+        "messages": [
+            {
+                "role": "user",
+                "content": "Does FabriControl work offline?"
+            }
+        ]
     }
     
     try:
         response = requests.post(
-            f"{API_BASE}/enterprise-quote",
+            f"{API_BASE}/chat",
             json=test_data,
             headers={"Content-Type": "application/json"},
-            timeout=10
+            timeout=30
         )
         
-        if response.status_code == 422:  # Validation error expected
-            return True, "Correctly rejected missing companyName"
-        elif response.status_code == 200:
-            return False, "Should have rejected missing companyName but accepted it"
+        if response.status_code == 200:
+            data = response.json()
+            response_text = data.get("response", "").lower()
+            
+            # Check for offline capability explanation
+            has_offline_info = any(phrase in response_text for phrase in [
+                "local", "offline", "sin internet", "without internet", 
+                "red local", "local network", "pc"
+            ])
+            
+            # Check for login requirement
+            has_login_info = any(phrase in response_text for phrase in [
+                "iniciar sesión", "log in", "login", "licencia", "license"
+            ])
+            
+            if has_offline_info and has_login_info:
+                return True, f"Correctly explains offline functionality. Response: {data.get('response', '')[:200]}..."
+            else:
+                issues = []
+                if not has_offline_info:
+                    issues.append("Missing offline capability info")
+                if not has_login_info:
+                    issues.append("Missing login requirement info")
+                return False, f"Issues: {', '.join(issues)}. Response: {data.get('response', '')[:200]}..."
         else:
-            return False, f"Unexpected status code {response.status_code}: {response.text}"
+            return False, f"HTTP {response.status_code}: {response.text}"
             
     except requests.exceptions.RequestException as e:
         return False, f"Request failed: {str(e)}"
 
-def test_enterprise_quote_missing_contact():
-    """Test POST /api/enterprise-quote with missing contactName (should fail)"""
+def test_chat_pricing():
+    """Test pricing question - should show correct prices"""
     test_data = {
-        "companyName": "Test Corp",
-        "email": "test@corp.com"
+        "messages": [
+            {
+                "role": "user",
+                "content": "Cuánto cuesta FabriControl?"
+            }
+        ]
     }
     
     try:
         response = requests.post(
-            f"{API_BASE}/enterprise-quote",
+            f"{API_BASE}/chat",
             json=test_data,
             headers={"Content-Type": "application/json"},
-            timeout=10
+            timeout=30
         )
         
-        if response.status_code == 422:  # Validation error expected
-            return True, "Correctly rejected missing contactName"
-        elif response.status_code == 200:
-            return False, "Should have rejected missing contactName but accepted it"
+        if response.status_code == 200:
+            data = response.json()
+            response_text = data.get("response", "")
+            
+            # Check for correct pricing
+            has_basic_price = "$49" in response_text
+            has_pro_price = "$129" in response_text
+            
+            if has_basic_price and has_pro_price:
+                return True, f"Correctly shows pricing. Response: {data.get('response', '')[:200]}..."
+            else:
+                issues = []
+                if not has_basic_price:
+                    issues.append("Missing Basic plan price ($49)")
+                if not has_pro_price:
+                    issues.append("Missing Professional plan price ($129)")
+                return False, f"Issues: {', '.join(issues)}. Response: {data.get('response', '')[:200]}..."
         else:
-            return False, f"Unexpected status code {response.status_code}: {response.text}"
+            return False, f"HTTP {response.status_code}: {response.text}"
             
     except requests.exceptions.RequestException as e:
         return False, f"Request failed: {str(e)}"
 
-def test_enterprise_quote_invalid_email():
-    """Test POST /api/enterprise-quote with invalid email (should fail)"""
-    test_data = {
-        "companyName": "Test Corp",
-        "contactName": "John Test",
-        "email": "invalid-email"
-    }
-    
+def test_chat_health():
+    """Test chat health endpoint"""
     try:
-        response = requests.post(
-            f"{API_BASE}/enterprise-quote",
-            json=test_data,
-            headers={"Content-Type": "application/json"},
-            timeout=10
-        )
-        
-        if response.status_code == 422:  # Validation error expected
-            return True, "Correctly rejected invalid email"
-        elif response.status_code == 200:
-            return False, "Should have rejected invalid email but accepted it"
+        response = requests.get(f"{API_BASE}/chat/health", timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            if data.get("configured") and data.get("model"):
+                return True, f"Chat service is properly configured. Model: {data.get('model')}"
+            else:
+                return False, f"Chat service not properly configured: {data}"
         else:
-            return False, f"Unexpected status code {response.status_code}: {response.text}"
-            
-    except requests.exceptions.RequestException as e:
-        return False, f"Request failed: {str(e)}"
-
-def test_enterprise_quote_missing_email():
-    """Test POST /api/enterprise-quote with missing email (should fail)"""
-    test_data = {
-        "companyName": "Test Corp",
-        "contactName": "John Test"
-    }
-    
-    try:
-        response = requests.post(
-            f"{API_BASE}/enterprise-quote",
-            json=test_data,
-            headers={"Content-Type": "application/json"},
-            timeout=10
-        )
-        
-        if response.status_code == 422:  # Validation error expected
-            return True, "Correctly rejected missing email"
-        elif response.status_code == 200:
-            return False, "Should have rejected missing email but accepted it"
-        else:
-            return False, f"Unexpected status code {response.status_code}: {response.text}"
-            
+            return False, f"HTTP {response.status_code}: {response.text}"
     except requests.exceptions.RequestException as e:
         return False, f"Request failed: {str(e)}"
 
