@@ -227,7 +227,7 @@ function LicenseRequestModal({ isOpen, onClose }) {
           <div className="license-help-box">
             <strong>💡 ¿Necesitas ayuda?</strong><br />
             Contacta a: <a href="mailto:julito36911@gmail.com">julito36911@gmail.com</a><br />
-            WhatsApp: <a href="https://wa.me/5491112345678">+54 11 1234-5678</a>
+            WhatsApp: <a href="https://wa.me/972526489461">+972 52-648-9461</a>
           </div>
         </form>
       </div>

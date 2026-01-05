@@ -35,7 +35,7 @@ function Footer() {
             <h4>Contacto</h4>
             <ul className="footer-links">
               <li>📧 <a href="mailto:julito36911@gmail.com">julito36911@gmail.com</a></li>
-              <li>📱 WhatsApp: +54 11 1234-5678</li>
+              <li>📱 <a href="https://wa.me/972526489461">WhatsApp: +972 52-648-9461</a></li>
               <li>💬 Chat en vivo disponible</li>
             </ul>
           </div>
