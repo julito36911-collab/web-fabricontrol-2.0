@@ -189,8 +189,9 @@
     
     <!-- TABLE OF CONTENTS -->
     <div class="toc">
-      <h3>📑 Tabla de Contenido</h3>
+      <h3>📑 Tabla de Contenidos</h3>
       <ul>
+        <li><a href="#opciones">🎯 Opciones de Instalación (LOCAL vs NUBE)</a></li>
         <li><a href="#instalacion">1. Instalación y Ubicación</a></li>
         <li><a href="#mongodb">2. Base de Datos MongoDB</a></li>
         <li><a href="#almacenamiento">3. Almacenamiento de Archivos</a></li>
@@ -200,6 +201,153 @@
         <li><a href="#chatia">6.5. Chat IA con Gemini</a></li>
         <li><a href="#licencias">7. Sistema de Licencias y Activación</a></li>
       </ul>
+    </div>
+
+    <!-- SECTION 0: INSTALLATION OPTIONS -->
+    <div class="doc-section" id="opciones">
+      <h2>🎯 Opciones de Instalación</h2>
+      
+      <p style="font-size: 1.125rem; margin-bottom: 2rem;">
+        FabriControl ofrece <strong>2 formas de instalación</strong> según tus necesidades.
+        Ambas son profesionales y <strong>sin ventanas negras</strong> (todo en segundo plano).
+      </p>
+
+      <table class="comparison-table">
+        <tr>
+          <th>Aspecto</th>
+          <th>💻 OPCIÓN 1: LOCAL</th>
+          <th>☁️ OPCIÓN 2: NUBE</th>
+        </tr>
+        <tr>
+          <td><strong>Tamaño Instalador</strong></td>
+          <td>500 MB (con MongoDB)</td>
+          <td>150 MB (sin MongoDB)</td>
+        </tr>
+        <tr>
+          <td><strong>Base de Datos</strong></td>
+          <td>MongoDB en tu PC</td>
+          <td>MongoDB Atlas (nube)</td>
+        </tr>
+        <tr>
+          <td><strong>Datos guardados</strong></td>
+          <td>PC local</td>
+          <td>Nube (MongoDB Atlas)</td>
+        </tr>
+        <tr>
+          <td><strong>Internet necesario</strong></td>
+          <td>Solo para login</td>
+          <td>Siempre</td>
+        </tr>
+        <tr>
+          <td><strong>Acceso</strong></td>
+          <td>Red local únicamente</td>
+          <td>Desde cualquier lugar</td>
+        </tr>
+        <tr>
+          <td><strong>Ventanas negras</strong></td>
+          <td>❌ NO</td>
+          <td>❌ NO</td>
+        </tr>
+        <tr>
+          <td><strong>Costo extra</strong></td>
+          <td>Solo licencia</td>
+          <td>Licencia + MongoDB Atlas</td>
+        </tr>
+        <tr>
+          <td><strong>Ideal para</strong></td>
+          <td>Taller pequeño</td>
+          <td>Múltiples sedes</td>
+        </tr>
+      </table>
+
+      <h3 style="margin-top: 3rem;">💻 OPCIÓN 1: Instalación LOCAL</h3>
+      
+      <div class="diagram">
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+Instalador: 500 MB (con MongoDB incluido)
+    ↓
+Se instala TODO en: C:\Program Files\FabriControl\
+    ↓
+Doble clic en "FabriControl"
+    ↓
+[SIN VENTANAS NEGRAS]
+    ↓
+MongoDB inicia (background, local)
+Backend inicia (background, local)
+    ↓
+Navegador se abre
+    ↓
+Usuario hace login
+    ↓
+Valida licencia contra Railway
+    ↓
+Datos guardados en su PC
+
+✅ Rápido
+✅ Privacidad máxima
+❌ Solo red local
+        </pre>
+      </div>
+
+      <h3 style="margin-top: 3rem;">☁️ OPCIÓN 2: Instalación NUBE</h3>
+      
+      <div class="diagram">
+        <pre style="text-align: left; font-family: monospace; font-size: 0.85rem;">
+TÚ creas MongoDB Atlas para el cliente
+    ↓
+Instalador: 150 MB (sin MongoDB)
+    ↓
+Se instala en: C:\Program Files\FabriControl\
+    ↓
+Cliente ingresa URL de MongoDB durante instalación
+    ↓
+Doble clic en "FabriControl"
+    ↓
+[SIN VENTANAS NEGRAS]
+    ↓
+Backend inicia (background, se conecta a nube)
+    ↓
+Navegador se abre
+    ↓
+Usuario hace login
+    ↓
+Valida licencia contra Railway
+    ↓
+Datos guardados en MongoDB Atlas (nube)
+
+✅ Acceso desde cualquier lugar
+✅ Múltiples sedes
+⚠️ Requiere internet siempre
+        </pre>
+      </div>
+
+      <div class="success-box">
+        <strong>🎮 PANEL DE CONTROL (Railway)</strong><br>
+        <code>https://fabricontrol.railway.app/super-admin-login</code><br><br>
+        TÚ controlas:
+        <ul style="margin-top: 0.5rem;">
+          <li>├── Todas las licencias</li>
+          <li>├── Activar/Suspender</li>
+          <li>└── Ambas opciones validan aquí</li>
+        </ul>
+      </div>
+
+      <div class="info-box" style="margin-top: 2rem;">
+        <strong>💡 ¿Cuál elegir?</strong><br><br>
+        <strong>Elige LOCAL si:</strong>
+        <ul style="margin-top: 0.5rem;">
+          <li>• Taller pequeño o mediano</li>
+          <li>• Una sola ubicación</li>
+          <li>• Máxima privacidad (datos en tu PC)</li>
+        </ul>
+        <br>
+        <strong>Elige NUBE si:</strong>
+        <ul style="margin-top: 0.5rem;">
+          <li>• Múltiples sedes</li>
+          <li>• Acceso remoto necesario</li>
+          <li>• Trabajo distribuido</li>
+        </ul>
+      </div>
     </div>
 
     <!-- SECTION 1: INSTALACIÓN -->
