@@ -32,12 +32,11 @@ function Footer() {
           </div>
           
           <div className="footer-section">
-            <h4>Contact</h4>
+            <h4>Contacto</h4>
             <ul className="footer-links">
-              <li>📧 sales@fabricontrol.com</li>
-              <li>📧 support@fabricontrol.com</li>
-              <li>📱 WhatsApp: +52-XXX-XXX-XXXX</li>
-              <li><a href="mailto:info@fabricontrol.com">Contact Form</a></li>
+              <li>📧 <a href="mailto:julito36911@gmail.com">julito36911@gmail.com</a></li>
+              <li>📱 WhatsApp: +54 11 1234-5678</li>
+              <li>💬 Chat en vivo disponible</li>
             </ul>
           </div>
         </div>
