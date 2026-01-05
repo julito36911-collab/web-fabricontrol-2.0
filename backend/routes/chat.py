@@ -3,20 +3,20 @@ from pydantic import BaseModel
 from typing import List, Optional
 import os
 import asyncio
+import uuid
 from dotenv import load_dotenv
-from google import genai
 from pathlib import Path
+from emergentintegrations.llm.chat import LlmChat, UserMessage
 
 # Load environment variables
 load_dotenv()
 
 router = APIRouter()
 
-# Configure Gemini
+# Configure Emergent LLM Key (better rate limits)
+EMERGENT_LLM_KEY = os.getenv("EMERGENT_LLM_KEY", "")
+# Fallback to Gemini API Key if no Emergent key
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-
-# Initialize Gemini client
-client = genai.Client(api_key=GEMINI_API_KEY) if GEMINI_API_KEY else None
 
 # Support contact
 SUPPORT_EMAIL = "julito36911@gmail.com"
