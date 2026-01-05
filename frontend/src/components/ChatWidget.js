@@ -49,7 +49,8 @@ const ChatWidget = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to get response');
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.detail || 'Failed to get response');
       }
 
       const data = await response.json();
@@ -58,9 +59,19 @@ const ChatWidget = () => {
       setMessages([...newMessages, { role: 'assistant', content: data.response }]);
     } catch (error) {
       console.error('Chat error:', error);
+      let errorMessage = '❌ Lo siento, hubo un error. ';
+      
+      if (error.message && (error.message.includes('ocupado') || error.message.includes('503') || error.message.includes('temporalmente'))) {
+        errorMessage += 'El servicio está temporalmente ocupado. Por favor intenta en unos segundos.\n\n';
+      } else {
+        errorMessage += 'Por favor intenta de nuevo.\n\n';
+      }
+      
+      errorMessage += '📧 **Contacto:** julito36911@gmail.com\n📱 **WhatsApp:** +972 52-648-9461';
+      
       setMessages([...newMessages, { 
         role: 'assistant', 
-        content: '❌ Lo siento, hubo un error. Por favor intenta de nuevo o contacta soporte@fabricontrol.com' 
+        content: errorMessage
       }]);
     } finally {
       setIsLoading(false);
