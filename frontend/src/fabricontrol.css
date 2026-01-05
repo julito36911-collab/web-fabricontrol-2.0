@@ -477,20 +477,35 @@ a:hover {
     grid-template-columns: 1fr;
   }
   
-  .nav-menu {
-    flex-direction: column;
-    gap: var(--spacing-sm);
+  /* Compact horizontal menu for mobile */
+  .nav {
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
   
-  /* Better mobile menu */
-  .header .nav-menu {
+  .nav-logo img {
+    height: 40px;
+  }
+  
+  .nav-menu {
     display: flex !important;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 0.25rem;
+    width: 100%;
+    padding-top: 0.5rem;
+    order: 2;
   }
   
-  .header .nav-menu li {
-    width: auto;
+  .nav-menu li {
+    margin: 0;
+  }
+  
+  .nav-link {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
   }
   
   /* Improve buttons on mobile */
@@ -509,7 +524,7 @@ a:hover {
   }
   
   .container {
-    padding: 0 1.5rem;
+    padding: 0 1rem;
   }
   
   /* Better cards */
