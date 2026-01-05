@@ -1,6 +1,98 @@
 # FabriControl - Base de Conocimiento Completa para Chat IA
 
-Fecha de actualización: Enero 4, 2026
+Fecha de actualización: Enero 5, 2026
+
+---
+
+## 🎯 OPCIONES DE INSTALACIÓN - INFORMACIÓN CRÍTICA
+
+### **FabriControl ofrece 2 formas de instalación**
+
+#### **OPCIÓN 1: INSTALACIÓN LOCAL (MongoDB en el PC del cliente)**
+
+**Flujo de instalación:**
+```
+1. Instalador: 500 MB (incluye MongoDB completo)
+2. Se instala en: C:\Program Files\FabriControl\
+3. Cliente hace doble clic en "FabriControl"
+4. [SIN VENTANAS NEGRAS] - Todo en segundo plano
+5. MongoDB inicia automáticamente (background, local)
+6. Backend inicia automáticamente (background)
+7. Navegador se abre automáticamente
+8. Usuario ingresa credenciales
+9. Sistema valida licencia contra Railway
+10. Datos guardados LOCALMENTE en el PC
+```
+
+**Ventajas:**
+- ✅ Rápido - no depende de internet para trabajar
+- ✅ Privacidad máxima - datos físicamente en su PC
+- ✅ Sin costos adicionales de nube
+- ✅ Experiencia profesional - sin ventanas negras
+
+**Limitaciones:**
+- ❌ Solo accesible desde red local
+- ⚠️ Requiere internet SOLO para validar licencia al login
+
+**Ideal para:** Talleres pequeños, una sola ubicación
+
+---
+
+#### **OPCIÓN 2: INSTALACIÓN NUBE (MongoDB Atlas en la nube)**
+
+**Flujo de instalación:**
+```
+1. Administrador crea MongoDB Atlas para el cliente
+2. Instalador: 150 MB (sin MongoDB)
+3. Se instala en: C:\Program Files\FabriControl\
+4. Durante instalación, cliente ingresa URL MongoDB Atlas
+5. Cliente hace doble clic en "FabriControl"
+6. [SIN VENTANAS NEGRAS] - Todo en segundo plano
+7. Backend inicia (se conecta a nube)
+8. Navegador se abre automáticamente
+9. Usuario ingresa credenciales
+10. Sistema valida licencia contra Railway
+11. Datos guardados en MONGODB ATLAS (nube)
+```
+
+**Ventajas:**
+- ✅ Acceso desde cualquier lugar con internet
+- ✅ Múltiples sedes trabajando simultáneamente
+- ✅ Backups automáticos en la nube
+- ✅ Experiencia profesional - sin ventanas negras
+
+**Limitaciones:**
+- ⚠️ Requiere internet SIEMPRE
+- ⚠️ Costo adicional de MongoDB Atlas (cliente paga)
+
+**Ideal para:** Empresas con múltiples ubicaciones, trabajo remoto
+
+---
+
+### **PANEL DE CONTROL - RAILWAY**
+
+**URL:** https://fabricontrol.railway.app/super-admin-login
+
+**Control total de licencias:**
+- Gestionar TODAS las licencias de clientes
+- Activar/Suspender/Cancelar licencias
+- Ver historial de uso
+- **IMPORTANTE:** Ambas opciones (LOCAL y NUBE) validan licencias aquí
+
+---
+
+### **COMPARACIÓN RÁPIDA**
+
+| Aspecto | LOCAL | NUBE |
+|---------|-------|------|
+| Tamaño instalador | 500 MB | 150 MB |
+| MongoDB | En PC cliente | MongoDB Atlas |
+| Datos | PC local | Nube |
+| Acceso | Red local | Cualquier lugar |
+| Internet | Solo login | Siempre |
+| Costo extra | No | Sí (Atlas) |
+| Ventanas negras | ❌ NO | ❌ NO |
+| Mejor para | Taller pequeño | Empresa distribuida |
 
 ---
 
