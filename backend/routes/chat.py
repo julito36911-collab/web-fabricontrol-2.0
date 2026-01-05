@@ -195,33 +195,54 @@ class ChatResponse(BaseModel):
 @router.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     """
-    Chat endpoint using Emergent LLM (Gemini)
+    Chat endpoint using Groq API (FREE - Llama 3.3 70B)
     """
     try:
-        api_key = EMERGENT_LLM_KEY or GEMINI_API_KEY
-        if not api_key:
+        if not GROQ_API_KEY:
             raise HTTPException(status_code=500, detail=f"API de chat no configurada. Contacta soporte: {SUPPORT_EMAIL}")
-        
-        # Create unique session ID for this conversation
-        session_id = f"fabricontrol-chat-{uuid.uuid4().hex[:8]}"
-        
-        # Initialize Emergent LLM Chat with Gemini
-        llm_chat = LlmChat(
-            api_key=api_key,
-            session_id=session_id,
-            system_message=SYSTEM_PROMPT
-        ).with_model("gemini", "gemini-2.5-flash")
         
         # Get the user's last message
         user_text = request.messages[-1].content
         
-        # Send message and get response
-        user_message = UserMessage(text=user_text)
-        response_text = await llm_chat.send_message(user_message)
+        # Build messages for Groq API
+        messages = [
+            {"role": "system", "content": SYSTEM_PROMPT}
+        ]
+        
+        # Add conversation history
+        for msg in request.messages:
+            messages.append({
+                "role": msg.role,
+                "content": msg.content
+            })
+        
+        # Call Groq API
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            response = await client.post(
+                GROQ_API_URL,
+                headers={
+                    "Authorization": f"Bearer {GROQ_API_KEY}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "model": GROQ_MODEL,
+                    "messages": messages,
+                    "temperature": 0.7,
+                    "max_tokens": 1800,
+                    "top_p": 0.9
+                }
+            )
+            
+            if response.status_code != 200:
+                error_detail = response.text
+                raise Exception(f"Groq API error: {response.status_code} - {error_detail}")
+            
+            data = response.json()
+            response_text = data["choices"][0]["message"]["content"]
         
         # Detect language (simple heuristic)
         detected_lang = "es"  # default
-        if any(word in user_text.lower() for word in ["how", "what", "does", "can", "is", "price"]):
+        if any(word in user_text.lower() for word in ["how", "what", "does", "can", "is", "price", "the", "you"]):
             detected_lang = "en"
         elif any(char in user_text for char in ["א", "ב", "ג", "ד"]):
             detected_lang = "he"
@@ -231,9 +252,14 @@ async def chat(request: ChatRequest):
             language_detected=detected_lang
         )
         
+    except httpx.TimeoutException:
+        raise HTTPException(
+            status_code=503, 
+            detail=f"El servicio tardó demasiado. Por favor intenta de nuevo o contacta a {SUPPORT_EMAIL} | WhatsApp: {SUPPORT_WHATSAPP}"
+        )
     except Exception as e:
         error_msg = str(e)
-        if "429" in error_msg or "RESOURCE_EXHAUSTED" in error_msg or "quota" in error_msg.lower() or "rate" in error_msg.lower():
+        if "429" in error_msg or "rate" in error_msg.lower():
             raise HTTPException(
                 status_code=503, 
                 detail=f"El servicio de chat está temporalmente ocupado. Por favor intenta en unos segundos o contacta a {SUPPORT_EMAIL} | WhatsApp: {SUPPORT_WHATSAPP}"
@@ -246,9 +272,9 @@ async def chat_health():
     Check if chat is properly configured
     """
     return {
-        "configured": bool(EMERGENT_LLM_KEY or GEMINI_API_KEY),
-        "model": "gemini-2.5-flash",
-        "provider": "emergent" if EMERGENT_LLM_KEY else "google",
+        "configured": bool(GROQ_API_KEY),
+        "model": GROQ_MODEL,
+        "provider": "groq",
         "knowledge_base_loaded": len(KNOWLEDGE_BASE) > 0,
         "support_email": SUPPORT_EMAIL
     }
