@@ -481,6 +481,48 @@ a:hover {
     flex-direction: column;
     gap: var(--spacing-sm);
   }
+  
+  /* Better mobile menu */
+  .header .nav-menu {
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .header .nav-menu li {
+    width: auto;
+  }
+  
+  /* Improve buttons on mobile */
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .hero-cta .btn {
+    width: 100%;
+  }
+  
+  /* Better spacing */
+  .section {
+    padding: 2rem 0;
+  }
+  
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  /* Better cards */
+  .pricing-card,
+  .feature-card {
+    margin-bottom: 2rem;
+  }
+  
+  /* Footer improvements */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -491,5 +533,45 @@ a:hover {
   
   .hero-cta {
     flex-direction: column;
+  }
+  
+  /* Extra mobile optimizations */
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+  
+  .hero h1 { font-size: 1.875rem !important; }
+  .hero p { font-size: 1rem !important; }
+  
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .section {
+    padding: 1.5rem 0;
+  }
+  
+  /* Smaller nav on tiny screens */
+  .nav-menu {
+    font-size: 0.875rem;
+    gap: 0.5rem;
+  }
+  
+  .nav-logo img {
+    height: 35px !important;
+  }
+  
+  /* Better image sizing */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Modals */
+  .quote-modal-content,
+  .license-modal-content {
+    width: 95% !important;
+    padding: 1.5rem !important;
+    margin: 1rem !important;
   }
 }
