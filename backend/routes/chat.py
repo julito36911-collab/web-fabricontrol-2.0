@@ -119,29 +119,46 @@ async def chat(request: ChatRequest):
                 "content": msg.content
             })
         
-        # Call Groq API
+        # Call Groq API with retry logic
+        import asyncio
+        max_retries = 3
+        response_text = None
+        
         async with httpx.AsyncClient(timeout=30.0) as client:
-            response = await client.post(
-                GROQ_API_URL,
-                headers={
-                    "Authorization": f"Bearer {GROQ_API_KEY}",
-                    "Content-Type": "application/json"
-                },
-                json={
-                    "model": GROQ_MODEL,
-                    "messages": messages,
-                    "temperature": 0.7,
-                    "max_tokens": 1800,
-                    "top_p": 0.9
-                }
-            )
-            
-            if response.status_code != 200:
-                error_detail = response.text
-                raise Exception(f"Groq API error: {response.status_code} - {error_detail}")
-            
-            data = response.json()
-            response_text = data["choices"][0]["message"]["content"]
+            for attempt in range(max_retries):
+                response = await client.post(
+                    GROQ_API_URL,
+                    headers={
+                        "Authorization": f"Bearer {GROQ_API_KEY}",
+                        "Content-Type": "application/json"
+                    },
+                    json={
+                        "model": GROQ_MODEL,
+                        "messages": messages,
+                        "temperature": 0.7,
+                        "max_tokens": 1800,
+                        "top_p": 0.9
+                    }
+                )
+                
+                if response.status_code == 200:
+                    data = response.json()
+                    response_text = data["choices"][0]["message"]["content"]
+                    break
+                elif response.status_code == 429:
+                    # Rate limited - wait and retry
+                    if attempt < max_retries - 1:
+                        wait_time = (attempt + 1) * 5  # 5, 10, 15 seconds
+                        await asyncio.sleep(wait_time)
+                        continue
+                    else:
+                        raise Exception("Rate limit exceeded after retries")
+                else:
+                    error_detail = response.text
+                    raise Exception(f"Groq API error: {response.status_code} - {error_detail}")
+        
+        if not response_text:
+            raise Exception("No response received")
         
         # Detect language (simple heuristic)
         detected_lang = "es"
