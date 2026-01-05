@@ -2,20 +2,18 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional
 import os
-import httpx
+import uuid
 from dotenv import load_dotenv
 from pathlib import Path
+from emergentintegrations.llm.chat import LlmChat, UserMessage
 
 # Load environment variables
 load_dotenv()
 
 router = APIRouter()
 
-# Configure Groq API (FREE & FAST)
-GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
-GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
-# Using smaller model for better rate limits
-GROQ_MODEL = "llama-3.1-8b-instant"
+# Configure Emergent LLM Key
+EMERGENT_LLM_KEY = os.getenv("EMERGENT_LLM_KEY", "")
 
 # Support contact
 SUPPORT_EMAIL = "julito36911@gmail.com"
@@ -35,53 +33,74 @@ def load_knowledge_base():
 
 KNOWLEDGE_BASE = load_knowledge_base()
 
-# System prompt optimizado para Llama 3.3
+# System prompt
 SYSTEM_PROMPT = f"""You are FabriControl's AI sales assistant.
 
-## MOST IMPORTANT RULE - LANGUAGE DETECTION
+## RULE #1 - LANGUAGE (MANDATORY)
 YOU MUST respond in the SAME language the user writes in:
+- User writes in English → Respond in ENGLISH
+- User writes in Spanish → Respond in SPANISH
+- User writes in Hebrew → Respond in HEBREW
 
-- User writes in English → YOU MUST respond in English
-- User writes in Spanish → YOU MUST respond in Spanish  
-- User writes in Hebrew → YOU MUST respond in Hebrew
+## WHAT IS FABRICONTROL?
+FabriControl is a complete ERP system designed for small and medium workshops and factories. It helps digitize and control the entire production process: from initial quotes to final delivery, with inventory management, machines, projects, and integrated AI assistant.
 
-THIS IS MANDATORY. If the user asks "How much?" respond in English. If they ask "¿Cuánto cuesta?" respond in Spanish.
+"FabriControl is the ERP your workshop deserves, at a price you can afford. Control quotes, production, and inventory from $49/month. No complications."
 
-## PRODUCT INFO
-
-FabriControl is an ERP for workshops and small factories.
-
-### PRICING
+## PRICING (2026)
 - FREE Trial: 30 days, all features, no credit card
 - Basic: $49/month (3 users)
-- Professional: $129/month (10 users + support)
-- Enterprise: Custom pricing
+- Professional: $129/month (10 users + human support)
+- Enterprise: Custom pricing (unlimited users)
 
-All plans have the SAME features. Only difference: users + support level.
+All plans have THE SAME features. Only difference: number of users and support level.
 
-### INSTALLATION
+## INSTALLATION OPTIONS
 Two options available in ALL plans:
 
-1. LOCAL: 500MB installer with MongoDB. Data on your PC. Internet only for login.
-2. CLOUD: 150MB installer. Data in MongoDB Atlas. Always needs internet.
+**1. LOCAL Installation:**
+- 500MB installer (includes MongoDB)
+- Data stored on YOUR PC
+- Only needs internet for login
+- Ideal for small workshops, single location
 
-### HOW TO GET IT
-1. Fill form at website
-2. Receive email with download link + activation code
-3. Install and activate
+**2. CLOUD Installation:**
+- 150MB installer
+- Data in MongoDB Atlas
+- Always needs internet
+- Ideal for multiple locations, remote work
 
-### CONTACT
+## HOW TO GET FABRICONTROL
+1. Fill form at /precios (Spanish) or /en/pricing.html (English)
+2. Receive email (within 24h): download link + activation code
+3. Download, install, enter code
+
+## UNIQUE FEATURES
+- Parametric Parts (unique in the market)
+- Integrated AI Chat
+- PWA Mobile App included
+- No black windows - professional experience
+- Native Spanish
+
+## CONTACT
 - Email: julito36911@gmail.com
 - WhatsApp: +972 52-648-9461
 
-### LINKS
-- Spanish: /precios, /caracteristicas
-- English: /en/pricing.html, /en/features.html
+## LINKS
+- Spanish: /precios, /caracteristicas, /documentacion.html
+- English: /en/pricing.html, /en/features.html, /en/documentation.html
 
-## KNOWLEDGE BASE:
+## YOUR STYLE
+- Professional but friendly
+- Concise responses (2-4 paragraphs)
+- Use emojis occasionally
+- Always suggest the free trial
+- If you don't know, offer to connect with support
+
+## COMPLETE KNOWLEDGE BASE:
 {KNOWLEDGE_BASE}
 
-Remember: ALWAYS respond in the user's language!"""
+Remember: RESPOND IN THE USER'S LANGUAGE!"""
 
 
 class ChatMessage(BaseModel):
@@ -99,69 +118,30 @@ class ChatResponse(BaseModel):
 @router.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     """
-    Chat endpoint using Groq API (FREE - Llama 3.3 70B)
+    Chat endpoint using Emergent LLM (Gemini)
     """
     try:
-        if not GROQ_API_KEY:
+        if not EMERGENT_LLM_KEY:
             raise HTTPException(status_code=500, detail=f"API de chat no configurada. Contacta soporte: {SUPPORT_EMAIL}")
         
         # Get the user's last message
         user_text = request.messages[-1].content
         
-        # Build messages for Groq API
-        messages = [
-            {"role": "system", "content": SYSTEM_PROMPT}
-        ]
+        # Create unique session ID
+        session_id = f"fabricontrol-{uuid.uuid4().hex[:8]}"
         
-        # Add conversation history
-        for msg in request.messages:
-            messages.append({
-                "role": msg.role,
-                "content": msg.content
-            })
+        # Initialize Emergent LLM Chat with Gemini
+        llm_chat = LlmChat(
+            api_key=EMERGENT_LLM_KEY,
+            session_id=session_id,
+            system_message=SYSTEM_PROMPT
+        ).with_model("gemini", "gemini-2.5-flash")
         
-        # Call Groq API with retry logic
-        import asyncio
-        max_retries = 3
-        response_text = None
+        # Send message and get response
+        user_message = UserMessage(text=user_text)
+        response_text = await llm_chat.send_message(user_message)
         
-        async with httpx.AsyncClient(timeout=30.0) as client:
-            for attempt in range(max_retries):
-                response = await client.post(
-                    GROQ_API_URL,
-                    headers={
-                        "Authorization": f"Bearer {GROQ_API_KEY}",
-                        "Content-Type": "application/json"
-                    },
-                    json={
-                        "model": GROQ_MODEL,
-                        "messages": messages,
-                        "temperature": 0.7,
-                        "max_tokens": 1800,
-                        "top_p": 0.9
-                    }
-                )
-                
-                if response.status_code == 200:
-                    data = response.json()
-                    response_text = data["choices"][0]["message"]["content"]
-                    break
-                elif response.status_code == 429:
-                    # Rate limited - wait and retry
-                    if attempt < max_retries - 1:
-                        wait_time = (attempt + 1) * 5  # 5, 10, 15 seconds
-                        await asyncio.sleep(wait_time)
-                        continue
-                    else:
-                        raise Exception("Rate limit exceeded after retries")
-                else:
-                    error_detail = response.text
-                    raise Exception(f"Groq API error: {response.status_code} - {error_detail}")
-        
-        if not response_text:
-            raise Exception("No response received")
-        
-        # Detect language (simple heuristic)
+        # Detect language
         detected_lang = "es"
         if any(word in user_text.lower() for word in ["how", "what", "does", "can", "is", "price", "the", "you", "i", "my"]):
             detected_lang = "en"
@@ -173,14 +153,9 @@ async def chat(request: ChatRequest):
             language_detected=detected_lang
         )
         
-    except httpx.TimeoutException:
-        raise HTTPException(
-            status_code=503, 
-            detail=f"El servicio tardó demasiado. Por favor intenta de nuevo o contacta a {SUPPORT_EMAIL} | WhatsApp: {SUPPORT_WHATSAPP}"
-        )
     except Exception as e:
         error_msg = str(e)
-        if "429" in error_msg or "rate" in error_msg.lower():
+        if "429" in error_msg or "quota" in error_msg.lower() or "rate" in error_msg.lower():
             raise HTTPException(
                 status_code=503, 
                 detail=f"El servicio de chat está temporalmente ocupado. Por favor intenta en unos segundos o contacta a {SUPPORT_EMAIL} | WhatsApp: {SUPPORT_WHATSAPP}"
@@ -193,9 +168,9 @@ async def chat_health():
     Check if chat is properly configured
     """
     return {
-        "configured": bool(GROQ_API_KEY),
-        "model": GROQ_MODEL,
-        "provider": "groq",
+        "configured": bool(EMERGENT_LLM_KEY),
+        "model": "gemini-2.5-flash",
+        "provider": "emergent",
         "knowledge_base_loaded": len(KNOWLEDGE_BASE) > 0,
         "support_email": SUPPORT_EMAIL
     }
