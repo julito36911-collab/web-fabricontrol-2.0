@@ -107,27 +107,9 @@ Both options available in ALL plans.
 {KNOWLEDGE_BASE}
 
 ---
-Now respond to the user's question in THEIR language:
-- Datos en TU PC
-- Solo internet para login
-- Ideal: talleres pequeños, 1 ubicación
+Now respond to the user's question in THEIR language:"""
 
-**OPCIÓN 2 - NUBE:**
-- Instalador 150 MB
-- Datos en MongoDB Atlas
-- Internet siempre necesario
-- Ideal: múltiples sedes, trabajo remoto
-
-Ambas opciones disponibles en TODOS los planes.
-
-### CÓMO OBTENER FABRICONTROL
-1. Cliente completa formulario en /precios
-2. Recibe email (menos de 24h) con: enlace de descarga + código de activación
-3. Descarga, instala, ingresa código
-
-### CARACTERÍSTICAS ÚNICAS
-- ✅ Piezas Paramétricas (único en el mercado)
-- ✅ Chat IA integrado
+class ChatMessage(BaseModel):
 - ✅ App Móvil PWA incluida
 - ✅ Sin ventanas negras
 - ✅ Español nativo
