@@ -10,17 +10,45 @@
 ### Test 1: Spanish - Installation Question
 - **Input**: "¿Cómo se instala FabriControl? ¿Es 100% basado en la nube?"
 - **Expected**: Chatbot should explain BOTH Local and Cloud installation options
-- **Status**: PENDING
+- **Status**: ✅ PASSED
+- **Result**: Chatbot correctly explains both installation options and explicitly states "NO es 100% basado en la nube"
 
 ### Test 2: English - Installation Question  
 - **Input**: "How is FabriControl installed? Is it cloud-based?"
 - **Expected**: Chatbot should explain BOTH Local and Cloud installation options
-- **Status**: PENDING
+- **Status**: ✅ PASSED
+- **Result**: Chatbot correctly explains both installation options and states "not 100% cloud-based"
 
-### Test 3: General Pricing Question
-- **Input**: "Cuánto cuesta?"
+### Test 3: Offline Functionality Question
+- **Input**: "Does FabriControl work offline?"
+- **Expected**: Chatbot should explain Local installation can work offline after login
+- **Status**: ✅ PASSED
+- **Result**: Chatbot correctly explains offline capability with Local installation
+
+### Test 4: General Pricing Question
+- **Input**: "Cuánto cuesta FabriControl?"
 - **Expected**: Chatbot should show correct prices ($49/month Basic, $129/month Pro)
-- **Status**: PENDING
+- **Status**: ✅ PASSED
+- **Result**: Chatbot correctly shows pricing information
+
+## Backend API Testing Results
+
+### Chat API Health Check
+- **Endpoint**: GET /api/chat/health
+- **Status**: ✅ PASSED
+- **Result**: Chat service properly configured with Gemini model
+
+### Chat API Functionality
+- **Endpoint**: POST /api/chat
+- **Status**: ✅ PASSED
+- **Result**: All test cases passed successfully
+
+## Testing Summary
+- **Total Tests**: 6
+- **Passed**: 6
+- **Failed**: 0
+- **Testing Date**: January 5, 2026
+- **Testing Agent**: Backend Testing Agent
 
 ## Files Modified
 - `/app/backend/routes/chat.py` - Updated SYSTEM_PROMPT with correct installation information
