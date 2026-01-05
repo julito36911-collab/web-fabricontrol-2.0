@@ -222,9 +222,9 @@ async def chat(request: ChatRequest):
         
         for attempt in range(max_retries):
             try:
-                # Use gemini-1.5-flash which has higher rate limits
+                # Use gemini-2.0-flash which has better rate limits
                 response = client.models.generate_content(
-                    model="gemini-1.5-flash",
+                    model="gemini-2.0-flash",
                     contents=contents,
                     config={
                         "temperature": 0.7,
