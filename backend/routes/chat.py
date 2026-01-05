@@ -2,6 +2,7 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional
 import os
+import asyncio
 from dotenv import load_dotenv
 from google import genai
 from pathlib import Path
@@ -16,6 +17,10 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 
 # Initialize Gemini client
 client = genai.Client(api_key=GEMINI_API_KEY) if GEMINI_API_KEY else None
+
+# Support contact
+SUPPORT_EMAIL = "julito36911@gmail.com"
+SUPPORT_WHATSAPP = "+972 52-648-9461"
 
 # Load knowledge base
 def load_knowledge_base():
