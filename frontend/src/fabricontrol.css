@@ -568,16 +568,18 @@ a:hover {
   
   /* Compact nav for small phones */
   .nav-logo img {
-    height: 32px !important;
+    height: 30px !important;
   }
   
   .nav-menu {
-    gap: 0.3rem;
-    padding-top: 0.35rem;
+    gap: 0.15rem 0.3rem;
+    padding-top: 0.3rem;
   }
   
   .nav-link {
-    padding: 0.3rem 0.5rem;
+    padding: 0.25rem 0.4rem;
+    font-size: 0.68rem;
+  }
     font-size: 0.7rem;
   }
   
