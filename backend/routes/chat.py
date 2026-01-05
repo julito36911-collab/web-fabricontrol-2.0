@@ -103,7 +103,6 @@ Ambas opciones disponibles en TODOS los planes.
 
 ---
 Responde ahora a la pregunta del usuario:"""
-"""
 
 class ChatMessage(BaseModel):
     role: str  # 'user' or 'assistant'
