@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Backend Testing Suite for FabriControl Enterprise Quote Functionality
-Tests the /api/enterprise-quote endpoint with various scenarios
+Backend Testing Suite for FabriControl AI Chatbot API
+Tests the /api/chat endpoint to verify correct installation information
 """
 
 import requests
