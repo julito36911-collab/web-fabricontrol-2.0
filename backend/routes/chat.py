@@ -197,68 +197,45 @@ class ChatResponse(BaseModel):
 @router.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     """
-    Chat endpoint using Gemini AI
+    Chat endpoint using Emergent LLM (Gemini)
     """
     try:
-        if not client:
+        api_key = EMERGENT_LLM_KEY or GEMINI_API_KEY
+        if not api_key:
             raise HTTPException(status_code=500, detail=f"API de chat no configurada. Contacta soporte: {SUPPORT_EMAIL}")
         
-        # Build conversation history
-        contents = []
-        for msg in request.messages:
-            contents.append({
-                "role": "user" if msg.role == "user" else "model",
-                "parts": [{"text": msg.content}]
-            })
+        # Create unique session ID for this conversation
+        session_id = f"fabricontrol-chat-{uuid.uuid4().hex[:8]}"
         
-        # Add system prompt context to the first user message
-        if contents and contents[0]["role"] == "user":
-            contents[0]["parts"][0]["text"] = f"{SYSTEM_PROMPT}\n\n---\n\n**Usuario pregunta:** {contents[0]['parts'][0]['text']}"
+        # Initialize Emergent LLM Chat with Gemini
+        llm_chat = LlmChat(
+            api_key=api_key,
+            session_id=session_id,
+            system_message=SYSTEM_PROMPT
+        ).with_model("gemini", "gemini-2.5-flash")
         
-        # Generate response with retry logic for rate limits
-        max_retries = 3
-        retry_delay = 5
-        last_error = None
+        # Get the user's last message
+        user_text = request.messages[-1].content
         
-        for attempt in range(max_retries):
-            try:
-                # Use gemini-2.0-flash which has better rate limits
-                response = client.models.generate_content(
-                    model="gemini-2.0-flash",
-                    contents=contents,
-                    config={
-                        "temperature": 0.7,
-                        "max_output_tokens": 1024,
-                    }
-                )
-                
-                # Detect language (simple heuristic)
-                user_message = request.messages[-1].content
-                detected_lang = "es"  # default
-                if any(word in user_message.lower() for word in ["how", "what", "does", "can", "is", "price"]):
-                    detected_lang = "en"
-                elif any(char in user_message for char in ["א", "ב", "ג", "ד"]):
-                    detected_lang = "he"
-                
-                return ChatResponse(
-                    response=response.text,
-                    language_detected=detected_lang
-                )
-                
-            except Exception as e:
-                last_error = str(e)
-                if "429" in last_error or "RESOURCE_EXHAUSTED" in last_error:
-                    if attempt < max_retries - 1:
-                        await asyncio.sleep(retry_delay * (attempt + 1))
-                        continue
-                raise
+        # Send message and get response
+        user_message = UserMessage(text=user_text)
+        response_text = await llm_chat.send_message(user_message)
         
-        # If all retries failed
-        raise Exception(last_error)
+        # Detect language (simple heuristic)
+        detected_lang = "es"  # default
+        if any(word in user_text.lower() for word in ["how", "what", "does", "can", "is", "price"]):
+            detected_lang = "en"
+        elif any(char in user_text for char in ["א", "ב", "ג", "ד"]):
+            detected_lang = "he"
+        
+        return ChatResponse(
+            response=response_text,
+            language_detected=detected_lang
+        )
         
     except Exception as e:
         error_msg = str(e)
-        if "429" in error_msg or "RESOURCE_EXHAUSTED" in error_msg or "quota" in error_msg.lower():
+        if "429" in error_msg or "RESOURCE_EXHAUSTED" in error_msg or "quota" in error_msg.lower() or "rate" in error_msg.lower():
             raise HTTPException(
                 status_code=503, 
                 detail=f"El servicio de chat está temporalmente ocupado. Por favor intenta en unos segundos o contacta a {SUPPORT_EMAIL} | WhatsApp: {SUPPORT_WHATSAPP}"
