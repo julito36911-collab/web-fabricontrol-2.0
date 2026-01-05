@@ -2,21 +2,19 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional
 import os
-import asyncio
-import uuid
+import httpx
 from dotenv import load_dotenv
 from pathlib import Path
-from emergentintegrations.llm.chat import LlmChat, UserMessage
 
 # Load environment variables
 load_dotenv()
 
 router = APIRouter()
 
-# Configure Emergent LLM Key (better rate limits)
-EMERGENT_LLM_KEY = os.getenv("EMERGENT_LLM_KEY", "")
-# Fallback to Gemini API Key if no Emergent key
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+# Configure Groq API (FREE & FAST)
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
+GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
+GROQ_MODEL = "llama-3.3-70b-versatile"
 
 # Support contact
 SUPPORT_EMAIL = "julito36911@gmail.com"
