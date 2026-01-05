@@ -272,7 +272,7 @@ async def chat_health():
     """
     return {
         "configured": bool(GEMINI_API_KEY),
-        "model": "gemini-1.5-flash",
+        "model": "gemini-2.0-flash",
         "knowledge_base_loaded": len(KNOWLEDGE_BASE) > 0,
         "support_email": SUPPORT_EMAIL
     }
