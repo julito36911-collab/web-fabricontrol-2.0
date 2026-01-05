@@ -81,11 +81,11 @@ Both options available in ALL plans.
 3. Download, install, enter code
 
 ### UNIQUE FEATURES
-- ✅ Parametric Parts (unique in the market)
-- ✅ Integrated AI Chat
-- ✅ PWA Mobile App included
-- ✅ No black windows
-- ✅ Native Spanish
+- Parametric Parts (unique in the market)
+- Integrated AI Chat
+- PWA Mobile App included
+- No black windows
+- Native Spanish
 
 ### SUPPORT CONTACT
 - Email: julito36911@gmail.com
@@ -109,35 +109,9 @@ Both options available in ALL plans.
 ---
 Now respond to the user's question in THEIR language:"""
 
-class ChatMessage(BaseModel):
-- ✅ App Móvil PWA incluida
-- ✅ Sin ventanas negras
-- ✅ Español nativo
-
-### CONTACTO SOPORTE
-- Email: julito36911@gmail.com
-- WhatsApp: +972 52-648-9461
-
-## LINKS ÚTILES
-- Español: /precios, /caracteristicas, /documentacion.html
-- English: /en/pricing.html, /en/features.html, /en/documentation.html
-
-## TU ESTILO
-- Profesional pero amigable
-- Respuestas concisas (2-4 párrafos)
-- Usa emojis ocasionalmente
-- Siempre sugiere el trial gratuito
-- Si no sabes algo, ofrece conectar con soporte
-
-## BASE DE CONOCIMIENTO COMPLETA:
-
-{KNOWLEDGE_BASE}
-
----
-Responde ahora a la pregunta del usuario:"""
 
 class ChatMessage(BaseModel):
-    role: str  # 'user' or 'assistant'
+    role: str
     content: str
 
 class ChatRequest(BaseModel):
@@ -197,8 +171,8 @@ async def chat(request: ChatRequest):
             response_text = data["choices"][0]["message"]["content"]
         
         # Detect language (simple heuristic)
-        detected_lang = "es"  # default
-        if any(word in user_text.lower() for word in ["how", "what", "does", "can", "is", "price", "the", "you"]):
+        detected_lang = "es"
+        if any(word in user_text.lower() for word in ["how", "what", "does", "can", "is", "price", "the", "you", "i", "my"]):
             detected_lang = "en"
         elif any(char in user_text for char in ["א", "ב", "ג", "ד"]):
             detected_lang = "he"
