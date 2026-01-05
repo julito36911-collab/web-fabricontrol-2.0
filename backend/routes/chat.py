@@ -248,8 +248,9 @@ async def chat_health():
     Check if chat is properly configured
     """
     return {
-        "configured": bool(GEMINI_API_KEY),
-        "model": "gemini-2.0-flash",
+        "configured": bool(EMERGENT_LLM_KEY or GEMINI_API_KEY),
+        "model": "gemini-2.5-flash",
+        "provider": "emergent" if EMERGENT_LLM_KEY else "google",
         "knowledge_base_loaded": len(KNOWLEDGE_BASE) > 0,
         "support_email": SUPPORT_EMAIL
     }
