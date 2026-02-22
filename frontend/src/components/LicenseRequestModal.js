@@ -8,11 +8,13 @@ function LicenseRequestModal({ isOpen, onClose }) {
     email: '',
     telefono: '',
     cantidadUsuarios: '',
-    planDeseado: 'mensual'
+    planDeseado: 'anual'
   });
 
   const [sending, setSending] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
+
+  const REGISTER_URL = "https://fabricontrol-1.emergent.host/register";
 
   const handleChange = (e) => {
     setFormData({
@@ -24,7 +26,6 @@ function LicenseRequestModal({ isOpen, onClose }) {
   const sendRequest = async (e) => {
     e.preventDefault();
     
-    // Validación básica
     if (!formData.nombre || !formData.email || !formData.cantidadUsuarios) {
       setMessage({ type: 'error', text: '⚠️ Por favor complete los campos obligatorios (Nombre, Email, Usuarios)' });
       return;
@@ -48,7 +49,7 @@ function LicenseRequestModal({ isOpen, onClose }) {
       if (response.ok) {
         setMessage({ 
           type: 'success', 
-          text: '✅ Solicitud enviada. Recibirás el enlace de descarga y tu código de activación por email en menos de 24 horas.' 
+          text: '✅ Solicitud enviada. Recibirás tu código de activación por email en menos de 24 horas.' 
         });
         
         setTimeout(() => {
@@ -58,7 +59,7 @@ function LicenseRequestModal({ isOpen, onClose }) {
             email: '',
             telefono: '',
             cantidadUsuarios: '',
-            planDeseado: 'mensual'
+            planDeseado: 'anual'
           });
           onClose();
         }, 3000);
@@ -72,7 +73,7 @@ function LicenseRequestModal({ isOpen, onClose }) {
       console.error('Error:', error);
       setMessage({ 
         type: 'error', 
-        text: '❌ Error de conexión. Contacta directamente a support@fabricontrol.com' 
+        text: '❌ Error de conexión. Contacta directamente a julito36911@gmail.com' 
       });
     } finally {
       setSending(false);
@@ -87,8 +88,8 @@ function LicenseRequestModal({ isOpen, onClose }) {
         <button className="license-modal-close" onClick={onClose}>✕</button>
         
         <div className="license-modal-header">
-          <h2>📋 Solicitar Licencia de Prueba (30 Días Gratis)</h2>
-          <p>Complete el formulario y le enviaremos su licencia con el enlace de descarga</p>
+          <h2>☁️ Solicitar Licencia de Prueba (30 Días Gratis)</h2>
+          <p>100% en la nube - Sin descargas ni instalaciones</p>
         </div>
 
         <form onSubmit={sendRequest} className="license-form">
@@ -97,24 +98,25 @@ function LicenseRequestModal({ isOpen, onClose }) {
             <strong style={{color: '#16a34a'}}>✅ ¿Cómo funciona?</strong>
             <ul style={{marginTop: '0.5rem', paddingLeft: '1.2rem', marginBottom: 0}}>
               <li>1️⃣ Complete este formulario con sus datos</li>
-              <li>2️⃣ Recibirá por email en menos de 24h:
+              <li>2️⃣ Recibirá por email en máximo 24h:
                 <ul style={{paddingLeft: '1.5rem', marginTop: '0.25rem'}}>
-                  <li>📥 Link de descarga del instalador</li>
-                  <li>🔑 Su código de activación</li>
+                  <li>🔑 Su código de activación único</li>
+                  <li>📋 Instrucciones de registro</li>
                 </ul>
               </li>
-              <li>3️⃣ Descargue, instale e ingrese el código</li>
-              <li>4️⃣ ¡Listo! Disfrute de 30 días completos de prueba</li>
+              <li>3️⃣ Vaya a <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer" style={{color: '#16a34a', fontWeight: 600}}>fabricontrol-1.emergent.host/register</a></li>
+              <li>4️⃣ Ingrese su código y cree su cuenta</li>
+              <li>5️⃣ ¡Listo! Disfrute 30 días de prueba gratis</li>
             </ul>
           </div>
 
-          <div className="license-info-box" style={{background: '#fef3c7', borderColor: '#f59e0b', marginTop: '1rem'}}>
-            <strong style={{color: '#d97706'}}>💰 Después de los 30 días:</strong>
+          <div className="license-info-box" style={{background: '#eff6ff', borderColor: '#3b82f6', marginTop: '1rem'}}>
+            <strong style={{color: '#1d4ed8'}}>☁️ Sistema 100% en la Nube:</strong>
             <ul style={{marginTop: '0.5rem', paddingLeft: '1.2rem', marginBottom: 0}}>
-              <li>📞 Te contactaremos para que elijas tu plan:</li>
-              <li style={{marginLeft: '1.5rem'}}>• Plan Básico: $49/mes o $39/mes (anual)</li>
-              <li style={{marginLeft: '1.5rem'}}>• Plan Profesional: $129/mes o $103/mes (anual)</li>
-              <li>✅ Todos tus datos se mantienen intactos</li>
+              <li>🌐 Accede desde cualquier dispositivo</li>
+              <li>🔒 Datos seguros con respaldos automáticos</li>
+              <li>🔄 Actualizaciones automáticas incluidas</li>
+              <li>📱 Funciona en PC, tablet y celular</li>
             </ul>
           </div>
 
@@ -180,22 +182,22 @@ function LicenseRequestModal({ isOpen, onClose }) {
               required
             >
               <option value="">Selecciona cantidad</option>
-              <option value="1-3">1-3 usuarios (Plan Básico - $49/mes)</option>
-              <option value="4-10">4-10 usuarios (Plan Profesional - $129/mes)</option>
-              <option value="10+">Más de 10 usuarios (Enterprise - Cotización)</option>
+              <option value="1-5">1-5 usuarios</option>
+              <option value="6-10">6-10 usuarios</option>
+              <option value="10+">Más de 10 usuarios (Enterprise)</option>
             </select>
           </div>
 
           <div className="form-group">
-            <label htmlFor="planDeseado">Pago Preferido (después del trial)</label>
+            <label htmlFor="planDeseado">Plan de interés (después del trial)</label>
             <select
               id="planDeseado"
               name="planDeseado"
               value={formData.planDeseado}
               onChange={handleChange}
             >
-              <option value="mensual">💳 Mensual ($49 o $129 según usuarios)</option>
-              <option value="anual">💰 Anual (20% descuento - $39 o $103/mes)</option>
+              <option value="anual">💰 Pago Anual - $195/año (MEJOR VALOR)</option>
+              <option value="cuotas">💳 Pago en Cuotas - $290/año</option>
               <option value="por-decidir">🤔 Decidir después del trial</option>
             </select>
           </div>
