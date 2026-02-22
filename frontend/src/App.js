@@ -7,6 +7,7 @@ import Precios from './pages/Precios';
 import FAQ from './pages/FAQ';
 import Enterprise from './pages/Enterprise';
 import ChatWidget from './components/ChatWidget';
+import WhatsAppButton from './components/WhatsAppButton';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/enterprise" element={<Enterprise />} />
       </Routes>
       <ChatWidget />
+      <WhatsAppButton />
     </BrowserRouter>
   );
 }
