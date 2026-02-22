@@ -260,6 +260,29 @@ function Precios() {
         </div>
       </section>
 
+      {/* DEMO RÁPIDA - antes del FAQ */}
+      <section className="section" style={{paddingBottom: 0}}>
+        <div className="container">
+          <div style={{background: '#f0f9ff', border: '2px solid #0ea5e9', borderRadius: '16px', maxWidth: '900px', margin: '0 auto', padding: '2rem', textAlign: 'center'}}>
+            <h3 style={{color: '#0369a1', marginBottom: '0.5rem'}}>🎮 ¿Quieres ver el sistema antes de decidir?</h3>
+            <p style={{color: '#64748b', marginBottom: '1.5rem'}}>Entra a nuestra demo con datos de ejemplo — sin registrarte</p>
+            <div style={{display: 'flex', gap: '2rem', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '1.5rem'}}>
+              <div>
+                <span style={{color: '#64748b', fontSize: '0.875rem'}}>Usuario: </span>
+                <code style={{background: '#e0f2fe', padding: '0.25rem 0.75rem', borderRadius: '4px', fontWeight: 600}}>julito36911@gmail.com</code>
+              </div>
+              <div>
+                <span style={{color: '#64748b', fontSize: '0.875rem'}}>Contraseña: </span>
+                <code style={{background: '#e0f2fe', padding: '0.25rem 0.75rem', borderRadius: '4px', fontWeight: 600}}>password123</code>
+              </div>
+            </div>
+            <a href="https://fabricontrol-1.emergent.host/" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+              Probar Demo Ahora →
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ PRECIOS */}
       <section className="section">
         <div className="container">
