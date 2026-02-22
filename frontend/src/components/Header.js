@@ -21,6 +21,11 @@ function Header({ onRequestLicense }) {
             <li><a href="/recursos/" className="nav-link">Recursos</a></li>
             <li><a href="/documentacion.html" className="nav-link">Documentación</a></li>
             <li>
+              <a href="https://fabricontrol-1.emergent.host/" target="_blank" rel="noopener noreferrer" className="nav-link" style={{background: 'var(--accent)', color: 'white', padding: '0.5rem 1rem', borderRadius: '6px', fontWeight: 600}}>
+                🎮 Demo
+              </a>
+            </li>
+            <li>
               <a href="/en/" className="nav-link" style={{padding: '0.5rem 0.75rem', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '6px', fontSize: '0.875rem', fontWeight: 600}}>
                 🌐 EN
               </a>
