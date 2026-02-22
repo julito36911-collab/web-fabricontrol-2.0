@@ -4,10 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pricing - FabriControl ERP</title>
-  <link rel="stylesheet" href="/assets/css/main.css">
-  <link rel="icon" type="image/svg+xml" href="/assets/img/logos/favicon.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
+  <link rel="stylesheet" href="/static/css/main.css">
+  <link rel="stylesheet" href="/fabricontrol.css">
   <style>
     .header {
       background: var(--bg-white);
@@ -23,10 +21,7 @@
       align-items: center;
       flex-wrap: wrap;
     }
-    .nav-logo img {
-      height: 50px;
-      width: auto;
-    }
+    .nav-logo img { height: 50px; width: auto; }
     .nav-menu {
       display: flex;
       list-style: none;
@@ -43,16 +38,58 @@
       transition: var(--transition);
       text-decoration: none;
     }
-    .nav-link:hover {
-      background: var(--bg-light);
-      color: var(--primary);
+    .nav-link:hover { background: var(--bg-light); color: var(--primary); }
+    .nav-link.active { color: var(--primary); font-weight: 600; }
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      padding: 4rem 0 2rem;
+      text-align: center;
     }
-    .nav-link.active {
-      color: var(--primary);
+    .hero h1 { color: white; font-size: 3rem; margin-bottom: 1rem; }
+    .hero p { color: white; font-size: 1.25rem; opacity: 0.95; }
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: var(--radius-md);
       font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
     }
+    .btn-accent { background: var(--accent); color: white; }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-secondary { background: white; color: var(--primary); border: 2px solid var(--primary); }
+    .section { padding: 3rem 0; }
+    .section-light { background: var(--bg-light); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .text-center { text-align: center; }
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      position: relative;
+      padding: 2rem;
+      text-align: center;
+      border-radius: var(--radius-lg);
+    }
+    .pricing-card ul { text-align: left; list-style: none; padding: 0; }
+    .pricing-card li { padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; }
+    .footer {
+      background: var(--text-dark);
+      color: white;
+      padding: 2rem 0;
+    }
+    .footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
     
-    /* Mobile responsive menu */
     @media (max-width: 768px) {
       .nav { gap: 0.3rem; }
       .nav-logo img { height: 38px; }
@@ -66,243 +103,131 @@
         padding-top: 0.4rem;
         order: 2;
       }
-      .nav-menu li { margin: 0; }
-      .nav-link {
-        padding: 0.3rem 0.5rem;
-        font-size: 0.75rem;
-        white-space: nowrap;
-      }
-    }
-    @media (max-width: 480px) {
-      .nav-logo img { height: 30px !important; }
-      .nav-menu { gap: 0.15rem 0.3rem; }
-      .nav-link {
-        padding: 0.25rem 0.4rem;
-        font-size: 0.68rem;
-      }
+      .nav-link { padding: 0.3rem 0.5rem; font-size: 0.75rem; }
+      .hero h1 { font-size: 2rem; }
+      .pricing-card { transform: none !important; }
     }
   </style>
 </head>
 <body>
+
+<!-- BANNER -->
+<div style="background: linear-gradient(90deg, var(--accent) 0%, #f59e0b 100%); color: white; text-align: center; padding: 0.75rem; font-weight: 600;">
+  🔥 Launch Offer: $195/year (regular price $290) - Limited time only!
+</div>
 
 <!-- HEADER -->
 <header class="header">
   <div class="container">
     <nav class="nav">
       <div class="nav-logo">
-        <a href="/en/index.html">
-          <img src="/assets/img/logos/fabricontrol-logo.svg" alt="FabriControl" style="height: 50px;">
-        </a>
+        <a href="/en/"><img src="/assets/img/logo.png" alt="FabriControl" style="height: 50px;"></a>
       </div>
       <ul class="nav-menu">
-        <li><a href="/en/index.html" class="nav-link">Home</a></li>
+        <li><a href="/en/" class="nav-link">Home</a></li>
         <li><a href="/en/features.html" class="nav-link">Features</a></li>
         <li><a href="/en/pricing.html" class="nav-link active">Pricing</a></li>
-        <li><a href="/en/products/" class="nav-link">Products</a></li>
-        <li><a href="/en/resources/" class="nav-link">Resources</a></li>
+        <li><a href="/en/faq.html" class="nav-link">FAQ</a></li>
         <li><a href="/en/documentation.html" class="nav-link">Documentation</a></li>
-        <li><a href="/" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid var(--bg-gray); border-radius: 6px; font-size: 0.875rem; font-weight: 600;">🌐 ES</a></li>
+        <li><a href="/" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid var(--bg-gray); border-radius: 6px;">🌐 ES</a></li>
+        <li><a href="/he/" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid var(--bg-gray); border-radius: 6px;">🌐 עב</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="hero" style="padding: 4rem 0 2rem;">
-  <div class="container text-center">
-    <h1 style="font-family: 'Montserrat'; font-size: 3rem; color: white; margin-bottom: 1rem;">Simple, Transparent Pricing</h1>
-    <p style="font-size: 1.25rem; color: white; opacity: 0.95; max-width: 700px; margin: 0 auto;">
-      No hidden fees. Cancel anytime.
-    </p>
-  </div>
-</section>
-
-<!-- ACTIVATION EXPLANATION -->
-<section class="section" style="padding-top: 3rem; padding-bottom: 1rem;">
+<section class="hero">
   <div class="container">
-    <div style="max-width: 900px; margin: 0 auto; padding: 2.5rem; background: linear-gradient(135deg, #eef2ff 0%, #f9fafb 100%); border-radius: var(--radius-xl); border: 2px solid #e0e7ff;">
-      <h2 style="text-align: center; color: var(--primary); margin-bottom: 0.5rem; font-size: 1.75rem;">Did your 30-day free trial end?</h2>
-      <p style="text-align: center; color: var(--text-medium); margin-bottom: 2.5rem; font-size: 1.1rem;">Get your permanent license in 3 steps:</p>
-      
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
-        <div style="text-align: center;">
-          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">1️⃣</div>
-          <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">Choose your Plan</h4>
-          <p style="color: var(--text-medium); font-size: 0.95rem;">Select the plan below that fits your workshop.</p>
-        </div>
-        
-        <div style="text-align: center;">
-          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">2️⃣</div>
-          <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">Make Payment</h4>
-          <p style="color: var(--text-medium); font-size: 0.95rem;">Monthly subscription with no forced contracts.</p>
-        </div>
-        
-        <div style="text-align: center;">
-          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">3️⃣</div>
-          <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">Get your Code</h4>
-          <p style="color: var(--text-medium); font-size: 0.95rem;">We will email your Unique License Key within 24 hours. Enter it into the software and keep working seamlessly.</p>
-        </div>
-      </div>
-      
-      <div style="margin-top: 1.5rem; text-align: center; padding: 1rem; background: #dcfce7; border-radius: var(--radius-md);">
-        <p style="margin: 0; color: #166534; font-weight: 600;">✅ Your data is preserved! Everything stays intact.</p>
-      </div>
-    </div>
+    <h1>Plans that Fit Your Workshop</h1>
+    <p>No long contracts. No surprises. Simple annual payment.</p>
   </div>
 </section>
 
 <!-- PRICING CARDS -->
-<section class="section" style="padding-top: 2rem;">
+<section class="section">
   <div class="container">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+    <div class="pricing-grid">
       
       <!-- TRIAL -->
-      <div class="card" style="padding: 2rem; text-align: center; border: 2px solid var(--bg-gray);">
-        <div style="background: var(--highlight); color: var(--text-dark); font-weight: 700; font-size: 0.875rem; padding: 8px 16px; border-radius: var(--radius-md); display: inline-block; margin-bottom: 1rem;">
-          🆓 TRIAL
+      <div class="card pricing-card" style="border: 2px solid var(--bg-gray);">
+        <div style="background: var(--highlight); color: var(--text-dark); font-weight: 700; padding: 8px 16px; border-radius: 8px; display: inline-block; margin-bottom: 1rem;">
+          🆓 FREE TRIAL
         </div>
-        <h3 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem; color: var(--text-dark);">
-          $0<span style="font-size: 1rem; font-weight: 400; color: var(--text-medium);">/month</span>
-        </h3>
-        <p style="color: var(--text-medium); margin-bottom: 2rem; font-size: 0.95rem;">30 days free</p>
+        <h3 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem;">$0</h3>
+        <p style="color: var(--text-medium); margin-bottom: 2rem;">30 days free to try</p>
         
-        <ul style="text-align: left; list-style: none; margin-bottom: 2rem; padding: 0;">
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Unlimited users</span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span><strong>ALL</strong> modules</span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>No order limits</span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>No credit card</span>
+        <ul>
+          <li><span style="color: var(--success);">✓</span> <span>Unlimited users</span></li>
+          <li><span style="color: var(--success);">✓</span> <span><strong>ALL</strong> modules</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>No order limits</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>No credit card required</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>Full features</span></li>
+        </ul>
+        
+        <a href="https://pay.hotmart.com/L103719113Q" class="btn btn-secondary" style="width: 100%; display: block; margin-top: 2rem;">
+          Request Free Trial
+        </a>
+      </div>
+
+      <!-- ANNUAL - BEST VALUE -->
+      <div class="card pricing-card" style="border: 3px solid var(--accent); transform: scale(1.05);">
+        <div style="position: absolute; top: -12px; right: 20px; background: var(--accent); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.875rem; font-weight: 600;">
+          ⭐ BEST VALUE
+        </div>
+        <div style="background: var(--accent); color: white; font-weight: 700; padding: 8px 16px; border-radius: 8px; display: inline-block; margin-bottom: 1rem;">
+          💰 ANNUAL PAYMENT
+        </div>
+        <h3 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem;">
+          $195<span style="font-size: 1rem; font-weight: 400; color: var(--text-medium);">USD/year</span>
+        </h3>
+        <p style="color: var(--accent); margin-bottom: 2rem; font-weight: 600;">Equivalent to only $16.25/month</p>
+        
+        <ul>
+          <li><span style="color: var(--success);">✓</span> <span>Unlimited users</span></li>
+          <li><span style="color: var(--success);">✓</span> <span><strong>ALL</strong> modules included</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>Quotes & Inventory</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>Production Orders</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>Project Portal</span></li>
+          <li><span style="color: var(--success);">✓</span> <span><strong>Parametric Parts</strong></span></li>
+          <li><span style="color: var(--success);">✓</span> <span><strong>AI Chat with Gemini</strong></span></li>
+          <li><span style="color: var(--success);">✓</span> <span>PWA Mobile App</span></li>
+          <li style="background: #dcfce7; padding: 0.75rem; border-radius: 6px; margin-top: 0.5rem;">
+            <span style="color: #166534;">✓</span> <span style="color: #166534; font-weight: 600;">Save $95 vs installment plan</span>
           </li>
         </ul>
         
-        <a href="#" onclick="openLicenseModal(); return false;" class="btn btn-secondary btn-large" style="width: 100%;">Request Free License</a>
+        <a href="https://pay.hotmart.com/L103719113Q" target="_blank" class="btn btn-accent" style="width: 100%; display: block; margin-top: 2rem;">
+          Buy Annual License
+        </a>
       </div>
 
-      <!-- BASIC -->
-      <div class="card" style="padding: 2rem; text-align: center; border: 2px solid var(--primary);">
-        <div style="background: var(--primary); color: white; font-weight: 700; font-size: 0.875rem; padding: 8px 16px; border-radius: var(--radius-md); display: inline-block; margin-bottom: 1rem;">
-          💼 BASIC
+      <!-- INSTALLMENTS -->
+      <div class="card pricing-card" style="border: 2px solid var(--primary);">
+        <div style="background: var(--primary); color: white; font-weight: 700; padding: 8px 16px; border-radius: 8px; display: inline-block; margin-bottom: 1rem;">
+          💳 INSTALLMENT PLAN
         </div>
-        <h3 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem; color: var(--text-dark);">
-          $49<span style="font-size: 1rem; font-weight: 400; color: var(--text-medium);">/month</span>
+        <h3 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem;">
+          $290<span style="font-size: 1rem; font-weight: 400; color: var(--text-medium);">USD/year</span>
         </h3>
-        <p style="color: var(--text-medium); margin-bottom: 2rem; font-size: 0.95rem;">For Workshops Starting Out</p>
+        <p style="color: var(--text-medium); margin-bottom: 2rem;">Smart Payment (monthly installments)</p>
         
-        <ul style="text-align: left; list-style: none; margin-bottom: 2rem; padding: 0;">
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Up to <strong>3 users</strong></span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span><strong>All features included</strong></span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Quotations & Inventory</span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Production Orders</span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Projects Portal</span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span><strong>Parametric Parts</strong></span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span><strong>AI Chat with Gemini</strong></span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Mobile PWA App</span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; background: #fee2e2; padding: 0.75rem; border-radius: 6px; margin-top: 0.5rem;">
-            <span style="color: #dc2626;">✗</span> <span style="color: #dc2626; font-weight: 600;">No human technical support</span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; color: var(--text-light);">
-            <span>•</span> <span>Email only (no guaranteed response)</span>
+        <ul>
+          <li><span style="color: var(--success);">✓</span> <span>Same features as annual plan</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>Unlimited users</span></li>
+          <li><span style="color: var(--success);">✓</span> <span><strong>ALL</strong> modules</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>Email support</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>Monthly payment flexibility</span></li>
+          <li style="background: #fef3c7; padding: 0.75rem; border-radius: 6px; margin-top: 0.5rem;">
+            <span style="color: #92400e;">⚠️</span> <span style="color: #92400e; font-weight: 600;">Pay $95 more than annual</span>
           </li>
         </ul>
         
-        <a href="#" onclick="openLicenseModal(); return false;" class="btn btn-primary btn-large" style="width: 100%;">Request Basic License</a>
+        <a href="https://pay.hotmart.com/L103719113Q" target="_blank" class="btn btn-primary" style="width: 100%; display: block; margin-top: 2rem;">
+          Pay in Installments
+        </a>
       </div>
 
-      <!-- PROFESSIONAL -->
-      <div class="card" style="padding: 2rem; text-align: center; border: 3px solid var(--accent); position: relative; transform: scale(1.05);">
-        <div style="position: absolute; top: -12px; right: 20px; background: var(--accent); color: white; padding: 6px 16px; border-radius: var(--radius-lg); font-size: 0.875rem; font-weight: 600;">
-          ⭐ MOST POPULAR
-        </div>
-        <div style="background: var(--accent); color: white; font-weight: 700; font-size: 0.875rem; padding: 8px 16px; border-radius: var(--radius-md); display: inline-block; margin-bottom: 1rem;">
-          🚀 PROFESSIONAL
-        </div>
-        <h3 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem; color: var(--text-dark);">
-          $129<span style="font-size: 1rem; font-weight: 400; color: var(--text-medium);">/month</span>
-        </h3>
-        <p style="color: var(--text-medium); margin-bottom: 2rem; font-size: 0.95rem;">For Growing Factories</p>
-        
-        <ul style="text-align: left; list-style: none; margin-bottom: 2rem; padding: 0;">
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Up to <strong>10 users</strong></span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span><strong>All features included</strong></span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Quotations & Inventory</span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Production Orders</span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Projects Portal</span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span><strong>Parametric Parts</strong></span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span><strong>AI Chat with Gemini</strong></span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
-            <span style="color: var(--success);">✓</span> <span>Mobile PWA App</span>
-          </li>
-          <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; background: #dcfce7; padding: 0.75rem; border-radius: 6px; margin-top: 0.5rem;">
-            <span style="color: #166534;">✓</span> <span style="color: #166534; font-weight: 600;">Human Technical Support (Email 24h)</span>
-          </li>
-        </ul>
-        
-        <a href="#" onclick="openLicenseModal(); return false;" class="btn btn-accent btn-large" style="width: 100%;">Request Pro License</a>
-      </div>
-
-    </div>
-
-    <!-- ENTERPRISE -->
-    <div style="margin-top: 4rem; text-align: center;">
-      <div class="card" style="max-width: 900px; margin: 0 auto; padding: 3rem; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white;">
-        <h2 style="color: white; margin-bottom: 0.5rem;">🏢 Enterprise</h2>
-        <p style="font-size: 1.125rem; margin-bottom: 0.5rem; opacity: 0.95; font-weight: 600;">Industrial & Custom</p>
-        <p style="font-size: 1rem; margin-bottom: 2rem; opacity: 0.9;">Tailored solution with custom module development</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
-          <div>
-            <h4 style="color: white; font-size: 1rem;">✓ Unlimited users</h4>
-          </div>
-          <div>
-            <h4 style="color: white; font-size: 1rem;">✓ Dedicated account manager</h4>
-          </div>
-          <div>
-            <h4 style="color: white; font-size: 1rem;">✓ Custom modules</h4>
-          </div>
-        </div>
-        <button 
-          onclick="openQuoteModal()" 
-          class="btn btn-accent btn-large"
-          style="border: none; cursor: pointer; text-decoration: none; display: inline-block;"
-        >
-          Request Quote
-        </button>
-      </div>
     </div>
   </div>
 </section>
@@ -310,23 +235,23 @@
 <!-- FAQ -->
 <section class="section section-light">
   <div class="container">
-    <h2 class="text-center mb-4">Pricing FAQs</h2>
+    <h2 class="text-center" style="margin-bottom: 2rem; color: var(--primary);">Pricing FAQ</h2>
     <div style="max-width: 800px; margin: 0 auto;">
       <div class="card" style="margin-bottom: 1rem;">
-        <h4>Can I change plans later?</h4>
-        <p>Yes, you can upgrade or downgrade at any time.</p>
+        <h4>What's the difference between annual and installment payment?</h4>
+        <p>The <strong>annual payment ($195)</strong> is a one-time payment that gives you access for 1 full year. The <strong>installment plan ($290)</strong> splits the payment into monthly installments but costs $95 more in total.</p>
       </div>
       <div class="card" style="margin-bottom: 1rem;">
         <h4>How does the 30-day free trial work?</h4>
-        <p>Download the software, install it, and you have 30 full days to try it without needing a credit card.</p>
+        <p>Download the software, install it, and you have 30 full days to try it without needing a card.</p>
       </div>
       <div class="card" style="margin-bottom: 1rem;">
         <h4>What happens after the trial?</h4>
-        <p>If you decide to continue, purchase your preferred license and receive your code by email within 24h. If not, simply stop using the software.</p>
+        <p>If you decide to continue, purchase the license on Hotmart and receive your code by email within 24 hours. If not, simply stop using the software.</p>
       </div>
       <div class="card" style="margin-bottom: 1rem;">
         <h4>Do I lose my data when activating the license?</h4>
-        <p><strong>No.</strong> All your data (quotes, orders, inventory) remains intact when you activate your license.</p>
+        <p><strong>No.</strong> All your data (quotes, orders, inventory) stays intact when you activate your license.</p>
       </div>
     </div>
   </div>
@@ -334,675 +259,11 @@
 
 <!-- FOOTER -->
 <footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <h3>FabriControl</h3>
-        <p>The operating system for modern manufacturing.</p>
-      </div>
-      <div class="footer-links">
-        <h4>Product</h4>
-        <ul>
-          <li><a href="/en/features.html">Features</a></li>
-          <li><a href="/en/pricing.html">Pricing</a></li>
-        </ul>
-      </div>
-      <div class="footer-links">
-        <h4>Resources</h4>
-        <ul>
-          <li><a href="/en/resources/">Free Tools</a></li>
-          <li><a href="/en/faq.html">FAQ</a></li>
-          <li><a href="/">Versión en Español</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 FabriControl. All rights reserved.</p>
-    </div>
+  <div class="container text-center">
+    <p style="opacity: 0.8;">📧 julito36911@gmail.com | 📱 +972 52-648-9461</p>
+    <p style="opacity: 0.7; margin-top: 1rem;">© 2026 FabriControl. All rights reserved.</p>
   </div>
 </footer>
-
-<!-- ENTERPRISE QUOTE MODAL -->
-<div id="quoteModal" class="quote-modal-overlay" style="display: none;">
-  <div class="quote-modal-content">
-    <button class="quote-modal-close" onclick="closeQuoteModal()">✕</button>
-    
-    <div class="quote-modal-header">
-      <h2>🏢 Enterprise Quote</h2>
-      <p>Fill out the form and we'll contact you within 48 hours</p>
-    </div>
-
-    <form id="quoteForm" class="quote-form-en">
-      <div class="form-section">
-        <h3>📋 Company Information</h3>
-        
-        <div class="form-group">
-          <label for="companyName">Company Name *</label>
-          <input type="text" id="companyName" name="companyName" placeholder="e.g., Industrial Steel Inc." required>
-        </div>
-
-        <div class="form-group">
-          <label for="contactName">Contact Name *</label>
-          <input type="text" id="contactName" name="contactName" placeholder="e.g., John Smith" required>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="email" placeholder="contact@company.com" required>
-          </div>
-
-          <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="industry">Industry / Sector</label>
-          <select id="industry" name="industry">
-            <option value="">Select an option</option>
-            <option value="metalurgia">Metal & Manufacturing</option>
-            <option value="carpinteria">Industrial Woodworking</option>
-            <option value="plasticos">Plastics & Polymers</option>
-            <option value="textil">Textile</option>
-            <option value="alimentos">Food & Beverage</option>
-            <option value="electronica">Electronics</option>
-            <option value="automotriz">Automotive</option>
-            <option value="construccion">Construction</option>
-            <option value="otro">Other</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-section">
-        <h3>📊 Project Details</h3>
-
-        <div class="form-group">
-          <label for="currentUsers">Estimated Number of Users</label>
-          <input type="text" id="currentUsers" name="currentUsers" placeholder="e.g., 15-20 users">
-        </div>
-
-        <div class="form-group">
-          <label for="requirements">Specific Requirements</label>
-          <textarea id="requirements" name="requirements" placeholder="Describe the custom modules or specific features you need..." rows="4"></textarea>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="timeline">Desired Timeline</label>
-            <select id="timeline" name="timeline">
-              <option value="">Select</option>
-              <option value="inmediato">Immediate (1-2 weeks)</option>
-              <option value="1-mes">1 month</option>
-              <option value="2-3-meses">2-3 months</option>
-              <option value="6-meses">6 months or more</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="budget">Approximate Budget (USD)</label>
-            <select id="budget" name="budget">
-              <option value="">Select</option>
-              <option value="menos-5k">Less than $5,000</option>
-              <option value="5k-10k">$5,000 - $10,000</option>
-              <option value="10k-25k">$10,000 - $25,000</option>
-              <option value="25k-50k">$25,000 - $50,000</option>
-              <option value="mas-50k">More than $50,000</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      <div id="formMessage" class="form-message" style="display: none;"></div>
-
-      <div class="form-actions">
-        <button type="button" onclick="downloadAsPDF()" class="btn btn-secondary">
-          💾 Download to my PC
-        </button>
-        <button type="submit" id="submitBtn" class="btn btn-primary">
-          📧 Send by Email
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<style>
-.quote-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.75);
-  z-index: 9999;
-  padding: 1rem;
-  overflow-y: auto;
-}
-
-.quote-modal-content {
-  background: white;
-  border-radius: 16px;
-  max-width: 800px;
-  width: 100%;
-  margin: 2rem auto;
-  position: relative;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-.quote-modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: var(--bg-gray);
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: all 0.3s;
-  z-index: 1;
-}
-
-.quote-modal-close:hover {
-  background: #fee2e2;
-  color: #dc2626;
-  transform: rotate(90deg);
-}
-
-.quote-modal-header {
-  padding: 2.5rem 2.5rem 1.5rem;
-  border-bottom: 2px solid var(--bg-gray);
-  background: linear-gradient(135deg, #eef2ff 0%, #f9fafb 100%);
-  text-align: center;
-  border-radius: 16px 16px 0 0;
-}
-
-.quote-modal-header h2 {
-  margin: 0 0 0.5rem;
-  color: var(--primary);
-  font-size: 2rem;
-}
-
-.quote-modal-header p {
-  margin: 0;
-  color: var(--text-medium);
-  font-size: 1rem;
-}
-
-.quote-form-en {
-  padding: 2rem 2.5rem 2.5rem;
-}
-
-.form-section {
-  margin-bottom: 2rem;
-}
-
-.form-section h3 {
-  font-size: 1.25rem;
-  color: var(--text-dark);
-  margin-bottom: 1.25rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--bg-gray);
-}
-
-.form-group {
-  margin-bottom: 1.25rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: var(--text-dark);
-  font-size: 0.95rem;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 2px solid var(--bg-gray);
-  border-radius: 8px;
-  font-size: 1rem;
-  font-family: inherit;
-  transition: all 0.3s;
-  background: white;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-.form-group textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-}
-
-.form-actions {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 2px solid var(--bg-gray);
-}
-
-.form-actions button {
-  flex: 1;
-  padding: 1rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.form-message {
-  padding: 1rem;
-  border-radius: 8px;
-  margin-top: 1rem;
-  font-weight: 600;
-  text-align: center;
-}
-
-.form-message.success {
-  background: #dcfce7;
-  color: #166534;
-  border: 2px solid #86efac;
-}
-
-.form-message.error {
-  background: #fee2e2;
-  color: #dc2626;
-  border: 2px solid #fca5a5;
-}
-
-@media (max-width: 768px) {
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-  
-  .quote-modal-header {
-    padding: 2rem 1.5rem 1rem;
-  }
-  
-  .quote-form-en {
-    padding: 1.5rem;
-  }
-  
-  .form-actions {
-    flex-direction: column;
-  }
-}
-</style>
-
-<script>
-function openQuoteModal() {
-  document.getElementById('quoteModal').style.display = 'block';
-  document.body.style.overflow = 'hidden';
-}
-
-function closeQuoteModal() {
-  document.getElementById('quoteModal').style.display = 'none';
-  document.body.style.overflow = 'auto';
-}
-
-// Cerrar modal al hacer clic fuera
-document.getElementById('quoteModal')?.addEventListener('click', function(e) {
-  if (e.target === this) {
-    closeQuoteModal();
-  }
-});
-
-function downloadAsPDF() {
-  const form = document.getElementById('quoteForm');
-  const formData = new FormData(form);
-  
-  const content = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="UTF-8">
-      <title>Enterprise Quote - FabriControl</title>
-      <style>
-        body { font-family: Arial, sans-serif; padding: 40px; line-height: 1.6; }
-        h1 { color: #3B82F6; border-bottom: 3px solid #3B82F6; padding-bottom: 10px; }
-        h2 { color: #6366F1; margin-top: 30px; }
-        .field { margin-bottom: 20px; }
-        .label { font-weight: bold; color: #4B5563; }
-        .value { margin-top: 5px; padding: 10px; background: #F3F4F6; border-radius: 5px; }
-      </style>
-    </head>
-    <body>
-      <h1>🏢 Enterprise Quote Request - FabriControl</h1>
-      <p><strong>Date:</strong> ${new Date().toLocaleDateString('en-US')}</p>
-      
-      <h2>📋 Company Information</h2>
-      <div class="field">
-        <div class="label">Company Name:</div>
-        <div class="value">${formData.get('companyName') || 'N/A'}</div>
-      </div>
-      <div class="field">
-        <div class="label">Contact Name:</div>
-        <div class="value">${formData.get('contactName') || 'N/A'}</div>
-      </div>
-      <div class="field">
-        <div class="label">Email:</div>
-        <div class="value">${formData.get('email') || 'N/A'}</div>
-      </div>
-      <div class="field">
-        <div class="label">Phone:</div>
-        <div class="value">${formData.get('phone') || 'N/A'}</div>
-      </div>
-      <div class="field">
-        <div class="label">Industry:</div>
-        <div class="value">${formData.get('industry') || 'N/A'}</div>
-      </div>
-      
-      <h2>📊 Project Details</h2>
-      <div class="field">
-        <div class="label">Number of Users:</div>
-        <div class="value">${formData.get('currentUsers') || 'N/A'}</div>
-      </div>
-      <div class="field">
-        <div class="label">Specific Requirements:</div>
-        <div class="value">${formData.get('requirements') || 'N/A'}</div>
-      </div>
-      <div class="field">
-        <div class="label">Desired Timeline:</div>
-        <div class="value">${formData.get('timeline') || 'N/A'}</div>
-      </div>
-      <div class="field">
-        <div class="label">Approximate Budget:</div>
-        <div class="value">${formData.get('budget') || 'N/A'}</div>
-      </div>
-      
-      <hr style="margin: 40px 0; border: none; border-top: 2px solid #E5E7EB;">
-      <p style="color: #6B7280; font-size: 0.9rem;">This document will be reviewed by our Enterprise sales team. We will contact you within 48 hours.</p>
-    <!-- Chat Widget -->
-<script>window.REACT_APP_BACKEND_URL = 'https://fabri-site.preview.emergentagent.com';</script>
-<script src="/assets/js/chat-widget.js"></script>
-
-</body>
-    </html>
-  `;
-
-  const blob = new Blob([content], { type: 'text/html' });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `FabriControl_Enterprise_Quote_${Date.now()}.html`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url);
-
-  showMessage('✅ File downloaded successfully', 'success');
-}
-
-async function sendByEmail(e) {
-  e.preventDefault();
-  
-  const form = document.getElementById('quoteForm');
-  const formData = new FormData(form);
-  const submitBtn = document.getElementById('submitBtn');
-  
-  // Validación básica
-  if (!formData.get('companyName') || !formData.get('contactName') || !formData.get('email')) {
-    showMessage('⚠️ Please complete the required fields (Company, Contact, Email)', 'error');
-    return;
-  }
-
-  submitBtn.disabled = true;
-  submitBtn.textContent = '📧 Sending...';
-
-  try {
-    // Obtener BACKEND_URL del .env
-    const response = await fetch('/api/enterprise-quote', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        companyName: formData.get('companyName'),
-        contactName: formData.get('contactName'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        industry: formData.get('industry'),
-        currentUsers: formData.get('currentUsers'),
-        requirements: formData.get('requirements'),
-        timeline: formData.get('timeline'),
-        budget: formData.get('budget')
-      })
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      showMessage('✅ Quote sent successfully. We will contact you within 48h.', 'success');
-      setTimeout(() => {
-        form.reset();
-        closeQuoteModal();
-      }, 2000);
-    } else {
-      showMessage(`❌ Error: ${data.message || 'Could not send quote'}`, 'error');
-    }
-  } catch (error) {
-    console.error('Error sending quote:', error);
-    showMessage('❌ Connection error. Try downloading the form and sending it manually.', 'error');
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.textContent = '📧 Send by Email';
-  }
-}
-
-function showMessage(text, type) {
-  const messageDiv = document.getElementById('formMessage');
-  messageDiv.textContent = text;
-  messageDiv.className = `form-message ${type}`;
-  messageDiv.style.display = 'block';
-  
-  setTimeout(() => {
-    messageDiv.style.display = 'none';
-  }, 5000);
-}
-
-// Agregar event listener al formulario
-document.getElementById('quoteForm')?.addEventListener('submit', sendByEmail);
-
-// License Request Modal Functions
-function openLicenseModal() {
-  document.getElementById('licenseModal').style.display = 'block';
-  document.body.style.overflow = 'hidden';
-}
-
-function closeLicenseModal() {
-  document.getElementById('licenseModal').style.display = 'none';
-  document.body.style.overflow = 'auto';
-}
-
-// Cerrar modal al hacer clic fuera
-document.getElementById('licenseModal')?.addEventListener('click', function(e) {
-  if (e.target === this) {
-    closeLicenseModal();
-  }
-});
-
-async function sendLicenseRequest(e) {
-  e.preventDefault();
-  
-  const form = document.getElementById('licenseForm');
-  const formData = new FormData(form);
-  const submitBtn = document.getElementById('licenseSubmitBtn');
-  
-  // Validación básica
-  if (!formData.get('nombre') || !formData.get('email') || !formData.get('cantidadUsuarios')) {
-    showLicenseMessage('⚠️ Please complete required fields (Name, Email, Users)', 'error');
-    return;
-  }
-
-  submitBtn.disabled = true;
-  submitBtn.textContent = '📧 Sending...';
-
-  try {
-    const response = await fetch('/api/license-request', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        nombre: formData.get('nombre'),
-        empresa: formData.get('empresa'),
-        email: formData.get('email'),
-        telefono: formData.get('telefono'),
-        cantidadUsuarios: formData.get('cantidadUsuarios'),
-        planDeseado: formData.get('planDeseado')
-      })
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      showLicenseMessage('✅ Request sent successfully. You will receive your download link and activation code via email within 24 hours.', 'success');
-      setTimeout(() => {
-        form.reset();
-        closeLicenseModal();
-      }, 3000);
-    } else {
-      showLicenseMessage(`❌ Error: ${data.message || 'Could not send request'}`, 'error');
-    }
-  } catch (error) {
-    console.error('Error sending request:', error);
-    showLicenseMessage('❌ Connection error. Please contact support@fabricontrol.com', 'error');
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.textContent = '📧 Send Request';
-  }
-}
-
-function showLicenseMessage(text, type) {
-  const messageDiv = document.getElementById('licenseFormMessage');
-  messageDiv.textContent = text;
-  messageDiv.className = `form-message ${type}`;
-  messageDiv.style.display = 'block';
-  
-  setTimeout(() => {
-    messageDiv.style.display = 'none';
-  }, 5000);
-}
-
-// Agregar event listener al formulario de licencia
-document.getElementById('licenseForm')?.addEventListener('submit', sendLicenseRequest);
-</script>
-
-<!-- LICENSE REQUEST MODAL -->
-<div id="licenseModal" class="quote-modal-overlay" style="display: none;">
-  <div class="quote-modal-content">
-    <button class="quote-modal-close" onclick="closeLicenseModal()">✕</button>
-    
-    <div class="quote-modal-header">
-      <h2>📋 Request Trial License (30 Days Free)</h2>
-      <p>Fill out the form and we'll send you your license with the download link</p>
-    </div>
-
-    <form id="licenseForm" class="quote-form-en">
-      <div class="form-section">
-        <div style="background: #dcfce7; border: 2px solid #16a34a; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
-          <strong style="color: #16a34a;">✅ How it works:</strong>
-          <ul style="margin-top: 0.5rem; padding-left: 1.2rem; margin-bottom: 0;">
-            <li>1️⃣ Complete this form with your information</li>
-            <li>2️⃣ You will receive via email within 24h:
-              <ul style="padding-left: 1.5rem; margin-top: 0.25rem;">
-                <li>📥 Installer download link</li>
-                <li>🔑 Your activation code</li>
-              </ul>
-            </li>
-            <li>3️⃣ Download, install, and enter your code</li>
-            <li>4️⃣ Done! Enjoy 30 full days of trial</li>
-          </ul>
-        </div>
-
-        <div style="background: #fef3c7; border: 2px solid #f59e0b; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
-          <strong style="color: #d97706;">💰 After 30 days:</strong>
-          <ul style="margin-top: 0.5rem; padding-left: 1.2rem; margin-bottom: 0;">
-            <li>📞 We will contact you to choose your plan:</li>
-            <li style="margin-left: 1.5rem;">• Basic Plan: $49/month or $39/month (annual)</li>
-            <li style="margin-left: 1.5rem;">• Professional Plan: $129/month or $103/month (annual)</li>
-            <li>✅ All your data remains intact</li>
-          </ul>
-        </div>
-
-        <div class="form-group">
-          <label for="nombre">Full Name *</label>
-          <input type="text" id="nombre" name="nombre" placeholder="John Smith" required>
-        </div>
-
-        <div class="form-group">
-          <label for="empresa">Company</label>
-          <input type="text" id="empresa" name="empresa" placeholder="Metal Works Inc.">
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="email" placeholder="john@company.com" required>
-          </div>
-
-          <div class="form-group">
-            <label for="telefono">Phone/WhatsApp</label>
-            <input type="tel" id="telefono" name="telefono" placeholder="+1 (555) 123-4567">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="cantidadUsuarios">How many users do you need? *</label>
-          <select id="cantidadUsuarios" name="cantidadUsuarios" required>
-            <option value="">Select quantity</option>
-            <option value="1-3">1-3 users (Basic Plan - $49/mo)</option>
-            <option value="4-10">4-10 users (Professional Plan - $129/mo)</option>
-            <option value="10+">More than 10 users (Enterprise - Quote)</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="planDeseado">Preferred Payment (after trial)</label>
-          <select id="planDeseado" name="planDeseado">
-            <option value="mensual">💳 Monthly ($49 or $129 depending on users)</option>
-            <option value="anual">💰 Annual (20% discount - $39 or $103/month)</option>
-            <option value="por-decidir">🤔 Decide after trial</option>
-          </select>
-        </div>
-      </div>
-
-      <div id="licenseFormMessage" class="form-message" style="display: none;"></div>
-
-      <div class="form-actions">
-        <button type="button" onclick="closeLicenseModal()" class="btn btn-secondary">
-          Cancel
-        </button>
-        <button type="submit" id="licenseSubmitBtn" class="btn btn-primary">
-          📧 Send Request
-        </button>
-      </div>
-
-      <div style="margin-top: 1.5rem; padding: 1rem; background: #f3f4f6; border-radius: 8px; text-align: center;">
-        <strong>💡 Need help?</strong><br />
-        Contact: <a href="mailto:julito36911@gmail.com">julito36911@gmail.com</a><br />
-        WhatsApp: <a href="https://wa.me/972526489461">+972 52-648-9461</a>
-      </div>
-    </form>
-  </div>
-</div>
 
 <!-- Chat Widget -->
 <script>window.REACT_APP_BACKEND_URL = 'https://fabri-site.preview.emergentagent.com';</script>
