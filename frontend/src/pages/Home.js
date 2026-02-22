@@ -25,6 +25,48 @@ function Home() {
         </div>
       </section>
 
+      {/* DEMO EN VIVO */}
+      <section style={{background: 'linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%)', padding: '3rem 0'}}>
+        <div className="container">
+          <div style={{maxWidth: '800px', margin: '0 auto', textAlign: 'center', color: 'white'}}>
+            <div style={{fontSize: '3rem', marginBottom: '1rem'}}>🎮</div>
+            <h2 style={{color: 'white', marginBottom: '0.5rem', fontSize: '2rem'}}>
+              Prueba FabriControl Ahora Mismo
+            </h2>
+            <p style={{fontSize: '1.1rem', opacity: 0.95, marginBottom: '2rem'}}>
+              Explora el sistema completo sin registrarte. Datos de ejemplo incluidos.
+            </p>
+            <div style={{background: 'rgba(255,255,255,0.1)', borderRadius: '12px', padding: '2rem', marginBottom: '2rem', backdropFilter: 'blur(10px)'}}>
+              <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem', textAlign: 'left'}}>
+                <div>
+                  <p style={{margin: 0, opacity: 0.8, fontSize: '0.875rem'}}>👤 Usuario Demo</p>
+                  <p style={{margin: '0.25rem 0 0 0', fontWeight: 600, fontSize: '1.05rem', fontFamily: 'monospace', background: 'rgba(255,255,255,0.15)', padding: '0.5rem', borderRadius: '6px'}}>
+                    julito36911@gmail.com
+                  </p>
+                </div>
+                <div>
+                  <p style={{margin: 0, opacity: 0.8, fontSize: '0.875rem'}}>🔑 Contraseña</p>
+                  <p style={{margin: '0.25rem 0 0 0', fontWeight: 600, fontSize: '1.05rem', fontFamily: 'monospace', background: 'rgba(255,255,255,0.15)', padding: '0.5rem', borderRadius: '6px'}}>
+                    password123
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div style={{display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap'}}>
+              <a href="https://fabricontrol-1.emergent.host/" target="_blank" rel="noopener noreferrer" className="btn btn-accent btn-large" style={{minWidth: '200px'}}>
+                🖥️ Entrar a la Demo Web
+              </a>
+              <a href="https://fabricontrol-1.emergent.host/m" target="_blank" rel="noopener noreferrer" className="btn btn-large" style={{minWidth: '200px', background: 'white', color: '#1e3a5f', fontWeight: 600}}>
+                📱 Probar App Móvil
+              </a>
+            </div>
+            <p style={{marginTop: '1.5rem', fontSize: '0.875rem', opacity: 0.8}}>
+              💡 La demo tiene datos de ejemplo. Explora libremente — se reinicia periódicamente.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* DASHBOARD SHOWCASE */}
       <section className="section">
         <div className="container">
