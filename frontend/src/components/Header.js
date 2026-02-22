@@ -25,6 +25,11 @@ function Header({ onRequestLicense }) {
                 🌐 EN
               </a>
             </li>
+            <li>
+              <a href="/he/" className="nav-link" style={{padding: '0.5rem 0.75rem', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '6px', fontSize: '0.875rem', fontWeight: 600}}>
+                🌐 עב
+              </a>
+            </li>
           </ul>
         </nav>
       </div>
