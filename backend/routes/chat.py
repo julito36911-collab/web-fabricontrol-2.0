@@ -49,11 +49,13 @@ FabriControl is a complete ERP system designed for small and medium workshops an
 
 ## PRICING (2026)
 - FREE Trial: 30 days, all features, no credit card
-- Basic: $49/month (3 users)
-- Professional: $129/month (10 users + human support)
-- Enterprise: Custom pricing (unlimited users)
+- Annual: $195/year (BEST VALUE - equivalent to $16.25/month)
+- Installments: $290/year (monthly payments)
 
-All plans have THE SAME features. Only difference: number of users and support level.
+Both paid plans have THE SAME features. Only difference: payment method.
+All plans include: Unlimited users, ALL modules, Quotes, Production Orders, Inventory, Project Portal, Parametric Parts, AI Chat, PWA Mobile App.
+
+IMPORTANT: There are NO monthly plans. Only annual payment ($195) or installments ($290).
 
 ## INSTALLATION OPTIONS
 Two options available in ALL plans:
