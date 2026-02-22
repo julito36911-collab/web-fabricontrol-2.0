@@ -47,7 +47,7 @@ Pago Preferido: {request.planDeseado}
 📋 SIGUIENTE PASO:
 
 1. Accede al Panel Super Admin:
-   URL: https://fabri-site.preview.emergentagent.com/super-admin-login
+   URL: https://cloud-fabric-control.preview.emergentagent.com/super-admin-login
    Email: julito36911@gmail.com
    Password: 12345678
 
