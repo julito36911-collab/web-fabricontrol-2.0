@@ -3,16 +3,21 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import EnterpriseQuoteModal from '../components/EnterpriseQuoteModal';
 import LicenseRequestModal from '../components/LicenseRequestModal';
-import { Link } from 'react-router-dom';
 
 function Precios() {
-  const [isAnual, setIsAnual] = useState(false);
   const [showQuoteModal, setShowQuoteModal] = useState(false);
   const [showLicenseModal, setShowLicenseModal] = useState(false);
+
+  const HOTMART_LINK = "https://pay.hotmart.com/L103719113Q";
 
   return (
     <>
       <Header />
+
+      {/* BANNER DE OFERTA */}
+      <div style={{background: 'linear-gradient(90deg, var(--accent) 0%, #f59e0b 100%)', color: 'white', textAlign: 'center', padding: '0.75rem', fontWeight: 600}}>
+        🔥 Oferta de Lanzamiento: $195/año (precio normal $290) - ¡Solo por tiempo limitado!
+      </div>
 
       {/* HERO PRECIOS */}
       <section className="hero" style={{padding: '4rem 0 2rem'}}>
@@ -20,42 +25,8 @@ function Precios() {
           <div className="text-center">
             <h1 style={{fontSize: '3rem', marginBottom: '1rem', color: 'white'}}>Planes que se Ajustan a tu Taller</h1>
             <p style={{fontSize: '1.25rem', color: 'white', maxWidth: '700px', margin: '0 auto', opacity: 0.95}}>
-              Sin contratos largos. Sin sorpresas. Cancela cuando quieras.
+              Sin contratos largos. Sin sorpresas. Pago único anual.
             </p>
-          </div>
-
-          {/* Toggle Mensual/Anual */}
-          <div style={{marginTop: '2rem', textAlign: 'center'}}>
-            <div style={{display: 'inline-flex', background: 'var(--bg-gray)', borderRadius: 'var(--radius-lg)', padding: '4px'}}>
-              <button 
-                onClick={() => setIsAnual(false)}
-                style={{
-                  padding: '12px 32px',
-                  border: 'none',
-                  background: !isAnual ? 'white' : 'transparent',
-                  borderRadius: 'var(--radius-md)',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  transition: 'var(--transition)'
-                }}
-              >
-                💳 Mensual
-              </button>
-              <button 
-                onClick={() => setIsAnual(true)}
-                style={{
-                  padding: '12px 32px',
-                  border: 'none',
-                  background: isAnual ? 'white' : 'transparent',
-                  borderRadius: 'var(--radius-md)',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  transition: 'var(--transition)'
-                }}
-              >
-                💰 Anual <span style={{background: 'var(--accent)', color: 'white', padding: '2px 8px', borderRadius: '4px', fontSize: '0.75rem', marginLeft: '4px'}}>Ahorra 20%</span>
-              </button>
-            </div>
           </div>
         </div>
       </section>
@@ -71,19 +42,19 @@ function Precios() {
               <div style={{textAlign: 'center'}}>
                 <div style={{fontSize: '2.5rem', marginBottom: '0.5rem'}}>1️⃣</div>
                 <h4 style={{color: 'var(--text-dark)', marginBottom: '0.5rem'}}>Elige tu Plan</h4>
-                <p style={{color: 'var(--text-medium)', fontSize: '0.95rem'}}>Selecciona abajo el plan que mejor se adapte a tu taller.</p>
+                <p style={{color: 'var(--text-medium)', fontSize: '0.95rem'}}>Pago único anual o en cuotas mensuales.</p>
               </div>
               
               <div style={{textAlign: 'center'}}>
                 <div style={{fontSize: '2.5rem', marginBottom: '0.5rem'}}>2️⃣</div>
                 <h4 style={{color: 'var(--text-dark)', marginBottom: '0.5rem'}}>Realiza el Pago</h4>
-                <p style={{color: 'var(--text-medium)', fontSize: '0.95rem'}}>Tu suscripción es mensual y sin contratos forzosos.</p>
+                <p style={{color: 'var(--text-medium)', fontSize: '0.95rem'}}>Pago seguro con Hotmart. Tarjeta o PayPal.</p>
               </div>
               
               <div style={{textAlign: 'center'}}>
                 <div style={{fontSize: '2.5rem', marginBottom: '0.5rem'}}>3️⃣</div>
                 <h4 style={{color: 'var(--text-dark)', marginBottom: '0.5rem'}}>Recibe tu Código</h4>
-                <p style={{color: 'var(--text-medium)', fontSize: '0.95rem'}}>Te enviaremos tu Licencia Única a tu correo en menos de 24 horas. Ingrésala en el software y continúa trabajando donde lo dejaste.</p>
+                <p style={{color: 'var(--text-medium)', fontSize: '0.95rem'}}>Tu Licencia Única llega a tu correo en menos de 24 horas.</p>
               </div>
             </div>
             
@@ -97,17 +68,17 @@ function Precios() {
       {/* TABLA DE PLANES */}
       <section className="section" style={{paddingTop: '2rem'}}>
         <div className="container">
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', maxWidth: '1200px', margin: '0 auto'}}>
+          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: '1100px', margin: '0 auto'}}>
             
             {/* PLAN TRIAL */}
             <div className="card pricing-card" style={{position: 'relative', padding: '2rem', textAlign: 'center', border: '2px solid var(--bg-gray)'}}>
               <div style={{background: 'var(--highlight)', color: 'var(--text-dark)', fontWeight: 700, fontSize: '0.875rem', padding: '8px 16px', borderRadius: 'var(--radius-md)', display: 'inline-block', marginBottom: '1rem'}}>
-                🆓 TRIAL
+                🆓 TRIAL GRATIS
               </div>
               <h3 style={{fontSize: '2.5rem', fontWeight: 900, marginBottom: '0.5rem', color: 'var(--text-dark)'}}>
-                $0<span style={{fontSize: '1rem', fontWeight: 400, color: 'var(--text-medium)'}}>/mes</span>
+                $0
               </h3>
-              <p style={{color: 'var(--text-medium)', marginBottom: '2rem', fontSize: '0.95rem'}}>30 días gratis</p>
+              <p style={{color: 'var(--text-medium)', marginBottom: '2rem', fontSize: '0.95rem'}}>30 días gratis para probar</p>
               
               <ul style={{textAlign: 'left', listStyle: 'none', marginBottom: '2rem', padding: 0}}>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
@@ -128,93 +99,31 @@ function Precios() {
               </ul>
               
               <button onClick={() => setShowLicenseModal(true)} className="btn btn-secondary btn-large" style={{width: '100%'}}>
-                Solicitar Licencia Gratis
+                Solicitar Trial Gratis
               </button>
             </div>
 
-            {/* PLAN BÁSICO */}
-            <div className="card pricing-card" style={{position: 'relative', padding: '2rem', textAlign: 'center', border: '2px solid var(--primary)'}}>
-              <div style={{background: 'var(--primary)', color: 'white', fontWeight: 700, fontSize: '0.875rem', padding: '8px 16px', borderRadius: 'var(--radius-md)', display: 'inline-block', marginBottom: '1rem'}}>
-                💼 BÁSICO
-              </div>
-              <h3 style={{fontSize: '2.5rem', fontWeight: 900, marginBottom: '0.5rem', color: 'var(--text-dark)'}}>
-                ${isAnual ? '39' : '49'}<span style={{fontSize: '1rem', fontWeight: 400, color: 'var(--text-medium)'}}>/mes</span>
-              </h3>
-              {isAnual ? (
-                <p style={{color: 'var(--accent)', marginBottom: '2rem', fontSize: '0.875rem', fontWeight: 600}}>
-                  Ahorras $120/año
-                </p>
-              ) : (
-                <p style={{color: 'var(--text-medium)', marginBottom: '2rem', fontSize: '0.95rem'}}>
-                  Para Talleres que Inician
-                </p>
-              )}
-              
-              <ul style={{textAlign: 'left', listStyle: 'none', marginBottom: '2rem', padding: 0}}>
-                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span>Hasta <strong>3 usuarios</strong></span>
-                </li>
-                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span><strong>Todas las funcionalidades completas</strong></span>
-                </li>
-                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span>Cotizaciones e Inventario</span>
-                </li>
-                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span>Órdenes de Producción</span>
-                </li>
-                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span>Portal de Proyectos</span>
-                </li>
-                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span><strong>Piezas Paramétricas</strong></span>
-                </li>
-                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span><strong>Chat IA con Gemini</strong></span>
-                </li>
-                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span>App Móvil PWA</span>
-                </li>
-                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#fee2e2', padding: '0.75rem', borderRadius: '6px', marginTop: '0.5rem'}}>
-                  <span style={{color: '#dc2626'}}>✗</span> <span style={{color: '#dc2626', fontWeight: 600}}>Sin soporte técnico humano</span>
-                </li>
-                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-light)'}}>
-                  <span>•</span> <span>Solo email (sin respuesta garantizada)</span>
-                </li>
-              </ul>
-              
-              <button onClick={() => setShowLicenseModal(true)} className="btn btn-primary btn-large" style={{width: '100%'}}>
-                Solicitar Licencia Básica
-              </button>
-            </div>
-
-            {/* PLAN PRO */}
+            {/* PLAN ANUAL - MEJOR VALOR */}
             <div className="card pricing-card" style={{position: 'relative', padding: '2rem', textAlign: 'center', border: '3px solid var(--accent)', transform: 'scale(1.05)'}}>
               <div style={{position: 'absolute', top: '-12px', right: '20px', background: 'var(--accent)', color: 'white', padding: '6px 16px', borderRadius: 'var(--radius-lg)', fontSize: '0.875rem', fontWeight: 600}}>
-                ⭐ MÁS POPULAR
+                ⭐ MEJOR VALOR
               </div>
               <div style={{background: 'var(--accent)', color: 'white', fontWeight: 700, fontSize: '0.875rem', padding: '8px 16px', borderRadius: 'var(--radius-md)', display: 'inline-block', marginBottom: '1rem'}}>
-                🚀 PROFESIONAL
+                💰 PAGO ANUAL
               </div>
               <h3 style={{fontSize: '2.5rem', fontWeight: 900, marginBottom: '0.5rem', color: 'var(--text-dark)'}}>
-                ${isAnual ? '103' : '129'}<span style={{fontSize: '1rem', fontWeight: 400, color: 'var(--text-medium)'}}>/mes</span>
+                $195<span style={{fontSize: '1rem', fontWeight: 400, color: 'var(--text-medium)'}}>USD/año</span>
               </h3>
-              {isAnual ? (
-                <p style={{color: 'var(--accent)', marginBottom: '2rem', fontSize: '0.875rem', fontWeight: 600}}>
-                  Ahorras $312/año
-                </p>
-              ) : (
-                <p style={{color: 'var(--text-medium)', marginBottom: '2rem', fontSize: '0.95rem'}}>
-                  Para Fábricas en Crecimiento
-                </p>
-              )}
+              <p style={{color: 'var(--accent)', marginBottom: '2rem', fontSize: '0.95rem', fontWeight: 600}}>
+                Equivale a solo $16.25/mes
+              </p>
               
               <ul style={{textAlign: 'left', listStyle: 'none', marginBottom: '2rem', padding: 0}}>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span>Hasta <strong>10 usuarios</strong></span>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span>Usuarios ilimitados</span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span><strong>Todas las funcionalidades completas</strong></span>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span><strong>TODOS</strong> los módulos incluidos</span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
                   <span style={{color: 'var(--success)'}}>✓</span> <span>Cotizaciones e Inventario</span>
@@ -234,14 +143,55 @@ function Precios() {
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
                   <span style={{color: 'var(--success)'}}>✓</span> <span>App Móvil PWA</span>
                 </li>
-                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#dcfce7', padding: '0.75rem', borderRadius: '6px', marginTop: '0.5rem'}}>
-                  <span style={{color: '#166534'}}>✓</span> <span style={{color: '#166534', fontWeight: 600}}>Soporte Técnico Humano (Email 24h)</span>
+                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span>Soporte por Email</span>
+                </li>
+                <li style={{padding: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#dcfce7', borderRadius: '6px', marginTop: '0.5rem'}}>
+                  <span style={{color: '#166534'}}>✓</span> <span style={{color: '#166534', fontWeight: 600}}>Ahorra $95 vs pago en cuotas</span>
                 </li>
               </ul>
               
-              <button onClick={() => setShowLicenseModal(true)} className="btn btn-accent btn-large" style={{width: '100%'}}>
-                Solicitar Licencia Pro
-              </button>
+              <a href={HOTMART_LINK} target="_blank" rel="noopener noreferrer" className="btn btn-accent btn-large" style={{width: '100%', display: 'block', textDecoration: 'none'}}>
+                Comprar Licencia Anual
+              </a>
+            </div>
+
+            {/* PLAN EN CUOTAS */}
+            <div className="card pricing-card" style={{position: 'relative', padding: '2rem', textAlign: 'center', border: '2px solid var(--primary)'}}>
+              <div style={{background: 'var(--primary)', color: 'white', fontWeight: 700, fontSize: '0.875rem', padding: '8px 16px', borderRadius: 'var(--radius-md)', display: 'inline-block', marginBottom: '1rem'}}>
+                💳 PAGO EN CUOTAS
+              </div>
+              <h3 style={{fontSize: '2.5rem', fontWeight: 900, marginBottom: '0.5rem', color: 'var(--text-dark)'}}>
+                $290<span style={{fontSize: '1rem', fontWeight: 400, color: 'var(--text-medium)'}}>USD/año</span>
+              </h3>
+              <p style={{color: 'var(--text-medium)', marginBottom: '2rem', fontSize: '0.95rem'}}>
+                Pago Inteligente (cuotas mensuales)
+              </p>
+              
+              <ul style={{textAlign: 'left', listStyle: 'none', marginBottom: '2rem', padding: 0}}>
+                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span>Mismas funciones que el plan anual</span>
+                </li>
+                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span>Usuarios ilimitados</span>
+                </li>
+                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span><strong>TODOS</strong> los módulos</span>
+                </li>
+                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span>Soporte por Email</span>
+                </li>
+                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span>Flexibilidad de pago mensual</span>
+                </li>
+                <li style={{padding: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#fef3c7', borderRadius: '6px', marginTop: '0.5rem'}}>
+                  <span style={{color: '#92400e'}}>⚠️</span> <span style={{color: '#92400e', fontWeight: 600}}>Pagas $95 más que el anual</span>
+                </li>
+              </ul>
+              
+              <a href={HOTMART_LINK} target="_blank" rel="noopener noreferrer" className="btn btn-primary btn-large" style={{width: '100%', display: 'block', textDecoration: 'none'}}>
+                Pagar en Cuotas
+              </a>
             </div>
 
           </div>
@@ -281,8 +231,8 @@ function Precios() {
           <h2 className="text-center mb-4">Preguntas Frecuentes sobre Precios</h2>
           <div style={{maxWidth: '800px', margin: '0 auto'}}>
             <div className="card" style={{marginBottom: '1rem'}}>
-              <h4>¿Puedo cambiar de plan más tarde?</h4>
-              <p>Sí, puedes actualizar o bajar de plan en cualquier momento.</p>
+              <h4>¿Cuál es la diferencia entre pago anual y cuotas?</h4>
+              <p>El <strong>pago anual ($195)</strong> es un pago único que te da acceso por 1 año completo. El <strong>pago en cuotas ($290)</strong> divide el pago en mensualidades pero cuesta $95 más en total.</p>
             </div>
             <div className="card" style={{marginBottom: '1rem'}}>
               <h4>¿Cómo funciona el trial de 30 días gratis?</h4>
@@ -290,7 +240,7 @@ function Precios() {
             </div>
             <div className="card" style={{marginBottom: '1rem'}}>
               <h4>¿Qué pasa después del trial?</h4>
-              <p>Si decides continuar, compras la licencia que prefieras y recibes tu código por email en 24h. Si no, simplemente dejas de usar el software.</p>
+              <p>Si decides continuar, compras la licencia en Hotmart y recibes tu código por email en 24h. Si no, simplemente dejas de usar el software.</p>
             </div>
             <div className="card" style={{marginBottom: '1rem'}}>
               <h4>¿Pierdo mis datos al activar la licencia?</h4>
