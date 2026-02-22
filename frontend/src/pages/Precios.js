@@ -9,6 +9,8 @@ function Precios() {
   const [showLicenseModal, setShowLicenseModal] = useState(false);
 
   const HOTMART_LINK = "https://pay.hotmart.com/L103719113Q";
+  const REGISTER_URL = "https://fabricontrol-1.emergent.host/register";
+  const SYSTEM_URL = "https://fabricontrol-1.emergent.host/";
 
   return (
     <>
@@ -25,41 +27,47 @@ function Precios() {
           <div className="text-center">
             <h1 style={{fontSize: '3rem', marginBottom: '1rem', color: 'white'}}>Planes que se Ajustan a tu Taller</h1>
             <p style={{fontSize: '1.25rem', color: 'white', maxWidth: '700px', margin: '0 auto', opacity: 0.95}}>
-              Sin contratos largos. Sin sorpresas. Pago único anual.
+              ☁️ 100% en la Nube - Sin instalación - Solo necesitas internet
             </p>
           </div>
         </div>
       </section>
 
-      {/* BLOQUE EXPLICATIVO */}
+      {/* CÓMO FUNCIONA - MODELO NUBE */}
       <section className="section" style={{paddingTop: '3rem', paddingBottom: '1rem'}}>
         <div className="container">
           <div style={{maxWidth: '900px', margin: '0 auto', padding: '2.5rem', background: 'linear-gradient(135deg, #eef2ff 0%, #f9fafb 100%)', borderRadius: 'var(--radius-xl)', border: '2px solid #e0e7ff'}}>
-            <h2 style={{textAlign: 'center', color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.75rem'}}>¿Terminó tu prueba de 30 días gratis?</h2>
-            <p style={{textAlign: 'center', color: 'var(--text-medium)', marginBottom: '2.5rem', fontSize: '1.1rem'}}>Activa tu licencia permanente en 3 pasos:</p>
+            <h2 style={{textAlign: 'center', color: 'var(--primary)', marginBottom: '0.5rem', fontSize: '1.75rem'}}>¿Cómo funciona FabriControl?</h2>
+            <p style={{textAlign: 'center', color: 'var(--text-medium)', marginBottom: '2.5rem', fontSize: '1.1rem'}}>100% en la nube - Sin descargas ni instalaciones</p>
             
-            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem'}}>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '2rem'}}>
               <div style={{textAlign: 'center'}}>
                 <div style={{fontSize: '2.5rem', marginBottom: '0.5rem'}}>1️⃣</div>
-                <h4 style={{color: 'var(--text-dark)', marginBottom: '0.5rem'}}>Elige tu Plan</h4>
-                <p style={{color: 'var(--text-medium)', fontSize: '0.95rem'}}>Pago único anual o en cuotas mensuales.</p>
+                <h4 style={{color: 'var(--text-dark)', marginBottom: '0.5rem'}}>Compra tu Licencia</h4>
+                <p style={{color: 'var(--text-medium)', fontSize: '0.95rem'}}>Pago seguro con Hotmart. $195/año.</p>
               </div>
               
               <div style={{textAlign: 'center'}}>
                 <div style={{fontSize: '2.5rem', marginBottom: '0.5rem'}}>2️⃣</div>
-                <h4 style={{color: 'var(--text-dark)', marginBottom: '0.5rem'}}>Realiza el Pago</h4>
-                <p style={{color: 'var(--text-medium)', fontSize: '0.95rem'}}>Pago seguro con Hotmart. Tarjeta o PayPal.</p>
+                <h4 style={{color: 'var(--text-dark)', marginBottom: '0.5rem'}}>Recibe tu Código</h4>
+                <p style={{color: 'var(--text-medium)', fontSize: '0.95rem'}}>En máximo 24h recibirás tu código por email.</p>
               </div>
               
               <div style={{textAlign: 'center'}}>
                 <div style={{fontSize: '2.5rem', marginBottom: '0.5rem'}}>3️⃣</div>
-                <h4 style={{color: 'var(--text-dark)', marginBottom: '0.5rem'}}>Recibe tu Código</h4>
-                <p style={{color: 'var(--text-medium)', fontSize: '0.95rem'}}>Tu Licencia Única llega a tu correo en menos de 24 horas.</p>
+                <h4 style={{color: 'var(--text-dark)', marginBottom: '0.5rem'}}>Registra tu Empresa</h4>
+                <p style={{color: 'var(--text-medium)', fontSize: '0.95rem'}}>Ingresa tu código y crea tu cuenta.</p>
+              </div>
+              
+              <div style={{textAlign: 'center'}}>
+                <div style={{fontSize: '2.5rem', marginBottom: '0.5rem'}}>4️⃣</div>
+                <h4 style={{color: 'var(--text-dark)', marginBottom: '0.5rem'}}>¡Empieza a Trabajar!</h4>
+                <p style={{color: 'var(--text-medium)', fontSize: '0.95rem'}}>Accede desde cualquier navegador.</p>
               </div>
             </div>
             
             <div style={{marginTop: '1.5rem', textAlign: 'center', padding: '1rem', background: '#dcfce7', borderRadius: 'var(--radius-md)'}}>
-              <p style={{margin: 0, color: '#166534', fontWeight: 600}}>✅ ¡No pierdes tus datos! Todo se mantiene intacto.</p>
+              <p style={{margin: 0, color: '#166534', fontWeight: 600}}>☁️ Sin descargas, sin instalaciones. Solo necesitas internet.</p>
             </div>
           </div>
         </div>
@@ -94,7 +102,7 @@ function Precios() {
                   <span style={{color: 'var(--success)'}}>✓</span> <span>Sin tarjeta de crédito</span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span>Funciones completas</span>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span>100% en la nube</span>
                 </li>
               </ul>
               
@@ -135,16 +143,13 @@ function Precios() {
                   <span style={{color: 'var(--success)'}}>✓</span> <span>Portal de Proyectos</span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span><strong>Piezas Paramétricas</strong></span>
-                </li>
-                <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
                   <span style={{color: 'var(--success)'}}>✓</span> <span><strong>Chat IA con Gemini</strong></span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
                   <span style={{color: 'var(--success)'}}>✓</span> <span>App Móvil PWA</span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span>Soporte por Email</span>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span>Respaldos automáticos</span>
                 </li>
                 <li style={{padding: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#dcfce7', borderRadius: '6px', marginTop: '0.5rem'}}>
                   <span style={{color: '#166534'}}>✓</span> <span style={{color: '#166534', fontWeight: 600}}>Ahorra $95 vs pago en cuotas</span>
@@ -179,7 +184,7 @@ function Precios() {
                   <span style={{color: 'var(--success)'}}>✓</span> <span><strong>TODOS</strong> los módulos</span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
-                  <span style={{color: 'var(--success)'}}>✓</span> <span>Soporte por Email</span>
+                  <span style={{color: 'var(--success)'}}>✓</span> <span>100% en la nube</span>
                 </li>
                 <li style={{padding: '0.5rem 0', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
                   <span style={{color: 'var(--success)'}}>✓</span> <span>Flexibilidad de pago mensual</span>
@@ -207,7 +212,7 @@ function Precios() {
                   <h4 style={{color: 'white', fontSize: '1rem'}}>✓ Usuarios ilimitados</h4>
                 </div>
                 <div>
-                  <h4 style={{color: 'white', fontSize: '1rem'}}>✓ Gestor de cuenta dedicado</h4>
+                  <h4 style={{color: 'white', fontSize: '1rem'}}>✓ Servidor dedicado</h4>
                 </div>
                 <div>
                   <h4 style={{color: 'white', fontSize: '1rem'}}>✓ Módulos a medida</h4>
@@ -225,30 +230,60 @@ function Precios() {
         </div>
       </section>
 
-      {/* FAQ PRECIOS */}
+      {/* SECCIÓN NUBE */}
       <section className="section section-light">
         <div className="container">
-          <h2 className="text-center mb-4">Preguntas Frecuentes sobre Precios</h2>
+          <div className="text-center mb-4">
+            <h2 style={{color: 'var(--primary)'}}>☁️ Sistema 100% en la Nube</h2>
+            <p style={{color: 'var(--text-medium)'}}>Sin instalaciones. Sin complicaciones. Solo resultados.</p>
+          </div>
+          
+          <div className="grid grid-3">
+            <div className="card text-center">
+              <div style={{fontSize: '3rem', marginBottom: '1rem'}}>🌐</div>
+              <h3 style={{color: 'var(--primary)'}}>Accede desde cualquier lugar</h3>
+              <p>Casa, oficina, fábrica o de viaje. Solo necesitas internet y un navegador.</p>
+            </div>
+            
+            <div className="card text-center">
+              <div style={{fontSize: '3rem', marginBottom: '1rem'}}>🔒</div>
+              <h3 style={{color: 'var(--primary)'}}>Datos siempre seguros</h3>
+              <p>Servidores protegidos con respaldos automáticos. Nunca pierdas información.</p>
+            </div>
+            
+            <div className="card text-center">
+              <div style={{fontSize: '3rem', marginBottom: '1rem'}}>🔄</div>
+              <h3 style={{color: 'var(--primary)'}}>Actualizaciones automáticas</h3>
+              <p>Siempre tienes la última versión sin hacer nada. Mejoras continuas incluidas.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ PRECIOS */}
+      <section className="section">
+        <div className="container">
+          <h2 className="text-center mb-4">Preguntas Frecuentes</h2>
           <div style={{maxWidth: '800px', margin: '0 auto'}}>
+            <div className="card" style={{marginBottom: '1rem'}}>
+              <h4>¿Necesito instalar algo?</h4>
+              <p><strong>No.</strong> FabriControl funciona 100% en la nube. Solo necesitas un navegador web (Chrome, Firefox, Edge, Safari) y conexión a internet. Accede desde tu computadora, tablet o celular.</p>
+            </div>
+            <div className="card" style={{marginBottom: '1rem'}}>
+              <h4>¿Cómo funciona el trial de 30 días gratis?</h4>
+              <p>Solicitas tu licencia de prueba, recibes tu código por email, te registras en el sistema y tienes 30 días completos para probarlo. Todo en la nube, sin descargar nada.</p>
+            </div>
+            <div className="card" style={{marginBottom: '1rem'}}>
+              <h4>¿Puedo usar el sistema sin internet?</h4>
+              <p>Se requiere conexión a internet para usar FabriControl. Tus datos están seguros en nuestros servidores con respaldos automáticos diarios.</p>
+            </div>
             <div className="card" style={{marginBottom: '1rem'}}>
               <h4>¿Cuál es la diferencia entre pago anual y cuotas?</h4>
               <p>El <strong>pago anual ($195)</strong> es un pago único que te da acceso por 1 año completo. El <strong>pago en cuotas ($290)</strong> divide el pago en mensualidades pero cuesta $95 más en total.</p>
             </div>
             <div className="card" style={{marginBottom: '1rem'}}>
-              <h4>¿Cómo funciona el trial de 30 días gratis?</h4>
-              <p>Descargas el software, lo instalas y tienes 30 días completos para probarlo sin necesidad de tarjeta.</p>
-            </div>
-            <div className="card" style={{marginBottom: '1rem'}}>
-              <h4>¿Qué pasa después del trial?</h4>
-              <p>Si decides continuar, compras la licencia en Hotmart y recibes tu código por email en 24h. Si no, simplemente dejas de usar el software.</p>
-            </div>
-            <div className="card" style={{marginBottom: '1rem'}}>
-              <h4>¿Pierdo mis datos al activar la licencia?</h4>
-              <p><strong>No.</strong> Todos tus datos (cotizaciones, órdenes, inventario) se mantienen intactos al activar tu licencia.</p>
-            </div>
-            <div className="card" style={{marginBottom: '1rem', background: 'linear-gradient(135deg, #eef2ff 0%, #f9fafb 100%)', border: '2px solid var(--primary)'}}>
-              <h4 style={{color: 'var(--primary)'}}>📚 ¿Quieres saber más sobre la instalación?</h4>
-              <p>Lee nuestra <a href="/documentacion.html" style={{color: 'var(--accent)', fontWeight: 600, textDecoration: 'underline'}}>Documentación Técnica completa</a> con información sobre MongoDB, opciones de servidor (Local/LAN/Nube), y arquitectura del sistema.</p>
+              <h4>¿Dónde accedo al sistema?</h4>
+              <p>Una vez que tengas tu código, ve a <a href={REGISTER_URL} target="_blank" rel="noopener noreferrer" style={{color: 'var(--accent)', fontWeight: 600}}>{REGISTER_URL}</a> para registrar tu empresa. Luego accede desde <a href={SYSTEM_URL} target="_blank" rel="noopener noreferrer" style={{color: 'var(--accent)', fontWeight: 600}}>{SYSTEM_URL}</a></p>
             </div>
           </div>
         </div>
