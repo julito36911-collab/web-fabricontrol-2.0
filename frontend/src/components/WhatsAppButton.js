@@ -13,7 +13,7 @@ export default function WhatsAppButton() {
       title="Contactar por WhatsApp"
       style={{
         position: 'fixed',
-        bottom: '5.5rem',
+        bottom: '10rem',
         right: '1.5rem',
         width: '52px',
         height: '52px',
