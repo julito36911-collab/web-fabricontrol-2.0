@@ -594,4 +594,56 @@ a:hover {
     padding: 1.5rem !important;
     margin: 1rem !important;
   }
+
+
+/* ========================================
+   RTL SUPPORT FOR HEBREW
+   ======================================== */
+
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .nav-menu {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .grid,
+[dir="rtl"] .grid-2,
+[dir="rtl"] .grid-3,
+[dir="rtl"] .grid-4 {
+  direction: rtl;
+}
+
+[dir="rtl"] .card {
+  text-align: right;
+}
+
+[dir="rtl"] ul {
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+[dir="rtl"] .hero-content,
+[dir="rtl"] .text-center {
+  text-align: center;
+}
+
+[dir="rtl"] .footer-grid {
+  direction: rtl;
+}
+
+[dir="rtl"] .feature-icon {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+[dir="rtl"] .feature-list li {
+  text-align: right;
+}
+
+[dir="rtl"] .pricing-card ul li {
+  flex-direction: row-reverse;
+}
+
 }
