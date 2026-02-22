@@ -67,6 +67,9 @@ Convert a static HTML/CSS website for "FabriControl" ERP into a fully functional
 - ✅ Documentation updated (ES + EN) to reflect 100% cloud model
 - ✅ Pricing pages: $195/year annual, $290/year installments on ES/EN/HE
 - ✅ Hotmart payment link on all pricing pages
+- ✅ Live Demo section on all pages (ES/EN/HE) with credentials and direct links
+- ✅ WhatsApp floating button (green, +972526489461) on all pages above chat widget
+- ✅ Demo button in navigation menu (all languages)
 - ✅ Resend email integration for license requests and enterprise quotes
 - ✅ License request form (cloud-based trial flow)
 - ✅ Enterprise quote form
