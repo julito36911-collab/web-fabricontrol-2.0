@@ -1,98 +1,17 @@
 # FabriControl - Base de Conocimiento Completa para Chat IA
 
-Fecha de actualización: Enero 5, 2026
+Fecha de actualización: Diciembre 2025
 
 ---
 
-## 🎯 OPCIONES DE INSTALACIÓN - INFORMACIÓN CRÍTICA
+## INFORMACIÓN FUNDAMENTAL: FabriControl es 100% EN LA NUBE
 
-### **FabriControl ofrece 2 formas de instalación**
-
-#### **OPCIÓN 1: INSTALACIÓN LOCAL (MongoDB en el PC del cliente)**
-
-**Flujo de instalación:**
-```
-1. Instalador: 500 MB (incluye MongoDB completo)
-2. Se instala en: C:\Program Files\FabriControl\
-3. Cliente hace doble clic en "FabriControl"
-4. [SIN VENTANAS NEGRAS] - Todo en segundo plano
-5. MongoDB inicia automáticamente (background, local)
-6. Backend inicia automáticamente (background)
-7. Navegador se abre automáticamente
-8. Usuario ingresa credenciales
-9. Sistema valida licencia contra Railway
-10. Datos guardados LOCALMENTE en el PC
-```
-
-**Ventajas:**
-- ✅ Rápido - no depende de internet para trabajar
-- ✅ Privacidad máxima - datos físicamente en su PC
-- ✅ Sin costos adicionales de nube
-- ✅ Experiencia profesional - sin ventanas negras
-
-**Limitaciones:**
-- ❌ Solo accesible desde red local
-- ⚠️ Requiere internet SOLO para validar licencia al login
-
-**Ideal para:** Talleres pequeños, una sola ubicación
-
----
-
-#### **OPCIÓN 2: INSTALACIÓN NUBE (MongoDB Atlas en la nube)**
-
-**Flujo de instalación:**
-```
-1. Administrador crea MongoDB Atlas para el cliente
-2. Instalador: 150 MB (sin MongoDB)
-3. Se instala en: C:\Program Files\FabriControl\
-4. Durante instalación, cliente ingresa URL MongoDB Atlas
-5. Cliente hace doble clic en "FabriControl"
-6. [SIN VENTANAS NEGRAS] - Todo en segundo plano
-7. Backend inicia (se conecta a nube)
-8. Navegador se abre automáticamente
-9. Usuario ingresa credenciales
-10. Sistema valida licencia contra Railway
-11. Datos guardados en MONGODB ATLAS (nube)
-```
-
-**Ventajas:**
-- ✅ Acceso desde cualquier lugar con internet
-- ✅ Múltiples sedes trabajando simultáneamente
-- ✅ Backups automáticos en la nube
-- ✅ Experiencia profesional - sin ventanas negras
-
-**Limitaciones:**
-- ⚠️ Requiere internet SIEMPRE
-- ⚠️ Costo adicional de MongoDB Atlas (cliente paga)
-
-**Ideal para:** Empresas con múltiples ubicaciones, trabajo remoto
-
----
-
-### **PANEL DE CONTROL - RAILWAY**
-
-**URL:** https://fabricontrol.railway.app/super-admin-login
-
-**Control total de licencias:**
-- Gestionar TODAS las licencias de clientes
-- Activar/Suspender/Cancelar licencias
-- Ver historial de uso
-- **IMPORTANTE:** Ambas opciones (LOCAL y NUBE) validan licencias aquí
-
----
-
-### **COMPARACIÓN RÁPIDA**
-
-| Aspecto | LOCAL | NUBE |
-|---------|-------|------|
-| Tamaño instalador | 500 MB | 150 MB |
-| MongoDB | En PC cliente | MongoDB Atlas |
-| Datos | PC local | Nube |
-| Acceso | Red local | Cualquier lugar |
-| Internet | Solo login | Siempre |
-| Costo extra | No | Sí (Atlas) |
-| Ventanas negras | ❌ NO | ❌ NO |
-| Mejor para | Taller pequeño | Empresa distribuida |
+**MUY IMPORTANTE:** FabriControl es un sistema SaaS (Software as a Service) completamente basado en la nube. 
+- NO hay descargas
+- NO hay instalaciones en PC
+- NO hay instaladores
+- Funciona 100% desde el navegador web
+- Acceso instantáneo tras activación de cuenta
 
 ---
 
@@ -101,133 +20,106 @@ Fecha de actualización: Enero 5, 2026
 FabriControl es un sistema ERP integral diseñado específicamente para talleres y fábricas pequeñas y medianas que necesitan digitalizar y controlar todo su proceso productivo: desde la cotización inicial hasta la entrega final, con gestión de inventario, máquinas, proyectos y **asistente de IA con Gemini incluido**.
 
 ### Elevator Pitch
-"FabriControl es el ERP que tu taller merece, al precio que puedes pagar. Controla cotizaciones, producción e inventario desde **$49/mes**. Sin complicaciones."
+"FabriControl es el ERP que tu taller merece, al precio que puedes pagar. Controla cotizaciones, producción e inventario desde $195/año. Sin complicaciones. 100% en la nube."
 
 ---
 
-## Planes y Precios (ACTUALIZADOS 2026)
+## ¿Cómo funciona? (Modelo 100% Nube/SaaS)
 
-### 🆓 PLAN TRIAL (Gratis 30 días)
+FabriControl se accede completamente desde el navegador web. No requiere instalación de ningún tipo.
+
+### Pasos para empezar:
+1. **Solicitar prueba gratuita:** Completa el formulario en /precios (español) o /en/pricing.html (inglés)
+2. **Recibir acceso:** En menos de 24 horas recibirás por email tu código de activación y enlace de acceso
+3. **Crear tu cuenta:** Ve al enlace recibido, ingresa tu código y crea tu usuario
+4. **Empieza a usar:** Abre tu navegador, inicia sesión y comienza a gestionar tu taller
+5. **Desde cualquier dispositivo:** PC, tablet, celular — sin instalar nada
+
+### Ventajas del modelo en la nube:
+- ✅ Acceso desde cualquier lugar con internet
+- ✅ Sin costos de servidores ni hardware
+- ✅ Actualizaciones automáticas incluidas
+- ✅ Backups automáticos diarios
+- ✅ Múltiples usuarios simultáneos
+- ✅ Funciona en Windows, Mac, Linux, Android, iOS
+- ✅ Sin mantenimiento técnico
+
+---
+
+## Planes y Precios (2025-2026)
+
+### 🆓 PERÍODO DE PRUEBA GRATUITO (30 días)
 - **Duración:** 30 días completos
 - **Usuarios:** Ilimitados durante el trial
 - **Módulos:** TODOS los módulos completos
 - **Características:** 100% iguales a los planes de pago
 - **Requiere tarjeta:** NO
 - **Cómo obtenerlo:** 
-  1. Completa el formulario en www.fabricontrol.com/precios
-  2. Recibirás por email (en menos de 24h): enlace de descarga + código de activación
-  3. Descarga, instala e ingresa el código
+  1. Completa el formulario en /precios o /en/pricing.html
+  2. Recibirás por email tu código de activación (en menos de 24h)
+  3. Ingresa al enlace, activa tu cuenta y comienza
 - **Al finalizar:** Si no pagas, el acceso se bloquea. Tus datos se mantienen seguros.
 
-### 💼 PLAN BÁSICO ($49/mes o $39/mes anual)
-- **Precio Mensual:** $49/mes
-- **Precio Anual:** $39/mes (ahorra $120/año = 20% descuento)
-- **Usuarios:** Hasta **3 usuarios**
-- **Para:** Talleres que Inician
+### 💼 PLAN ANUAL - $195/año (MEJOR VALOR)
+- **Precio:** $195/año (pago único anual)
+- **Equivalente:** ~$16.25/mes
+- **Usuarios:** Ilimitados
+- **Módulos:** TODOS incluidos
+- **Características:** 100% completas
+- **Ahorro vs cuotas:** $95/año
 
-**Características Incluidas (TODAS):**
-- ✅ Cotizaciones e Inventario
-- ✅ Órdenes de Producción
-- ✅ Portal de Proyectos
-- ✅ **Piezas Paramétricas** (característica única de FabriControl)
-- ✅ **Chat IA con Gemini** (incluido)
-- ✅ App Móvil PWA para operarios
-- ✅ Dashboard completo
-- ✅ Gestión de Máquinas
-- ✅ BOM (Bill of Materials)
-- ✅ Órdenes de Compra
-- ✅ Permisos y roles
-- ✅ Notificaciones
-- ✅ Exportación a Excel
-- ✅ Códigos QR
-
-**Límites:** NINGUNO. Sin límites de órdenes, cotizaciones o items.
-
-**Soporte:**
-- ❌ Sin soporte técnico humano
-- ✉️ Solo email sin respuesta garantizada
-
-**Diferencia con Plan Pro:** Solo el número de usuarios (3 vs 10) y el soporte.
-
-### 🚀 PLAN PROFESIONAL ($129/mes o $103/mes anual) ⭐ MÁS POPULAR
-- **Precio Mensual:** $129/mes
-- **Precio Anual:** $103/mes (ahorra $312/año = 20% descuento)
-- **Usuarios:** Hasta **10 usuarios**
-- **Para:** Fábricas en Crecimiento
-
-**Características Incluidas:**
-- ✅ **TODAS las mismas características que el Plan Básico**
-- ✅ Cotizaciones e Inventario
-- ✅ Órdenes de Producción
-- ✅ Portal de Proyectos
-- ✅ **Piezas Paramétricas**
-- ✅ **Chat IA con Gemini**
-- ✅ App Móvil PWA
-- ✅ Dashboard completo
-- ✅ TODO lo del plan básico
-
-**Límites:** NINGUNO. Sin límites de órdenes, cotizaciones o items.
-
-**Soporte:**
-- ✅ **Soporte Técnico Humano**
-- ✉️ Email con respuesta garantizada en 24 horas
-
-**Diferencia con Plan Básico:** Solo el número de usuarios (10 vs 3) y el soporte humano.
+### 💳 PLAN CUOTAS - $290/año
+- **Precio:** $290/año (pagos mensuales)
+- **Mismo acceso:** Exactamente las mismas funcionalidades que el plan anual
+- **Ideal para:** Quienes prefieren pagos distribuidos
+- **Diferencia con plan anual:** Solo el método de pago. El producto es idéntico.
 
 ### 🏢 PLAN ENTERPRISE (Cotización personalizada)
 - **Precio:** A cotizar según necesidades
 - **Usuarios:** Ilimitados
 - **Para:** Industrial & Personalizado
-- **Características:**
-  - ✅ Todas las funcionalidades estándar
-  - ✅ **Gestor de cuenta dedicado**
-  - ✅ **Módulos personalizados** (desarrollo a medida)
+- **Características especiales:**
+  - ✅ Gestor de cuenta dedicado
+  - ✅ Módulos personalizados (desarrollo a medida)
   - ✅ Soporte prioritario
-  - ✅ Capacitación dedicada
+  - ✅ Capacitación dedicada (10 horas remotas)
   - ✅ Integración con sistemas existentes
-- **Contacto:** www.fabricontrol.com/precios (botón "Cotizar Solución")
+- **Contacto:** /precios (botón "Cotizar Solución Enterprise")
+
+**IMPORTANTE:** No hay planes mensuales. Solo pago anual ($195) o cuotas ($290/año).
 
 ---
 
-## IMPORTANTE: Estrategia de Precios
+## Estrategia de Precios
 
-**Principio Fundamental:**
-TODOS los planes (Básico, Profesional) tienen **exactamente las mismas características y funcionalidades**. 
+**Principio fundamental:** Ambos planes pagos tienen **exactamente las mismas características y funcionalidades**. La única diferencia es el método de pago:
+- **$195/año:** Pago único anual (mejor precio)
+- **$290/año:** Pagos en cuotas mensuales (más flexible)
 
-**Lo único que cambia es:**
-1. **Número de usuarios** (3 en Básico, 10 en Profesional)
-2. **Nivel de soporte** (sin soporte humano en Básico, con soporte 24h en Profesional)
-
-**NO hay límites** en ninguno de los planes de:
-- Órdenes de producción por mes
-- Cotizaciones por mes
+**NO hay límites en ningún plan de:**
+- Órdenes de producción
+- Cotizaciones
 - Items en inventario
 - Proyectos
-- Cualquier otra funcionalidad
 
 ---
 
-## Sistema de Licencias
+## Sistema de Acceso y Licencias
 
-### ¿Cómo funciona?
-- Cada vez que inicias sesión, FabriControl valida tu licencia con el servidor central
-- **Requiere internet SIEMPRE** para iniciar sesión (validación de licencia)
-- Una vez dentro, puedes trabajar en red local si tu instalación es local
+### ¿Cómo funciona la activación?
+1. Solicitas el trial llenando el formulario
+2. Recibes tu código de activación por email (menos de 24h)
+3. Vas al link de registro: fabricontrol-1.emergent.host/register
+4. Ingresas tu código y creas tu cuenta
+5. Accedes desde cualquier navegador
 
-### Estados de Licencia:
-1. **trial** - Período de prueba 30 días. Puedes usar el sistema.
-2. **activa** - Cliente pagó su mensualidad. Acceso completo.
-3. **suspendida** - No se recibió el pago. Acceso bloqueado.
-4. **inactiva** - Licencia cancelada. Acceso bloqueado.
-5. **expirada** - Trial terminó sin pago. Acceso bloqueado.
+### Estados de la cuenta:
+1. **Trial activo** - Período de prueba 30 días. Acceso completo.
+2. **Activa** - Cliente con plan pagado. Acceso completo.
+3. **Suspendida** - Pago pendiente. Acceso bloqueado.
+4. **Expirada** - Trial terminó sin pago. Acceso bloqueado.
 
-### Mensajes al Usuario:
-- **Licencia Activa:** Entra sin problema ✅
-- **Licencia Suspendida:** "Licencia desactivada - Pago pendiente"
-- **Trial Expirado:** "Período de prueba expirado"
-- **Sin Internet:** "Error verificando licencia - Verifique conexión a internet"
-
-### Formato de Licencia:
+### Formato de código de activación:
 `FABRI-XXXX-XXXX-XXXX` (ejemplo: FABRI-1234-5678-ABCD)
 
 ---
@@ -237,68 +129,50 @@ TODOS los planes (Básico, Profesional) tienen **exactamente las mismas caracter
 FabriControl tiene 5 roles predefinidos:
 
 ### 👑 1. DIRECTOR (Acceso Total)
-**Permisos:**
 - ✅ TODO el sistema sin restricciones
 - ✅ Configuración global
 - ✅ Gestión de usuarios y permisos
-- ✅ Finanzas y precios
-- ✅ Reportes completos
-- ✅ Eliminar/editar todo
-
-**Casos de uso:** Dueño del taller, CEO, Director General
+- **Casos de uso:** Dueño del taller, CEO, Director General
 
 ### 👔 2. GERENTE (Gestión Operativa)
-**Permisos:**
-- ✅ Ver dashboard completo
-- ✅ Crear y editar cotizaciones
-- ✅ Crear y gestionar órdenes de producción
-- ✅ Gestionar inventario
-- ✅ Ver reportes
-- ✅ Gestionar clientes y proveedores
-- ❌ No puede cambiar configuración global
-- ❌ No puede gestionar usuarios
-
-**Casos de uso:** Gerente de producción, Gerente de operaciones
+- ✅ Dashboard completo, cotizaciones, órdenes de producción, inventario, reportes
+- ❌ No puede cambiar configuración global ni gestionar usuarios
+- **Casos de uso:** Gerente de producción, Gerente de operaciones
 
 ### 💼 3. VENDEDOR (Cotizaciones y Clientes)
-**Permisos:**
-- ✅ Crear y editar cotizaciones
-- ✅ Ver cotizaciones propias
-- ✅ Gestionar clientes
-- ✅ Convertir cotizaciones a órdenes
-- ✅ Ver órdenes relacionadas a sus cotizaciones
-- ❌ No puede ver inventario completo
-- ❌ No puede gestionar producción directamente
-- ❌ No puede ver finanzas
-
-**Casos de uso:** Vendedor, Ejecutivo comercial, Encargado de ventas
+- ✅ Crear y editar cotizaciones, gestionar clientes, convertir cotizaciones a órdenes
+- ❌ No puede ver inventario completo ni finanzas
+- **Casos de uso:** Vendedor, Ejecutivo comercial
 
 ### 📦 4. ALMACENERO (Inventario)
-**Permisos:**
-- ✅ Gestionar inventario completo
-- ✅ Registrar entradas y salidas
-- ✅ Ver órdenes de compra
-- ✅ Escanear códigos QR/barcodes
-- ✅ Generar etiquetas
-- ❌ No puede ver cotizaciones
-- ❌ No puede ver precios de venta
-- ❌ No puede gestionar órdenes de producción
-
-**Casos de uso:** Encargado de bodega, Almacenero, Jefe de almacén
+- ✅ Gestionar inventario completo, escanear códigos QR
+- ❌ No puede ver cotizaciones ni precios de venta
+- **Casos de uso:** Encargado de bodega, Almacenero
 
 ### 🔧 5. OPERARIO (Producción)
-**Permisos:**
-- ✅ Ver órdenes de producción asignadas
-- ✅ Actualizar estado de órdenes
-- ✅ Registrar tiempo de trabajo
-- ✅ Ver planos y especificaciones
-- ✅ Usar app móvil para registrar avances
-- ❌ No puede crear órdenes
-- ❌ No puede ver cotizaciones
-- ❌ No puede ver inventario completo
-- ❌ No puede ver finanzas
+- ✅ Ver órdenes asignadas, actualizar estado, registrar tiempo, usar app móvil
+- ❌ No puede crear órdenes, ver cotizaciones ni finanzas
+- **Casos de uso:** Operario de máquina, Técnico, Soldador
 
-**Casos de uso:** Operario de máquina, Técnico de producción, Soldador, Tornero
+---
+
+## Módulos Incluidos (Todos los Planes)
+
+- **Cotizaciones:** Crear, gestionar, convertir a órdenes de producción
+- **Órdenes de Producción:** Control completo del flujo productivo
+- **Inventario:** Gestión de materiales, entradas/salidas, alertas de stock
+- **Piezas Paramétricas:** Característica ÚNICA — templates reutilizables con dimensiones variables
+- **Portal de Proyectos:** Tus clientes ven el progreso de sus pedidos en tiempo real
+- **Dashboard:** Métricas e indicadores clave del negocio
+- **Gestión de Máquinas:** Control de equipos y mantenimiento
+- **BOM (Bill of Materials):** Lista de materiales estructurada
+- **Órdenes de Compra:** Gestión de proveedores
+- **App Móvil PWA:** Para operarios en el taller (funciona en cualquier celular)
+- **Chat IA con Gemini:** Asistente inteligente integrado
+- **Exportación Excel:** Reportes y análisis avanzados
+- **Códigos QR:** Para gestión rápida de inventario
+- **Permisos y Roles:** Control granular de accesos
+- **Notificaciones:** Alertas automáticas de eventos importantes
 
 ---
 
@@ -308,376 +182,133 @@ FabriControl tiene 5 roles predefinidos:
 Un asistente inteligente integrado en FabriControl que responde preguntas sobre el sistema, guía a los usuarios y ayuda con tareas comunes.
 
 ### Características:
-- 🤖 Powered by Google Gemini
-- 🌐 Multilingüe: Español, Inglés, Hebreo
-- 💬 Responde en el idioma del usuario automáticamente
-- 📚 Conoce TODA la documentación de FabriControl
-- ⚡ Respuestas en tiempo real
+- Powered by Google Gemini
+- Multilingüe: Español, Inglés, Hebreo
+- Responde en el idioma del usuario automáticamente
+- Conoce TODA la documentación de FabriControl
+- Respuestas en tiempo real
 
-### ¿Qué PUEDE hacer el Chat IA?
-✅ Responder preguntas sobre cómo usar FabriControl
-✅ Dar instrucciones paso a paso para realizar tareas
-✅ Explicar conceptos y funcionalidades
-✅ Resolver problemas comunes
-✅ Sugerir mejores prácticas
-✅ Explicar el sistema de permisos y roles
-✅ Ayudar con la configuración
+---
 
-### ¿Qué NO puede hacer el Chat IA?
-❌ No sabe el rol del usuario (al estar en la web pública)
-❌ No puede ejecutar acciones en la aplicación
-❌ No puede crear cotizaciones, órdenes, etc.
-❌ No maneja credenciales o contraseñas
-❌ Solo proporciona información documentada
+## Piezas Paramétricas (Característica Única)
 
-### ¿Cómo activarlo? (Para usuarios dentro de la aplicación)
-1. Obtener API Key de Google Gemini (o usar Emergent LLM Key)
-2. Ir a: Menú > Configuración > Chat IA
-3. Configurar:
-   - Proveedor: Gemini
-   - API Key: (tu key)
-   - Modelo: Gemini 1.5 Flash (recomendado)
-   - Idioma: Español/Inglés/Hebreo
-   - Tono: Profesional
-4. Guardar
-5. Probar escribiendo en el chat
+Las **Piezas Paramétricas** permiten crear plantillas de productos reutilizables donde solo cambias las dimensiones.
 
-### Modelos Recomendados:
-- **Gemini 1.5 Flash:** Rápido y económico (recomendado)
-- **Gemini 1.5 Pro:** Mayor precisión para consultas complejas
+**Ejemplo práctico:**
+- Defines UNA VEZ: material, proceso, acabado para "Puerta de aluminio estándar"
+- Cada vez que cotizan, solo cambias: alto × ancho
+- El sistema recalcula automáticamente el precio
+
+**Beneficio:** Cotizan en 30 segundos productos que antes tomaban 10 minutos.
 
 ---
 
 ## Casos de Uso Específicos
 
-### Caso 1: "¿Cómo creo una cotización?"
-**Respuesta del Chat IA:**
-Para crear una cotización en FabriControl:
-
+### "¿Cómo creo una cotización?"
 1. Ve a **Cotizaciones** en el menú lateral
-2. Haz clic en **"Nueva Cotización"**
-3. Selecciona o crea un cliente:
-   - Nombre
-   - Email
-   - Teléfono
-4. Agrega items/productos:
-   - Descripción del producto
-   - Cantidad
-   - Material
-   - Dimensiones
-5. El sistema calcula automáticamente:
-   - Costo de material
-   - Mano de obra
-   - Margen de ganancia (default 30%)
-6. Revisa el total
-7. Haz clic en **"Generar PDF"** para enviar al cliente
-8. Si el cliente acepta, haz clic en **"Convertir a Orden"** para pasar directamente a producción
+2. Clic en **"Nueva Cotización"**
+3. Selecciona o crea el cliente
+4. Agrega items/productos con descripción, cantidad, material, dimensiones
+5. El sistema calcula automáticamente costo y margen
+6. Clic en **"Generar PDF"** para enviar al cliente
+7. Si acepta, clic en **"Convertir a Orden"** para pasar a producción
 
-💡 **Tip:** Usa las piezas paramétricas para cotizar productos complejos más rápido.
+### "¿Cómo accedo al sistema?"
+FabriControl es 100% en la nube. Solo necesitas:
+1. Un navegador web (Chrome, Firefox, Safari, Edge)
+2. Conexión a internet
+3. Tu email y contraseña de cuenta
 
-### Caso 2: "No puedo iniciar sesión"
-**Respuesta del Chat IA:**
-Si no puedes iniciar sesión, verifica:
+No hay nada que descargar ni instalar.
 
-1. **¿Tienes internet?** FabriControl necesita conexión para validar tu licencia
-2. **¿Tu licencia está activa?**
-   - Si ves "Licencia desactivada", contacta a soporte para verificar tu pago
-   - Si ves "Trial expirado", necesitas activar un plan de pago
-3. **¿Tu email y contraseña son correctos?**
-4. **¿El servidor está corriendo?**
-   - Si es instalación local, verifica que el servicio esté activo
+### "No puedo iniciar sesión"
+1. ¿Tienes internet? FabriControl necesita conexión para funcionar
+2. ¿Tu cuenta está activa? Si ves "Licencia desactivada", contacta soporte
+3. ¿Tu email y contraseña son correctos?
+4. Intenta con Chrome o Firefox actualizados
 
-**Error:** "Error verificando licencia - Verifique conexión a internet"
-**Solución:** Verifica tu conexión WiFi/Ethernet
-
-**Error:** "Licencia desactivada - Pago pendiente"
-**Solución:** Contacta a soporte@fabricontrol.com
-
-### Caso 3: "¿Qué puedo hacer con mi rol de Operario?"
-**Respuesta del Chat IA:**
-Como **Operario**, tus permisos son:
-
-✅ **Puedes:**
-- Ver las órdenes de producción asignadas a ti
-- Actualizar el estado de las órdenes (En proceso, Pausado, Completado)
-- Registrar tiempo de trabajo
-- Ver planos y especificaciones técnicas
-- Usar la app móvil para registrar avances desde el taller
-- Subir fotos del progreso
-
-❌ **No puedes:**
-- Crear nuevas órdenes de producción
-- Ver cotizaciones o precios
-- Gestionar inventario completo
-- Ver información financiera
-- Modificar configuración del sistema
-
-💡 **Para tu día a día:** Usa la app móvil (PWA) desde tu celular para actualizar el estado de las órdenes mientras trabajas en el taller.
-
-### Caso 4: "¿Cómo funcionan las piezas paramétricas?"
-**Respuesta del Chat IA:**
-Las **Piezas Paramétricas** son una característica ÚNICA de FabriControl que te permite:
-
-**¿Qué son?**
-Plantillas de productos que puedes reutilizar cambiando solo las dimensiones.
-
-**Ejemplo práctico:**
-Tienes una "Puerta de aluminio estándar":
-- Defines UNA VEZ: material, proceso, acabado
-- Cada vez que cotizan, solo cambias: alto × ancho
-- El sistema recalcula automáticamente el precio
-
-**Cómo crear una pieza paramétrica:**
-1. Ve a **Piezas Paramétricas** > **Nueva**
-2. Define:
-   - Nombre: "Puerta aluminio estándar"
-   - Material: Aluminio 6063
-   - Parámetros variables: Alto, Ancho, Grosor
-   - Fórmulas de cálculo: área × precio/m²
-3. Guarda la plantilla
-4. Al cotizar, selecciona la pieza y solo ingresa las medidas
-
-💡 **Beneficio:** Cotizas en 30 segundos productos que antes te tomaban 10 minutos.
-
-**Disponible en:** Planes Básico, Profesional y Enterprise
-
-### Caso 5: "¿Cuál es la diferencia entre Plan Básico y Profesional?"
-**Respuesta del Chat IA:**
-La diferencia entre Plan Básico ($49/mes) y Profesional ($129/mes) es:
-
-**📊 Características:**
-- ✅ **Idénticas en AMBOS planes**
-- Ambos tienen Piezas Paramétricas
-- Ambos tienen Chat IA
-- Ambos tienen App Móvil
-- Ambos tienen TODAS las funcionalidades
-
-**👥 Usuarios:**
-- **Básico:** Hasta 3 usuarios
-- **Profesional:** Hasta 10 usuarios
-
-**🆘 Soporte:**
-- **Básico:** ❌ Sin soporte técnico humano (solo email sin garantía)
-- **Profesional:** ✅ Soporte humano por email en 24 horas
-
-**💰 Recomendación:**
-- **Elige Básico si:** Eres un taller pequeño (1-3 personas) y puedes resolver problemas por tu cuenta
-- **Elige Profesional si:** Tienes más empleados (4-10) o necesitas ayuda técnica rápida
-
-💡 **Ahorro anual:** Ambos planes tienen 20% descuento si pagas anualmente.
+### "¿Qué diferencia hay entre los dos planes?"
+Ninguna en funcionalidades. Los planes $195/año y $290/año tienen exactamente el mismo producto. Solo cambia el método de pago:
+- $195/año: Pago único (mejor precio, ahorras $95)
+- $290/año: Pagos en cuotas (más flexible)
 
 ---
 
-## Errores Comunes y Soluciones
+## Compatibilidad e Integraciones
 
-### Error 1: "No puedo agregar más usuarios"
-**Causa:** Llegaste al límite de tu plan
-**Solución:** 
-- Plan Básico: máximo 3 usuarios
-- Plan Profesional: máximo 10 usuarios
-- Si necesitas más, contacta para actualizar a Plan Enterprise
+### Navegadores compatibles
+- Google Chrome (recomendado)
+- Mozilla Firefox
+- Microsoft Edge
+- Safari
 
-### Error 2: "El inventario no se actualiza"
-**Causa:** Permisos insuficientes
-**Solución:**
-- Verifica tu rol. Solo Director, Gerente y Almacenero pueden gestionar inventario completo
-- Si eres Operario o Vendedor, contacta a tu administrador
+### Dispositivos
+- PC Windows, Mac, Linux
+- Tablet Android e iOS
+- Celular (app móvil PWA sin instalación)
 
-### Error 3: "No veo el botón de Chat IA"
-**Causa:** No está configurado o tu plan no lo incluye
-**Solución:**
-1. Verifica que tu licencia esté activa
-2. Ve a Configuración > Chat IA
-3. Si no aparece, verifica que tengas Plan Básico, Profesional o Enterprise (está en todos)
-4. Configura tu API Key de Gemini o usa Emergent LLM Key
-
-### Error 4: "Las cotizaciones no generan PDF"
-**Causa:** Problema de permisos o configuración
-**Solución:**
-1. Verifica que tu rol puede crear cotizaciones (Director, Gerente, Vendedor)
-2. Asegúrate que la cotización esté guardada
-3. Intenta refrescar la página (F5)
-4. Si persiste, contacta soporte
-
-### Error 5: "La app móvil no carga"
-**Causa:** Conexión o configuración incorrecta
-**Solución:**
-1. Verifica la URL del servidor
-2. En instalación local: usa `http://[IP-SERVIDOR]:3000/m`
-3. En instalación cloud: usa tu dominio + `/m`
-4. Verifica que estés en la misma red (para instalación local)
-
-### Error 6: "Mensaje: 'Licencia desactivada'"
-**Causa:** Pago mensual pendiente
-**Solución:**
-1. Verifica tu último pago
-2. Si ya pagaste, envía comprobante a soporte@fabricontrol.com
-3. El soporte reactivará tu licencia en menos de 24h
-4. Tus datos están seguros, solo está bloqueado el acceso temporalmente
-
----
-
-## Tips y Mejores Prácticas
-
-### Tip 1: Organiza tu inventario desde el inicio
-- Usa categorías claras: "Materiales", "Herrajes", "Acabados"
-- Mantén actualizado el stock
-- Configura alertas de stock mínimo
-
-### Tip 2: Aprovecha las piezas paramétricas
-- Crea plantillas para tus productos más comunes
-- Define fórmulas de cálculo precisas
-- Actualiza precios de materiales periódicamente
-
-### Tip 3: Asigna roles correctamente
-- No des permisos de Director a todos
-- Operarios solo necesitan ver sus órdenes
-- Vendedores solo necesitan cotizaciones y clientes
-
-### Tip 4: Usa la app móvil en el taller
-- Los operarios pueden actualizar estados desde el celular
-- Suben fotos del progreso en tiempo real
-- Ahorra tiempo vs. ir a la computadora
-
-### Tip 5: Configura el Chat IA
-- Usa Gemini 1.5 Flash (económico y rápido)
-- Entrénalo con tus procesos específicos
-- Los empleados nuevos aprenden más rápido
-
-### Tip 6: Haz backup regularmente
-- FabriControl hace backup automático diario
-- Pero también descarga manualmente cada semana
-- Guarda en disco externo o nube personal
-
-### Tip 7: Aprovecha el trial completo
-- 30 días sin límites
-- Prueba TODAS las funcionalidades
-- Capacita a tu equipo durante el trial
-
-### Tip 8: Convierte cotizaciones a órdenes con un clic
-- No re-ingreses información
-- El botón "Convertir a Orden" pasa todo automáticamente
-- Ahorra 10 minutos por orden
-
-### Tip 9: Usa el dashboard para tomar decisiones
-- Revisa métricas diariamente
-- Identifica cuellos de botella en producción
-- Optimiza tiempos de entrega
-
-### Tip 10: Portal de proyectos para clientes VIP
-- Tus clientes ven el progreso en tiempo real
-- Reduces llamadas de "¿cómo va mi orden?"
-- Mejora satisfacción del cliente
-
-### Tip 11: Exporta a Excel para análisis avanzado
-- Todos los planes incluyen exportación
-- Úsalo para análisis financiero externo
-- Comparte con contador o equipo directivo
-
-### Tip 12: Códigos QR para inventario rápido
-- Genera QR para cada material
-- Escanea con celular para entradas/salidas
-- Reduce errores de digitación
-
-### Tip 13: Configura notificaciones importantes
-- Alerta de stock mínimo
-- Órdenes atrasadas
-- Cotizaciones sin seguimiento
-
-### Tip 14: Capacita a tu equipo progresivamente
-- Empieza con funciones básicas
-- Agrega funcionalidades avanzadas después
-- Usa el Chat IA como tutor 24/7
-
-### Tip 15: Paga anualmente y ahorra 20%
-- Básico: $588/año vs. $468/año (ahorro $120)
-- Profesional: $1,548/año vs. $1,236/año (ahorro $312)
-- Vale la pena si piensas usar más de 1 año
-
----
-
-## Integraciones y Compatibilidad
-
-### Excel
-- ✅ Exporta cotizaciones, órdenes, inventario
-- ✅ Importa catálogo de productos masivamente
-- ✅ Compatible con todas las versiones de Excel
-
-### Básculas Digitales
-- ✅ Conecta básculas por USB o Bluetooth
-- ✅ Registra peso automáticamente en inventario
-- ✅ Compatible con marcas comunes
-
-### Lectores de Código de Barras / QR
-- ✅ Conecta lectores estándar USB
-- ✅ Escanea productos para entradas/salidas
-- ✅ Genera códigos QR desde el sistema
-
-### Hardware Recomendado
-- **PC Servidor:** Intel i3 o superior, 8GB RAM
-- **Lectores:** Cualquier lector USB estándar
-- **Básculas:** Con salida serial o USB
-- **Tablets/Celulares:** Android/iOS para app móvil
+### Integraciones
+- Excel: Exporta cotizaciones, órdenes, inventario
+- Básculas digitales: Por USB o Bluetooth
+- Lectores de código de barras/QR: Estándar USB
 
 ---
 
 ## Preguntas Frecuentes (FAQ)
 
+### ¿Necesito instalar algo?
+No. FabriControl es 100% en la nube. Solo necesitas un navegador web e internet.
+
 ### ¿Puedo cambiar de plan después?
-Sí, en cualquier momento. Puedes actualizar de Básico a Profesional o viceversa.
+Sí, en cualquier momento. Contacta a soporte.
 
 ### ¿Qué pasa con mis datos si cancelo?
-Tus datos se mantienen seguros por 90 días. Puedes reactivar y recuperarlos. Después de 90 días, se eliminan definitivamente.
+Tus datos se mantienen seguros por 90 días. Puedes reactivar y recuperarlos. Después de 90 días se eliminan.
 
 ### ¿FabriControl funciona sin internet?
-No. Necesitas internet para iniciar sesión (validación de licencia). Una vez dentro, si tu instalación es local, puedes trabajar en red local.
+No. Al ser 100% en la nube, necesitas internet para acceder.
 
-### ¿Puedo instalar en múltiples computadoras?
-Sí. Instalas en un servidor y otros acceden por navegador. El límite es de usuarios simultáneos, no de instalaciones.
-
-### ¿Cuánto tiempo toma implementar FabriControl?
-- **Instalación:** 30 minutos
-- **Configuración inicial:** 2 horas
-- **Capacitación básica:** 1 día
-- **Dominio completo:** 1 semana
+### ¿Cuánto tiempo toma empezar?
+- Solicitud de trial: 2 minutos (llenar formulario)
+- Activación de cuenta: Menos de 24 horas
+- Configuración inicial: 2 horas
+- Capacitación básica del equipo: 1 día
 
 ### ¿Ofrecen capacitación?
-- Plan Básico y Profesional: Tutoriales en video y Chat IA
+- Plans estándar: Tutoriales en video y Chat IA disponible 24/7
 - Plan Enterprise: 10 horas de capacitación remota personalizada
 
 ### ¿Los precios incluyen IVA?
-Los precios mostrados no incluyen impuestos. Se agregan según tu país.
+Los precios mostrados no incluyen impuestos locales.
 
-### ¿Aceptan pagos en mi moneda local?
-Precios en USD. Aceptamos transferencias bancarias y pasarelas de pago internacionales.
+### ¿Aceptan pagos en mi moneda?
+Precios en USD. Aceptamos pagos internacionales.
 
----
+### ¿Dónde están mis datos?
+En servidores seguros en la nube con backups automáticos diarios.
 
-## Acceso a Demo (Solo para referencia interna)
-
-- **App Principal:** https://cloud-fabric-control.preview.emergentagent.com/login
-- **Super Admin:** https://cloud-fabric-control.preview.emergentagent.com/super-admin-login
-- **App Móvil:** https://cloud-fabric-control.preview.emergentagent.com/m
-- **Usuario:** julito36911@gmail.com
-- **Password:** 12345678
+### ¿Puedo usar FabriControl desde múltiples computadoras?
+Sí. Al ser en la nube, puedes acceder desde cualquier dispositivo en cualquier lugar.
 
 ---
 
 ## Contacto y Soporte
 
-- **Website:** www.fabricontrol.com
-- **Email Soporte:** support@fabricontrol.com
-- **Email Ventas:** sales@fabricontrol.com
-- **Documentación:** www.fabricontrol.com/documentacion
-- **Comparación:** www.fabricontrol.com/comparacion
+- **Email Soporte:** julito36911@gmail.com
+- **WhatsApp:** +972 52-648-9461
+- **Solicitar Trial:** /precios (ES) o /en/pricing.html (EN)
+- **Documentación:** /documentacion.html (ES) o /en/documentation.html (EN)
+
+---
+
+## Acceso a la Aplicación (Demo)
+
+- **App Principal:** https://fabricontrol-1.emergent.host/login
+- **Registro:** https://fabricontrol-1.emergent.host/register
 
 ---
 
 **FIN DE LA BASE DE CONOCIMIENTO**
 
-Este documento debe ser actualizado cada vez que cambien:
-- Precios
-- Funcionalidades
-- Planes
-- Integraciones
-- Información de contacto
+Última actualización: Diciembre 2025 - Modelo 100% SaaS/Nube
