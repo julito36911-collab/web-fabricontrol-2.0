@@ -14,7 +14,7 @@ function Home() {
         <div className="container">
           <div className="hero-content">
             <h1>El ERP que tu Taller Merece, al Precio que Puedes Pagar</h1>
-            <p>Controla cotizaciones, producción e inventario desde <strong>$49/mes</strong>. Sin complicaciones.</p>
+            <p>Controla cotizaciones, producción e inventario desde <strong>$195/año</strong>. Sin complicaciones. ☁️ 100% en la nube.</p>
             <div className="hero-cta">
               <Link to="/precios" className="btn btn-accent btn-large">🆓 Solicitar Prueba Gratis (30 días)</Link>
             </div>
