@@ -26,53 +26,40 @@ const ChatWidget = () => {
     if (!input.trim() || isLoading) return;
 
     const userMessage = input.trim();
-    setInput('');
+    const apiKey = process.env.REACT_APP_GEMINI_API_KEY;
     
-    // Add user message
+    setInput('');
     const newMessages = [...messages, { role: 'user', content: userMessage }];
     setMessages(newMessages);
     setIsLoading(true);
 
     try {
-      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
-      const response = await fetch(`${backendUrl}/api/chat`, {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey.trim()}`;
+
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          messages: newMessages.map(msg => ({
-            role: msg.role,
-            content: msg.content
-          }))
-        }),
+          contents: [{
+            parts: [{ text: userMessage }]
+          }]
+        })
       });
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.detail || 'Failed to get response');
-      }
+      if (!response.ok) throw new Error('Error en la red');
 
-      const data = await response.json();
+      // CLONAMOS LA RESPUESTA PARA SEGURIDAD
+      const responseClone = response.clone();
+      const data = await responseClone.json();
       
-      // Add assistant response
-      setMessages([...newMessages, { role: 'assistant', content: data.response }]);
+      const botReply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Lo siento, no pude procesar eso.";
+      setMessages(prev => [...prev, { role: 'assistant', content: botReply }]);
+
     } catch (error) {
-      console.error('Chat error:', error);
-      let errorMessage = '❌ Lo siento, hubo un error. ';
-      
-      if (error.message && (error.message.includes('ocupado') || error.message.includes('503') || error.message.includes('temporalmente'))) {
-        errorMessage += 'El servicio está temporalmente ocupado. Por favor intenta en unos segundos.\n\n';
-      } else {
-        errorMessage += 'Por favor intenta de nuevo.\n\n';
-      }
-      
-      errorMessage += '📧 **Contacto:** julito36911@gmail.com\n📱 **WhatsApp:** +972 52-648-9461';
-      
-      setMessages([...newMessages, { 
-        role: 'assistant', 
-        content: errorMessage
-      }]);
+      console.error('Error detallado:', error);
+      setMessages(prev => [...prev, { role: 'assistant', content: '❌ Error de comunicación con la IA.' }]);
     } finally {
       setIsLoading(false);
     }
