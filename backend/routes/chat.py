@@ -1,3 +1,4 @@
+import google.generativeai as genai
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional
@@ -5,15 +6,16 @@ import os
 import uuid
 from dotenv import load_dotenv
 from pathlib import Path
-from emergentintegrations.llm.chat import LlmChat, UserMessage
 
 # Load environment variables
 load_dotenv()
 
 router = APIRouter()
 
-# Configure Emergent LLM Key
-EMERGENT_LLM_KEY = os.getenv("EMERGENT_LLM_KEY", "")
+# Configure Google Gemini
+GEMINI_API_KEY = os.getenv("EMERGENT_LLM_KEY", "")
+if GEMINI_API_KEY:
+    genai.configure(api_key=GEMINI_API_KEY)
 
 # Support contact
 SUPPORT_EMAIL = "julito36911@gmail.com"
@@ -112,28 +114,25 @@ class ChatResponse(BaseModel):
 @router.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     """
-    Chat endpoint using Emergent LLM (Gemini)
+    Chat endpoint using standard Google Gemini (google-generativeai)
     """
     try:
-        if not EMERGENT_LLM_KEY:
+        if not GEMINI_API_KEY:
             raise HTTPException(status_code=500, detail=f"API de chat no configurada. Contacta soporte: {SUPPORT_EMAIL}")
         
         # Get the user's last message
         user_text = request.messages[-1].content
         
-        # Create unique session ID
-        session_id = f"fabricontrol-{uuid.uuid4().hex[:8]}"
-        
-        # Initialize Emergent LLM Chat with Gemini
-        llm_chat = LlmChat(
-            api_key=EMERGENT_LLM_KEY,
-            session_id=session_id,
-            system_message=SYSTEM_PROMPT
-        ).with_model("gemini", "gemini-2.5-flash")
+        # Initialize Gemini model
+        model = genai.GenerativeModel(
+            model_name="gemini-2.5-flash",
+            system_instruction=SYSTEM_PROMPT
+        )
         
         # Send message and get response
-        user_message = UserMessage(text=user_text)
-        response_text = await llm_chat.send_message(user_message)
+        chat = model.start_chat(history=[]) # Could add history if needed
+        response = chat.send_message(user_text)
+        response_text = response.text
         
         # Detect language
         detected_lang = "es"
@@ -146,6 +145,7 @@ async def chat(request: ChatRequest):
             response=response_text,
             language_detected=detected_lang
         )
+
         
     except Exception as e:
         error_msg = str(e)
@@ -162,7 +162,7 @@ async def chat_health():
     Check if chat is properly configured
     """
     return {
-        "configured": bool(EMERGENT_LLM_KEY),
+        "configured": bool(GEMINI_API_KEY),
         "model": "gemini-2.5-flash",
         "provider": "emergent",
         "knowledge_base_loaded": len(KNOWLEDGE_BASE) > 0,

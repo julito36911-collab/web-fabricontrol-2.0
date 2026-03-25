@@ -280,43 +280,104 @@ const CalculadoraInercia = () => {
                 </div>
 
                 {/* SVG Visual and Result Board */}
-                <div className="flex flex-col items-center justify-between p-8 bg-slate-900/60 rounded-3xl border border-white/5 h-full shadow-[inset_0_0_50px_rgba(0,0,0,0.5)]">
+                <div className="flex flex-col items-center justify-between p-4 md:p-8 bg-slate-900/60 rounded-3xl border border-white/5 h-full shadow-[inset_0_0_50px_rgba(0,0,0,0.5)]">
                     
-                    <div className="flex-1 w-full flex items-center justify-center p-4">
-                        {/* SVGs */}
-                        {svgType === 'rect' && (
-                            <svg className="w-40 h-40 text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.5)]" viewBox="0 0 100 100" fill="currentColor">
-                                <rect x="25" y="10" width="50" height="80" rx="2" />
-                            </svg>
-                        )}
-                        {svgType === 'circle' && (
-                            <svg className="w-40 h-40 text-emerald-400 drop-shadow-[0_0_15px_rgba(52,211,153,0.5)]" viewBox="0 0 100 100" fill="currentColor">
-                                <circle cx="50" cy="50" r="40" />
-                            </svg>
-                        )}
-                        {svgType === 'hollow' && (
-                            <svg className="w-40 h-40 text-orange-400 drop-shadow-[0_0_15px_rgba(251,146,60,0.5)]" viewBox="0 0 100 100" fill="currentColor">
-                                <path fillRule="evenodd" clipRule="evenodd" d="M15 15h70v70H15V15zm15 15v40h40V30H30z" />
-                            </svg>
-                        )}
-                        {svgType === 'IBeam' && (
-                            <svg className="w-40 h-40 text-blue-400 drop-shadow-[0_0_15px_rgba(59,130,246,0.6)]" viewBox="0 0 100 100" fill="currentColor">
-                                {/* I Beam Shape */}
-                                <path d="M20,10 H80 V25 H60 V75 H80 V90 H20 V75 H40 V25 H20 Z" />
-                            </svg>
-                        )}
-                        {svgType === 'UChannel' && (
-                            <svg className="w-40 h-40 text-purple-400 drop-shadow-[0_0_15px_rgba(168,85,247,0.6)]" viewBox="0 0 100 100" fill="currentColor">
-                                {/* U Channel Shape */}
-                                <path d="M20,10 H70 V25 H40 V75 H70 V90 H20 Z" />
-                            </svg>
-                        )}
+                    <div className="flex-1 w-full flex items-center justify-center p-2">
+                        {/* SVGs with Dimension Labels */}
+                        <svg className="w-full max-w-[240px] aspect-square transition-all duration-300 drop-shadow-[0_0_15px_rgba(0,0,0,0.5)]" viewBox="0 0 120 120">
+                            {/* Common Styles */}
+                            <defs>
+                                <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" />
+                                </marker>
+                            </defs>
+
+                            {/* Dimension Lines and Text Color */}
+                            <g className="text-gray-500 text-[8px] font-bold select-none italic">
+                                {svgType === 'rect' && (
+                                    <>
+                                        {/* Rect Shape */}
+                                        <rect x="35" y="20" width="50" height="80" rx="2" className="text-cyan-400" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1" />
+                                        {/* b dimension */}
+                                        <line x1="35" y1="15" x2="85" y2="15" stroke="currentColor" strokeWidth="0.5" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+                                        <text x="60" y="12" textAnchor="middle" fill="currentColor">b</text>
+                                        {/* h dimension */}
+                                        <line x1="30" y1="20" x2="30" y2="100" stroke="currentColor" strokeWidth="0.5" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+                                        <text x="25" y="60" textAnchor="end" dominantBaseline="middle" fill="currentColor">h</text>
+                                    </>
+                                )}
+
+                                {svgType === 'circle' && (
+                                    <>
+                                        {/* Circle Shape */}
+                                        <circle cx="60" cy="60" r="40" className="text-emerald-400" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1" />
+                                        {/* d dimension */}
+                                        <line x1="20" y1="60" x2="100" y2="60" stroke="currentColor" strokeWidth="0.5" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+                                        <text x="60" y="55" textAnchor="middle" fill="currentColor">d</text>
+                                    </>
+                                )}
+
+                                {svgType === 'hollow' && (
+                                    <>
+                                        {/* Hollow Shape */}
+                                        <path d="M30 20h60v80H30V20zm10 10v60h40V30H40z" fillRule="evenodd" className="text-orange-400" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1" />
+                                        {/* B dimension */}
+                                        <line x1="30" y1="15" x2="90" y2="15" stroke="currentColor" strokeWidth="0.5" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+                                        <text x="60" y="12" textAnchor="middle" fill="currentColor">B</text>
+                                        {/* H dimension */}
+                                        <line x1="25" y1="20" x2="25" y2="100" stroke="currentColor" strokeWidth="0.5" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+                                        <text x="20" y="60" textAnchor="end" dominantBaseline="middle" fill="currentColor">H</text>
+                                        {/* t dimension */}
+                                        <line x1="90" y1="30" x2="80" y2="30" stroke="currentColor" strokeWidth="0.5" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+                                        <text x="85" y="28" textAnchor="middle" fill="currentColor">t</text>
+                                    </>
+                                )}
+
+                                {svgType === 'IBeam' && (
+                                    <>
+                                        {/* I Beam Shape */}
+                                        <path d="M30,20 H90 V32 H65 V88 H90 V100 H30 V88 H55 V32 H30 Z" className="text-blue-400" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1" />
+                                        {/* b dimension */}
+                                        <line x1="30" y1="15" x2="90" y2="15" stroke="currentColor" strokeWidth="0.5" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+                                        <text x="60" y="12" textAnchor="middle" fill="currentColor">b</text>
+                                        {/* h dimension */}
+                                        <line x1="25" y1="20" x2="25" y2="100" stroke="currentColor" strokeWidth="0.5" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+                                        <text x="20" y="60" textAnchor="end" dominantBaseline="middle" fill="currentColor">h</text>
+                                        {/* tw dimension */}
+                                        <line x1="55" y1="60" x2="65" y2="60" stroke="currentColor" strokeWidth="0.5" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+                                        <text x="60" y="55" textAnchor="middle" fill="currentColor">tw</text>
+                                        {/* tf dimension */}
+                                        <line x1="95" y1="20" x2="95" y2="32" stroke="currentColor" strokeWidth="0.5" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+                                        <text x="100" y="26" textAnchor="start" dominantBaseline="middle" fill="currentColor">tf</text>
+                                    </>
+                                )}
+
+                                {svgType === 'UChannel' && (
+                                    <>
+                                        {/* U Channel Shape */}
+                                        <path d="M35,20 H85 V32 H47 V88 H85 V100 H35 Z" className="text-purple-400" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="1" />
+                                        {/* b dimension */}
+                                        <line x1="35" y1="15" x2="85" y2="15" stroke="currentColor" strokeWidth="0.5" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+                                        <text x="60" y="12" textAnchor="middle" fill="currentColor">b</text>
+                                        {/* h dimension */}
+                                        <line x1="30" y1="20" x2="30" y2="100" stroke="currentColor" strokeWidth="0.5" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+                                        <text x="25" y="60" textAnchor="end" dominantBaseline="middle" fill="currentColor">h</text>
+                                        {/* tw dimension */}
+                                        <line x1="35" y1="50" x2="47" y2="50" stroke="currentColor" strokeWidth="0.5" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+                                        <text x="41" y="47" textAnchor="middle" fill="currentColor">tw</text>
+                                        {/* tf dimension */}
+                                        <line x1="88" y1="20" x2="88" y2="32" stroke="currentColor" strokeWidth="0.5" markerStart="url(#arrow)" markerEnd="url(#arrow)" />
+                                        <text x="93" y="26" textAnchor="start" dominantBaseline="middle" fill="currentColor">tf</text>
+                                    </>
+                                )}
+                            </g>
+                        </svg>
                     </div>
 
                     <div className="w-full mt-6 bg-gradient-to-r from-blue-900/80 to-cyan-900/80 border-t-2 border-cyan-400 p-6 rounded-2xl flex flex-col items-center justify-center gap-2 text-center shadow-[0_-10px_30px_rgba(6,182,212,0.15)] relative overflow-hidden group">
                         <div className="absolute inset-0 bg-cyan-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         <span className="text-cyan-200 font-bold tracking-wide uppercase text-sm relative z-10">{l.result}</span>
-                        <div className="text-5xl font-black text-white relative z-10 tracking-tight drop-shadow-md">
+                        <div className="text-4xl md:text-5xl font-black text-white relative z-10 tracking-tight drop-shadow-md">
                             {I > 0 ? I.toLocaleString(undefined, { maximumFractionDigits: 2 }) : '0'} 
                             <span className="text-cyan-400 text-2xl font-bold ml-2">{l.unit}</span>
                         </div>

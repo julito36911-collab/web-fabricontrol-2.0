@@ -42,7 +42,7 @@ function Header() {
             </div>
 
             <a href="https://fabricontrol-1.emergent.host/" target="_blank" rel="noopener noreferrer" className="hidden lg:inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-sm font-bold rounded-xl text-white bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-200">
-              🎮 Demo
+              🎮 {t('nav_demo')}
             </a>
           </div>
           

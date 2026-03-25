@@ -23,7 +23,7 @@ function LicenseRequestModal({ isOpen, onClose }) {
     });
   };
 
-  const sendRequest = async (e) => {
+  const sendRequest = (e) => {
     e.preventDefault();
     
     if (!formData.nombre || !formData.email || !formData.cantidadUsuarios) {
@@ -31,53 +31,31 @@ function LicenseRequestModal({ isOpen, onClose }) {
       return;
     }
 
-    setSending(true);
-    setMessage({ type: '', text: '' });
+    const waNumber = "972526489461";
+    const messageText = `🚀 *SOLICITUD DE TRIAL FABRICONTROL* 🚀
 
-    try {
-      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-      const response = await fetch(`${BACKEND_URL}/api/license-request`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
+👤 *Nombre:* ${formData.nombre}
+🏢 *Empresa:* ${formData.empresa || 'No especificada'}
+📧 *Email:* ${formData.email}
+📞 *Teléfono:* ${formData.telefono || 'No especificado'}
+👥 *Usuarios:* ${formData.cantidadUsuarios}
+💳 *Plan Post-Trial:* ${formData.planDeseado === 'anual' ? '$195/año' : '$290/año'}
 
-      const data = await response.json();
+_Hola, me gustaría solicitar mi código de activación para la prueba gratuita de 30 días._`;
 
-      if (response.ok) {
-        setMessage({ 
-          type: 'success', 
-          text: '✅ Solicitud enviada. Recibirás tu código de activación por email en menos de 24 horas.' 
-        });
-        
-        setTimeout(() => {
-          setFormData({
-            nombre: '',
-            empresa: '',
-            email: '',
-            telefono: '',
-            cantidadUsuarios: '',
-            planDeseado: 'anual'
-          });
-          onClose();
-        }, 3000);
-      } else {
-        setMessage({ 
-          type: 'error', 
-          text: `❌ ${data.message || 'No se pudo enviar la solicitud'}` 
-        });
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setMessage({ 
-        type: 'error', 
-        text: '❌ Error de conexión. Contacta directamente a julito36911@gmail.com' 
-      });
-    } finally {
-      setSending(false);
-    }
+    const encodedText = encodeURIComponent(messageText);
+    const waUrl = `https://wa.me/${waNumber}?text=${encodedText}`;
+    
+    window.open(waUrl, '_blank');
+    
+    setMessage({ 
+      type: 'success', 
+      text: '✅ Redirigiendo a WhatsApp... Envía el mensaje para completar tu solicitud.' 
+    });
+
+    setTimeout(() => {
+      onClose();
+    }, 2000);
   };
 
   if (!isOpen) return null;
@@ -220,9 +198,8 @@ function LicenseRequestModal({ isOpen, onClose }) {
             <button
               type="submit"
               className="btn btn-primary"
-              disabled={sending}
             >
-              {sending ? '📧 Enviando...' : '📧 Enviar Solicitud'}
+              📱 Enviar por WhatsApp
             </button>
           </div>
 

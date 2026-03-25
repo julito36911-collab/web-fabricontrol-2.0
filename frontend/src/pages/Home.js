@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ImageLightbox from '../components/ImageLightbox';
+import VideoModal from '../components/VideoModal';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -11,6 +12,9 @@ const translations = {
     heroSub: "Controla cotizaciones, producción e inventario desde <strong>$195/año</strong>. Sin complicaciones. ☁️ 100% en la nube.",
     heroCta: "🆓 Solicitar Prueba Gratis (30 días)",
     heroFoot: "✅ Sin tarjeta de crédito · ✅ Acceso completo · ✅ Sin compromisos",
+    heroVideo: "🎥 Ver Guía Oficial YouTube",
+    guideTitle: "🎓 Tutoriales y Guías",
+    guideSub: "Aprende a dominar FabriControl con nuestros videos oficiales.",
 
     demoTitle: "Prueba FabriControl Ahora Mismo",
     demoSub: "Explora el sistema completo sin registrarte. Datos de ejemplo incluidos.",
@@ -92,7 +96,7 @@ const translations = {
     compTitle: "FabriControl vs La Competencia",
     compSub: "Comparación honesta con otros sistemas",
     compFeature: "Característica",
-    compPrice: "Precio/mes",
+    compPrice: "Precio/año",
     compLang: "Español nativo",
     compLearn: "Curva de aprendizaje",
     compParam: "Piezas Paramétricas",
@@ -114,6 +118,9 @@ const translations = {
     heroSub: "Control quotes, production, and inventory starting at <strong>$195/year</strong>. No complications. ☁️ 100% Cloud.",
     heroCta: "🆓 Request Free Trial (30 days)",
     heroFoot: "✅ No credit card · ✅ Full access · ✅ No commitments",
+    heroVideo: "🎥 Watch Official YouTube Guide",
+    guideTitle: "🎓 Tutorials & Guides",
+    guideSub: "Learn to master FabriControl with our official videos.",
 
     demoTitle: "Try FabriControl Right Now",
     demoSub: "Explore the full system without registering. Sample data included.",
@@ -195,7 +202,7 @@ const translations = {
     compTitle: "FabriControl vs The Competition",
     compSub: "Honest comparison with other systems",
     compFeature: "Feature",
-    compPrice: "Price/month",
+    compPrice: "Price/year",
     compLang: "Native Spanish",
     compLearn: "Learning curve",
     compParam: "Parametric Pieces",
@@ -217,6 +224,9 @@ const translations = {
     heroSub: "שלוט בהצעות מחיר, ייצור ומלאי החל מ-<strong>$195/שנה</strong>. ☁️ 100% בענן.",
     heroCta: "🆓 בקש ניסיון חינם (30 ימים)",
     heroFoot: "✅ ללא כרטיס אשראי · ✅ גישה מלאה · ✅ ללא התחייבות",
+    heroVideo: "🎥 צפה במדריך הרשמי ב-YouTube",
+    guideTitle: "🎓 הדרכות ומדריכים",
+    guideSub: "למד לשלוט ב-FabriControl עם הסרטונים הרשמיים שלנו.",
 
     demoTitle: "נסה את FabriControl עכשיו",
     demoSub: "חקור את המערכת המלאה ללא הרשמה. נתונים לדוגמה כלולים.",
@@ -298,7 +308,7 @@ const translations = {
     compTitle: "FabriControl לעומת המתחרים",
     compSub: "השוואה כנה עם מערכות אחרות",
     compFeature: "תכונה",
-    compPrice: "מחיר/חודש",
+    compPrice: "מחיר לשנה",
     compLang: "ספרדית שפת אם",
     compLearn: "עקומת למידה",
     compParam: "חלקים פרמטריים",
@@ -320,6 +330,7 @@ const translations = {
 function Home() {
   const { language, isRtl } = useLanguage();
   const l = translations[language] || translations.es;
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   return (
     <div className={isRtl ? 'font-hebrew dir-rtl' : 'font-sans dir-ltr'}>
@@ -331,10 +342,17 @@ function Home() {
           <div className={`hero-content ${isRtl ? 'text-right' : 'text-left'}`}>
             <h1>{l.heroTitle}</h1>
             <p dangerouslySetInnerHTML={{ __html: l.heroSub }} />
-            <div className={`hero-cta ${isRtl ? 'justify-start' : 'justify-start'}`}>
+            <div className={`hero-cta flex flex-wrap gap-4 ${isRtl ? 'justify-start' : 'justify-start'}`}>
               <Link to="/precios" className="btn btn-accent btn-large">{l.heroCta}</Link>
+              <button 
+                onClick={() => setIsVideoOpen(true)}
+                className="btn btn-primary btn-large px-8 flex items-center gap-2 group relative overflow-hidden ring-2 ring-cyan-400/50 shadow-[0_0_20px_rgba(6,182,212,0.4)] animate-pulse hover:animate-none hover:scale-105 active:scale-95 transition-all"
+              >
+                <span className="relative z-10">{l.heroVideo}</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              </button>
             </div>
-            <p style={{marginTop: '1rem', opacity: 0.9, fontSize: '0.95rem'}}>
+            <p style={{marginTop: '1.5rem', opacity: 0.9, fontSize: '0.95rem', fontWeight: 600}}>
               {l.heroFoot}
             </p>
           </div>
@@ -592,6 +610,42 @@ function Home() {
         </div>
       </section>
 
+      {/* SECCIÓN DE GUÍAS Y TUTORIALES (YOUTUBE) */}
+      <section className="section bg-white/5 backdrop-blur-md">
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-white text-4xl font-black">{l.guideTitle}</h2>
+            <p className="text-xl text-cyan-400 opacity-80">{l.guideSub}</p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto bg-[#0b0f1a] rounded-[2.5rem] p-1 border border-white/10 shadow-2xl overflow-hidden hover:shadow-cyan-500/10 transition-shadow">
+            <div className="relative aspect-video">
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src={`https://www.youtube.com/embed/${language === 'he' ? 'IsTVmbo9_G8' : 'h_esweDlOck'}?rel=0`} 
+                title="FabriControl YouTube Guide" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+          
+          <div className="mt-8 text-center">
+            <a 
+              href={`https://www.youtube.com/watch?v=${language === 'he' ? 'IsTVmbo9_G8' : 'h_esweDlOck'}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-cyan-400 font-bold hover:text-white transition-colors text-lg"
+            >
+              <span>🔗 Abrir en YouTube</span>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* COMPARATIVA VS COMPETENCIA */}
       <section className="section section-gray">
         <div className="container">
@@ -614,10 +668,10 @@ function Home() {
               <tbody>
                 <tr style={{borderBottom: '1px solid rgba(255,255,255,0.05)'}}>
                   <td style={{padding: '1rem'}}>{l.compPrice}</td>
-                  <td style={{textAlign: 'center', padding: '1rem', color: 'white'}}><strong>$49-129</strong></td>
-                  <td style={{textAlign: 'center', padding: '1rem'}}>$50-300+</td>
-                  <td style={{textAlign: 'center', padding: '1rem'}}>$99-799</td>
-                  <td style={{textAlign: 'center', padding: '1rem'}}>$10-25</td>
+                  <td style={{textAlign: 'center', padding: '1rem', color: 'white'}}><strong>$195</strong></td>
+                  <td style={{textAlign: 'center', padding: '1rem'}}>$600+</td>
+                  <td style={{textAlign: 'center', padding: '1rem'}}>$1,100+</td>
+                  <td style={{textAlign: 'center', padding: '1rem'}}>$120+</td>
                 </tr>
                 <tr style={{borderBottom: '1px solid rgba(255,255,255,0.05)'}}>
                   <td style={{padding: '1rem'}}>{l.compLang}</td>
@@ -667,13 +721,24 @@ function Home() {
           <p style={{fontSize: '1.25rem', marginBottom: '2rem', opacity: 0.95}}>
             {l.ctaSub}
           </p>
-          <div style={{display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap'}}>
-            <Link to="/precios" className="btn btn-accent btn-large">{l.ctaBtn}</Link>
-          </div>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link to="/precios" className="btn btn-accent btn-large">{l.ctaBtn}</Link>
+              <button 
+                onClick={() => setIsVideoOpen(true)}
+                className="btn btn-primary btn-large px-8 flex items-center gap-2 group relative overflow-hidden ring-2 ring-cyan-100 shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95 transition-all"
+              >
+                <span className="relative z-10">{l.heroVideo}</span>
+              </button>
+            </div>
         </div>
       </section>
 
       <Footer />
+      
+      <VideoModal 
+        isOpen={isVideoOpen} 
+        onClose={() => setIsVideoOpen(false)} 
+      />
     </div>
   );
 }

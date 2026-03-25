@@ -8,6 +8,8 @@ import Precios from './pages/Precios';
 import FAQ from './pages/FAQ';
 import Enterprise from './pages/Enterprise';
 import Recursos from './pages/Recursos';
+import Documentacion from './pages/Documentacion';
+import Comparacion from './pages/Comparacion';
 import ChatWidget from './components/ChatWidget';
 import WhatsAppButton from './components/WhatsAppButton';
 
@@ -22,6 +24,8 @@ function App() {
           <Route path="/faq" element={<FAQ />} />
           <Route path="/enterprise" element={<Enterprise />} />
           <Route path="/recursos" element={<Recursos />} />
+          <Route path="/documentacion" element={<Documentacion />} />
+          <Route path="/comparacion" element={<Comparacion />} />
         </Routes>
         <ChatWidget />
         <WhatsAppButton />
