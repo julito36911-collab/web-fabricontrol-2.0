@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FabriControl - מערכת ERP למפעלים ובתי מלאכה</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logos/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .header {
+      background: var(--bg-white);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: var(--spacing-sm) 0;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      flex-direction: row-reverse;
+    }
+    .nav-logo img {
+      height: 50px;
+      width: auto;
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+      flex-direction: row-reverse;
+    }
+    .nav-link {
+      font-weight: 500;
+      color: var(--text-dark);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .nav-link:hover {
+      background: var(--bg-light);
+      color: var(--primary);
+    }
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      padding: 5rem 0;
+      text-align: center;
+    }
+    .hero h1 {
+      color: white;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero p {
+      color: white;
+      font-size: 1.25rem;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+    .btn-accent {
+      background: var(--accent);
+      color: white;
+    }
+    .btn-accent:hover {
+      background: #e08a73;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: white;
+      color: var(--primary);
+    }
+    .section {
+      padding: 4rem 0;
+    }
+    .section-light {
+      background: var(--bg-light);
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .mb-4 {
+      margin-bottom: 2rem;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      text-align: right;
+    }
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+      text-align: center;
+    }
+    .card h3 {
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    .footer {
+      background: var(--text-dark);
+      color: white;
+      padding: 3rem 0 1rem;
+    }
+    .footer a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+    }
+    .footer a:hover {
+      color: white;
+    }
+    
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .nav { gap: 0.3rem; }
+      .nav-logo img { height: 38px; }
+      .nav-menu {
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.2rem 0.4rem;
+        width: 100%;
+        padding-top: 0.4rem;
+        order: 2;
+      }
+      .nav-menu li { margin: 0; }
+      .nav-link {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+        white-space: nowrap;
+      }
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+    }
+    @media (max-width: 480px) {
+      .nav-logo img { height: 30px !important; }
+      .nav-menu { gap: 0.15rem 0.3rem; }
+      .nav-link { padding: 0.25rem 0.4rem; font-size: 0.68rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BANNER -->
+<div style="background: linear-gradient(90deg, var(--accent) 0%, #f59e0b 100%); color: white; text-align: center; padding: 0.75rem; font-weight: 600;">
+  🔥 מבצע השקה: $195 לשנה (מחיר רגיל $290) - לזמן מוגבל בלבד!
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="/he/">
+          <img src="/assets/img/logos/fabricontrol-logo.svg" alt="FabriControl" style="height: 50px;">
+        </a>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="/he/" class="nav-link active">דף הבית</a></li>
+        <li><a href="/he/pricing.html" class="nav-link">מחירים</a></li>
+        <li>
+          <a href="https://fabricontrol-1.emergent.host/" target="_blank" rel="noopener noreferrer" class="nav-link" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600;">
+            🎮 הדגמה
+          </a>
+        </li>
+        <li><a href="/" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid var(--bg-gray); border-radius: 6px; font-size: 0.875rem; font-weight: 600;">🌐 ES</a></li>
+        <li><a href="/en/" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid var(--bg-gray); border-radius: 6px; font-size: 0.875rem; font-weight: 600;">🌐 EN</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1>מערכת ה-ERP שהמפעל שלך מגיע לו, במחיר שאתה יכול להרשות לעצמך</h1>
+    <p>נהל הצעות מחיר, ייצור ומלאי מ-<strong>$195 לשנה</strong>. בלי סיבוכים.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="/he/pricing.html" class="btn btn-accent" style="font-size: 1.125rem;">
+        בקש תקופת ניסיון חינם (30 יום)
+      </a>
+    </div>
+    <div style="margin-top: 2rem; display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; color: white; font-size: 0.95rem;">
+      <span>✓ ללא כרטיס אשראי</span>
+      <span>✓ גישה מלאה</span>
+      <span>✓ ללא התחייבות</span>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO EN VIVO -->
+<section style="background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); padding: 3rem 0;">
+  <div class="container">
+    <div style="max-width: 800px; margin: 0 auto; text-align: center; color: white;">
+      <div style="font-size: 3rem; margin-bottom: 1rem;">🎮</div>
+      <h2 style="color: white; margin-bottom: 0.5rem; font-size: 2rem;">נסה את FabriControl עכשיו</h2>
+      <p style="font-size: 1.1rem; opacity: 0.95; margin-bottom: 2rem;">
+        חקור את המערכת המלאה ללא הרשמה. כולל נתונים לדוגמה.
+      </p>
+      <div style="background: rgba(255,255,255,0.1); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; backdrop-filter: blur(10px);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: right;">
+          <div>
+            <p style="margin: 0; opacity: 0.8; font-size: 0.875rem;">👤 משתמש הדגמה</p>
+            <p style="margin: 0.25rem 0 0 0; font-weight: 600; font-size: 1.05rem; font-family: monospace; background: rgba(255,255,255,0.15); padding: 0.5rem; border-radius: 6px;">julito36911@gmail.com</p>
+          </div>
+          <div>
+            <p style="margin: 0; opacity: 0.8; font-size: 0.875rem;">🔑 סיסמה</p>
+            <p style="margin: 0.25rem 0 0 0; font-weight: 600; font-size: 1.05rem; font-family: monospace; background: rgba(255,255,255,0.15); padding: 0.5rem; border-radius: 6px; direction: ltr;">password123</p>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="https://fabricontrol-1.emergent.host/" target="_blank" class="btn btn-accent btn-large" style="min-width: 200px;">🖥️ כניסה להדגמה באינטרנט</a>
+        <a href="https://fabricontrol-1.emergent.host/m" target="_blank" class="btn btn-large" style="min-width: 200px; background: white; color: #1e3a5f; font-weight: 600;">📱 נסה את האפליקציה</a>
+      </div>
+      <p style="margin-top: 1.5rem; font-size: 0.875rem; opacity: 0.8;">
+        💡 ההדגמה כוללת נתונים לדוגמה. חקור בחופשיות — מתאפס מדי פעם.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="section">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color: var(--primary);">למה לבחור ב-FabriControl?</h2>
+    <p class="text-center mb-4" style="color: var(--text-medium);">תוכנן במיוחד עבור מפעלים ובתי מלאכה</p>
+    
+    <div class="grid-3">
+      <div class="card">
+        <span class="feature-icon">⚡</span>
+        <h3>הצע מחיר מהיר ב-50%</h3>
+        <p>חישוב אוטומטי של עלויות חומרים ומכונות. הפק קבצי PDF מקצועיים בדקות.</p>
+      </div>
+      <div class="card">
+        <span class="feature-icon">📋</span>
+        <h3>לעולם אל תאבד הזמנה</h3>
+        <p>מעקב ויזואלי של כל פרויקט בזמן אמת. מצבים מותאמים אישית לפי זרימת העבודה שלך.</p>
+      </div>
+      <div class="card">
+        <span class="feature-icon">📱</span>
+        <h3>עובדים מחוברים</h3>
+        <p>אפליקציה סלולרית לעדכון סטטוסים מרצפת הייצור. עובדת בכל טלפון.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section section-light">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color: var(--primary);">כל מה שאתה צריך במערכת אחת</h2>
+    
+    <div class="grid-3">
+      <div class="card">
+        <h3>💼 הצעות מחיר חכמות</h3>
+        <p>הפק הצעות מחיר מקצועיות עם חישוב אוטומטי של עלויות חומרים, זמני עיבוד ושולי רווח.</p>
+      </div>
+      <div class="card">
+        <h3>🏭 הזמנות ייצור ויזואליות</h3>
+        <p>שליטה מלאה בזרימת הייצור עם מצבים הניתנים להתאמה אישית ומעקב מלא.</p>
+      </div>
+      <div class="card">
+        <h3>📦 מלאי עם קודי QR</h3>
+        <p>בקרת מלאי חכמה עם התראות אוטומטיות, תוויות QR וסריקה מהירה.</p>
+      </div>
+      <div class="card">
+        <h3>📊 פורטל פרויקטים</h3>
+        <p>ניהול שיתופי בזמן אמת עם משימות ואחראים.</p>
+      </div>
+      <div class="card">
+        <h3>🤖 צ'אט AI עם Gemini</h3>
+        <p>עוזר חכם משולב - שאל על נתוני המערכת בשפה טבעית.</p>
+      </div>
+      <div class="card">
+        <h3>📱 אפליקציה סלולרית PWA</h3>
+        <p>עובד ב-iOS ו-Android. לא דורש הורדה מחנות האפליקציות.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="hero" style="padding: 4rem 0;">
+  <div class="container text-center">
+    <h2 style="color: white; margin-bottom: 1rem;">התחל היום עם FabriControl</h2>
+    <p style="color: white; opacity: 0.9; margin-bottom: 2rem;">30 יום ניסיון חינם. ללא כרטיס אשראי.</p>
+    <a href="/he/pricing.html" class="btn btn-accent" style="font-size: 1.125rem;">
+      בקש רישיון חינם
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+      <div>
+        <h4 style="margin-bottom: 1rem;">FabriControl</h4>
+        <p style="opacity: 0.8;">מערכת ההפעלה לייצור מודרני.</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 1rem;">מוצר</h4>
+        <p><a href="/he/features.html">תכונות</a></p>
+        <p><a href="/he/pricing.html">מחירים</a></p>
+        <p><a href="/he/documentation.html">תיעוד</a></p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 1rem;">צור קשר</h4>
+          <li>📧 <a href="mailto:info@fabricontrol.online">info@fabricontrol.online</a></li>
+        <p>📱 +972 52-648-9461</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom: 1rem;">שפות</h4>
+        <p><a href="/">🌐 Español</a></p>
+        <p><a href="/en/">🌐 English</a></p>
+      </div>
+    </div>
+    <div style="text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
+      <p style="opacity: 0.7;">© 2026 FabriControl. כל הזכויות שמורות.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Chat Widget -->
+<script>window.REACT_APP_BACKEND_URL = 'https://cloud-fabric-control.preview.emergentagent.com';</script>
+<script src="/assets/js/chat-widget.js"></script>
+
+</body>
+</html>

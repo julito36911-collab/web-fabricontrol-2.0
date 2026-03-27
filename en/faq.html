@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FAQ - FabriControl</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logos/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    .nav-link {
+      color: white !important;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+    .nav-link:hover {
+      opacity: 0.8;
+      color: white !important;
+    }
+    .nav-link.active {
+      font-weight: 700;
+      color: white !important;
+    }
+    
+    /* Mobile responsive menu */
+    @media (max-width: 768px) {
+      .nav { gap: 0.3rem; }
+      .nav-logo img { height: 38px !important; }
+      .nav-menu {
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.2rem 0.4rem;
+        width: 100%;
+        padding-top: 0.4rem;
+        order: 2;
+      }
+      .nav-menu li { margin: 0; }
+      .nav-link {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+        white-space: nowrap;
+      }
+    }
+    @media (max-width: 480px) {
+      .nav-logo img { height: 30px !important; }
+      .nav-menu { gap: 0.15rem 0.3rem; }
+      .nav-link {
+        padding: 0.25rem 0.4rem;
+        font-size: 0.68rem;
+      }
+    }
+    
+    .faq-item { background: white; border: 1px solid #eee; margin-bottom: 1rem; border-radius: 8px; overflow: hidden; }
+    .faq-question { padding: 1.5rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: #fafafa; }
+    .faq-answer { padding: 1.5rem; display: none; border-top: 1px solid #eee; color: #555; line-height: 1.6; }
+    .faq-item.active .faq-answer { display: block; }
+    .faq-item.active .faq-question { background: #eef2ff; color: var(--primary); }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="/en/index.html">
+          <img src="/assets/img/logos/fabricontrol-logo.svg" alt="FabriControl" style="height: 50px;">
+        </a>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="/en/index.html" class="nav-link">Home</a></li>
+        <li><a href="/en/features.html" class="nav-link">Features</a></li>
+        <li><a href="/en/pricing.html" class="nav-link">Pricing</a></li>
+        <li><a href="/en/products/" class="nav-link">Products</a></li>
+        <li><a href="/en/resources/" class="nav-link">Resources</a></li>
+        <li><a href="/en/documentation.html" class="nav-link">Documentation</a></li>
+        <li><a href="/" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid var(--bg-gray); border-radius: 6px; font-size: 0.875rem; font-weight: 600;">🌐 ES</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="container" style="max-width: 800px; padding: 3rem 0;">
+  <h1 style="font-family: 'Montserrat'; text-align: center; margin-bottom: 3rem;">Frequently Asked Questions</h1>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+      Do I need to install software on my computer? <span>▼</span>
+    </div>
+    <div class="faq-answer">
+      Yes and No. FabriControl is a hybrid system. You can install it on your local server (for data privacy) or use our Cloud version. The mobile app for operators works on any smartphone browser.
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+      Can I try before buying? <span>▼</span>
+    </div>
+    <div class="faq-answer">
+      Absolutely! Every plan includes a 30-day free trial with full access to all features. No credit card required to start.
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+      Is my data safe? <span>▼</span>
+    </div>
+    <div class="faq-answer">
+      Absolutely. We use bank-grade encryption (AES-256). If you choose the Local Installation, your data never leaves your premises.
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+      Can I install FabriControl on my own server? <span>▼</span>
+    </div>
+    <div class="faq-answer">
+      Yes! The Enterprise plan includes on-premise installation. Your data stays 100% private on your infrastructure.
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+      What happens if I cancel my subscription? <span>▼</span>
+    </div>
+    <div class="faq-answer">
+      You can cancel anytime without penalties. You'll keep access until the end of your billing period. We also provide a data export in CSV format.
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+      Do you offer support in English? <span>▼</span>
+    </div>
+    <div class="faq-answer">
+      Yes, our support team is bilingual (Spanish/English). Enterprise plans also get a dedicated account manager.
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+      How does the AI Chat work? <span>▼</span>
+    </div>
+    <div class="faq-answer">
+      FabriControl integrates Google Gemini AI. It's trained on our documentation and can answer questions about features, workflows, and troubleshooting. Available in Professional and Enterprise plans.
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+      What are Parametric Pieces? <span>▼</span>
+    </div>
+    <div class="faq-answer">
+      Parametric Pieces let you create templates with variables like {Width}x{Height}. The system auto-generates part codes (e.g., Door-100x200). It's unique to FabriControl and saves hours on repetitive products.
+    </div>
+  </div>
+  
+  <div class="faq-item">
+    <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+      Can I upgrade from Basic to Professional later? <span>▼</span>
+    </div>
+    <div class="faq-answer">
+      Yes, you can upgrade at any time. All your data, clients, and inventory will be preserved automatically.
+    </div>
+  </div>
+
+</div>
+
+<div class="container" style="text-align: center; padding: 2rem; border-top: 1px solid #eee; margin-top: 3rem;">
+  <p>&copy; 2026 FabriControl. All rights reserved.</p>
+</div>
+
+<!-- Chat Widget -->
+<script>window.REACT_APP_BACKEND_URL = 'https://cloud-fabric-control.preview.emergentagent.com';</script>
+<script src="/assets/js/chat-widget.js"></script>
+
+</body>
+</html>

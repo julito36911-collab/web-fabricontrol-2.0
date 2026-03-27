@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Engineering Department - FabriControl</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logos/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    .dept-header { background: #5A8AA0; color: var(--text-dark); padding: 3rem 0; text-align: center; }
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; padding: 3rem 0; }
+    .tool-card { background: white; border: 1px solid #eee; border-radius: 8px; padding: 1.5rem; transition: 0.3s; display: flex; align-items: center; }
+    .tool-card:hover { box-shadow: 0 10px 20px rgba(90, 138, 160, 0.2); border-color: #5A8AA0; transform: translateX(5px); }
+    .tool-icon { font-size: 2rem; margin-right: 1rem; background: #eef6f8; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+    
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .dept-header { padding: 2rem 0; }
+      .dept-header h1 { font-size: 1.5rem !important; }
+      .tools-grid { padding: 1.5rem 0; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <nav style="padding: 1rem; border-bottom: 1px solid #eee;">
+    <div class="container">
+      <a href="/en/resources/" style="font-weight: 600; text-decoration: none; color: #1F2937;">← Back to Campus</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="dept-header">
+    <div class="container">
+      <h1 style="font-family: 'Montserrat'; font-size: 2.5rem; margin-bottom: 0.5rem;">📐 Engineering Department</h1>
+      <p style="font-size: 1.1rem; opacity: 0.95;">Calculation and verification tools for engineers</p>
+    </div>
+  </header>
+
+  <!-- TOOLS SECTION -->
+  <section class="container">
+    <div class="tools-grid">
+      
+      <!-- BEAM CALCULATOR - ACTIVE -->
+      <a href="beam-calculator.html" style="text-decoration: none; color: inherit;">
+        <div class="tool-card">
+          <div class="tool-icon">🧘</div>
+          <div>
+            <h3 style="margin: 0; font-size: 1.1rem;">Beam Calculator</h3>
+            <p style="margin: 0.2rem 0 0; font-size: 0.9rem; color: #666;">Quick verification of IPR/HSS profiles.</p>
+            <span style="font-size: 0.7rem; color: #5A8AA0; font-weight: 700;">ACCESS →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- UNIT CONVERTER - COMING SOON -->
+      <div class="tool-card" style="opacity: 0.6; cursor: not-allowed;">
+        <div class="tool-icon">📏</div>
+        <div>
+          <h3 style="margin: 0; font-size: 1.1rem;">Unit Converter</h3>
+          <p style="margin: 0.2rem 0 0; font-size: 0.9rem; color: #666;">Coming Soon</p>
+        </div>
+      </div>
+
+      <!-- ISO TOLERANCE TABLE - COMING SOON -->
+      <div class="tool-card" style="opacity: 0.6; cursor: not-allowed;">
+        <div class="tool-icon">📋</div>
+        <div>
+          <h3 style="margin: 0; font-size: 1.1rem;">ISO Tolerance Table</h3>
+          <p style="margin: 0.2rem 0 0; font-size: 0.9rem; color: #666;">Coming Soon</p>
+        </div>
+      </div>
+
+      <!-- SHEET WEIGHT CALCULATOR - COMING SOON -->
+      <div class="tool-card" style="opacity: 0.6; cursor: not-allowed;">
+        <div class="tool-icon">⚖️</div>
+        <div>
+          <h3 style="margin: 0; font-size: 1.1rem;">Sheet Weight Calculator</h3>
+          <p style="margin: 0.2rem 0 0; font-size: 0.9rem; color: #666;">Coming Soon</p>
+        </div>
+      </div>
+
+      <!-- MOMENT OF INERTIA - COMING SOON -->
+      <div class="tool-card" style="opacity: 0.6; cursor: not-allowed;">
+        <div class="tool-icon">🔧</div>
+        <div>
+          <h3 style="margin: 0; font-size: 1.1rem;">Moment of Inertia Calculator</h3>
+          <p style="margin: 0.2rem 0 0; font-size: 0.9rem; color: #666;">Coming Soon</p>
+        </div>
+      </div>
+
+      <!-- WIND LOADS - COMING SOON -->
+      <div class="tool-card" style="opacity: 0.6; cursor: not-allowed;">
+        <div class="tool-icon">💨</div>
+        <div>
+          <h3 style="margin: 0; font-size: 1.1rem;">Wind Loads (CFE)</h3>
+          <p style="margin: 0.2rem 0 0; font-size: 0.9rem; color: #666;">Coming Soon</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER SIMPLE -->
+  <footer style="background: #f8f9fa; padding: 2rem 0; margin-top: 4rem; text-align: center; border-top: 1px solid #eee;">
+    <div class="container">
+      <p style="color: #666; margin: 0;">© 2026 FabriControl - Free Resources for Engineering</p>
+    </div>
+  </footer>
+
+</body>
+</html>

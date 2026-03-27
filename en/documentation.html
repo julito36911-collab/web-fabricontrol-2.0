@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technical Documentation - FabriControl</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logos/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    .header {
+      background: var(--bg-white);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: var(--spacing-sm) 0;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-logo img {
+      height: 50px;
+      width: auto;
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    .nav-link {
+      font-weight: 500;
+      color: var(--text-dark);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .nav-link:hover {
+      background: var(--bg-light);
+      color: var(--primary);
+    }
+    .nav-link.active {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    /* Mobile responsive menu */
+    @media (max-width: 768px) {
+      .nav { gap: 0.3rem; }
+      .nav-logo img { height: 38px !important; }
+      .nav-menu {
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.2rem 0.4rem;
+        width: 100%;
+        padding-top: 0.4rem;
+        order: 2;
+      }
+      .nav-menu li { margin: 0; }
+      .nav-link {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+        white-space: nowrap;
+      }
+    }
+    @media (max-width: 480px) {
+      .nav-logo img { height: 30px !important; }
+      .nav-menu { gap: 0.15rem 0.3rem; }
+      .nav-link {
+        padding: 0.25rem 0.4rem;
+        font-size: 0.68rem;
+      }
+    }
+    
+    .doc-section {
+      margin-bottom: 4rem;
+    }
+    .doc-section h2 {
+      color: var(--primary);
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+    }
+    .doc-section h3 {
+      color: var(--text-dark);
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    .info-box {
+      background: linear-gradient(135deg, #eef2ff 0%, #f9fafb 100%);
+      border-left: 4px solid var(--primary);
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      margin: 1.5rem 0;
+    }
+    .warning-box {
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      margin: 1.5rem 0;
+    }
+    .success-box {
+      background: #dcfce7;
+      border-left: 4px solid #16a34a;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      margin: 1.5rem 0;
+    }
+    .diagram {
+      background: white;
+      border: 2px solid var(--bg-gray);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--bg-gray);
+    }
+    .comparison-table th {
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+    }
+    .comparison-table tr:hover {
+      background: #f9fafb;
+    }
+    code {
+      background: #f3f4f6;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9em;
+      color: #dc2626;
+    }
+    .toc {
+      background: #f9fafb;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      margin-bottom: 3rem;
+    }
+    .toc h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+    .toc ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .toc li {
+      padding: 0.5rem 0;
+    }
+    .toc a {
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .toc a:hover {
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="/en/index.html">
+          <img src="/assets/img/logos/fabricontrol-logo.svg" alt="FabriControl">
+        </a>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="/en/index.html" class="nav-link">Home</a></li>
+        <li><a href="/en/features.html" class="nav-link">Features</a></li>
+        <li><a href="/en/pricing.html" class="nav-link">Pricing</a></li>
+        <li><a href="/en/products/" class="nav-link">Products</a></li>
+        <li><a href="/en/resources/" class="nav-link">Resources</a></li>
+        <li><a href="/en/documentation.html" class="nav-link active">Documentation</a></li>
+        <li><a href="https://fabricontrol-1.emergent.host/" target="_blank" class="nav-link" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600;">🎮 Demo</a></li>
+        <li><a href="/" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid var(--bg-gray); border-radius: 6px; font-size: 0.875rem; font-weight: 600;">🌐 ES</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding: 4rem 0 2rem;">
+  <div class="container text-center">
+    <h1 style="font-family: 'Montserrat'; font-size: 3rem; color: white; margin-bottom: 1rem;">📚 Technical Documentation</h1>
+    <p style="font-size: 1.25rem; color: white; opacity: 0.95; max-width: 800px; margin: 0 auto;">
+      Complete guide to getting started, using, and configuring FabriControl — 100% cloud SaaS
+    </p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="section">
+  <div class="container" style="max-width: 1000px;">
+    
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+      <h3>📑 Table of Contents</h3>
+      <ul>
+        <li><a href="#getting-started">1. Getting Started (100% Cloud)</a></li>
+        <li><a href="#access">2. Accessing FabriControl</a></li>
+        <li><a href="#modules">3. Available Modules</a></li>
+        <li><a href="#roles">4. User Roles & Permissions</a></li>
+        <li><a href="#backups">5. Backups and Security</a></li>
+        <li><a href="#aichat">6. AI Chat with Gemini</a></li>
+        <li><a href="#licenses">7. Account Activation & Billing</a></li>
+        <li><a href="#faq">8. Frequently Asked Questions</a></li>
+      </ul>
+    </div>
+
+    <!-- SECTION 1: GETTING STARTED -->
+    <div class="doc-section" id="getting-started">
+      <h2>☁️ 1. Getting Started (100% Cloud)</h2>
+
+      <div class="success-box">
+        <strong>✅ FabriControl is 100% cloud-based (SaaS)</strong><br>
+        There is nothing to download or install. FabriControl works entirely in your web browser. All you need is internet access.
+      </div>
+
+      <h3>How to Start in 3 Steps</h3>
+
+      <div class="diagram">
+        <pre style="text-align: left; font-family: monospace; font-size: 0.9rem;">
+STEP 1: Request your free 30-day trial
+  → Fill out the form at fabricontrol.online/en/pricing.html
+  → No credit card required
+
+  ↓
+
+STEP 2: Receive your activation code by email (less than 24h)
+  ┌──────────────────────────────────────────┐
+  │ Hello [Name]!                            │
+  │                                          │
+  │ Your activation code:                    │
+  │ 🔑 FABRI-1234-5678-ABCD                 │
+  │                                          │
+  │ Create your account at:                  │
+  │ 🌐 fabricontrol-1.emergent.host/register │
+  │                                          │
+  │ ✅ 30 days free                          │
+  │ ✅ All features                          │
+  └──────────────────────────────────────────┘
+
+  ↓
+
+STEP 3: Create your account and start working
+  → Go to: fabricontrol-1.emergent.host/register
+  → Enter your activation code
+  → Set your email and password
+  → You're ready! Log in from any browser.
+        </pre>
+      </div>
+
+      <h3>System Requirements</h3>
+      <table class="comparison-table">
+        <tr>
+          <th>Requirement</th>
+          <th>Details</th>
+        </tr>
+        <tr>
+          <td><strong>Device</strong></td>
+          <td>Any PC, Mac, tablet, or smartphone</td>
+        </tr>
+        <tr>
+          <td><strong>Browser</strong></td>
+          <td>Chrome (recommended), Firefox, Edge, Safari</td>
+        </tr>
+        <tr>
+          <td><strong>Internet</strong></td>
+          <td>Required (FabriControl is cloud-based)</td>
+        </tr>
+        <tr>
+          <td><strong>Installation</strong></td>
+          <td>None required. Open browser and go.</td>
+        </tr>
+      </table>
+
+      <div class="info-box">
+        <strong>📱 Mobile App (PWA):</strong><br>
+        FabriControl includes a Progressive Web App (PWA) for operators on the shop floor. Open the app URL on your phone's browser — no App Store download needed. Tap "Add to Home Screen" for a native-app experience.
+      </div>
+    </div>
+
+    <!-- SECTION 2: ACCESS -->
+    <div class="doc-section" id="access">
+      <h2>🔐 2. Accessing FabriControl</h2>
+
+      <h3>Login</h3>
+      <ol>
+        <li>Open your browser (Chrome recommended)</li>
+        <li>Go to: <code>fabricontrol-1.emergent.host/login</code></li>
+        <li>Enter your email and password</li>
+        <li>Click "Log In"</li>
+      </ol>
+
+      <div class="info-box">
+        <strong>💡 Tip:</strong> Bookmark the login URL for quick access. You can also add it to your phone's home screen as a PWA.
+      </div>
+
+      <h3>Password Recovery</h3>
+      <p>If you forget your password, click "Forgot Password" on the login screen. You'll receive a reset link by email.</p>
+
+      <h3>Multi-Device Access</h3>
+      <p>FabriControl is cloud-based, so you can log in from multiple devices simultaneously. All data is synced in real time across all users.</p>
+    </div>
+
+    <!-- SECTION 3: MODULES -->
+    <div class="doc-section" id="modules">
+      <h2>📦 3. Available Modules</h2>
+
+      <p>All plans include <strong>all modules</strong> with no limits on usage.</p>
+
+      <table class="comparison-table">
+        <tr>
+          <th>Module</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><strong>Quotes</strong></td>
+          <td>Create, manage, and send professional quotes. Convert to production orders with one click.</td>
+        </tr>
+        <tr>
+          <td><strong>Production Orders</strong></td>
+          <td>Control the complete production workflow from start to delivery.</td>
+        </tr>
+        <tr>
+          <td><strong>Inventory</strong></td>
+          <td>Manage materials, track stock levels, set minimum alerts, generate QR labels.</td>
+        </tr>
+        <tr>
+          <td><strong>Parametric Parts</strong></td>
+          <td><strong>Unique feature:</strong> Reusable product templates. Quote complex items in 30 seconds.</td>
+        </tr>
+        <tr>
+          <td><strong>Project Portal</strong></td>
+          <td>Clients can view their order progress in real time. Reduces "Where is my order?" calls.</td>
+        </tr>
+        <tr>
+          <td><strong>Dashboard</strong></td>
+          <td>Key business metrics, production KPIs, and real-time indicators.</td>
+        </tr>
+        <tr>
+          <td><strong>Machine Management</strong></td>
+          <td>Track equipment, maintenance schedules, and machine utilization.</td>
+        </tr>
+        <tr>
+          <td><strong>BOM (Bill of Materials)</strong></td>
+          <td>Structured lists of materials for each production order.</td>
+        </tr>
+        <tr>
+          <td><strong>Purchase Orders</strong></td>
+          <td>Manage suppliers and track material procurement.</td>
+        </tr>
+        <tr>
+          <td><strong>PWA Mobile App</strong></td>
+          <td>Operators update order status and log work hours from their phones on the shop floor.</td>
+        </tr>
+        <tr>
+          <td><strong>AI Chat (Gemini)</strong></td>
+          <td>Intelligent assistant that answers questions, guides users, and helps with daily tasks.</td>
+        </tr>
+        <tr>
+          <td><strong>Excel Export</strong></td>
+          <td>Export quotes, orders, and inventory for external analysis.</td>
+        </tr>
+        <tr>
+          <td><strong>QR Codes</strong></td>
+          <td>Scan to quickly log material entries and exits.</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- SECTION 4: ROLES -->
+    <div class="doc-section" id="roles">
+      <h2>👥 4. User Roles & Permissions</h2>
+
+      <p>FabriControl has 5 predefined roles. Assign the correct role to each team member to control access.</p>
+
+      <table class="comparison-table">
+        <tr>
+          <th>Role</th>
+          <th>Access Level</th>
+          <th>Ideal For</th>
+        </tr>
+        <tr>
+          <td>👑 <strong>Director</strong></td>
+          <td>Full system access — no restrictions</td>
+          <td>Owner, CEO, General Manager</td>
+        </tr>
+        <tr>
+          <td>👔 <strong>Manager</strong></td>
+          <td>Quotes, production, inventory, reports. No global config or user management.</td>
+          <td>Production Manager, Operations Manager</td>
+        </tr>
+        <tr>
+          <td>💼 <strong>Sales Rep</strong></td>
+          <td>Quotes, clients, convert to orders. No inventory or finances.</td>
+          <td>Salesperson, Account Executive</td>
+        </tr>
+        <tr>
+          <td>📦 <strong>Warehouse</strong></td>
+          <td>Full inventory management, QR scanning. No quotes or prices.</td>
+          <td>Warehouse Keeper, Inventory Manager</td>
+        </tr>
+        <tr>
+          <td>🔧 <strong>Operator</strong></td>
+          <td>View assigned orders, update status, log time. No quotes or finances.</td>
+          <td>Machine Operator, Technician, Welder</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- SECTION 5: BACKUPS -->
+    <div class="doc-section" id="backups">
+      <h2>🔒 5. Backups and Security</h2>
+
+      <h3>Automatic Backups</h3>
+      <p>FabriControl performs automatic daily backups of all your data. These are stored securely in the cloud and are managed by the system — you don't need to do anything.</p>
+
+      <h3>Data Security</h3>
+      <ul>
+        <li>✅ Data encrypted in transit (HTTPS/TLS)</li>
+        <li>✅ Daily automatic backups</li>
+        <li>✅ Data retained for 90 days after account cancellation</li>
+        <li>✅ No data stored on your local devices</li>
+      </ul>
+
+      <h3>Manual Export</h3>
+      <p>You can export your data to Excel at any time from any module. This gives you a local copy of your important records.</p>
+
+      <div class="info-box">
+        <strong>💡 Best Practice:</strong> Export your key reports (inventory, quotes, orders) to Excel weekly as an additional backup for your records.
+      </div>
+    </div>
+
+    <!-- SECTION 6: ADVANCED AI ASSISTANT -->
+    <div class="doc-section" id="aichat">
+      <h2>🤖 6. Integrated AI Assistant (Gemini)</h2>
+
+      <h3>Intelligent Capabilities</h3>
+      <p>FabriControl integrates a next-generation AI Assistant (powered by Google Gemini) that not only answers questions but also executes actions through natural language:</p>
+      <ul>
+        <li>✅ <strong>Part Creation:</strong> "Create a 100x200 aluminum door" — the AI generates the parametric part automatically.</li>
+        <li>✅ <strong>BOM Building:</strong> Describe materials and processes, and the AI builds the Bill of Materials (BOM) for you.</li>
+        <li>✅ <strong>Process Guidance:</strong> It takes you step-by-step through creating complex production orders and quotes.</li>
+        <li>✅ <strong>Intent Detection:</strong> Shows quick access buttons based on the context of your conversation.</li>
+        <li>✅ <strong>Multilingual Support:</strong> Responds in Spanish, English, or Hebrew natively.</li>
+      </ul>
+
+      <div class="info-box">
+        <strong>💡 Usage Tip:</strong> Talk to the AI as if it were an expert colleague. It understands context and can save you minutes of manual data entry.
+      </div>
+    </div>
+
+    <!-- SECTION 7: GLOBALIZATION & LOCALIZATION -->
+    <div class="doc-section" id="global">
+      <h2>🌐 7. Globalization & Currency</h2>
+
+      <h3>Multi-language & RTL</h3>
+      <p>FabriControl is a global platform with native support for:</p>
+      <ul>
+        <li>🇪🇸 <strong>Spanish:</strong> Full interface and technical support.</li>
+        <li>🇺🇸 <strong>English:</strong> Available in all views and modules.</li>
+        <li>🇮🇱 <strong>Hebrew (עברית):</strong> Full support for Right-to-Left (RTL) writing and specific fonts.</li>
+      </ul>
+
+      <h3>Global Currency Configuration</h3>
+      <p>You can configure your company's currency symbol once, and it will automatically apply to all modules (Quotes, Inventory, Purchase Orders, etc.):</p>
+      <ul>
+        <li>⚙️ Go to <strong>Menu → Settings → General</strong></li>
+        <li>💲 Change the <strong>Currency Symbol</strong> ($, €, ₪, £, etc.)</li>
+        <li>💾 Save changes and refresh the application</li>
+      </ul>
+    </div>
+
+    <!-- SECTION 8: LICENSES -->
+    <div class="doc-section" id="licenses">
+      <h2>🔑 8. Account Activation & Billing</h2>
+
+      <h3>Trial Period (30 Days)</h3>
+      <ol>
+        <li>Fill the trial request form at <a href="/en/pricing.html">fabricontrol.online/en/pricing.html</a></li>
+        <li>Receive your activation code by email (within 24 hours)</li>
+        <li>Register at: <code>fabricontrol-1.emergent.host/register</code></li>
+        <li>Use all features for 30 days — no credit card required</li>
+      </ol>
+
+      <h3>Purchasing a License</h3>
+      <p>When ready to subscribe, purchase through Hotmart:</p>
+      <div class="info-box">
+        <strong>💳 Payment Link:</strong> <a href="https://pay.hotmart.com/L103719113Q" target="_blank">https://pay.hotmart.com/L103719113Q</a><br><br>
+        <strong>Plan Annual ($195/year):</strong> Single annual payment. Best value — saves $95.<br>
+        <strong>Installment Plan ($290/year):</strong> Monthly payments. Same features, more flexible.
+      </div>
+
+      <h3>Account Status</h3>
+      <table class="comparison-table">
+        <tr>
+          <th>Status</th>
+          <th>Meaning</th>
+          <th>Can Access?</th>
+        </tr>
+        <tr>
+          <td><code>trial</code></td>
+          <td>Free trial period (30 days)</td>
+          <td>✅ Yes</td>
+        </tr>
+        <tr>
+          <td><code>active</code></td>
+          <td>Paid subscription active</td>
+          <td>✅ Yes</td>
+        </tr>
+        <tr>
+          <td><code>suspended</code></td>
+          <td>Payment overdue</td>
+          <td>❌ No</td>
+        </tr>
+        <tr>
+          <td><code>expired</code></td>
+          <td>Trial ended without payment</td>
+          <td>❌ No</td>
+        </tr>
+      </table>
+
+      <div class="info-box">
+        <strong>📋 Activation Code Format:</strong><br>
+        <code>FABRI-XXXX-XXXX-XXXX</code> — Example: <code>FABRI-1234-5678-ABCD</code>
+      </div>
+    </div>
+
+    <!-- SECTION 8: FAQ -->
+    <div class="doc-section" id="faq">
+      <h2>❓ 8. Frequently Asked Questions</h2>
+
+      <div class="success-box">
+        <strong>Do I need to install anything?</strong><br>
+        No. FabriControl is 100% cloud-based. Open your browser, go to the login URL, and you're in.
+      </div>
+      <div class="success-box">
+        <strong>Does it work on Mac, Linux, or mobile?</strong><br>
+        Yes. Any device with a modern browser and internet access works — Windows, Mac, Linux, Android, iOS.
+      </div>
+      <div class="success-box">
+        <strong>What happens to my data if I cancel?</strong><br>
+        All your data remains secure for 90 days. You can reactivate and recover everything. After 90 days it is permanently deleted.
+      </div>
+      <div class="success-box">
+        <strong>Can multiple users work simultaneously?</strong><br>
+        Yes. All plans include unlimited users. Everyone connects to the same cloud account and data syncs in real time.
+      </div>
+      <div class="success-box">
+        <strong>What's the difference between the $195 and $290 plans?</strong><br>
+        Only the payment method. Both plans have exactly the same features. $195/year = one annual payment (better price). $290/year = monthly installments (more flexible).
+      </div>
+      <div class="success-box">
+        <strong>How long does setup take?</strong><br>
+        Fill form: 2 minutes. Receive access: less than 24 hours. Initial configuration: 2 hours. Full team training: 1 day.
+      </div>
+    </div>
+
+
+    <!-- FOOTER CTA -->
+    <div style="text-align: center; margin-top: 4rem; padding: 3rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: var(--radius-xl); color: white;">
+      <h2 style="color: white; margin-bottom: 1rem;">Ready to use FabriControl?</h2>
+      <p style="font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.95;">Request your 30-day free trial license with no credit card required</p>
+      <a href="/en/pricing.html" class="btn btn-accent btn-large" style="background: white; color: var(--primary);">Request Free License</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>FabriControl</h3>
+        <p>The ERP specifically designed for Latin American workshops and factories.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="/en/features.html">Features</a></li>
+          <li><a href="/en/pricing.html">Pricing</a></li>
+          <li><a href="/en/documentation.html">Documentation</a></li>
+          <li><a href="mailto:info@fabricontrol.online">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/en/resources/">Free Tools</a></li>
+          <li><a href="/en/faq.html">FAQ</a></li>
+          <li><a href="/">Spanish Version</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 FabriControl. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Chat Widget -->
+<script>window.REACT_APP_BACKEND_URL = 'https://cloud-fabric-control.preview.emergentagent.com';</script>
+<script src="/assets/js/chat-widget.js"></script>
+
+</body>
+</html>

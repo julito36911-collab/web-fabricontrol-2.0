@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features - FabriControl ERP</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="/assets/img/logos/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    .header {
+      background: var(--bg-white);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: var(--spacing-sm) 0;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-logo img {
+      height: 50px;
+      width: auto;
+    }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    .nav-link {
+      font-weight: 500;
+      color: var(--text-dark);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .nav-link:hover {
+      background: var(--bg-light);
+      color: var(--primary);
+    }
+    .nav-link.active {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    /* Mobile responsive menu */
+    @media (max-width: 768px) {
+      .nav { gap: 0.3rem; }
+      .nav-logo img { height: 38px; }
+      .nav-menu {
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.2rem 0.4rem;
+        width: 100%;
+        padding-top: 0.4rem;
+        order: 2;
+      }
+      .nav-menu li { margin: 0; }
+      .nav-link {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+        white-space: nowrap;
+      }
+    }
+    @media (max-width: 480px) {
+      .nav-logo img { height: 30px !important; }
+      .nav-menu { gap: 0.15rem 0.3rem; }
+      .nav-link {
+        padding: 0.25rem 0.4rem;
+        font-size: 0.68rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="/en/index.html">
+          <img src="/assets/img/logos/fabricontrol-logo.svg" alt="FabriControl" style="height: 50px;">
+        </a>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="/en/index.html" class="nav-link">Home</a></li>
+        <li><a href="/en/features.html" class="nav-link active">Features</a></li>
+        <li><a href="/en/pricing.html" class="nav-link">Pricing</a></li>
+        <li><a href="/en/products/" class="nav-link">Products</a></li>
+        <li><a href="/en/resources/" class="nav-link">Resources</a></li>
+        <li><a href="/en/documentation.html" class="nav-link">Documentation</a></li>
+        <li><a href="https://fabricontrol-1.emergent.host/" target="_blank" class="nav-link" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600;">🎮 Demo</a></li>
+        <li><a href="/" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid var(--bg-gray); border-radius: 6px; font-size: 0.875rem; font-weight: 600;">🌐 ES</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding: 4rem 0;">
+  <div class="container text-center">
+    <h1 style="color: white; font-family: 'Montserrat'; font-size: 3rem;">10 Modules. 1 Complete System.</h1>
+    <p style="font-size: 1.25rem; color: white; max-width: 700px; margin: 0 auto; opacity: 0.95;">
+      Everything you need to manage your workshop from quote to delivery
+    </p>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class="section">
+  <div class="container">
+    
+    <!-- Smart Quotes -->
+    <div style="margin-bottom: 5rem;">
+      <div class="grid grid-2" style="gap: 3rem; align-items: center;">
+        <div>
+          <h2 style="color: var(--primary); margin-bottom: 1rem;">📄 Smart Quotes</h2>
+          <p style="font-size: 1.125rem; margin-bottom: 1.5rem; color: var(--text-medium);">
+            Generate professional budgets with automatic cost calculation
+          </p>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Material costs (with waste)</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Process times per machine</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Labor and profit margin</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Convert to order with one click</span>
+            </li>
+          </ul>
+        </div>
+        <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);">
+          <img src="/assets/img/screenshots/desktop/quotations-en.jpg" alt="Quotes Module" style="width: 100%; height: auto; display: block;" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Production Orders -->
+    <div style="margin-bottom: 5rem;">
+      <div class="grid grid-2" style="gap: 3rem; align-items: center;">
+        <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);">
+          <img src="/assets/img/screenshots/desktop/production-orders-en.jpg" alt="Production Orders" style="width: 100%; height: auto; display: block;" />
+        </div>
+        <div>
+          <h2 style="color: var(--primary); margin-bottom: 1rem;">🏭 Visual Production Orders</h2>
+          <p style="font-size: 1.125rem; margin-bottom: 1.5rem; color: var(--text-medium);">
+            Complete control of manufacturing flow
+          </p>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>100% customizable statuses</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Part assignment to machines</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Complete BOM (Bill of Materials)</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Change history and attachments</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inventory with QR -->
+    <div style="margin-bottom: 5rem;">
+      <div class="grid grid-2" style="gap: 3rem; align-items: center;">
+        <div>
+          <h2 style="color: var(--primary); margin-bottom: 1rem;">📦 Inventory with QR Codes</h2>
+          <p style="font-size: 1.125rem; margin-bottom: 1.5rem; color: var(--text-medium);">
+            Smart stock control
+          </p>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Automatic low stock alerts</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>QR label generation</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Quick scan with phone camera</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Complete movement traceability</span>
+            </li>
+          </ul>
+        </div>
+        <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);">
+          <img src="/assets/img/screenshots/desktop/inventory-en.jpg" alt="Inventory with QR" style="width: 100%; height: auto; display: block;" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Portal -->
+    <div style="margin-bottom: 5rem;">
+      <div class="grid grid-2" style="gap: 3rem; align-items: center;">
+        <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);">
+          <img src="/assets/img/screenshots/desktop/projects-portal-en.jpg" alt="Project Portal" style="width: 100%; height: auto; display: block;" />
+        </div>
+        <div>
+          <h2 style="color: var(--accent); margin-bottom: 1rem;">📋 Project Portal (UNIQUE)</h2>
+          <p style="font-size: 1.125rem; margin-bottom: 1.5rem; color: var(--text-medium);">
+            Real-time collaborative management
+          </p>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Projects with tasks and assignees</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Comments with history</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Files per project and task</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Live global activity panel</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Integrated AI Assistant -->
+    <div style="margin-bottom: 5rem;">
+      <div class="grid grid-2" style="gap: 3rem; align-items: center;">
+        <div>
+          <h2 style="color: var(--secondary); margin-bottom: 1rem;">🤖 Integrated AI Assistant</h2>
+          <p style="font-size: 1.125rem; margin-bottom: 1.5rem; color: var(--text-medium);">
+            Smart management via voice and text
+          </p>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Create parametric parts in natural language</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Automatically build the BOM (Bill of Materials)</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Guide production order creation step-by-step</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Automatic intent detection with quick buttons</span>
+            </li>
+          </ul>
+        </div>
+        <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);">
+          <img src="/assets/img/screenshots/desktop/chat-ia-en.png" alt="AI Assistant" style="width: 100%; height: auto; display: block;" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Multi-language & Global Currency -->
+    <div style="margin-bottom: 5rem;">
+      <div class="grid grid-2" style="gap: 3rem; align-items: center;">
+        <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);">
+          <img src="/assets/img/screenshots/desktop/dashboard-en.jpg" alt="Globalization" style="width: 100%; height: auto; display: block;" />
+        </div>
+        <div>
+          <h2 style="color: var(--primary); margin-bottom: 1rem;">🌐 Multi-language & 💱 Global Currency</h2>
+          <p style="font-size: 1.125rem; margin-bottom: 1.5rem; color: var(--text-medium);">
+            Adapted to your market, wherever you are
+          </p>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Full interface in Spanish, English, and Hebrew</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Native support for RTL (Right-to-Left) writing</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Configurable currency ($, €, ₪, £, etc.)</span>
+            </li>
+            <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: var(--success);">✓</span> <span>Propagates automatically to all modules</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- UNIQUE FEATURES -->
+<section class="section section-light">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2>Features You Won't Find in Other ERPs</h2>
+    </div>
+    
+    <div class="grid grid-3">
+      <div class="card">
+        <div style="border-radius: var(--radius-md); overflow: hidden; margin-bottom: var(--spacing-md); box-shadow: var(--shadow-md);">
+          <img src="/assets/img/screenshots/desktop/parametric-pieces-en.jpg" alt="Parametric Parts" style="width: 100%; height: auto; display: block;" />
+        </div>
+        <h3 style="color: var(--accent);">🧩 Parametric Parts</h3>
+        <p>Create templates with variables that generate automatic codes.</p>
+        <p><strong>Example:</strong> <code>Door-{Width}x{Height}</code></p>
+        <p>→ Generates: <code>Door-100x200</code></p>
+        <p style="margin-top: 1rem; padding: 1rem; background: var(--bg-light); border-radius: var(--radius-sm); font-size: 0.875rem;">
+          <strong>UNIQUE in the market.</strong> Save time on repetitive products with variations.
+        </p>
+      </div>
+      
+      <div class="card">
+        <div style="border-radius: var(--radius-md); overflow: hidden; margin-bottom: var(--spacing-md); box-shadow: var(--shadow-md);">
+          <img src="/assets/img/screenshots/desktop/chat-ia-es.jpg" alt="AI Chat" style="width: 100%; height: auto; display: block;" />
+        </div>
+        <h3 style="color: var(--secondary);">🤖 AI Chat with Gemini</h3>
+        <p>Intelligent assistant that knows <strong>specifically FabriControl</strong>.</p>
+        <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+          <li style="padding: 0.25rem 0;">✓ Responds 24/7</li>
+          <li style="padding: 0.25rem 0;">✓ Explains how to use each module</li>
+          <li style="padding: 0.25rem 0;">✓ Guides through complex processes</li>
+        </ul>
+        <p style="margin-top: 1rem; font-size: 0.875rem; color: var(--text-medium);">
+          Set up your free Google Gemini API Key in 2 minutes.
+        </p>
+      </div>
+      
+      <div class="card">
+        <div style="border-radius: var(--radius-md); overflow: hidden; margin-bottom: var(--spacing-md); box-shadow: var(--shadow-md);">
+          <img src="/assets/img/screenshots/mobile/mobile-home.jpg" alt="Mobile App" style="width: 100%; height: auto; display: block;" />
+        </div>
+        <h3 style="color: var(--primary);">📱 Mobile PWA App</h3>
+        <p>Progressive Web App for floor operators.</p>
+        <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+          <li style="padding: 0.25rem 0;">✓ Works on iOS and Android</li>
+          <li style="padding: 0.25rem 0;">✓ No App Store download required</li>
+          <li style="padding: 0.25rem 0;">✓ Large buttons for plant use</li>
+          <li style="padding: 0.25rem 0;">✓ Integrated QR scanning</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white;">
+  <div class="container text-center">
+    <h2 style="color: white; margin-bottom: 1rem;">Try FabriControl 30 Days Free</h2>
+    <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.95;">
+      All modules unlocked. No credit card.
+    </p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="/en/pricing.html" class="btn btn-accent btn-large">🆓 Request Trial License</a>
+      <a href="/en/pricing.html" class="btn btn-secondary btn-large" style="border-color: white; color: white;">View Plans</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>FabriControl</h4>
+        <p style="opacity: 0.8;">The ERP designed specifically for Latin American workshops and factories.</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Product</h4>
+        <ul class="footer-links">
+          <li><a href="/en/features.html">Features</a></li>
+          <li><a href="/en/pricing.html">Pricing</a></li>
+          <li><a href="/en/pricing.html">Request Trial</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="/en/resources/">Free Campus</a></li>
+          <li><a href="/en/products/">Product Catalog</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li>📧 sales@fabricontrol.online</li>
+          <li>📧 support@fabricontrol.online</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 FabriControl. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Chat Widget -->
+<script>window.REACT_APP_BACKEND_URL = 'https://cloud-fabric-control.preview.emergentagent.com';</script>
+<script src="/assets/js/chat-widget.js"></script>
+
+</body>
+</html>
