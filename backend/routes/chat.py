@@ -18,8 +18,8 @@ if GEMINI_API_KEY:
     genai.configure(api_key=GEMINI_API_KEY)
 
 # Support contact
-SUPPORT_EMAIL = "julito36911@gmail.com"
-SUPPORT_WHATSAPP = "+972 52-648-9461"
+SUPPORT_EMAIL = os.getenv("SUPPORT_EMAIL", "")
+SUPPORT_WHATSAPP = os.getenv("SUPPORT_WHATSAPP", "")
 
 # Load knowledge base
 def load_knowledge_base():
@@ -78,8 +78,8 @@ IMPORTANT: There are NO monthly plans. Only annual payment ($195) or installment
 - Client Project Portal: clients see their order progress in real time
 
 ## CONTACT
-- Email: julito36911@gmail.com
-- WhatsApp: +972 52-648-9461
+- Email: {SUPPORT_EMAIL}
+- WhatsApp: {SUPPORT_WHATSAPP}
 
 ## LINKS
 - Spanish: /precios, /caracteristicas, /documentacion.html

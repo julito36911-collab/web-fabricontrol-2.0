@@ -10,7 +10,7 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
-NOTIFICATION_EMAIL = os.environ.get("NOTIFICATION_EMAIL", "julito36911@gmail.com")
+NOTIFICATION_EMAIL = os.environ.get("NOTIFICATION_EMAIL", "info@fabricontrol.online")
 
 class EnterpriseQuote(BaseModel):
     companyName: str

@@ -10,7 +10,7 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
-NOTIFICATION_EMAIL = os.environ.get("NOTIFICATION_EMAIL", "julito36911@gmail.com")
+NOTIFICATION_EMAIL = os.environ.get("NOTIFICATION_EMAIL", "info@fabricontrol.online")
 
 class LicenseRequest(BaseModel):
     nombre: str
@@ -91,5 +91,5 @@ async def submit_license_request(request: LicenseRequest):
         logger.error(f"Error procesando solicitud de licencia: {str(e)}")
         raise HTTPException(
             status_code=500,
-            detail="Error al procesar la solicitud. Contacta a julito36911@gmail.com"
+            detail="Error al procesar la solicitud. Por favor, intente nuevamente."
         )

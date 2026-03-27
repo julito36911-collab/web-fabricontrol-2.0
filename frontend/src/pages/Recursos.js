@@ -9,6 +9,7 @@ import CalculadoraCaldereria from '../components/CalculadoraCaldereria';
 import { CotizacionTools } from '../components/CotizacionTools';
 import { CalculadoraROI, OrdenFabricacionPDF } from '../components/AdministracionTools';
 import VideoAIHub from '../components/VideoAIHub';
+import ResourceLibrary from '../components/ResourceLibrary';
 import ProduccionTools from '../components/ProduccionTools';
 
 const locales = {
@@ -19,6 +20,7 @@ const locales = {
     cat2: "📐 Ingeniería (Engineering)",
     cat3: "🏭 Producción (Production)",
     cat4: "📺 Videoteca (Fabricontrol TV)",
+    cat5: "📥 Centro de Recursos",
     bannerTitle: "¿Quieres automatizar esto?",
     bannerSub: "Prueba Fabricontrol Full por 30 días gratis y deja que el sistema calcule todo por ti.",
     bannerBtn: "Prueba Gratis",
@@ -53,6 +55,7 @@ const locales = {
     cat2: "📐 Engineering (Ingeniería)",
     cat3: "🏭 Production (Producción)",
     cat4: "📺 Video Hub (Videoteca)",
+    cat5: "📥 Resource Center",
     bannerTitle: "Want to automate this?",
     bannerSub: "Try Fabricontrol Full for 30 days free and let the system calculate everything for you.",
     bannerBtn: "Try for Free",
@@ -84,6 +87,7 @@ const locales = {
     cat2: "📐 הנדסה (Engineering)",
     cat3: "🏭 ייצור (Production)",
     cat4: "📺 ספריית וידאו (IA Videos)",
+    cat5: "📥 מרכז משאבים",
     bannerTitle: "רוצה לעשות אוטומציה לזה?",
     bannerSub: "נסה את Fabricontrol בחינם ל-30 יום ותן למערכת לחשב הכל עבורך.",
     bannerBtn: "נסה בחינם",
@@ -119,7 +123,8 @@ const RecursosTabs = () => {
     { id: 0, title: l.cat1 },
     { id: 1, title: l.cat2 },
     { id: 2, title: l.cat3 },
-    { id: 3, title: l.cat4 }
+    { id: 3, title: l.cat4 },
+    { id: 4, title: l.cat5 },
   ];
 
   const renderTabContent = () => {
@@ -166,6 +171,12 @@ const RecursosTabs = () => {
         );
       case 2: // Production
         return <div className="animate-in fade-in slide-in-from-bottom-4 duration-500"><ProduccionTools /></div>;
+      case 4: // Resource Library
+        return (
+          <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <ResourceLibrary />
+          </div>
+        );
       case 3: // Videoteca
         return (
           <div className="space-y-16 animate-in fade-in slide-in-from-bottom-4 duration-500">

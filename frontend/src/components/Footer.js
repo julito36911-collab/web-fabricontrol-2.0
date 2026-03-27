@@ -101,7 +101,7 @@ function Footer() {
           <div className="footer-section">
             <h4 className="font-bold text-white mb-4">{l.contact}</h4>
             <ul className="footer-links">
-              <li>📧 <a href="mailto:julito36911@gmail.com">{l.email}: julito36911@gmail.com</a></li>
+              <li>📧 <a href="mailto:info@fabricontrol.online">{l.email}: info@fabricontrol.online</a></li>
               <li>📱 <a href="https://wa.me/972526489461">WhatsApp: +972 52-648-9461</a></li>
               <li>💬 {l.liveChat}</li>
             </ul>
@@ -111,8 +111,8 @@ function Footer() {
         <div className="footer-bottom border-t border-white/5 pt-8 mt-12 text-sm text-center">
           <p>&copy; 2026 FabriControl. {l.rights}</p>
           <p style={{marginTop: '0.5rem'}} className="opacity-60 flex gap-4 justify-center">
-            <a href="#" className="hover:text-cyan-400">{l.terms}</a> 
-            <a href="#" className="hover:text-cyan-400">{l.privacy}</a>
+            <Link to="/terms" className="hover:text-cyan-400">{l.terms}</Link> 
+            <Link to="/privacy" className="hover:text-cyan-400">{l.privacy}</Link>
           </p>
         </div>
       </div>

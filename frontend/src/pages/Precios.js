@@ -105,10 +105,16 @@ const locales = {
 const Precios = () => {
   const [showQuoteModal, setShowQuoteModal] = useState(false);
   const [showLicenseModal, setShowLicenseModal] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState('anual');
   const { t, language, isRtl } = useLanguage();
   
   const l = locales[language] || locales.es;
   const HOTMART_LINK = "https://pay.hotmart.com/L103719113Q";
+
+  const handleOpenModal = (plan = 'anual') => {
+    setSelectedPlan(plan);
+    setShowLicenseModal(true);
+  };
 
   return (
     <div className={`min-h-screen flex flex-col bg-gradient-to-br from-[#1a202c] to-slate-800 ${isRtl ? 'font-hebrew dir-rtl' : 'font-sans dir-ltr'}`}>
@@ -164,7 +170,7 @@ const Precios = () => {
                 </ul>
                 
                 <button 
-                  onClick={() => setShowLicenseModal(true)} 
+                  onClick={() => handleOpenModal('por-decidir')} 
                   className="w-full py-4 px-6 rounded-xl font-bold text-white bg-white/10 border border-white/20 hover:bg-white/20 hover:shadow-md transition-all duration-300"
                 >
                   {l.reqTrial}
@@ -205,14 +211,23 @@ const Precios = () => {
                   </li>
                 </ul>
                 
-                <a 
-                  href={HOTMART_LINK} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="w-full text-center py-4 px-6 rounded-xl font-bold text-white bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 shadow-lg hover:shadow-orange-500/50 transition-all duration-300"
-                >
-                  {l.buyAnn}
-                </a>
+                {language === 'he' ? (
+                  <button 
+                    onClick={() => handleOpenModal('anual')}
+                    className="w-full text-center py-4 px-6 rounded-xl font-bold text-white bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 shadow-lg hover:shadow-orange-500/50 transition-all duration-300"
+                  >
+                    {l.buyAnn}
+                  </button>
+                ) : (
+                  <a 
+                    href={HOTMART_LINK} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-full text-center py-4 px-6 rounded-xl font-bold text-white bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 shadow-lg hover:shadow-orange-500/50 transition-all duration-300"
+                  >
+                    {l.buyAnn}
+                  </a>
+                )}
               </div>
 
               {/* PLAN EN CUOTAS */}
@@ -243,14 +258,23 @@ const Precios = () => {
                   </li>
                 </ul>
                 
-                <a 
-                  href={HOTMART_LINK} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="w-full text-center py-4 px-6 rounded-xl font-bold text-white bg-white/10 border border-white/20 hover:bg-white/20 hover:text-cyan-400 transition-all duration-300"
-                >
-                  {l.buyMo}
-                </a>
+                {language === 'he' ? (
+                  <button 
+                    onClick={() => handleOpenModal('cuotas')}
+                    className="w-full text-center py-4 px-6 rounded-xl font-bold text-white bg-white/10 border border-white/20 hover:bg-white/20 hover:text-cyan-400 transition-all duration-300"
+                  >
+                    {l.buyMo}
+                  </button>
+                ) : (
+                  <a 
+                    href={HOTMART_LINK} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="w-full text-center py-4 px-6 rounded-xl font-bold text-white bg-white/10 border border-white/20 hover:bg-white/20 hover:text-cyan-400 transition-all duration-300"
+                  >
+                    {l.buyMo}
+                  </a>
+                )}
               </div>
 
             </div>
@@ -261,7 +285,11 @@ const Precios = () => {
 
       {/* MODALS */}
       <EnterpriseQuoteModal isOpen={showQuoteModal} onClose={() => setShowQuoteModal(false)} />
-      <LicenseRequestModal isOpen={showLicenseModal} onClose={() => setShowLicenseModal(false)} />
+      <LicenseRequestModal 
+        isOpen={showLicenseModal} 
+        onClose={() => setShowLicenseModal(false)} 
+        initialPlan={selectedPlan}
+      />
 
       {/* SECCIÓN DE PREGUNTAS FRECUENTES INYECTADA */}
       <div className="border-t border-white/10 mt-10">

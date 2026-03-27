@@ -168,7 +168,9 @@ FabriControl tiene 5 roles predefinidos:
 - **BOM (Bill of Materials):** Lista de materiales estructurada
 - **Órdenes de Compra:** Gestión de proveedores
 - **App Móvil PWA:** Para operarios en el taller (funciona en cualquier celular)
-- **Chat IA con Gemini:** Asistente inteligente integrado
+- **Chat IA con Gemini (AVANZADO):** Asistente inteligente integrado que crea piezas, arma el BOM y guía órdenes en lenguaje natural.
+- **Multiidioma Nativo:** Interfaz completa en Español, Inglés y Hebreo con soporte RTL.
+- **Moneda Global Configurable:** Cambia el símbolo de moneda una vez y se aplica en todo el ERP automáticamente.
 - **Exportación Excel:** Reportes y análisis avanzados
 - **Códigos QR:** Para gestión rápida de inventario
 - **Permisos y Roles:** Control granular de accesos
@@ -181,12 +183,13 @@ FabriControl tiene 5 roles predefinidos:
 ### ¿Qué es?
 Un asistente inteligente integrado en FabriControl que responde preguntas sobre el sistema, guía a los usuarios y ayuda con tareas comunes.
 
-### Características:
-- Powered by Google Gemini
-- Multilingüe: Español, Inglés, Hebreo
-- Responde en el idioma del usuario automáticamente
-- Conoce TODA la documentación de FabriControl
-- Respuestas en tiempo real
+### Características Avanzadas:
+- **Procesamiento de Lenguaje Natural:** Puedes pedirle "Crea una puerta de 100x200 de aluminio" y el sistema generará la pieza paramétrica.
+- **Armado Automático de BOM:** Describe los materiales y el asistente arma la lista de materiales (BOM) por ti.
+- **Guía de Órdenes:** Te lleva paso a paso en la creación de órdenes de producción complejas.
+- **Botones de Acceso Rápido:** Sugerencias inteligentes basadas en lo que estás haciendo (Detección de Intención).
+- **Multilingüe:** Español, Inglés, Hebreo (con soporte RTL nativo).
+- **Consumo de API:** Powered by Google Gemini (requiere API Key gratuita).
 
 ---
 
@@ -202,6 +205,14 @@ Las **Piezas Paramétricas** permiten crear plantillas de productos reutilizable
 **Beneficio:** Cotizan en 30 segundos productos que antes tomaban 10 minutos.
 
 ---
+
+## Multiidioma y Globalidad
+
+FabriControl es un sistema global diseñado para el mercado internacional:
+- **Idiomas:** Español, Inglés y Hebreo 100% integrados.
+- **Soporte RTL:** Interfaz optimizada para idiomas de derecha a izquierda (Right-to-Left) como el Hebreo.
+- **Moneda Global:** Configuración de símbolo de moneda única ($, €, ₪, £, etc.) que se propaga a cotizaciones, inventario y reportes instantáneamente.
+- **Formatos Locales:** Ajuste automático de formatos de fecha y números según la región elegida.
 
 ## Casos de Uso Específicos
 
@@ -295,7 +306,7 @@ Sí. Al ser en la nube, puedes acceder desde cualquier dispositivo en cualquier 
 
 ## Contacto y Soporte
 
-- **Email Soporte:** julito36911@gmail.com
+- **Email Soporte:** info@fabricontrol.online
 - **WhatsApp:** +972 52-648-9461
 - **Solicitar Trial:** /precios (ES) o /en/pricing.html (EN)
 - **Documentación:** /documentacion.html (ES) o /en/documentation.html (EN)

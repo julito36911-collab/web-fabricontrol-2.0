@@ -136,6 +136,24 @@ const translations = {
   }
 };
 
+// Returns the correct screenshot path based on the active language.
+const getScreenshot = (name, lang) => {
+  const pngNames = ['chat-ia', 'caracteristicas', 'modal-trial', 'terms', 'dashboard'];
+  
+  if (pngNames.includes(name)) {
+    if (lang === 'he') {
+      const hasHebrewPng = ['chat-ia', 'modal-trial', 'terms'].includes(name);
+      const suffix = hasHebrewPng ? 'he' : 'en';
+      return `/assets/img/screenshots/desktop/${name}-${suffix}.png`;
+    }
+    const suffix = lang === 'en' ? 'en' : 'es';
+    return `/assets/img/screenshots/desktop/${name}-${suffix}.png`;
+  }
+  
+  const suffix = (lang === 'en' || lang === 'he') ? 'en' : 'es';
+  return `/assets/img/screenshots/desktop/${name}-${suffix}.jpg`;
+};
+
 function Caracteristicas() {
   const { language, isRtl } = useLanguage();
   const l = translations[language] || translations.es;
@@ -182,7 +200,7 @@ function Caracteristicas() {
                 </ul>
               </div>
               <div style={{borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)'}}>
-                <ImageLightbox src="/assets/img/screenshots/desktop/quotations-es.jpg" alt={l.f1Title} style={{width: '100%', height: 'auto', display: 'block'}} />
+                <ImageLightbox src={getScreenshot('quotations', language)} alt={l.f1Title} style={{width: '100%', height: 'auto', display: 'block'}} />
               </div>
             </div>
           </div>
@@ -191,7 +209,7 @@ function Caracteristicas() {
           <div style={{marginBottom: '5rem'}}>
             <div className={`grid grid-2 ${isRtl ? 'dir-rtl' : ''}`} style={{gap: '3rem', alignItems: 'center'}}>
               <div style={{borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)', order: isRtl ? 1 : 0}}>
-                <ImageLightbox src="/assets/img/screenshots/desktop/production-orders-es.jpg" alt={l.f2Title} style={{width: '100%', height: 'auto', display: 'block'}} />
+                <ImageLightbox src={getScreenshot('production-orders', language)} alt={l.f2Title} style={{width: '100%', height: 'auto', display: 'block'}} />
               </div>
               <div className={isRtl ? 'text-right' : 'text-left'}>
                 <h2 style={{color: 'var(--primary)', marginBottom: '1rem'}}>{l.f2Title}</h2>
@@ -240,7 +258,7 @@ function Caracteristicas() {
                 </ul>
               </div>
               <div style={{borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)'}}>
-                <ImageLightbox src="/assets/img/screenshots/desktop/inventory-es.jpg" alt={l.f3Title} style={{width: '100%', height: 'auto', display: 'block'}} />
+                <ImageLightbox src={getScreenshot('inventory', language)} alt={l.f3Title} style={{width: '100%', height: 'auto', display: 'block'}} />
               </div>
             </div>
           </div>
@@ -249,7 +267,7 @@ function Caracteristicas() {
           <div style={{marginBottom: '5rem'}}>
             <div className={`grid grid-2 ${isRtl ? 'dir-rtl' : ''}`} style={{gap: '3rem', alignItems: 'center'}}>
               <div style={{borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)', order: isRtl ? 1 : 0}}>
-                <ImageLightbox src="/assets/img/screenshots/desktop/projects-portal-es.jpg" alt={l.f4Title} style={{width: '100%', height: 'auto', display: 'block'}} />
+                <ImageLightbox src={getScreenshot('projects-portal', language)} alt={l.f4Title} style={{width: '100%', height: 'auto', display: 'block'}} />
               </div>
               <div className={isRtl ? 'text-right' : 'text-left'}>
                 <h2 style={{color: 'var(--primary)', marginBottom: '1rem'}}>{l.f4Title}</h2>
@@ -298,7 +316,7 @@ function Caracteristicas() {
                 </ul>
               </div>
               <div style={{borderRadius: 'var(--radius-lg)', overflow: 'hidden', boxShadow: 'var(--shadow-lg)'}}>
-                <ImageLightbox src="/assets/img/screenshots/desktop/dashboard-es.jpg" alt={l.f5Title} style={{width: '100%', height: 'auto', display: 'block'}} />
+                <ImageLightbox src={getScreenshot('dashboard', language)} alt={l.f5Title} style={{width: '100%', height: 'auto', display: 'block'}} />
               </div>
             </div>
           </div>

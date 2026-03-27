@@ -10,6 +10,8 @@ import Enterprise from './pages/Enterprise';
 import Recursos from './pages/Recursos';
 import Documentacion from './pages/Documentacion';
 import Comparacion from './pages/Comparacion';
+import TermsAndConditions from './pages/TermsAndConditions';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import ChatWidget from './components/ChatWidget';
 import WhatsAppButton from './components/WhatsAppButton';
 
@@ -26,6 +28,8 @@ function App() {
           <Route path="/recursos" element={<Recursos />} />
           <Route path="/documentacion" element={<Documentacion />} />
           <Route path="/comparacion" element={<Comparacion />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
         </Routes>
         <ChatWidget />
         <WhatsAppButton />

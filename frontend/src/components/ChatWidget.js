@@ -26,35 +26,29 @@ const ChatWidget = () => {
     if (!input.trim() || isLoading) return;
 
     const userMessage = input.trim();
-    const apiKey = process.env.REACT_APP_GEMINI_API_KEY;
-    
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+
     setInput('');
     const newMessages = [...messages, { role: 'user', content: userMessage }];
     setMessages(newMessages);
     setIsLoading(true);
 
     try {
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey.trim()}`;
-
-      const response = await fetch(url, {
+      const response = await fetch(`${backendUrl}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          contents: [{
-            parts: [{ text: userMessage }]
-          }]
+          messages: newMessages.map(m => ({ role: m.role, content: m.content })),
+          language: 'auto'
         })
       });
 
       if (!response.ok) throw new Error('Error en la red');
 
-      // CLONAMOS LA RESPUESTA PARA SEGURIDAD
-      const responseClone = response.clone();
-      const data = await responseClone.json();
-      
-      const botReply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Lo siento, no pude procesar eso.";
+      const data = await response.json();
+      const botReply = data.response || "Lo siento, no pude procesar eso.";
       setMessages(prev => [...prev, { role: 'assistant', content: botReply }]);
 
     } catch (error) {

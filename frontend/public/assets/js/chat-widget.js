@@ -352,8 +352,8 @@
     } catch (error) {
       console.error('Chat error:', error);
       let errorMsg = isEnglish 
-        ? '❌ Sorry, there was an error. Please try again.\n\n📧 **Contact:** julito36911@gmail.com\n📱 **WhatsApp:** +972 52-648-9461'
-        : '❌ Lo siento, hubo un error. Por favor intenta de nuevo.\n\n📧 **Contacto:** julito36911@gmail.com\n📱 **WhatsApp:** +972 52-648-9461';
+        ? '❌ Sorry, there was an error. Please try again.\n\n📧 **Contact:** info@fabricontrol.online\n📱 **WhatsApp:** +972 52-648-9461'
+        : '❌ Lo siento, hubo un error. Por favor intenta de nuevo.\n\n📧 **Contacto:** info@fabricontrol.online\n📱 **WhatsApp:** +972 52-648-9461';
       messages.push({ role: 'assistant', content: errorMsg });
     } finally {
       isLoading = false;

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -r localhost /c/web-fabricontrol-2.0/frontend/src --include=*.js --include=*.jsx)",
+      "Bash(grep -r \"REACT_APP_BACKEND_URL\\\\|process.env\" /c/web-fabricontrol-2.0/frontend/src --include=*.js --include=*.jsx)",
+      "Bash(grep -r \"TODO\\\\|FIXME\\\\|BUG\\\\|HACK\" /c/web-fabricontrol-2.0/backend /c/web-fabricontrol-2.0/frontend/src --include=*.py --include=*.js --include=*.jsx)",
+      "Bash(head -50 /c/web-fabricontrol-2.0/backend/knowledge_base/*.md)",
+      "Bash(grep -r \"password\\\\|secret\\\\|token\" /c/web-fabricontrol-2.0/backend --include=*.py --exclude-dir=__pycache__)",
+      "Bash(grep -r \"process.env\\\\|import.*from.*\\\\.\\\\.\" /c/web-fabricontrol-2.0/frontend/src --include=*.js --include=*.jsx)",
+      "Bash(gh repo:*)"
+    ]
+  }
+}
