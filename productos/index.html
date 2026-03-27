@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Software - FabriControl</title>
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/img/logos/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    .catalog-header { background: linear-gradient(135deg, #2c3e50, #000); color: white; padding: 4rem 0; text-align: center; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 3rem 0; }
+    .product-card { 
+      border: 1px solid #eee; border-radius: 12px; overflow: hidden; transition: 0.3s; 
+      display: flex; flex-direction: column; background: white;
+    }
+    .product-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.1); transform: translateY(-5px); }
+    .prod-img { height: 200px; background: #f3f4f6; display: flex; align-items: center; justify-content: center; color: #aaa; font-weight: 700; }
+    .prod-body { padding: 1.5rem; flex-grow: 1; }
+    .badge { background: var(--accent); color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+    .badge-soon { background: #9ca3af; }
+  </style>
+</head>
+<body>
+
+  <nav style="padding: 1rem; border-bottom: 1px solid #eee;">
+    <div class="container">
+      <a href="/" style="font-weight: 900; text-decoration: none; color: #1F2937;">← Volver a FabriControl</a>
+    </div>
+  </nav>
+
+  <header class="catalog-header">
+    <div class="container">
+      <h1 style="font-family: 'Montserrat';">Nuestros Productos</h1>
+      <p>Software especializado para la industria manufacturera.</p>
+    </div>
+  </header>
+
+  <section class="container">
+    <div class="product-grid">
+      
+      <div class="product-card">
+        <div class="prod-img" style="background: #eef2ff; color: var(--primary);">
+          <img src="../assets/img/logos/fabricontrol-logo.svg" alt="Logo" style="width: 150px;">
+        </div>
+        <div class="prod-body">
+          <span class="badge">Disponible</span>
+          <h3 style="margin-top: 0.5rem;">FabriControl ERP</h3>
+          <p style="font-size: 0.9rem; color: #666;">Sistema integral de gestión para talleres. Cotizaciones, inventario y producción.</p>
+          <a href="/" class="btn btn-primary btn-sm" style="margin-top: 1rem;">Ver Detalles</a>
+        </div>
+      </div>
+
+      <div class="product-card" style="opacity: 0.7;">
+        <div class="prod-img">PRÓXIMAMENTE</div>
+        <div class="prod-body">
+          <span class="badge badge-soon">En Desarrollo</span>
+          <h3 style="margin-top: 0.5rem;">FabriCAD Lite</h3>
+          <p style="font-size: 0.9rem; color: #666;">Herramienta ligera de diseño 2D para cortes rápidos de chapa y perfiles.</p>
+          <button disabled class="btn btn-sm" style="margin-top: 1rem; background: #eee; color: #999; border: none;">Lista de Espera</button>
+        </div>
+      </div>
+
+      <div class="product-card" style="opacity: 0.7;">
+        <div class="prod-img">PRÓXIMAMENTE</div>
+        <div class="prod-body">
+          <span class="badge badge-soon">En Desarrollo</span>
+          <h3 style="margin-top: 0.5rem;">FabriQuote Mobile</h3>
+          <p style="font-size: 0.9rem; color: #666;">App exclusiva para vendedores en campo. Cotiza en segundos desde el celular.</p>
+          <button disabled class="btn btn-sm" style="margin-top: 1rem; background: #eee; color: #999; border: none;">Lista de Espera</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer style="background: #1F2937; color: white; padding: 2rem 0; margin-top: 4rem; text-align: center;">
+    <div class="container">
+      <p>&copy; 2026 FabriControl. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

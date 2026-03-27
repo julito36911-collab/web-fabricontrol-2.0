@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing - FabriControl ERP</title>
+  <link rel="stylesheet" href="/static/css/main.css">
+  <link rel="stylesheet" href="/fabricontrol.css">
+  <style>
+    .header {
+      background: var(--bg-white);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: var(--spacing-sm) 0;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .nav-logo img { height: 50px; width: auto; }
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    .nav-link {
+      font-weight: 500;
+      color: var(--text-dark);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .nav-link:hover { background: var(--bg-light); color: var(--primary); }
+    .nav-link.active { color: var(--primary); font-weight: 600; }
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      padding: 4rem 0 2rem;
+      text-align: center;
+    }
+    .hero h1 { color: white; font-size: 3rem; margin-bottom: 1rem; }
+    .hero p { color: white; font-size: 1.25rem; opacity: 0.95; }
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .btn-accent { background: var(--accent); color: white; }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-secondary { background: white; color: var(--primary); border: 2px solid var(--primary); }
+    .section { padding: 3rem 0; }
+    .section-light { background: var(--bg-light); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .text-center { text-align: center; }
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      position: relative;
+      padding: 2rem;
+      text-align: center;
+      border-radius: var(--radius-lg);
+    }
+    .pricing-card ul { text-align: left; list-style: none; padding: 0; }
+    .pricing-card li { padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; }
+    .footer {
+      background: var(--text-dark);
+      color: white;
+      padding: 2rem 0;
+    }
+    .footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+    
+    @media (max-width: 768px) {
+      .nav { gap: 0.3rem; }
+      .nav-logo img { height: 38px; }
+      .nav-menu {
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.2rem 0.4rem;
+        width: 100%;
+        padding-top: 0.4rem;
+        order: 2;
+      }
+      .nav-link { padding: 0.3rem 0.5rem; font-size: 0.75rem; }
+      .hero h1 { font-size: 2rem; }
+      .pricing-card { transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BANNER -->
+<div style="background: linear-gradient(90deg, var(--accent) 0%, #f59e0b 100%); color: white; text-align: center; padding: 0.75rem; font-weight: 600;">
+  🔥 Launch Offer: $195/year (regular price $290) - Limited time only!
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-logo">
+        <a href="/en/"><img src="/assets/img/logo.png" alt="FabriControl" style="height: 50px;"></a>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="/en/" class="nav-link">Home</a></li>
+        <li><a href="/en/features.html" class="nav-link">Features</a></li>
+        <li><a href="/en/pricing.html" class="nav-link active">Pricing</a></li>
+        <li><a href="/en/faq.html" class="nav-link">FAQ</a></li>
+        <li><a href="/en/documentation.html" class="nav-link">Documentation</a></li>
+        <li><a href="https://fabricontrol-1.emergent.host/" target="_blank" class="nav-link" style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600;">🎮 Demo</a></li>
+        <li><a href="/" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid var(--bg-gray); border-radius: 6px;">🌐 ES</a></li>
+        <li><a href="/he/" class="nav-link" style="padding: 0.5rem 0.75rem; border: 1px solid var(--bg-gray); border-radius: 6px;">🌐 עב</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1>Plans that Fit Your Workshop</h1>
+    <p>No long contracts. No surprises. Simple annual payment.</p>
+  </div>
+</section>
+
+<!-- PRICING CARDS -->
+<section class="section">
+  <div class="container">
+    <div class="pricing-grid">
+      
+      <!-- TRIAL -->
+      <div class="card pricing-card" style="border: 2px solid var(--bg-gray);">
+        <div style="background: var(--highlight); color: var(--text-dark); font-weight: 700; padding: 8px 16px; border-radius: 8px; display: inline-block; margin-bottom: 1rem;">
+          🆓 FREE TRIAL
+        </div>
+        <h3 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem;">$0</h3>
+        <p style="color: var(--text-medium); margin-bottom: 2rem;">30 days free to try</p>
+        
+        <ul>
+          <li><span style="color: var(--success);">✓</span> <span>Unlimited users</span></li>
+          <li><span style="color: var(--success);">✓</span> <span><strong>ALL</strong> modules</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>No order limits</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>No credit card required</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>Full features</span></li>
+        </ul>
+        
+        <a href="/precios" class="btn btn-secondary" style="width: 100%; display: block; margin-top: 2rem;">
+          Request Free Trial
+        </a>
+      </div>
+
+      <!-- ANNUAL - BEST VALUE -->
+      <div class="card pricing-card" style="border: 3px solid var(--accent); transform: scale(1.05);">
+        <div style="position: absolute; top: -12px; right: 20px; background: var(--accent); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.875rem; font-weight: 600;">
+          ⭐ BEST VALUE
+        </div>
+        <div style="background: var(--accent); color: white; font-weight: 700; padding: 8px 16px; border-radius: 8px; display: inline-block; margin-bottom: 1rem;">
+          💰 ANNUAL PAYMENT
+        </div>
+        <h3 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem;">
+          $195<span style="font-size: 1rem; font-weight: 400; color: var(--text-medium);">USD/year</span>
+        </h3>
+        <p style="color: var(--accent); margin-bottom: 2rem; font-weight: 600;">Equivalent to only $16.25/month</p>
+        
+        <ul>
+          <li><span style="color: var(--success);">✓</span> <span>Unlimited users</span></li>
+          <li><span style="color: var(--success);">✓</span> <span><strong>ALL</strong> modules included</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>Quotes & Inventory</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>Production Orders</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>Project Portal</span></li>
+          <li><span style="color: var(--success);">✓</span> <span><strong>Parametric Parts</strong></span></li>
+          <li><span style="color: var(--success);">✓</span> <span><strong>AI Chat with Gemini</strong></span></li>
+          <li><span style="color: var(--success);">✓</span> <span>PWA Mobile App</span></li>
+          <li style="background: #dcfce7; padding: 0.75rem; border-radius: 6px; margin-top: 0.5rem;">
+            <span style="color: #166534;">✓</span> <span style="color: #166534; font-weight: 600;">Save $95 vs installment plan</span>
+          </li>
+        </ul>
+        
+        <a href="/precios" class="btn btn-accent" style="width: 100%; display: block; margin-top: 2rem;">
+          Buy Annual License
+        </a>
+      </div>
+
+      <!-- INSTALLMENTS -->
+      <div class="card pricing-card" style="border: 2px solid var(--primary);">
+        <div style="background: var(--primary); color: white; font-weight: 700; padding: 8px 16px; border-radius: 8px; display: inline-block; margin-bottom: 1rem;">
+          💳 INSTALLMENT PLAN
+        </div>
+        <h3 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem;">
+          $290<span style="font-size: 1rem; font-weight: 400; color: var(--text-medium);">USD/year</span>
+        </h3>
+        <p style="color: var(--text-medium); margin-bottom: 2rem;">Smart Payment (monthly installments)</p>
+        
+        <ul>
+          <li><span style="color: var(--success);">✓</span> <span>Same features as annual plan</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>Unlimited users</span></li>
+          <li><span style="color: var(--success);">✓</span> <span><strong>ALL</strong> modules</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>Email support</span></li>
+          <li><span style="color: var(--success);">✓</span> <span>Monthly payment flexibility</span></li>
+          <li style="background: #fef3c7; padding: 0.75rem; border-radius: 6px; margin-top: 0.5rem;">
+            <span style="color: #92400e;">⚠️</span> <span style="color: #92400e; font-weight: 600;">Pay $95 more than annual</span>
+          </li>
+        </ul>
+        
+        <a href="/precios" class="btn btn-primary" style="width: 100%; display: block; margin-top: 2rem;">
+          Pay in Installments
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DEMO RÁPIDA -->
+<section class="section" style="padding-bottom: 0;">
+  <div class="container">
+    <div style="background: #f0f9ff; border: 2px solid #0ea5e9; border-radius: 16px; max-width: 900px; margin: 0 auto; padding: 2rem; text-align: center;">
+      <h3 style="color: #0369a1; margin-bottom: 0.5rem;">🎮 Want to see the system before deciding?</h3>
+      <p style="color: #64748b; margin-bottom: 1.5rem;">Access our demo with sample data — no sign up needed</p>
+      <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+        <div>
+          <code style="background: #e0f2fe; padding: 0.25rem 0.75rem; border-radius: 4px; font-weight: 600;">julito36911@gmail.com</code>
+        </div>
+        <div>
+          <span style="color: #64748b; font-size: 0.875rem;">Password: </span>
+          <code style="background: #e0f2fe; padding: 0.25rem 0.75rem; border-radius: 4px; font-weight: 600;">password123</code>
+        </div>
+      </div>
+      <a href="https://fabricontrol-1.emergent.host/" target="_blank" class="btn btn-primary">Try Demo Now →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-light">
+  <div class="container">
+    <h2 class="text-center" style="margin-bottom: 2rem; color: var(--primary);">Pricing FAQ</h2>
+    <div style="max-width: 800px; margin: 0 auto;">
+      <div class="card" style="margin-bottom: 1rem;">
+        <h4>What's the difference between annual and installment payment?</h4>
+        <p>The <strong>annual payment ($195)</strong> is a one-time payment that gives you access for 1 full year. The <strong>installment plan ($290)</strong> splits the payment into monthly installments but costs $95 more in total.</p>
+      </div>
+      <div class="card" style="margin-bottom: 1rem;">
+        <h4>How does the 30-day free trial work?</h4>
+        <p>Fill out the form, receive your activation code by email in less than 24 hours, create your account, and you have 30 full days to try it without needing a card. No downloads, no installations — 100% cloud.</p>
+      </div>
+      <div class="card" style="margin-bottom: 1rem;">
+        <h4>What happens after the trial?</h4>
+        <p>If you decide to continue, purchase the license on Hotmart and receive your code by email within 24 hours. If not, simply stop using the software.</p>
+      </div>
+      <div class="card" style="margin-bottom: 1rem;">
+        <h4>Do I lose my data when activating the license?</h4>
+        <p><strong>No.</strong> All your data (quotes, orders, inventory) stays intact when you activate your license.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container text-center">
+    <p style="opacity: 0.8;">📧 info@fabricontrol.online | 📱 +972 52-648-9461</p>
+    <p style="opacity: 0.7; margin-top: 1rem;">© 2026 FabriControl. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Chat Widget -->
+<script>window.REACT_APP_BACKEND_URL = 'https://cloud-fabric-control.preview.emergentagent.com';</script>
+<script src="/assets/js/chat-widget.js"></script>
+
+</body>
+</html>
