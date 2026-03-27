@@ -109,7 +109,7 @@ const Precios = () => {
   const { t, language, isRtl } = useLanguage();
   
   const l = locales[language] || locales.es;
-  const HOTMART_LINK = "https://pay.hotmart.com/L103719113Q";
+  const HOTMART_LINK = "https://pay.hotmart.com/L103719113Q?bid=1774630501240";
 
   const handleOpenModal = (plan = 'anual') => {
     setSelectedPlan(plan);
@@ -211,23 +211,14 @@ const Precios = () => {
                   </li>
                 </ul>
                 
-                {language === 'he' ? (
-                  <button 
-                    onClick={() => handleOpenModal('anual')}
-                    className="w-full text-center py-4 px-6 rounded-xl font-bold text-white bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 shadow-lg hover:shadow-orange-500/50 transition-all duration-300"
-                  >
-                    {l.buyAnn}
-                  </button>
-                ) : (
-                  <a 
-                    href={HOTMART_LINK} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="w-full text-center py-4 px-6 rounded-xl font-bold text-white bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 shadow-lg hover:shadow-orange-500/50 transition-all duration-300"
-                  >
-                    {l.buyAnn}
-                  </a>
-                )}
+                <a 
+                  href={HOTMART_LINK} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-full text-center py-4 px-6 rounded-xl font-bold text-white bg-gradient-to-r from-orange-400 to-orange-500 hover:from-orange-500 hover:to-orange-600 shadow-lg hover:shadow-orange-500/50 transition-all duration-300"
+                >
+                  {l.buyAnn}
+                </a>
               </div>
 
               {/* PLAN EN CUOTAS */}
@@ -258,23 +249,14 @@ const Precios = () => {
                   </li>
                 </ul>
                 
-                {language === 'he' ? (
-                  <button 
-                    onClick={() => handleOpenModal('cuotas')}
-                    className="w-full text-center py-4 px-6 rounded-xl font-bold text-white bg-white/10 border border-white/20 hover:bg-white/20 hover:text-cyan-400 transition-all duration-300"
-                  >
-                    {l.buyMo}
-                  </button>
-                ) : (
-                  <a 
-                    href={HOTMART_LINK} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="w-full text-center py-4 px-6 rounded-xl font-bold text-white bg-white/10 border border-white/20 hover:bg-white/20 hover:text-cyan-400 transition-all duration-300"
-                  >
-                    {l.buyMo}
-                  </a>
-                )}
+                <a 
+                  href={HOTMART_LINK} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-full text-center py-4 px-6 rounded-xl font-bold text-white bg-white/10 border border-white/20 hover:bg-white/20 hover:text-cyan-400 transition-all duration-300"
+                >
+                  {l.buyMo}
+                </a>
               </div>
 
             </div>
