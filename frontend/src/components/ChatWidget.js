@@ -26,7 +26,7 @@ const ChatWidget = () => {
     if (!input.trim() || isLoading) return;
 
     const userMessage = input.trim();
-    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://fabricontrol-1.emergent.host';
 
     setInput('');
     const newMessages = [...messages, { role: 'user', content: userMessage }];
