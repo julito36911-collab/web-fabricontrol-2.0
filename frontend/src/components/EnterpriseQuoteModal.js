@@ -119,7 +119,8 @@ function EnterpriseQuoteModal({ isOpen, onClose }) {
     setMessage({ type: '', text: '' });
 
     try {
-      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+      const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://fabricontrol-api.onrender.com';
+
       const response = await fetch(`${BACKEND_URL}/api/enterprise-quote`, {
         method: 'POST',
         headers: {
