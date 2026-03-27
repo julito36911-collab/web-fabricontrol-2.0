@@ -1,6 +1,6 @@
 // FabriControl Chat Widget - Standalone Version for Static Pages
 (function() {
-  const BACKEND_URL = window.REACT_APP_BACKEND_URL || 'https://fabricontrol-api.onrender.com';
+  const BACKEND_URL = window.REACT_APP_BACKEND_URL || 'https://web-fabricontrol-2-0.onrender.com';
   
   // Styles
   const styles = `

@@ -26,7 +26,7 @@ const ChatWidget = () => {
     if (!input.trim() || isLoading) return;
 
     const userMessage = input.trim();
-    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://fabricontrol-api.onrender.com';
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://web-fabricontrol-2-0.onrender.com';
 
     setInput('');
     const newMessages = [...messages, { role: 'user', content: userMessage }];
