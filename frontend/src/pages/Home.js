@@ -532,7 +532,7 @@ const guideLocales = {
 // Selects the correct screenshot path based on the active language.
 const getScreenshot = (name, lang, folder = 'desktop') => {
   // Support for new high-quality PNG screenshots for specific key names
-  const pngNames = ['chat-ia', 'caracteristicas', 'modal-trial', 'terms', 'dashboard'];
+  const pngNames = ['chat-ia', 'caracteristicas', 'modal-trial', 'terms'];
   
   if (pngNames.includes(name)) {
     // If it's Hebrew, we only have PNGs for certain ones, otherwise fallback to English PNG
