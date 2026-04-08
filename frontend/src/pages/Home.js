@@ -28,6 +28,7 @@ const txt = {
     fcCta: "Solicitar cotización",
     fcDemo: "Ver demo",
     fcMore: "Ver detalles →",
+    fcDemoUser: "Usuario demo:", fcDemoPass: "Contraseña:",
     fcF1: "Cotizaciones inteligentes", fcF2: "Producción visual", fcF3: "Inventario y BOM",
     fcF4: "Control de máquinas", fcF5: "Calidad y finanzas", fcF6: "App móvil · 3 idiomas",
 
@@ -118,6 +119,7 @@ const txt = {
     fcCta: "בקשת הצעת מחיר",
     fcDemo: "צפה בדמו",
     fcMore: "← צפייה בפרטים",
+    fcDemoUser: "משתמש דמו:", fcDemoPass: "סיסמה:",
     fcF1: "הצעות מחיר חכמות", fcF2: "ייצור ויזואלי", fcF3: "מלאי ו-BOM",
     fcF4: "בקרת מכונות", fcF5: "איכות וכספים", fcF6: "אפליקציה · 3 שפות",
 
@@ -281,6 +283,10 @@ function Home() {
                 <Link to="/fabricontrol" className="inline-block px-6 py-3 text-orange-400 hover:text-orange-300 font-bold rounded-lg transition-all text-sm">
                   {l.fcMore}
                 </Link>
+              </div>
+              <div className="mt-4 bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-xs text-gray-400">
+                <p><span className="text-gray-300 font-semibold">{l.fcDemoUser}</span> julito36911@gmail.com</p>
+                <p><span className="text-gray-300 font-semibold">{l.fcDemoPass}</span> password123</p>
               </div>
             </div>
 
