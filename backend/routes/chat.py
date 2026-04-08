@@ -144,15 +144,14 @@ async def chat(request: ChatRequest):
         # Get the user's last message
         user_text = request.messages[-1].content
         
-        # Initialize Gemini model
+        # Use cached model instance
         model = genai.GenerativeModel(
-            model_name="gemini-2.5-flash",
+            model_name="gemini-2.0-flash",
             system_instruction=SYSTEM_PROMPT
         )
-        
+
         # Send message and get response
-        chat = model.start_chat(history=[]) # Could add history if needed
-        response = chat.send_message(user_text)
+        response = model.generate_content(user_text)
         response_text = response.text
         
         # Detect language

@@ -15,6 +15,12 @@ const ChatWidget = () => {
     observer.observe(document.body, { childList: true, subtree: true });
     return () => observer.disconnect();
   }, []);
+
+  // Wake up backend on page load so chat responds faster
+  useEffect(() => {
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://web-fabricontrol-2-0.onrender.com';
+    fetch(`${backendUrl}/api/chat/health`).catch(() => {});
+  }, []);
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
