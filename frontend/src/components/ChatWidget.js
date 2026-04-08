@@ -6,7 +6,7 @@ const ChatWidget = () => {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: '¡Hola! 👋 Soy el asistente de FabriControl. ¿En qué puedo ayudarte?\n\nPuedo responder sobre:\n- ✅ Características y precios\n- ✅ Comparación con otros ERPs\n- ✅ Cómo funciona el sistema\n- ✅ Trial gratuito de 30 días'
+      content: '¡Hola! 👋 Soy el asistente de Julio Mirabal. ¿En qué puedo ayudarte?\n\nPuedo responder sobre:\n- ✅ FabriControl — ERP industrial disponible\n- ✅ FabriOS — próximamente\n- ✅ Servicios a medida (software, apps, IoT, consultoría)\n- ✅ Cómo solicitar una cotización'
     }
   ]);
   const [input, setInput] = useState('');
@@ -104,7 +104,7 @@ const ChatWidget = () => {
           {/* Header */}
           <div className="chat-header">
             <div>
-              <h3>FabriControl AI 🤖</h3>
+              <h3>Julio Mirabal AI 🤖</h3>
               <span className="chat-status">Online</span>
             </div>
             <button
