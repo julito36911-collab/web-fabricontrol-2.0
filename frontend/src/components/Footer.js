@@ -4,61 +4,39 @@ import { useLanguage } from '../contexts/LanguageContext';
 
 const translations = {
   es: {
-    desc: "El ERP diseñado específicamente para talleres y fábricas latinoamericanas.",
-    product: "Producto",
-    features: "Características",
-    pricing: "Precios",
-    docs: "Documentación Técnica",
-    comparison: "Comparación",
-    resources: "Recursos",
-    campus: "Campus Gratuito",
-    catalog: "Catálogo de Productos",
-    faq: "FAQ",
-    blog: "Blog",
+    desc: "Software industrial a medida. Productos en la nube y locales + desarrollo custom.",
+    products: "Productos",
+    fabrios: "FabriOS (Próximamente)",
+    fabricontrol: "FabriControl",
+    compare: "Comparativa",
+    services: "Servicios",
+    svc1: "Software a medida",
+    svc2: "Apps / Plataformas",
+    svc3: "IoT Industrial",
+    svc4: "Consultoría",
     contact: "Contacto",
     email: "Email",
     whatsapp: "WhatsApp",
-    liveChat: "Chat en vivo disponible",
+    quote: "Solicitar cotización",
     rights: "Todos los derechos reservados.",
     terms: "Términos y Condiciones",
     privacy: "Política de Privacidad"
   },
-  en: {
-    desc: "The ERP specifically designed for Latin American workshops and factories.",
-    product: "Product",
-    features: "Features",
-    pricing: "Pricing",
-    docs: "Technical Documentation",
-    comparison: "Comparison",
-    resources: "Resources",
-    campus: "Free Campus",
-    catalog: "Product Catalog",
-    faq: "FAQ",
-    blog: "Blog",
-    contact: "Contact",
-    email: "Email",
-    whatsapp: "WhatsApp",
-    liveChat: "Live Chat available",
-    rights: "All rights reserved.",
-    terms: "Terms and Conditions",
-    privacy: "Privacy Policy"
-  },
   he: {
-    desc: "מערכת ה-ERP שתוכננה במיוחד עבור בתי מלאכה ומפעלים.",
-    product: "מוצר",
-    features: "תכונות",
-    pricing: "מחירים",
-    docs: "תיעוד טכני",
-    comparison: "השוואה",
-    resources: "משאבים",
-    campus: "קמפוס בחינם",
-    catalog: "קטלוג מוצרים",
-    faq: "שאלות נפוצות",
-    blog: "בלוג",
+    desc: "תוכנה תעשייתית מותאמת. מוצרים בענן ומקומיים + פיתוח מותאם.",
+    products: "מוצרים",
+    fabrios: "FabriOS (בקרוב)",
+    fabricontrol: "FabriControl",
+    compare: "השוואה",
+    services: "שירותים",
+    svc1: "תוכנה מותאמת",
+    svc2: "אפליקציות / פלטפורמות",
+    svc3: "IoT תעשייתי",
+    svc4: "ייעוץ",
     contact: "צור קשר",
     email: "אימייל",
-    whatsapp: "ווטסאפ",
-    liveChat: "צ'אט חי זמין",
+    whatsapp: "וואטסאפ",
+    quote: "בקשת הצעת מחיר",
     rights: "כל הזכויות שמורות.",
     terms: "תנאי שימוש",
     privacy: "מדיניות פרטיות"
@@ -70,49 +48,54 @@ function Footer() {
   const l = translations[language] || translations.es;
 
   return (
-    <footer className={`footer ${isRtl ? 'dir-rtl text-right' : 'dir-ltr text-left'}`}>
-      <div className="container">
-        <div className="footer-content">
-          <div className="footer-section">
-            <h4 className="font-bold text-white mb-4">FabriControl</h4>
-            <p style={{opacity: 0.8}}>{l.desc}</p>
+    <footer className={`bg-[#0a0e17] border-t border-white/5 pt-16 pb-8 px-4 ${isRtl ? 'dir-rtl text-right' : 'text-left'}`}>
+      <div className="max-w-6xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+          {/* Brand */}
+          <div>
+            <h4 className="font-extrabold text-white text-lg mb-3">Julio Mirabal</h4>
+            <p className="text-sm text-gray-500 leading-relaxed">{l.desc}</p>
+            <p className="text-xs text-gray-600 mt-3">🇦🇷 🇮🇱</p>
           </div>
-          
-          <div className="footer-section">
-            <h4 className="font-bold text-white mb-4">{l.product}</h4>
-            <ul className="footer-links">
-              <li><Link to="/caracteristicas">{l.features}</Link></li>
-              <li><Link to="/precios">{l.pricing}</Link></li>
-              <li><Link to="/documentacion">{l.docs}</Link></li>
-              <li><Link to="/comparacion">{l.comparison}</Link></li>
+
+          {/* Products */}
+          <div>
+            <h4 className="font-bold text-white text-sm mb-3">{l.products}</h4>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li><a href="/#productos" className="hover:text-orange-400 transition-colors">{l.fabrios}</a></li>
+              <li><a href="/#productos" className="hover:text-orange-400 transition-colors">{l.fabricontrol}</a></li>
+              <li><a href="/#productos" className="hover:text-orange-400 transition-colors">{l.compare}</a></li>
             </ul>
           </div>
-          
-          <div className="footer-section">
-            <h4 className="font-bold text-white mb-4">{l.resources}</h4>
-            <ul className="footer-links">
-              <li><Link to="/recursos">{l.campus}</Link></li>
-              <li><a href="/productos/">{l.catalog}</a></li>
-              <li><Link to="/faq">{l.faq}</Link></li>
-              <li><a href="#">{l.blog}</a></li>
+
+          {/* Services */}
+          <div>
+            <h4 className="font-bold text-white text-sm mb-3">{l.services}</h4>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li><a href="/#servicios" className="hover:text-orange-400 transition-colors">{l.svc1}</a></li>
+              <li><a href="/#servicios" className="hover:text-orange-400 transition-colors">{l.svc2}</a></li>
+              <li><a href="/#servicios" className="hover:text-orange-400 transition-colors">{l.svc3}</a></li>
+              <li><a href="/#servicios" className="hover:text-orange-400 transition-colors">{l.svc4}</a></li>
             </ul>
           </div>
-          
-          <div className="footer-section">
-            <h4 className="font-bold text-white mb-4">{l.contact}</h4>
-            <ul className="footer-links">
-              <li>📧 <a href="mailto:info@fabricontrol.online">{l.email}: info@fabricontrol.online</a></li>
-              <li>📱 <a href="https://wa.me/972526489461">WhatsApp: +972 52-648-9461</a></li>
-              <li>💬 {l.liveChat}</li>
+
+          {/* Contact */}
+          <div>
+            <h4 className="font-bold text-white text-sm mb-3">{l.contact}</h4>
+            <ul className="space-y-2 text-sm text-gray-400">
+              <li><a href="mailto:info@fabricontrol.online" className="hover:text-orange-400 transition-colors">📧 info@fabricontrol.online</a></li>
+              <li><a href="https://wa.me/972526489461" target="_blank" rel="noopener noreferrer" className="hover:text-orange-400 transition-colors">📱 +972 52-648-9461</a></li>
+              <li><Link to="/cotizacion" className="hover:text-orange-400 transition-colors">{l.quote}</Link></li>
             </ul>
           </div>
         </div>
-        
-        <div className="footer-bottom border-t border-white/5 pt-8 mt-12 text-sm text-center">
-          <p>&copy; 2026 FabriControl. {l.rights}</p>
-          <p style={{marginTop: '0.5rem'}} className="opacity-60 flex gap-4 justify-center">
-            <Link to="/terms" className="hover:text-cyan-400">{l.terms}</Link> 
-            <Link to="/privacy" className="hover:text-cyan-400">{l.privacy}</Link>
+
+        <div className="border-t border-white/5 pt-6 text-center text-xs text-gray-600">
+          <p>&copy; 2026 Julio Mirabal. {l.rights}</p>
+          <p className="mt-2 flex gap-4 justify-center">
+            <Link to="/terms" className="hover:text-orange-400 transition-colors">{l.terms}</Link>
+            <Link to="/privacy" className="hover:text-orange-400 transition-colors">{l.privacy}</Link>
           </p>
         </div>
       </div>
