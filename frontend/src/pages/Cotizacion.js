@@ -311,6 +311,8 @@ function Cotizacion() {
 
   const [step, setStep] = useState(0);
   const [copyMsg, setCopyMsg] = useState(false);
+  const [emailSending, setEmailSending] = useState(false);
+  const [emailMsg, setEmailMsg] = useState('');
 
   // Step 1
   const [company, setCompany] = useState('');
@@ -417,9 +419,6 @@ Notas adicionales: ${extra || '-'}`;
   const summary = buildSummary();
   const waNum = '972526489461';
   const waLink = `https://wa.me/${waNum}?text=${encodeURIComponent(summary)}`;
-  const emailSubject = encodeURIComponent(`Cotización — ${company || 'Nuevo cliente'}`);
-  const emailLink = `mailto:julio@fabricontrol.online?subject=${emailSubject}&body=${encodeURIComponent(summary)}`;
-
   const nextStep = () => { setStep(s => Math.min(s + 1, 3)); window.scrollTo(0, 0); };
   const prevStep = () => { setStep(s => Math.max(s - 1, 0)); window.scrollTo(0, 0); };
 
@@ -554,7 +553,31 @@ Notas adicionales: ${extra || '-'}`;
             <button onClick={copySummary} className="w-full py-3 bg-green-500 hover:bg-green-400 text-[#0a0e17] font-bold rounded-lg transition-all text-sm">{l.s4Copy}</button>
             {copyMsg && <p className="text-center text-green-400 font-semibold text-sm">{l.s4Copied}</p>}
             <a href={waLink} target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-[#25d366] hover:bg-[#20bd5a] text-white font-bold rounded-lg transition-all text-sm text-center">{l.s4Wa}</a>
-            <a href={emailLink} className="block w-full py-3 bg-[#111827] hover:bg-[#1f2937] text-white font-bold rounded-lg transition-all text-sm text-center border border-[#1e293b]">{l.s4Email}</a>
+            <button
+              onClick={async () => {
+                setEmailSending(true);
+                setEmailMsg('');
+                try {
+                  const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://web-fabricontrol-2-0.onrender.com';
+                  const res = await fetch(`${backendUrl}/api/send-quote`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ summary, company, contactName, email })
+                  });
+                  if (!res.ok) throw new Error('Error');
+                  setEmailMsg(language === 'he' ? '✅ נשלח בהצלחה!' : '✅ ¡Cotización enviada por email!');
+                } catch {
+                  setEmailMsg(language === 'he' ? '❌ שגיאה. נסו בוואטסאפ.' : '❌ Error al enviar. Intentá por WhatsApp.');
+                } finally {
+                  setEmailSending(false);
+                }
+              }}
+              disabled={emailSending}
+              className="block w-full py-3 bg-[#111827] hover:bg-[#1f2937] text-white font-bold rounded-lg transition-all text-sm text-center border border-[#1e293b] disabled:opacity-50"
+            >
+              {emailSending ? (language === 'he' ? '⏳ שולח...' : '⏳ Enviando...') : l.s4Email}
+            </button>
+            {emailMsg && <p className={`text-center font-semibold text-sm ${emailMsg.includes('✅') ? 'text-green-400' : 'text-red-400'}`}>{emailMsg}</p>}
             <BtnRow><button onClick={prevStep} className="btn-back">{l.edit}</button></BtnRow>
           </div>
         )}

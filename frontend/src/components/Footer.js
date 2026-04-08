@@ -84,7 +84,7 @@ function Footer() {
           <div>
             <h4 className="font-bold text-white text-sm mb-3">{l.contact}</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="mailto:info@fabricontrol.online" className="hover:text-orange-400 transition-colors">📧 info@fabricontrol.online</a></li>
+              <li><button onClick={(e) => { navigator.clipboard.writeText('info@fabricontrol.online'); e.target.textContent = '✅ Copiado: info@fabricontrol.online'; setTimeout(() => { e.target.textContent = '📧 info@fabricontrol.online'; }, 3000); window.location.href = 'mailto:info@fabricontrol.online'; }} className="hover:text-orange-400 transition-colors text-left bg-transparent border-none p-0 cursor-pointer text-inherit text-sm">📧 info@fabricontrol.online</button></li>
               <li><a href="https://wa.me/972526489461" target="_blank" rel="noopener noreferrer" className="hover:text-orange-400 transition-colors">📱 +972 52-648-9461</a></li>
               <li><Link to="/cotizacion" className="hover:text-orange-400 transition-colors">{l.quote}</Link></li>
             </ul>

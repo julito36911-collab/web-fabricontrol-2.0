@@ -209,6 +209,7 @@ function Home() {
   const l = txt[language] || txt.es;
   const [notifyEmail, setNotifyEmail] = React.useState('');
   const [notified, setNotified] = React.useState(false);
+  const [emailCopied, setEmailCopied] = React.useState(false);
 
   return (
     <div className={`min-h-screen bg-[#0a0e17] text-white ${isRtl ? 'dir-rtl' : 'dir-ltr'}`}>
@@ -460,12 +461,17 @@ function Home() {
             >
               💬 {l.ctaWa}
             </a>
-            <a
-              href="mailto:info@fabricontrol.online"
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText('info@fabricontrol.online');
+                setEmailCopied(true);
+                setTimeout(() => setEmailCopied(false), 3000);
+                window.location.href = 'mailto:info@fabricontrol.online';
+              }}
               className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl transition-all text-sm border border-white/20"
             >
-              📧 {l.ctaEmail}
-            </a>
+              {emailCopied ? '✅ info@fabricontrol.online' : `📧 ${l.ctaEmail}`}
+            </button>
             <a
               href="https://www.linkedin.com/in/juliomirabal"
               target="_blank"
