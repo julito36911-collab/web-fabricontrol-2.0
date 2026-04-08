@@ -14,6 +14,7 @@ import Documentacion from './pages/Documentacion';
 import Comparacion from './pages/Comparacion';
 import TermsAndConditions from './pages/TermsAndConditions';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import PruebaGratis from './pages/PruebaGratis';
 import ChatWidget from './components/ChatWidget';
 import WhatsAppButton from './components/WhatsAppButton';
 
@@ -35,6 +36,7 @@ function App() {
           <Route path="/comparacion" element={<Comparacion />} />
           <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/prueba-gratis" element={<PruebaGratis />} />
         </Routes>
         <ChatWidget />
         <WhatsAppButton />

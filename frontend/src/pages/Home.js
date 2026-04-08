@@ -25,7 +25,7 @@ const txt = {
     fcTitle: "FabriControl",
     fcSub: "ERP industrial para tu empresa",
     fcDesc: "El sistema de gestión completo para empresas de manufactura. Cotizaciones inteligentes, producción visual, inventario, BOM, control de máquinas, calidad, finanzas, app móvil y soporte en 3 idiomas.",
-    fcCta: "Solicitar cotización",
+    fcCta: "60 días de prueba gratis",
     fcDemo: "Ver demo",
     fcMore: "Ver detalles →",
     fcDemoUser: "Usuario demo:", fcDemoPass: "Contraseña:",
@@ -116,7 +116,7 @@ const txt = {
     fcTitle: "FabriControl",
     fcSub: "מערכת ERP תעשייתית לעסק שלך",
     fcDesc: "מערכת ניהול מלאה לחברות ייצור. הצעות מחיר חכמות, ייצור ויזואלי, מלאי, BOM, בקרת מכונות, איכות, כספים, אפליקציית מובייל ותמיכה ב-3 שפות.",
-    fcCta: "בקשת הצעת מחיר",
+    fcCta: "60 ימי ניסיון חינם",
     fcDemo: "צפה בדמו",
     fcMore: "← צפייה בפרטים",
     fcDemoUser: "משתמש דמו:", fcDemoPass: "סיסמה:",
@@ -274,7 +274,7 @@ function Home() {
                 {[l.fcF1, l.fcF2, l.fcF3, l.fcF4, l.fcF5, l.fcF6].map((f, i) => <Chip key={i}>{f}</Chip>)}
               </div>
               <div className="flex flex-wrap gap-3">
-                <Link to="/cotizacion" className="inline-block px-6 py-3 bg-orange-500 hover:bg-orange-400 text-white font-bold rounded-lg transition-all text-sm">
+                <Link to="/prueba-gratis" className="inline-block px-6 py-3 bg-orange-500 hover:bg-orange-400 text-white font-bold rounded-lg transition-all text-sm">
                   {l.fcCta}
                 </Link>
                 <a href="https://fabricontrol-1.emergent.host/" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-lg transition-all text-sm border border-white/20">
