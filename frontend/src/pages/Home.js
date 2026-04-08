@@ -284,9 +284,9 @@ function Home() {
                   {l.fcMore}
                 </Link>
               </div>
-              <div className="mt-4 bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-xs text-gray-400">
-                <p><span className="text-gray-300 font-semibold">{l.fcDemoUser}</span> julito36911@gmail.com</p>
-                <p><span className="text-gray-300 font-semibold">{l.fcDemoPass}</span> password123</p>
+              <div className="mt-4 bg-white/5 border border-white/10 rounded-lg px-5 py-4 text-sm text-gray-400 space-y-1">
+                <p><span className="text-white font-bold">{l.fcDemoUser}</span> julito36911@gmail.com</p>
+                <p><span className="text-white font-bold">{l.fcDemoPass}</span> password123</p>
               </div>
             </div>
 
