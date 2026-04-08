@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MonitorCNC — Demo IoT Industrial</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e17;
+  --surface: #111827;
+  --surface2: #1a2236;
+  --border: #1e293b;
+  --text: #e2e8f0;
+  --text-dim: #94a3b8;
+  --text-dark: #64748b;
+  --accent: #f97316;
+  --accent-glow: rgba(249,115,22,0.15);
+  --green: #22c55e;
+  --green-glow: rgba(34,197,94,0.15);
+  --red: #ef4444;
+  --red-glow: rgba(239,68,68,0.15);
+  --yellow: #eab308;
+  --yellow-glow: rgba(234,179,8,0.15);
+  --blue: #3b82f6;
+  --blue-glow: rgba(59,130,246,0.15);
+  --cyan: #06b6d4;
+  --cyan-glow: rgba(6,182,212,0.15);
+  --radius: 12px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg); color:var(--text);
+  line-height:1.6; min-height:100vh;
+  direction:ltr; text-align:left;
+}
+body.rtl {
+  direction:rtl; text-align:right;
+  font-family:'Segoe UI','Arial Hebrew','DM Sans',sans-serif;
+}
+
+/* === HEADER === */
+.header {
+  background:var(--surface); border-bottom:1px solid var(--border);
+  padding:1rem 1.5rem; position:sticky; top:0; z-index:50;
+  backdrop-filter:blur(12px);
+}
+.header-inner {
+  max-width:1200px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:0.75rem;
+}
+.header-brand { display:flex; align-items:center; gap:0.75rem; }
+.header-logo {
+  font-size:1.4rem; font-weight:800; color:var(--accent);
+  letter-spacing:-0.5px;
+}
+.header-sub { font-size:0.75rem; color:var(--text-dim); max-width:220px; }
+.header-right { display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap; }
+.demo-badge {
+  font-family:'Space Mono',monospace;
+  font-size:0.65rem; font-weight:700;
+  padding:0.3rem 0.7rem; border-radius:6px;
+  background:var(--accent-glow); color:var(--accent);
+  border:1px solid rgba(249,115,22,0.3);
+  letter-spacing:1px; text-transform:uppercase;
+}
+body.rtl .demo-badge { letter-spacing:0; }
+.clock {
+  font-family:'Space Mono',monospace;
+  font-size:0.85rem; color:var(--text-dim);
+}
+.lang-toggle {
+  display:flex; background:rgba(255,255,255,0.06);
+  border-radius:6px; overflow:hidden; border:1px solid var(--border);
+}
+.lang-btn {
+  padding:0.35rem 0.75rem; font-size:0.75rem; font-weight:700;
+  border:none; cursor:pointer; background:transparent;
+  color:var(--text-dim); transition:all 0.2s;
+  font-family:'DM Sans',sans-serif;
+}
+.lang-btn.active { background:var(--accent); color:var(--bg); }
+
+/* === INDUSTRY SELECTOR === */
+.industry-bar {
+  background:var(--surface); border-bottom:1px solid var(--border);
+  padding:0.75rem 1.5rem;
+}
+.industry-inner {
+  max-width:1200px; margin:0 auto;
+  display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;
+}
+.industry-label {
+  font-size:0.7rem; font-weight:700; color:var(--text-dark);
+  font-family:'Space Mono',monospace;
+  letter-spacing:1px; text-transform:uppercase;
+  margin-right:0.5rem;
+}
+body.rtl .industry-label { letter-spacing:0; margin-right:0; margin-left:0.5rem; font-family:'Segoe UI','Arial Hebrew',sans-serif; }
+.industry-btn {
+  padding:0.6rem 1.25rem; font-size:0.85rem; font-weight:700;
+  border:2px solid var(--border); border-radius:10px;
+  cursor:pointer; background:var(--surface2);
+  color:var(--text-dim); transition:all 0.25s;
+  font-family:'DM Sans',sans-serif;
+  display:inline-flex; align-items:center; gap:0.5rem;
+}
+.industry-btn:hover { border-color:var(--accent); color:var(--text); }
+.industry-btn.active {
+  background:var(--accent-glow); color:var(--accent);
+  border-color:var(--accent);
+  box-shadow:0 0 20px rgba(249,115,22,0.1);
+}
+
+/* === LAYOUT === */
+.container { max-width:1200px; margin:0 auto; padding:1.5rem; }
+
+/* === KPIs === */
+.kpi-grid {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:1rem; margin-bottom:1.5rem;
+}
+@media(max-width:768px) { .kpi-grid { grid-template-columns:repeat(2,1fr); } }
+@media(max-width:480px) { .kpi-grid { grid-template-columns:1fr; } }
+.kpi-card {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:1.25rem;
+  display:flex; align-items:center; gap:1rem;
+}
+.kpi-icon {
+  width:48px; height:48px; border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.3rem; flex-shrink:0;
+}
+.kpi-icon.green { background:var(--green-glow); }
+.kpi-icon.orange { background:var(--accent-glow); }
+.kpi-icon.blue { background:var(--blue-glow); }
+.kpi-icon.yellow { background:var(--yellow-glow); }
+.kpi-label { font-size:0.75rem; color:var(--text-dark); margin-bottom:0.15rem; }
+.kpi-value { font-size:1.5rem; font-weight:800; min-width:3ch; display:inline-block; }
+.kpi-bar { height:4px; border-radius:2px; background:var(--border); margin-top:0.4rem; }
+.kpi-bar-fill { height:100%; border-radius:2px; transition:width 0.6s ease; }
+
+/* === MACHINES === */
+.section-title {
+  font-size:0.7rem; font-weight:700; color:var(--accent);
+  font-family:'Space Mono',monospace;
+  letter-spacing:2px; text-transform:uppercase;
+  margin-bottom:1rem;
+}
+body.rtl .section-title { letter-spacing:0; font-family:'Segoe UI','Arial Hebrew',sans-serif; }
+.machines-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:1rem; margin-bottom:2rem;
+}
+@media(max-width:400px) { .machines-grid { grid-template-columns:1fr; } }
+.machine-card {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:1.25rem;
+  transition:border-color 0.4s ease;
+  contain:layout style;
+  border-left:3px solid var(--green);
+}
+.machine-card:hover { border-color:rgba(255,255,255,0.15); }
+.machine-card[data-health="green"] { border-left-color:var(--green); }
+.machine-card[data-health="yellow"] { border-left-color:var(--yellow); }
+.machine-card[data-health="red"] { border-left-color:var(--red); }
+body.rtl .machine-card { border-left:1px solid var(--border); border-right:3px solid var(--green); }
+body.rtl .machine-card[data-health="green"] { border-right-color:var(--green); }
+body.rtl .machine-card[data-health="yellow"] { border-right-color:var(--yellow); }
+body.rtl .machine-card[data-health="red"] { border-right-color:var(--red); }
+.machine-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
+.machine-name { font-size:1rem; font-weight:700; }
+.machine-status {
+  font-size:0.7rem; font-weight:700; padding:0.25rem 0.6rem;
+  border-radius:6px; display:inline-flex; align-items:center; gap:0.3rem;
+}
+.status-active { background:var(--green-glow); color:var(--green); }
+.status-stopped { background:var(--red-glow); color:var(--red); }
+.status-anomaly { background:var(--yellow-glow); color:var(--yellow); }
+.status-alert { background:var(--red-glow); color:var(--red); }
+
+.health-row { margin-bottom:0.75rem; }
+.health-label { font-size:0.7rem; color:var(--text-dark); margin-bottom:0.3rem; display:flex; justify-content:space-between; }
+.health-bar { height:6px; background:var(--border); border-radius:3px; overflow:hidden; }
+.health-fill { height:100%; border-radius:3px; transition:width 0.8s ease, background-color 0.5s ease; }
+
+.sensor-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.5rem; margin-bottom:0.75rem; }
+.sensor-item { text-align:center; padding:0.5rem; background:var(--surface2); border-radius:8px; min-height:68px; }
+.sensor-label { font-size:0.6rem; color:var(--text-dark); text-transform:uppercase; letter-spacing:0.5px; line-height:1.2; }
+body.rtl .sensor-label { letter-spacing:0; }
+.sensor-value {
+  font-size:1.1rem; font-weight:700;
+  font-family:'Space Mono',monospace;
+  transition:color 0.4s ease;
+  min-width:3ch; display:inline-block;
+  line-height:1.4; height:1.6em;
+}
+.sensor-unit { font-size:0.6rem; color:var(--text-dark); line-height:1.2; }
+
+.machine-meta { font-size:0.75rem; color:var(--text-dim); }
+.machine-meta span { display:block; margin-top:0.2rem; }
+
+/* === CHART === */
+.chart-section {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:1.5rem; margin-bottom:2rem;
+}
+.chart-title { font-size:1rem; font-weight:700; margin-bottom:1rem; }
+.chart-container { display:flex; align-items:flex-end; gap:0.5rem; height:160px; }
+.chart-bar-wrapper { flex:1; display:flex; flex-direction:column; align-items:center; height:100%; justify-content:flex-end; }
+.chart-bar {
+  width:100%; border-radius:4px 4px 0 0; transition:height 0.5s ease;
+  min-height:4px; position:relative;
+}
+.chart-bar-label {
+  font-size:0.6rem; color:var(--text-dark); margin-top:0.4rem;
+  font-family:'Space Mono',monospace;
+}
+.chart-bar-value {
+  font-size:0.6rem; font-weight:700; color:var(--text-dim);
+  margin-bottom:0.25rem; text-align:center;
+}
+
+/* === ALERTS === */
+.alerts-section {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--radius); padding:1.5rem; margin-bottom:2rem;
+}
+.alert-item {
+  padding:0.75rem 0; border-bottom:1px solid var(--border);
+  font-size:0.85rem; color:var(--text-dim);
+  display:flex; align-items:flex-start; gap:0.5rem;
+}
+.alert-item:last-child { border-bottom:none; }
+.alert-time {
+  font-family:'Space Mono',monospace;
+  font-size:0.75rem; color:var(--text-dark);
+  white-space:nowrap; flex-shrink:0;
+}
+
+/* === FOOTER / CTA === */
+.demo-footer {
+  text-align:center; padding:3rem 1.5rem;
+  border-top:1px solid var(--border);
+}
+.demo-footer p { font-size:0.85rem; color:var(--text-dim); margin-bottom:1rem; }
+.cta-btn {
+  display:inline-block; padding:1rem 2.5rem;
+  background:var(--accent); color:var(--bg);
+  font-weight:800; font-size:1rem; border-radius:10px;
+  text-decoration:none; transition:all 0.2s;
+  box-shadow:0 4px 20px var(--accent-glow);
+}
+.cta-btn:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(249,115,22,0.3); }
+
+/* === ANIMATIONS === */
+@keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.5} }
+.pulse { animation:pulse-dot 2s infinite; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.fade-in { animation:fadeIn 0.4s ease-out; }
+</style>
+</head>
+<body>
+
+<!-- === HEADER === -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div>
+        <div class="header-logo">📡 MonitorCNC</div>
+        <div class="header-sub" data-es="Sistema de Monitoreo IoT Industrial" data-he="מערכת ניטור IoT תעשייתי">Sistema de Monitoreo IoT Industrial</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="demo-badge" data-es="DEMO — Datos simulados" data-he="DEMO — נתונים מדומים">DEMO — Datos simulados</div>
+      <div class="clock" id="clock"></div>
+      <div class="lang-toggle">
+        <button class="lang-btn active" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" onclick="setLang('he')">&#x05E2;&#x05D1;</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- === INDUSTRY SELECTOR === -->
+<div class="industry-bar">
+  <div class="industry-inner">
+    <span class="industry-label" data-es="INDUSTRIA:" data-he="תעשייה:">INDUSTRIA:</span>
+    <button class="industry-btn active" onclick="setIndustry('metalurgia')" id="btn-metalurgia">
+      <span>&#x2699;&#xFE0F;</span>
+      <span data-es="Metalurgia" data-he="מתכת">Metalurgia</span>
+    </button>
+    <button class="industry-btn" onclick="setIndustry('alimentos')" id="btn-alimentos">
+      <span>&#x1F35E;</span>
+      <span data-es="Alimentos" data-he="מזון">Alimentos</span>
+    </button>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- === KPIs === -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-icon green">&#x1F7E2;</div>
+      <div>
+        <div class="kpi-label" data-es="Máquinas activas" data-he="מכונות פעילות">Máquinas activas</div>
+        <div class="kpi-value" id="kpi-active">3/4</div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon orange">&#x1F4CA;</div>
+      <div style="flex:1">
+        <div class="kpi-label" data-es="Eficiencia promedio" data-he="יעילות ממוצעת">Eficiencia promedio</div>
+        <div class="kpi-value" id="kpi-efficiency">87%</div>
+        <div class="kpi-bar"><div class="kpi-bar-fill" id="kpi-eff-bar" style="width:87%;background:var(--green)"></div></div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon yellow">&#x26A0;&#xFE0F;</div>
+      <div>
+        <div class="kpi-label" data-es="Alertas hoy" data-he="התראות היום">Alertas hoy</div>
+        <div class="kpi-value" id="kpi-alerts">2</div>
+      </div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-icon blue">&#x23F1;&#xFE0F;</div>
+      <div>
+        <div class="kpi-label" data-es="Horas producidas" data-he="שעות ייצור">Horas producidas</div>
+        <div class="kpi-value" id="kpi-hours">28.3h</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- === MACHINES === -->
+  <div class="section-title" data-es="MÁQUINAS EN LÍNEA" data-he="מכונות מחוברות">MÁQUINAS EN LÍNEA</div>
+  <div class="machines-grid" id="machines-grid"></div>
+
+  <!-- === CHART === -->
+  <div class="chart-section">
+    <div class="chart-title" data-es="&#x1F4C8; Eficiencia — Últimas 8 horas" data-he="&#x1F4C8; יעילות — 8 שעות אחרונות">&#x1F4C8; Eficiencia — Últimas 8 horas</div>
+    <div class="chart-container" id="chart"></div>
+  </div>
+
+  <!-- === ALERTS LOG === -->
+  <div class="alerts-section">
+    <div class="section-title" data-es="ÚLTIMAS ALERTAS" data-he="התראות אחרונות">ÚLTIMAS ALERTAS</div>
+    <div id="alerts-list"></div>
+  </div>
+
+</div>
+
+<!-- === FOOTER CTA === -->
+<div class="demo-footer">
+  <p data-es="Demo de MonitorCNC — Servicio de Automatización IoT por Julio Mirabal" data-he="דמו MonitorCNC — שירות אוטומציה IoT מאת חוליו מיראבל">Demo de MonitorCNC — Servicio de Automatización IoT por Julio Mirabal</p>
+  <p data-es="¿Querés esto para tu fábrica?" data-he="רוצים את זה למפעל שלכם?">¿Querés esto para tu fábrica?</p>
+  <a class="cta-btn" href="/cotizacion" data-es="Solicitar cotización →" data-he="← בקשת הצעת מחיר">Solicitar cotización →</a>
+</div>
+
+<script>
+// =============================================
+// MonitorCNC — IoT Demo with Industry Selector
+// =============================================
+
+let lang = 'es';
+let currentIndustry = 'metalurgia';
+
+// === INDUSTRY MACHINE DEFINITIONS ===
+
+const industriesData = {
+  metalurgia: {
+    machines: [
+      {
+        id: 1,
+        name: { es: 'CNC Router #1', he: 'CNC Router #1' },
+        status: 'active', health: 92,
+        sensors: { s1: 1.2, s2: 42, s3: 12.3 },
+        order: { es: 'ORD-001 — Puerta de aluminio', he: 'ORD-001 — דלת אלומיניום' },
+        opMins: 204
+      },
+      {
+        id: 2,
+        name: { es: 'Salvagnini (Punzonadora) #2', he: 'Salvagnini (ניקוב) #2' },
+        status: 'active', health: 87,
+        sensors: { s1: 1.8, s2: 48, s3: 10.7 },
+        order: { es: 'ORD-005 — Chapa perforada 2mm', he: 'ORD-005 — פח מנוקב 2 מ"מ' },
+        opMins: 156
+      },
+      {
+        id: 3,
+        name: { es: 'Cortadora Láser #3', he: 'חותך לייזר #3' },
+        status: 'anomaly', health: 63,
+        sensors: { s1: 4.1, s2: 67, s3: 14.2 },
+        order: { es: 'ORD-012 — Brida de montaje', he: 'ORD-012 — אוגן הרכבה' },
+        opMins: 89
+      },
+      {
+        id: 4,
+        name: { es: 'Dobladora #4', he: 'מכופף #4' },
+        status: 'active', health: 95,
+        sensors: { s1: 0.6, s2: 38, s3: 9.1 },
+        order: { es: 'ORD-019 — Gabinete eléctrico', he: 'ORD-019 — ארון חשמל' },
+        opMins: 312
+      }
+    ],
+    sensorDefs: {
+      s1: { es: 'Vibración', he: 'רעידות', unit: 'mm/s' },
+      s2: { es: 'Temperatura', he: 'טמפרטורה', unit: '°C' },
+      s3: { es: 'Corriente', he: 'זרם', unit: 'A' }
+    },
+    sensorRanges: {
+      normal:  { s1: [0.5, 2.5],  s2: [35, 55],  s3: [8, 15] },
+      anomaly: { s1: [3.5, 5.0],  s2: [60, 75],  s3: [13, 16] }
+    },
+    sensorWarnings: {
+      s1: { yellow: 2.5, red: 3.5 },
+      s2: { yellow: 50,  red: 60 },
+      s3: { yellow: 14,  red: 16 }
+    },
+    alerts: [
+      { icon: '\u26A0\uFE0F', time: '14:32', es: 'Cortadora Láser #3: Vibración alta detectada (4.2 mm/s)', he: 'חותך לייזר #3: רעידות גבוהות זוהו (4.2 mm/s)' },
+      { icon: '\u26A0\uFE0F', time: '13:10', es: 'Cortadora Láser #3: Temperatura elevada (68°C)', he: 'חותך לייזר #3: טמפרטורה גבוהה (68°C)' },
+      { icon: '\u2705', time: '11:00', es: 'Salvagnini #2: Cambio de herramienta completado', he: 'Salvagnini #2: החלפת כלי הושלמה' },
+      { icon: '\u2705', time: '09:45', es: 'Dobladora #4: Calibración automática OK', he: 'מכופף #4: כיול אוטומטי תקין' },
+      { icon: '\u2705', time: '08:00', es: 'Sistema: Todas las máquinas conectadas — inicio de turno', he: 'מערכת: כל המכונות מחוברות — תחילת משמרת' }
+    ],
+    chartData: [82, 91, 78, 85, 93, 72, 88, 86]
+  },
+
+  alimentos: {
+    machines: [
+      {
+        id: 1,
+        name: { es: 'Horno Industrial #1', he: 'תנור תעשייתי #1' },
+        status: 'active', health: 94,
+        sensors: { s1: 185, s2: 32, s3: 1.2 },
+        order: { es: 'LOTE-041 — Pan lactal x500', he: 'LOTE-041 — לחם פרוס x500' },
+        opMins: 278
+      },
+      {
+        id: 2,
+        name: { es: 'Mezcladora #2', he: 'מערבל #2' },
+        status: 'active', health: 88,
+        sensors: { s1: 38, s2: 55, s3: 2.8 },
+        order: { es: 'LOTE-042 — Masa integral x200kg', he: 'LOTE-042 — בצק מלא x200 ק"ג' },
+        opMins: 145
+      },
+      {
+        id: 3,
+        name: { es: 'Cámara Frigorífica #3', he: 'חדר קירור #3' },
+        status: 'alert', health: 52,
+        sensors: { s1: -12, s2: 88, s3: 3.5 },
+        order: { es: 'ALM-003 — Lácteos en frío', he: 'ALM-003 — מוצרי חלב בקירור' },
+        opMins: 1440
+      },
+      {
+        id: 4,
+        name: { es: 'Línea de Envasado #4', he: 'קו אריזה #4' },
+        status: 'active', health: 91,
+        sensors: { s1: 28, s2: 40, s3: 4.1 },
+        order: { es: 'LOTE-044 — Galletas x1000 unid', he: 'LOTE-044 — עוגיות x1000 יח' },
+        opMins: 190
+      }
+    ],
+    sensorDefs: {
+      s1: { es: 'Temperatura', he: 'טמפרטורה', unit: '°C' },
+      s2: { es: 'Humedad', he: 'לחות', unit: '%' },
+      s3: { es: 'Presión', he: 'לחץ', unit: 'bar' }
+    },
+    sensorRanges: {
+      normal:  { s1: [25, 45],   s2: [30, 60],  s3: [1.0, 4.5] },
+      anomaly: { s1: [-18, -8],  s2: [80, 95],   s3: [3.0, 4.0] }
+    },
+    sensorWarnings: {
+      s1: { yellow: 50, red: 65 },
+      s2: { yellow: 70, red: 85 },
+      s3: { yellow: 4.0, red: 5.0 }
+    },
+    // Special sensor ranges per machine (horno has high temp by design, camera has low temp)
+    machineOverrides: {
+      1: { // Horno: high temp is normal
+        sensorRanges: { s1: [175, 200], s2: [25, 40], s3: [1.0, 1.5] },
+        sensorWarnings: { s1: { yellow: 210, red: 230 }, s2: { yellow: 50, red: 65 }, s3: { yellow: 1.8, red: 2.2 } }
+      },
+      3: { // Cámara frigorífica: low temp is normal, high humidity is the problem
+        sensorRanges: { s1: [-20, -10], s2: [82, 95], s3: [3.0, 4.0] },
+        sensorWarnings: { s1: { yellow: -5, red: 0 }, s2: { yellow: 80, red: 90 }, s3: { yellow: 3.5, red: 4.5 } }
+      }
+    },
+    alerts: [
+      { icon: '\uD83D\uDD34', time: '14:45', es: 'Cámara Frigorífica #3: Humedad crítica (92%) — riesgo de condensación', he: 'חדר קירור #3: לחות קריטית (92%) — סיכון עיבוי' },
+      { icon: '\u26A0\uFE0F', time: '13:20', es: 'Cámara Frigorífica #3: Presión fuera de rango (3.8 bar)', he: 'חדר קירור #3: לחץ חורג מטווח (3.8 bar)' },
+      { icon: '\u2705', time: '11:30', es: 'Horno Industrial #1: Temperatura estabilizada (185°C)', he: 'תנור תעשייתי #1: טמפרטורה התייצבה (185°C)' },
+      { icon: '\u2705', time: '09:15', es: 'Línea de Envasado #4: Limpieza CIP completada', he: 'קו אריזה #4: ניקוי CIP הושלם' },
+      { icon: '\u2705', time: '07:00', es: 'Sistema: Todas las máquinas conectadas — inicio de turno', he: 'מערכת: כל המכונות מחוברות — תחילת משמרת' }
+    ],
+    chartData: [75, 88, 82, 90, 85, 79, 92, 87]
+  }
+};
+
+const statusLabels = {
+  active:  { es: 'Trabajando', he: 'עובד',  cls: 'status-active',  dot: '\uD83D\uDFE2' },
+  stopped: { es: 'Parada',     he: 'עצור',  cls: 'status-stopped', dot: '\uD83D\uDD34' },
+  anomaly: { es: 'Anomalía',   he: 'חריגה', cls: 'status-anomaly', dot: '\uD83D\uDFE1' },
+  alert:   { es: 'Alerta',     he: 'התראה', cls: 'status-alert',   dot: '\uD83D\uDD34' }
+};
+
+const i18n = {
+  healthLabel: { es: 'Score de salud', he: 'ציון בריאות' },
+  orderLabel:  { es: 'Orden actual',   he: 'הזמנה נוכחית' },
+  timeLabel:   { es: 'Tiempo operando', he: 'זמן פעילות' }
+};
+
+const chartHours = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00'];
+
+// === HELPERS ===
+function randomBetween(min, max) { return Math.random() * (max - min) + min; }
+
+function getIndustry() { return industriesData[currentIndustry]; }
+function getMachines() { return getIndustry().machines; }
+
+// Helper to get sensor display value
+function sensorVal(m, key) {
+  if (m.status === 'stopped') return '\u2014';
+  var v = m.sensors[key];
+  if (key === 's2') return v.toFixed(0);
+  if (key === 's3') return v.toFixed(1);
+  // s1: integer or 1 decimal
+  return Number.isInteger(v) ? String(v) : v.toFixed(1);
+}
+
+// Helper to get sensor color
+function sensorColor(m, key, warnings) {
+  if (m.status === 'stopped') return 'var(--text)';
+  var v = m.sensors[key];
+  var w = warnings[key];
+  var absV = Math.abs(v);
+  if (absV > w.red) return 'var(--red)';
+  if (absV > w.yellow) return 'var(--yellow)';
+  return 'var(--text)';
+}
+
+function healthColor(h) {
+  if (h > 80) return 'var(--green)';
+  if (h > 60) return 'var(--yellow)';
+  if (h > 0) return 'var(--red)';
+  return 'var(--border)';
+}
+
+// borderClass removed — using data-health attribute instead
+
+function timeStr(m) {
+  if (m.status === 'stopped') return '\u2014';
+  var hrs = Math.floor(m.opMins / 60);
+  var mins = m.opMins % 60;
+  return hrs + 'h ' + (mins < 10 ? '0' : '') + mins + 'min';
+}
+
+// === RENDER MACHINES (full rebuild — only on industry/lang switch) ===
+function renderMachines() {
+  var grid = document.getElementById('machines-grid');
+  var ind = getIndustry();
+  var machines = ind.machines;
+  var defs = ind.sensorDefs;
+
+  grid.innerHTML = machines.map(function(m) {
+    var st = statusLabels[m.status];
+    var hc = healthColor(m.health);
+    var overrides = ind.machineOverrides && ind.machineOverrides[m.id];
+    var warnings = overrides ? overrides.sensorWarnings : ind.sensorWarnings;
+
+    var healthAttr = m.health > 80 ? 'green' : m.health > 60 ? 'yellow' : 'red';
+    return '<div class="machine-card" data-health="' + healthAttr + '" id="mc-' + m.id + '">' +
+      '<div class="machine-header">' +
+        '<div class="machine-name">' + m.name[lang] + '</div>' +
+        '<div class="machine-status ' + st.cls + '" id="ms-' + m.id + '">' + st.dot + ' ' + st[lang] + '</div>' +
+      '</div>' +
+      '<div class="health-row">' +
+        '<div class="health-label">' +
+          '<span>' + i18n.healthLabel[lang] + '</span>' +
+          '<span id="hv-' + m.id + '" style="color:' + hc + ';font-weight:700">' + (m.health > 0 ? m.health : '\u2014') + '</span>' +
+        '</div>' +
+        '<div class="health-bar"><div class="health-fill" id="hb-' + m.id + '" style="width:' + m.health + '%;background:' + hc + '"></div></div>' +
+      '</div>' +
+      '<div class="sensor-grid">' +
+        '<div class="sensor-item">' +
+          '<div class="sensor-label">' + defs.s1[lang] + '</div>' +
+          '<div class="sensor-value" id="sv1-' + m.id + '" style="color:' + sensorColor(m,'s1',warnings) + '">' + sensorVal(m,'s1') + '</div>' +
+          '<div class="sensor-unit">' + defs.s1.unit + '</div>' +
+        '</div>' +
+        '<div class="sensor-item">' +
+          '<div class="sensor-label">' + defs.s2[lang] + '</div>' +
+          '<div class="sensor-value" id="sv2-' + m.id + '" style="color:' + sensorColor(m,'s2',warnings) + '">' + sensorVal(m,'s2') + '</div>' +
+          '<div class="sensor-unit">' + defs.s2.unit + '</div>' +
+        '</div>' +
+        '<div class="sensor-item">' +
+          '<div class="sensor-label">' + defs.s3[lang] + '</div>' +
+          '<div class="sensor-value" id="sv3-' + m.id + '" style="color:' + sensorColor(m,'s3',warnings) + '">' + sensorVal(m,'s3') + '</div>' +
+          '<div class="sensor-unit">' + defs.s3.unit + '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="machine-meta">' +
+        '<span>\uD83D\uDCCB ' + i18n.orderLabel[lang] + ': ' + m.order[lang] + '</span>' +
+        '<span id="tm-' + m.id + '">\u23F1\uFE0F ' + i18n.timeLabel[lang] + ': ' + timeStr(m) + '</span>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+// === UPDATE MACHINES (in-place — no DOM rebuild, no jumping) ===
+function updateMachineDOM() {
+  var ind = getIndustry();
+  var machines = ind.machines;
+
+  machines.forEach(function(m) {
+    var overrides = ind.machineOverrides && ind.machineOverrides[m.id];
+    var warnings = overrides ? overrides.sensorWarnings : ind.sensorWarnings;
+    var hc = healthColor(m.health);
+
+    // Health value + bar
+    var hvEl = document.getElementById('hv-' + m.id);
+    var hbEl = document.getElementById('hb-' + m.id);
+    if (hvEl) { hvEl.textContent = m.health > 0 ? m.health : '\u2014'; hvEl.style.color = hc; }
+    if (hbEl) { hbEl.style.width = m.health + '%'; hbEl.style.background = hc; }
+
+    // Card border color via data attribute (no class toggling = no reflow)
+    var card = document.getElementById('mc-' + m.id);
+    var healthAttr = m.health > 80 ? 'green' : m.health > 60 ? 'yellow' : 'red';
+    if (card && card.getAttribute('data-health') !== healthAttr) {
+      card.setAttribute('data-health', healthAttr);
+    }
+
+    // Sensor values + colors
+    var sv1 = document.getElementById('sv1-' + m.id);
+    var sv2 = document.getElementById('sv2-' + m.id);
+    var sv3 = document.getElementById('sv3-' + m.id);
+    if (sv1) { sv1.textContent = sensorVal(m,'s1'); sv1.style.color = sensorColor(m,'s1',warnings); }
+    if (sv2) { sv2.textContent = sensorVal(m,'s2'); sv2.style.color = sensorColor(m,'s2',warnings); }
+    if (sv3) { sv3.textContent = sensorVal(m,'s3'); sv3.style.color = sensorColor(m,'s3',warnings); }
+
+    // Operating time
+    var tmEl = document.getElementById('tm-' + m.id);
+    if (tmEl) { tmEl.textContent = '\u23F1\uFE0F ' + i18n.timeLabel[lang] + ': ' + timeStr(m); }
+  });
+}
+
+// === RENDER CHART ===
+function renderChart() {
+  const chart = document.getElementById('chart');
+  const data = getIndustry().chartData;
+  const max = 100;
+  chart.innerHTML = data.map((val, i) => {
+    const color = val > 80 ? 'var(--green)' : val > 60 ? 'var(--yellow)' : 'var(--red)';
+    const h = (val / max) * 100;
+    return `
+    <div class="chart-bar-wrapper">
+      <div class="chart-bar-value">${val}%</div>
+      <div class="chart-bar" style="height:${h}%;background:${color}"></div>
+      <div class="chart-bar-label">${chartHours[i]}</div>
+    </div>`;
+  }).join('');
+}
+
+// === RENDER ALERTS ===
+function renderAlerts() {
+  const list = document.getElementById('alerts-list');
+  const alerts = getIndustry().alerts;
+  list.innerHTML = alerts.map(a => `
+    <div class="alert-item">
+      <span>${a.icon}</span>
+      <span class="alert-time">${a.time}</span>
+      <span>${a[lang]}</span>
+    </div>
+  `).join('');
+}
+
+// === SIMULATE SENSOR DATA ===
+function updateSensors() {
+  const ind = getIndustry();
+  const machines = ind.machines;
+
+  machines.forEach(m => {
+    if (m.status === 'stopped') return;
+
+    const isAnomalyMachine = (m.status === 'anomaly' || m.status === 'alert');
+    const overrides = ind.machineOverrides && ind.machineOverrides[m.id];
+
+    let ranges;
+    if (overrides) {
+      ranges = overrides.sensorRanges;
+    } else if (isAnomalyMachine) {
+      ranges = ind.sensorRanges.anomaly;
+    } else {
+      ranges = ind.sensorRanges.normal;
+    }
+
+    m.sensors.s1 = randomBetween(ranges.s1[0], ranges.s1[1]);
+    m.sensors.s2 = randomBetween(ranges.s2[0], ranges.s2[1]);
+    m.sensors.s3 = randomBetween(ranges.s3[0], ranges.s3[1]);
+  });
+}
+
+function updateHealth() {
+  const machines = getMachines();
+  machines.forEach(m => {
+    if (m.status === 'stopped') { m.health = 0; return; }
+    if (m.status === 'anomaly' || m.status === 'alert') {
+      m.health = Math.round(randomBetween(48, 65));
+      return;
+    }
+    m.health = Math.round(randomBetween(82, 98));
+  });
+}
+
+function updateOperatingTime() {
+  getMachines().forEach(m => {
+    if (m.status !== 'stopped') m.opMins += 1;
+  });
+}
+
+function updateKPIs() {
+  const machines = getMachines();
+  const activeMachines = machines.filter(m => m.status !== 'stopped');
+  const total = machines.length;
+  const avgHealth = activeMachines.length > 0
+    ? activeMachines.reduce((s, m) => s + m.health, 0) / activeMachines.length
+    : 0;
+  const eff = Math.round(avgHealth);
+  const totalHours = machines.reduce((s, m) => s + m.opMins, 0) / 60;
+  const alertCount = machines.filter(m => m.status === 'anomaly' || m.status === 'alert').length;
+
+  document.getElementById('kpi-active').textContent = `${activeMachines.length}/${total}`;
+  document.getElementById('kpi-efficiency').textContent = `${eff}%`;
+  document.getElementById('kpi-eff-bar').style.width = `${eff}%`;
+  document.getElementById('kpi-eff-bar').style.background = eff > 80 ? 'var(--green)' : eff > 60 ? 'var(--yellow)' : 'var(--red)';
+  document.getElementById('kpi-hours').textContent = `${totalHours.toFixed(1)}h`;
+  document.getElementById('kpi-alerts').textContent = alertCount;
+}
+
+function updateChartRandomly() {
+  var data = getIndustry().chartData;
+  var wrappers = document.querySelectorAll('#chart .chart-bar-wrapper');
+  for (var i = 0; i < data.length; i++) {
+    var delta = Math.round(randomBetween(-3, 3));
+    data[i] = Math.max(50, Math.min(100, data[i] + delta));
+    // Update in-place if chart is already rendered
+    if (wrappers[i]) {
+      var val = data[i];
+      var color = val > 80 ? 'var(--green)' : val > 60 ? 'var(--yellow)' : 'var(--red)';
+      var bar = wrappers[i].querySelector('.chart-bar');
+      var label = wrappers[i].querySelector('.chart-bar-value');
+      if (bar) { bar.style.height = val + '%'; bar.style.background = color; }
+      if (label) { label.textContent = val + '%'; }
+    }
+  }
+}
+
+// === CLOCK ===
+function updateClock() {
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2, '0');
+  const m = String(now.getMinutes()).padStart(2, '0');
+  const s = String(now.getSeconds()).padStart(2, '0');
+  document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+}
+
+// === INDUSTRY SWITCH ===
+function setIndustry(industry) {
+  currentIndustry = industry;
+
+  // Update buttons
+  document.querySelectorAll('.industry-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + industry).classList.add('active');
+
+  // Re-render everything
+  renderAll();
+}
+
+// === LANGUAGE ===
+function setLang(l) {
+  lang = l;
+  document.body.classList.toggle('rtl', l === 'he');
+  document.documentElement.setAttribute('dir', l === 'he' ? 'rtl' : 'ltr');
+  document.documentElement.setAttribute('lang', l);
+
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.lang-btn')[l === 'es' ? 0 : 1].classList.add('active');
+
+  // Update all data-es / data-he elements
+  document.querySelectorAll('[data-es]').forEach(el => {
+    const val = el.getAttribute('data-' + l);
+    if (val) el.textContent = val;
+  });
+
+  renderAll();
+}
+
+function renderAll() {
+  renderMachines();
+  renderChart();
+  renderAlerts();
+  updateKPIs();
+}
+
+// === INIT ===
+function init() {
+  renderAll();
+  updateClock();
+
+  setInterval(updateClock, 1000);
+
+  // Sensors every 3 seconds — only update values in-place (no DOM rebuild)
+  setInterval(function() {
+    updateSensors();
+    updateKPIs();
+    updateMachineDOM();
+  }, 3000);
+
+  // Health every 10 seconds
+  setInterval(function() {
+    updateHealth();
+    updateMachineDOM();
+  }, 10000);
+
+  // Operating time every 5 seconds (accelerated for demo)
+  setInterval(function() {
+    updateOperatingTime();
+    updateMachineDOM();
+  }, 5000);
+
+  // Chart every 15 seconds
+  setInterval(updateChartRandomly, 15000);
+}
+
+init();
+</script>
+</body>
+</html>

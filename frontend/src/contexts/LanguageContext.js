@@ -4,7 +4,14 @@ const LanguageContext = createContext();
 
 export const translations = {
   es: {
+    // Nav
     nav_home: "Inicio",
+    nav_products: "Productos",
+    nav_services: "Servicios",
+    nav_industries: "Industrias",
+    nav_about: "Sobre mí",
+    nav_quote: "Cotización",
+    // Legacy nav (keep for old pages)
     nav_features: "Características",
     nav_pricing: "Precios",
     nav_resources: "Campus de Recursos",
@@ -22,6 +29,11 @@ export const translations = {
   },
   en: {
     nav_home: "Home",
+    nav_products: "Products",
+    nav_services: "Services",
+    nav_industries: "Industries",
+    nav_about: "About",
+    nav_quote: "Quote",
     nav_features: "Features",
     nav_pricing: "Pricing",
     nav_resources: "Resource Campus",
@@ -38,7 +50,14 @@ export const translations = {
     footer_rights: "All rights reserved."
   },
   he: {
+    // Nav
     nav_home: "דף הבית",
+    nav_products: "מוצרים",
+    nav_services: "שירותים",
+    nav_industries: "תעשיות",
+    nav_about: "אודות",
+    nav_quote: "הצעת מחיר",
+    // Legacy nav
     nav_features: "תכונות",
     nav_pricing: "מחירים",
     nav_resources: "קמפוס משאבים",
@@ -57,14 +76,13 @@ export const translations = {
 };
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('es'); // Default to Spanish
+  const [language, setLanguage] = useState('es');
 
   useEffect(() => {
     const isRtl = language === 'he';
     document.documentElement.setAttribute('dir', isRtl ? 'rtl' : 'ltr');
     document.documentElement.setAttribute('lang', language);
-    
-    // Switch global font families based on language
+
     if (isRtl) {
       document.body.style.fontFamily = "'Heebo', 'Rubik', sans-serif";
     } else {
