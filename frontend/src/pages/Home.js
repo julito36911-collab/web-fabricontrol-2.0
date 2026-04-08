@@ -466,11 +466,10 @@ function Home() {
                 navigator.clipboard.writeText('info@fabricontrol.online');
                 setEmailCopied(true);
                 setTimeout(() => setEmailCopied(false), 3000);
-                window.location.href = 'mailto:info@fabricontrol.online';
               }}
               className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl transition-all text-sm border border-white/20"
             >
-              {emailCopied ? '✅ info@fabricontrol.online' : `📧 ${l.ctaEmail}`}
+              {emailCopied ? '✅ Copiado: info@fabricontrol.online' : `📧 ${l.ctaEmail}`}
             </button>
             <a
               href="https://www.linkedin.com/in/juliomirabal"
