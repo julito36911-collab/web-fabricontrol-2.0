@@ -170,14 +170,18 @@ async def chat(request: ChatRequest):
         )
 
         
+    except HTTPException:
+        raise
     except Exception as e:
         error_msg = str(e)
+        import logging
+        logging.getLogger(__name__).error(f"Chat error: {error_msg}")
         if "429" in error_msg or "quota" in error_msg.lower() or "rate" in error_msg.lower():
             raise HTTPException(
-                status_code=503, 
+                status_code=503,
                 detail=f"El servicio de chat está temporalmente ocupado. Por favor intenta en unos segundos o contacta a {SUPPORT_EMAIL} | WhatsApp: {SUPPORT_WHATSAPP}"
             )
-        raise HTTPException(status_code=500, detail=f"Error en el chat. Contacta soporte: {SUPPORT_EMAIL}")
+        raise HTTPException(status_code=500, detail=f"Error: {error_msg[:200]}")
 
 @router.get("/chat/health")
 async def chat_health():
