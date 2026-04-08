@@ -3,6 +3,18 @@ import './ChatWidget.css';
 
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  // Hide Emergent dev badge
+  useEffect(() => {
+    const hide = () => {
+      const badge = document.getElementById('emergent-badge');
+      if (badge) badge.style.setProperty('display', 'none', 'important');
+    };
+    hide();
+    const observer = new MutationObserver(hide);
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
+  }, []);
   const [messages, setMessages] = useState([
     {
       role: 'assistant',

@@ -1,7 +1,10 @@
+/* Hide Emergent dev badge */
+#emergent-badge { display: none !important; }
+
 /* Chat Button - Floating */
 .chat-button {
   position: fixed;
-  bottom: 90px;  /* Subido de 24px a 90px para evitar overlap con "Made with Emergent" */
+  bottom: 24px;
   right: 24px;
   width: 64px;
   height: 64px;
@@ -31,7 +34,7 @@
 /* Chat Widget */
 .chat-widget {
   position: fixed;
-  bottom: 90px;  /* Subido de 24px a 90px */
+  bottom: 24px;
   right: 24px;
   width: 380px;
   height: 600px;
@@ -271,7 +274,7 @@
   }
 
   .chat-button {
-    bottom: 80px;
+    bottom: 20px;
     right: 16px;
     width: 52px;
     height: 52px;
@@ -281,7 +284,7 @@
 
 @media (max-width: 480px) {
   .chat-button {
-    bottom: 70px;
+    bottom: 16px;
     right: 12px;
     width: 48px;
     height: 48px;
