@@ -220,7 +220,7 @@ function Home() {
       {/* ═══ HERO ═══ */}
       <section className="pt-28 pb-20 px-4">
         <div className="max-w-5xl mx-auto text-center">
-          <span className="inline-block px-4 py-1.5 text-xs font-mono font-bold tracking-widest text-orange-400 bg-orange-500/10 rounded-full border border-orange-500/20 mb-6">
+          <span className="inline-block px-4 py-1.5 text-sm sm:text-base font-mono font-bold tracking-widest text-orange-400 bg-orange-500/10 rounded-full border border-orange-500/20 mb-6">
             {l.heroTag}
           </span>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 tracking-tight">
@@ -257,7 +257,7 @@ function Home() {
       <section id="productos" className="py-20 px-4 bg-[#111827]/50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <span className="text-xs font-mono font-bold tracking-widest text-orange-400 uppercase">{l.prodTag}</span>
+            <span className="text-sm sm:text-base font-mono font-bold tracking-widest text-orange-400 uppercase">{l.prodTag}</span>
             <h2 className="text-3xl sm:text-4xl font-extrabold mt-3">{l.prodTitle}</h2>
           </div>
 
@@ -371,7 +371,7 @@ function Home() {
       <section id="servicios" className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
-            <span className="text-xs font-mono font-bold tracking-widest text-orange-400 uppercase">{l.svcTag}</span>
+            <span className="text-sm sm:text-base font-mono font-bold tracking-widest text-orange-400 uppercase">{l.svcTag}</span>
             <h2 className="text-3xl sm:text-4xl font-extrabold mt-3">{l.svcTitle}</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -422,7 +422,7 @@ function Home() {
       {/* ═══ INDUSTRIAS ═══ */}
       <section id="industrias" className="py-20 px-4 bg-[#111827]/50">
         <div className="max-w-4xl mx-auto text-center">
-          <span className="text-xs font-mono font-bold tracking-widest text-orange-400 uppercase">{l.indTag}</span>
+          <span className="text-sm sm:text-base font-mono font-bold tracking-widest text-orange-400 uppercase">{l.indTag}</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold mt-3 mb-10">{l.indTitle}</h2>
           <div className="flex flex-wrap justify-center gap-4">
             {industries.map((ind, i) => (
@@ -438,7 +438,7 @@ function Home() {
       {/* ═══ SOBRE MÍ ═══ */}
       <section id="sobre-mi" className="py-20 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="text-xs font-mono font-bold tracking-widest text-orange-400 uppercase">{l.aboutTag}</span>
+          <span className="text-sm sm:text-base font-mono font-bold tracking-widest text-orange-400 uppercase">{l.aboutTag}</span>
           <h2 className="text-3xl sm:text-4xl font-extrabold mt-3 mb-2">{l.aboutTitle}</h2>
           <p className="text-sm text-gray-500 mb-6">🇦🇷 🇮🇱 &nbsp; {l.aboutLangs}</p>
           <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
