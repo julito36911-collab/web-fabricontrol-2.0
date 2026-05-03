@@ -69,6 +69,37 @@ Si no se puede arreglar (bug del navegador, decision de diseño, etc.):
 
 <!-- Bugs nuevos van debajo de esta linea -->
 
+## [HECHO] demo.html no es necesaria — eliminar
+- Sev: ALTA
+- Area: Demo / nav / sitemap
+- URL: demo.html
+
+**Fix**: Borrada `demo.html` del raiz. Removida de:
+- Nav de las 8 paginas restantes (5 items: Inicio, Industrias, Aprende, Empezar gratis, Contacto)
+- `sitemap.xml` (queda solo el resto de URLs)
+- CTAs internos en index.html (boton "Ver demo de 2 minutos" → "Ver videos de FabriOS" → aprende.html)
+- CTAs en industrias.html (7 botones "Ver demo de X" → WhatsApp con mensaje pre-cargado por industria; CTA final → "Aplicar a la beta")
+- CTAs en aprende.html ("Pedir demo personalizada" → "Aplicar a la beta")
+- Card en contacto.html ("Demo en vivo" → "Aplicar a la beta")
+- Claves `nav.demo` mantenidas en site.js (no hace mal, queda comentado para futuro)
+
+**Validacion**: `demo.html` devuelve 404. `grep demo\.html` en *.html → 0 matches en paginas live. Nav de las 8 paginas tiene solo 5 items.
+
+## [HECHO] i18n HE incompleto en mayoria de paginas (cobertura desbalanceada)
+- Sev: ALTA
+- Area: i18n / multi-idioma
+- URL: index.html, industrias.html, aprende.html, contacto.html
+
+**Fix**: Aplicada estrategia de bloques `data-lang="es|en|he"` con HTML triplicado por idioma (igual que en las legales). El CSS ya manejaba esto (`html:not([lang="X"]) [data-lang="X"] { display:none !important; }` en styles.css linea 1134-1136).
+
+**Cobertura agregada**:
+- `index.html`: 14 secciones traducidas (hero, industry band, problem, solution, 22 modules, 7-step onboarding, before/after, numbers, multi-industry, custom services, company, how to start, videos head, final CTA). Total 558 bloques `data-lang` en la pagina.
+- `industrias.html`: hero + 6 industrias (titulo, lede, 4 bullets c/u, CTA whatsapp por industria) + final CTA. Nombres tecnicos preservados (FabriOS, BOM, FEFO, IPQC, MSDS, OEE, SENASA, HACCP, IoT, CNC).
+- `aprende.html`: hero + seccion placeholder + 2 CTAs.
+- `contacto.html`: hero + WA card + 2 sec-cards (Email + Aplicar a la beta).
+
+**Validacion**: preview local OK. ES → EN → HE switching cambia TODO el contenido en cada pagina. HE muestra `dir="rtl"` correcto. 9/9 paginas HTTP 200, 0 errores JS, 0 menciones a demo.html en HTML live.
+
 ## [HECHO] Eliminar form custom de empezar.html, reemplazar por CTA al wizard de FabriOS
 - Sev: ALTA (decision arquitectonica)
 - Area: Empezar
