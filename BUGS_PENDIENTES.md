@@ -69,6 +69,19 @@ Si no se puede arreglar (bug del navegador, decision de diseño, etc.):
 
 <!-- Bugs nuevos van debajo de esta linea -->
 
+## [HECHO] Form de empezar.html tiene 3 mismatches con contract del backend
+- Sev: ALTA (bloquea registros reales)
+- Area: Empezar (form de registro)
+- URL: empezar.html + assets/site.js
+
+**Fix**:
+1. `<select id="industry">`: agregadas `value="..."` minuscula sin tilde a 6 opciones (`metalurgia`, `alimentos`, `textil`, `plasticos`, `quimica`, `carpinteria`). **Eliminada opcion "Otra"** que el backend rechaza.
+2. `<select id="size">`: agregadas `value="..."` con guion corto sin tilde (`1-5`, `6-15`, `16-30`, `31-50`, `Mas de 50`). Labels visibles preservados con guion largo y tilde.
+3. `assets/site.js`: agregado mapeo de 7 codigos de error 400 (`email_already_registered`, `invalid_email`, `empresa_too_short`, `password_too_short`, `industria_invalida`, `empleados_invalido`, `registration_closed`) + 429 + 500 + network + default. Mensajes claros con HTML (link de login en email_already_registered).
+4. `assets/site.js` + `empezar.html`: pantalla de exito reescrita. Muestra "Bienvenido a FabriOS" + serial en grande copiable + boton "Entrar a FabriOS" (linkea a fabrios-app.onrender.com/login) + boton "Avisame por WhatsApp" (con serial pre-cargado en el mensaje). Serial guardado en `localStorage.lastSerial` para que persista en refresh.
+
+**Validacion**: preview local OK. Selects renderean values correctos. Pantalla de exito muestra serial mockeado correctamente. Mapeo de errores funciona con mock fetch (verificado con `email_already_registered`). Persistencia post-refresh funciona. 0 errores JS. CORS desde localhost bloqueado (esperable — backend solo acepta fabricontrol.online), sera validado por Julio post-deploy.
+
 ## [PENDIENTE] Numero de WhatsApp es placeholder en 14 ocurrencias
 - Sev: ALTA
 - Area: Home / Industrias / Aprende / Empezar / Demo / Contacto

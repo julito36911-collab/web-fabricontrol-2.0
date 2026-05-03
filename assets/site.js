@@ -254,18 +254,22 @@
           body: JSON.stringify(payload),
         });
         if (res.ok) {
-          showSuccess(form);
+          let serial = '';
+          try { const j = await res.json(); serial = j.serial || ''; } catch(_) {}
+          showSuccess(form, serial);
         } else if (res.status === 400) {
-          let msg = 'Revisá los datos e intentá de nuevo.';
-          try { const j = await res.json(); msg = j.error || j.detail || JSON.stringify(j); } catch(_) {}
-          showError(form, msg);
+          let detail = '';
+          try { const j = await res.json(); detail = j.detail || j.error || ''; } catch(_) {}
+          showError(form, mapErrorDetail(detail));
         } else if (res.status === 429) {
-          showError(form, 'Demasiados intentos. Probá de nuevo en 1 hora.');
+          showError(form, ERROR_MESSAGES.too_many_registrations);
+        } else if (res.status >= 500) {
+          showError(form, ERROR_MESSAGES.server_error);
         } else {
-          showError(form, 'Algo falló del lado nuestro. Probá de nuevo en unos minutos o escribinos por WhatsApp.');
+          showError(form, ERROR_MESSAGES.unknown);
         }
       } catch (err) {
-        showError(form, 'No pudimos conectar con el servidor. Revisá tu conexión y probá de nuevo.');
+        showError(form, ERROR_MESSAGES.network);
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
@@ -278,16 +282,52 @@
       el.addEventListener('input', () => el.classList.remove('is-invalid'));
       el.addEventListener('change', () => el.classList.remove('is-invalid'));
     });
+
+    // Restore success screen if user refreshed after a successful registration
+    const lastSerial = localStorage.getItem('lastSerial');
+    if (lastSerial) showSuccess(form, lastSerial, /*skipScroll*/ true);
   }
 
-  function showSuccess(form) {
+  // Map backend error codes to user-friendly messages
+  const ERROR_MESSAGES = {
+    email_already_registered: 'Este email ya está registrado. <a href="https://fabrios-app.onrender.com/login" target="_blank" rel="noopener" style="color:var(--orange);text-decoration:underline">Iniciar sesión</a>',
+    invalid_email: 'Email inválido. Revisá el formato.',
+    empresa_too_short: 'El nombre de empresa debe tener al menos 2 caracteres.',
+    password_too_short: 'La contraseña debe tener al menos 8 caracteres.',
+    industria_invalida: 'Industria no válida. Seleccioná una opción del menú.',
+    empleados_invalido: 'Tamaño de empresa no válido. Seleccioná una opción.',
+    registration_closed: 'El registro está temporalmente cerrado. Intentá más tarde.',
+    too_many_registrations: 'Demasiados intentos desde tu IP. Esperá 1 hora e intentá de nuevo.',
+    server_error: 'Error del servidor. Intentalo en unos minutos o escribinos por WhatsApp.',
+    network: 'Error de conexión. Revisá tu internet o intentalo en unos minutos.',
+    unknown: 'Hubo un error con los datos. Revisalos e intentá de nuevo.',
+  };
+
+  function mapErrorDetail(detail) {
+    if (!detail) return ERROR_MESSAGES.unknown;
+    return ERROR_MESSAGES[detail] || ERROR_MESSAGES.unknown;
+  }
+
+  function showSuccess(form, serial, skipScroll) {
     const wrap = form.closest('.empezar-form-card') || form.parentElement;
     const success = wrap?.querySelector('.form-success');
-    if (success) {
-      form.style.display = 'none';
-      success.style.display = 'block';
-      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (!success) return;
+
+    if (serial) {
+      try { localStorage.setItem('lastSerial', serial); } catch(_) {}
+      const display = success.querySelector('[data-serial-display]');
+      if (display) display.textContent = serial;
+      // Pre-fill WhatsApp link with serial
+      const waBtn = success.querySelector('[data-success-wa]');
+      if (waBtn) {
+        const msg = encodeURIComponent(`Hola, acabo de crear mi cuenta en FabriOS con serial ${serial}`);
+        waBtn.href = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+      }
     }
+
+    form.style.display = 'none';
+    success.style.display = 'block';
+    if (!skipScroll) success.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
   function showError(form, msg) {
     let box = form.querySelector('.form-error');
@@ -296,7 +336,7 @@
       box.className = 'form-error';
       form.insertBefore(box, form.querySelector('button[type=submit]'));
     }
-    box.textContent = msg;
+    box.innerHTML = msg;
     box.style.display = 'block';
   }
 

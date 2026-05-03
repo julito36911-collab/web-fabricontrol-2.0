@@ -187,24 +187,23 @@
                 <label class="field__label" for="industry">Industria</label>
                 <select class="select" id="industry" required>
                   <option value="">Seleccioná…</option>
-                  <option>Metalurgia</option>
-                  <option>Alimentos</option>
-                  <option>Textil</option>
-                  <option>Plásticos</option>
-                  <option>Química</option>
-                  <option>Carpintería</option>
-                  <option>Otra</option>
+                  <option value="metalurgia">Metalurgia</option>
+                  <option value="alimentos">Alimentos</option>
+                  <option value="textil">Textil</option>
+                  <option value="plasticos">Plásticos</option>
+                  <option value="quimica">Química</option>
+                  <option value="carpinteria">Carpintería</option>
                 </select>
               </div>
               <div class="field">
                 <label class="field__label" for="size">Empleados</label>
                 <select class="select" id="size" required>
                   <option value="">Seleccioná…</option>
-                  <option>1–5</option>
-                  <option>6–15</option>
-                  <option>16–30</option>
-                  <option>31–50</option>
-                  <option>Más de 50</option>
+                  <option value="1-5">1–5</option>
+                  <option value="6-15">6–15</option>
+                  <option value="16-30">16–30</option>
+                  <option value="31-50">31–50</option>
+                  <option value="Mas de 50">Más de 50</option>
                 </select>
               </div>
               <div class="field field--full">
@@ -228,11 +227,13 @@
           <div class="form-success__icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
-          <h3>¡Cuenta creada!</h3>
-          <p>Te llegó un email con tu serial. Revisá tu bandeja (y el spam, por las dudas).</p>
-          <div class="form-success__actions">
-            <a href="index.html" class="btn btn--ghost">Volver al inicio</a>
-            <a href="https://wa.me/000000000000?text=Hola%2C%20acabo%20de%20crear%20mi%20cuenta%20en%20FabriOS" class="btn btn--whatsapp-solid" target="_blank" rel="noopener">Avisame por WhatsApp</a>
+          <h3 class="h-1" style="margin-top:var(--s-4)">Bienvenido a FabriOS</h3>
+          <p style="margin-top:var(--s-3)">Tu cuenta está lista. Tu número de licencia:</p>
+          <div class="serial-box mono" data-serial-display style="font-size:24px;color:var(--orange);background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.3);border-radius:8px;padding:var(--s-4);margin:var(--s-4) 0;letter-spacing:0.06em;text-align:center;user-select:all;cursor:text">FABRI-XXXX-XXXX-XXXX</div>
+          <p>Te mandamos las credenciales por email. Revisá tu casilla (y la carpeta de spam por las dudas).</p>
+          <div class="form-success__actions" style="margin-top:var(--s-5)">
+            <a href="https://fabrios-app.onrender.com/login" class="btn btn--primary" target="_blank" rel="noopener">Entrar a FabriOS</a>
+            <a href="https://wa.me/000000000000?text=Hola%2C%20acabo%20de%20crear%20mi%20cuenta%20en%20FabriOS" class="btn btn--whatsapp-solid" target="_blank" rel="noopener" data-success-wa>Avisame por WhatsApp</a>
           </div>
         </div>
       </div>
