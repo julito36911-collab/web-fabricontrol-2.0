@@ -1,0 +1,148 @@
+{
+  "videos": [
+    {
+      "id": "v01",
+      "youtube_id": "dQw4w9WgXcQ",
+      "titulo": "Cómo crear tu cuenta en FabriOS en 90 segundos",
+      "descripcion": "Te mostramos paso a paso cómo registrarte, recibir tu serial por email y entrar a la plataforma por primera vez. Sin tarjeta de crédito.",
+      "categoria": "primeros_pasos",
+      "industria": "general",
+      "idioma": "es",
+      "duracion": "1:32",
+      "fecha": "2026-04-12",
+      "destacado": true
+    },
+    {
+      "id": "v02",
+      "youtube_id": "kJQP7kiw5Fk",
+      "titulo": "Cargar tus primeros 50 productos sin volverte loco",
+      "descripcion": "Importación desde Excel, codificación automática y tips para no duplicar referencias. Incluye plantilla descargable.",
+      "categoria": "primeros_pasos",
+      "industria": "general",
+      "idioma": "es",
+      "duracion": "4:18",
+      "fecha": "2026-04-08",
+      "destacado": true
+    },
+    {
+      "id": "v03",
+      "youtube_id": "9bZkp7q19f0",
+      "titulo": "Órdenes de producción: del pedido al taller en 3 clics",
+      "descripcion": "Cómo generar una OP, asignar operarios y estaciones, y seguir el avance en tiempo real desde el celular del jefe de planta.",
+      "categoria": "funciones",
+      "industria": "metalurgia",
+      "idioma": "es",
+      "duracion": "6:42",
+      "fecha": "2026-03-28",
+      "destacado": true
+    },
+    {
+      "id": "v04",
+      "youtube_id": "OPf0YbXqDm0",
+      "titulo": "Trazabilidad por lote: caso real en una fábrica de alimentos",
+      "descripcion": "Visitamos una panificadora industrial en Buenos Aires y vemos cómo usan FabriOS para cumplir con SENASA y reducir el papeleo.",
+      "categoria": "casos",
+      "industria": "alimentos",
+      "idioma": "es",
+      "duracion": "8:15",
+      "fecha": "2026-03-20",
+      "destacado": false
+    },
+    {
+      "id": "v05",
+      "youtube_id": "ZbZSe6N_BXs",
+      "titulo": "Webinar: Costeo real vs estimado en fábricas pequeñas",
+      "descripcion": "Sesión en vivo con Julio Mirabal y 40 dueños de PyMEs industriales. Cómo dejar de adivinar márgenes y empezar a saberlos.",
+      "categoria": "webinars",
+      "industria": "general",
+      "idioma": "es",
+      "duracion": "47:22",
+      "fecha": "2026-03-10",
+      "destacado": false
+    },
+    {
+      "id": "v06",
+      "youtube_id": "fJ9rUzIMcZQ",
+      "titulo": "How FabriOS works for a small textile factory in Israel",
+      "descripcion": "A 5-minute tour of the platform with English narration, focused on the textile industry workflow.",
+      "categoria": "casos",
+      "industria": "textil",
+      "idioma": "en",
+      "duracion": "5:08",
+      "fecha": "2026-03-05",
+      "destacado": false
+    },
+    {
+      "id": "v07",
+      "youtube_id": "LXb3EKWsInQ",
+      "titulo": "Inventario en tiempo real: alertas de stock mínimo",
+      "descripcion": "Configurá puntos de reorden por insumo y recibí notificaciones por WhatsApp cuando estés por quedarte sin material.",
+      "categoria": "funciones",
+      "industria": "plasticos",
+      "idioma": "es",
+      "duracion": "3:51",
+      "fecha": "2026-02-26",
+      "destacado": false
+    },
+    {
+      "id": "v08",
+      "youtube_id": "tgbNymZ7vqY",
+      "titulo": "60 segundos: ¿qué es FabriOS?",
+      "descripcion": "Reel cortito para Instagram y TikTok que explica el producto en menos de un minuto.",
+      "categoria": "redes",
+      "industria": "general",
+      "idioma": "es",
+      "duracion": "0:58",
+      "fecha": "2026-02-20",
+      "destacado": false
+    },
+    {
+      "id": "v09",
+      "youtube_id": "RgKAFK5djSk",
+      "titulo": "פבריOS — מערכת ניהול ייצור למפעלים קטנים",
+      "descripcion": "סקירה קצרה של המערכת בעברית, עם דגש על תעשיית הכימיה והרגולציה הישראלית.",
+      "categoria": "primeros_pasos",
+      "industria": "quimica",
+      "idioma": "he",
+      "duracion": "3:24",
+      "fecha": "2026-02-14",
+      "destacado": false
+    },
+    {
+      "id": "v10",
+      "youtube_id": "JGwWNGJdvx8",
+      "titulo": "Reporte semanal automático por WhatsApp",
+      "descripcion": "Cada lunes a las 8am, FabriOS te manda un resumen con producción, mermas y ventas. Cómo configurarlo.",
+      "categoria": "funciones",
+      "industria": "general",
+      "idioma": "es",
+      "duracion": "2:47",
+      "fecha": "2026-02-08",
+      "destacado": false
+    },
+    {
+      "id": "v11",
+      "youtube_id": "CevxZvSJLk8",
+      "titulo": "Carpintería de muebles a medida: caso Madera del Sur",
+      "descripcion": "Una carpintería de 12 personas en Mendoza que cuadruplicó su capacidad sin contratar más gente.",
+      "categoria": "casos",
+      "industria": "carpinteria",
+      "idioma": "es",
+      "duracion": "11:03",
+      "fecha": "2026-01-30",
+      "destacado": false
+    },
+    {
+      "id": "v12",
+      "youtube_id": "60ItHLz5WEA",
+      "titulo": "Webinar Israel: Industry 4.0 for SMB factories",
+      "descripcion": "Live session with Israeli factory owners exploring how FabriOS bridges the gap between paper and Industry 4.0.",
+      "categoria": "webinars",
+      "industria": "general",
+      "idioma": "en",
+      "duracion": "38:14",
+      "fecha": "2026-01-22",
+      "destacado": false
+    }
+  ]
+}

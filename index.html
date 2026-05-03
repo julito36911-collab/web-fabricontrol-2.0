@@ -1,1 +1,754 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="FabriControl - ERP completo para talleres y fábricas desde $49/mes. Gestiona cotizaciones, producción, inventario y más. Prueba 30 días gratis."/><link rel="icon" type="image/svg+xml" href="/assets/img/logos/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"><title>FabriControl - El ERP que tu Taller Merece</title><script src="https://assets.emergent.sh/scripts/emergent-main.js"></script><script>if(window.self!==window.top){var debugMonitorScript=document.createElement("script");debugMonitorScript.src="https://assets.emergent.sh/scripts/debug-monitor.js",document.head.appendChild(debugMonitorScript),window.tailwind=window.tailwind||{},tailwind.config={corePlugins:{preflight:!1}};var tailwindScript=document.createElement("script");tailwindScript.src="https://cdn.tailwindcss.com",document.head.appendChild(tailwindScript)}</script><script defer="defer" src="/static/js/main.b2d7ea28.js"></script><link href="/static/css/main.b2e9c1c2.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div><a id="emergent-badge" target="_blank" href="https://app.emergent.sh/?utm_source=emergent-badge" style="display:flex!important;align-items:center!important;position:fixed!important;bottom:20px;right:20px;text-decoration:none;padding:6px 10px;font-family:-apple-system,BlinkMacSystemFont,&quot;z-index:9999!important;box-shadow:0 2px 8px rgba(0,0,0,.15)!important;border-radius:8px!important;background-color:#fff!important;border:1px solid rgba(255,255,255,.25)!important"><div style="display:flex;flex-direction:row;align-items:center"><img style="width:20px;height:20px;margin-right:8px" src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4"/><p style="color:#000;font-family:-apple-system,BlinkMacSystemFont,&quot;align-items:center;margin-bottom:0">Made with Emergent</p></div></a><script>!function(e,t){var r,s,o,i;t.__SV||(window.posthog=t,t._i=[],t.init=function(n,a,p){function c(e,t){var r=t.split(".");2==r.length&&(e=e[r[0]],t=r[1]),e[t]=function(){e.push([t].concat(Array.prototype.slice.call(arguments,0)))}}(o=e.createElement("script")).type="text/javascript",o.crossOrigin="anonymous",o.async=!0,o.src=a.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(i=e.getElementsByTagName("script")[0]).parentNode.insertBefore(o,i);var g=t;for(void 0!==p?g=t[p]=[]:p="posthog",g.people=g.people||[],g.toString=function(e){var t="posthog";return"posthog"!==p&&(t+="."+p),e||(t+=" (stub)"),t},g.people.toString=function(){return g.toString(1)+".people (stub)"},r="init me ws ys ps bs capture je Di ks register register_once register_for_session unregister unregister_for_session Ps getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Es $s createPersonProfile Is opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Ss debug xs getPageViewId captureTraceFeedback captureTraceMetric".split(" "),s=0;s<r.length;s++)c(g,r[s]);t._i.push([n,a,p])},t.__SV=1)}(document,window.posthog||[]),posthog.init("phc_yJW1VjHGGwmCbbrtczfqqNxgBDbhlhOWcdzcIJEOTFE",{api_host:"https://us.i.posthog.com",person_profiles:"identified_only"})</script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inicio | FabriControl</title>
+<meta name="description" content="FabriOS reemplaza tus 7 Excels, tu cuaderno de producción y tu grupo de WhatsApp con una sola plataforma. Para fábricas de 5 a 50 empleados. 6 meses gratis.">
+<link rel="canonical" href="https://fabricontrol.online/">
+<meta property="og:site_name" content="FabriControl">
+<meta property="og:title" content="Inicio | FabriControl">
+<meta property="og:description" content="FabriOS reemplaza tus 7 Excels, tu cuaderno de producción y tu grupo de WhatsApp con una sola plataforma. Para fábricas de 5 a 50 empleados. 6 meses gratis.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fabricontrol.online/">
+<meta property="og:image" content="https://fabricontrol.online/assets/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Inicio | FabriControl">
+<meta name="twitter:description" content="FabriOS reemplaza tus 7 Excels, tu cuaderno de producción y tu grupo de WhatsApp con una sola plataforma. Para fábricas de 5 a 50 empleados. 6 meses gratis.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/home.css">
+</head>
+<body>
+
+<!-- ============== HEADER ============== -->
+<a href="#main" class="skip-link">Saltar al contenido</a>
+<header class="header">
+  <div class="header__inner">
+    <a href="index.html" class="logo" aria-label="FabriControl">
+      <span class="logo__mark">F</span>
+      <span>FabriControl</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="index.html" class="is-active" data-i18n="nav.home">Inicio</a>
+      <a href="industrias.html" data-i18n="nav.industries">Industrias</a>
+      <a href="aprende.html" data-i18n="nav.learn">Aprende</a>
+      <a href="empezar.html" data-i18n="nav.start">Empezar gratis</a>
+      <a href="demo.html" data-i18n="nav.demo">Demo</a>
+      <a href="contacto.html" data-i18n="nav.contact">Contacto</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Idioma">
+      <button data-lang="es" type="button"><span class="flag flag-es" aria-hidden="true"></span>ES</button>
+      <button data-lang="en" type="button"><span class="flag flag-en" aria-hidden="true"></span>EN</button>
+      <button data-lang="he" type="button"><span class="flag flag-he" aria-hidden="true"></span>HE</button>
+    </div>
+    <div class="header__cta">
+      <a href="https://wa.me/000000000000?text=Hola%2C%20vi%20FabriControl%20y%20quiero%20saber%20m%C3%A1s" class="btn btn--whatsapp" target="_blank" rel="noopener" data-wa-link>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3 2.9 1.2 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 4.9L2 22l5.2-1.3c1.4.8 3 1.2 4.7 1.2h.1c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        WhatsApp
+      </a>
+      <a href="empezar.html" class="btn btn--primary" data-i18n="cta.start">Empezar gratis</a>
+      <button class="menu-btn" aria-label="Menú"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero bg-dark">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div class="hero__copy reveal">
+      <span class="eyebrow">PROGRAMA DE ACCESO ANTICIPADO · ERP + IA + IoT</span>
+      <h1 class="h-display">El sistema operativo<br>de tu fábrica.</h1>
+      <p class="lede">FabriOS reemplaza tus 7 Excels, tu cuaderno de producción y tu grupo de WhatsApp con una sola plataforma. Para fábricas de 5 a 50 empleados.</p>
+      <p class="mono" style="color:var(--orange);font-size:12px;letter-spacing:0.14em;margin-top:var(--s-3)">— TE LO TRAE FABRIOS, EL PRODUCTO PRINCIPAL DE FABRICONTROL</p>
+      <div class="hero__tag">
+        <span class="tag-pulse"><span class="tag-pulse__dot"></span>6 MESES GRATIS · Programa beta abierto</span>
+      </div>
+      <div class="hero__cta">
+        <a href="empezar.html" class="btn btn--primary btn--lg">
+          Empezar gratis ahora
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="demo.html" class="btn btn--ghost btn--lg">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          Ver demo de 2 minutos
+        </a>
+      </div>
+      <p class="hero__fineprint mono">Te registrás con email y contraseña · Sin tarjeta · Tu licencia se crea al instante</p>
+    </div>
+
+    <!-- Dashboard mockup -->
+    <div class="hero__mockup reveal" aria-hidden="true">
+      <div class="dash">
+        <div class="dash__chrome">
+          <span class="dash__dot" style="background:#FF5F56"></span>
+          <span class="dash__dot" style="background:#FFBD2E"></span>
+          <span class="dash__dot" style="background:#27C93F"></span>
+          <span class="dash__title mono">app.fabrios — Producción / hoy</span>
+        </div>
+        <div class="dash__body">
+          <div class="dash__topline">
+            <div>
+              <div class="dash__eyebrow mono">PRODUCCIÓN HOY</div>
+              <div class="dash__title-text">Planta · Norte</div>
+            </div>
+            <div class="dash__live"><span class="tag-pulse__dot"></span><span class="mono">EN VIVO</span></div>
+          </div>
+          <div class="dash__kpis">
+            <div class="kpi">
+              <div class="kpi__label mono">ÓRDENES ACTIVAS</div>
+              <div class="kpi__value">47</div>
+              <div class="kpi__delta kpi__delta--up mono">▲ 12% vs ayer</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__label mono">ECOs PENDIENTES</div>
+              <div class="kpi__value kpi__value--orange">12</div>
+              <div class="kpi__delta mono">3 críticas</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi__label mono">MÁQUINAS ONLINE</div>
+              <div class="kpi__value kpi__value--cyan">8<span class="kpi__sub">/10</span></div>
+              <div class="kpi__delta kpi__delta--up mono">2 en mantenimiento</div>
+            </div>
+          </div>
+          <div class="dash__chart">
+            <div class="dash__chart-head">
+              <span class="mono">PRODUCCIÓN POR HORA</span>
+              <span class="dash__badge">QR escaneados: 312</span>
+            </div>
+            <div class="dash__bars">
+              <span style="height:30%"></span><span style="height:55%"></span><span style="height:42%"></span>
+              <span style="height:78%"></span><span style="height:62%"></span><span style="height:88%"></span>
+              <span style="height:71%" class="is-now"></span><span style="height:58%" class="is-future"></span>
+              <span style="height:45%" class="is-future"></span>
+            </div>
+            <div class="dash__hours mono"><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span></div>
+          </div>
+          <div class="dash__row">
+            <div class="dash__order">
+              <div>
+                <div class="dash__order-id mono">ORD-2401</div>
+                <div class="dash__order-name">Pieza CNC AL-7075 · 200u</div>
+              </div>
+              <div class="dash__pill dash__pill--cyan">Mecanizado</div>
+            </div>
+            <div class="dash__order">
+              <div>
+                <div class="dash__order-id mono">ORD-2398</div>
+                <div class="dash__order-name">Conjunto soldado #441</div>
+              </div>
+              <div class="dash__pill dash__pill--green">IPQC OK</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== INDUSTRY LOGOS ============== -->
+<section class="industries-band">
+  <div class="container">
+    <p class="industries-band__title mono">CONFÍAN EN FABRIOS FÁBRICAS DE 6 INDUSTRIAS</p>
+    <div class="industries-band__grid">
+      <div class="industry-chip"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg> Metalurgia</div>
+      <div class="industry-chip"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 6 8 10 8 12c0 3 2 5 4 5s4-2 4-5c0-2 0-6-4-10z"/><path d="M9 17v5M15 17v5"/></svg> Alimentos</div>
+      <div class="industry-chip"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M20 4L4 20M12 4v16M4 12h16"/></svg> Textil</div>
+      <div class="industry-chip"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6v4l3 4v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V10l3-4z"/><path d="M9 14h6"/></svg> Química</div>
+      <div class="industry-chip"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6v12H3z"/><path d="M9 21V12h6v9"/></svg> Carpintería</div>
+      <div class="industry-chip"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M5 12V6a3 3 0 0 1 6 0v12a3 3 0 0 0 6 0v-6"/></svg> Plásticos</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PROBLEM ============== -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow eyebrow--orange">EL PROBLEMA</span>
+      <h2 class="h-1">Si tu fábrica vive en Excel,<br>este es tu problema.</h2>
+    </div>
+    <div class="problem-grid">
+      <div class="problem reveal">
+        <div class="icon-square">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M9 9h6M9 13h4"/></svg>
+        </div>
+        <h3 class="h-3">Pierdes pedidos</h3>
+        <p>Las órdenes se traspapelan, los plazos se incumplen, los clientes se enojan.</p>
+      </div>
+      <div class="problem reveal">
+        <div class="icon-square">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3 class="h-3">No sabes tu costo real</h3>
+        <p>El Excel del jefe dice una cosa. La realidad del taller dice otra. La diferencia se la come tu margen.</p>
+      </div>
+      <div class="problem reveal">
+        <div class="icon-square">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 class="h-3">Dependes de una persona</h3>
+        <p>Si el encargado de producción se enferma, la fábrica se para. La información está en su cabeza.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== SOLUTION ============== -->
+<section class="section bg-dark">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">LA SOLUCIÓN</span>
+      <h2 class="h-1">Una plataforma. Todo el control.</h2>
+    </div>
+    <div class="features-grid">
+      <article class="card card--dark reveal">
+        <div class="icon-square icon-square--cyan">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <h3 class="h-3">Órdenes con código QR</h3>
+        <p>Cada pieza tiene su QR. Tu operario escanea, FabriOS sabe en qué paso está, cuánto tardó, y si pasó control de calidad.</p>
+      </article>
+      <article class="card card--dark reveal">
+        <div class="icon-square icon-square--cyan">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>
+        </div>
+        <h3 class="h-3">Inventario por lote FIFO</h3>
+        <p>Trazabilidad real. Sabés qué lote se usó en qué orden, cuándo entró, cuándo vence. Auditable de punta a punta.</p>
+      </article>
+      <article class="card card--dark reveal">
+        <div class="icon-square icon-square--cyan">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3 class="h-3">Asistente IA contextual</h3>
+        <p>Preguntale: "¿Qué máquina rinde menos esta semana?" o "Generá una cotización para 200 piezas de aluminio". Te responde con tus datos.</p>
+      </article>
+      <article class="card card--dark reveal">
+        <div class="icon-square icon-square--cyan">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <h3 class="h-3">App móvil offline</h3>
+        <p>El operario carga datos desde el teléfono. Si se cae internet, sigue trabajando. Cuando vuelve, todo se sincroniza.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== 22 MODULES ============== -->
+<section class="section bg-dark">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <span class="eyebrow">PLATAFORMA COMPLETA</span>
+      <h2 class="h-1">22 módulos. Una sola plataforma.</h2>
+      <p class="lede" style="margin:var(--s-4) auto 0;text-align:center">FabriOS cubre el ciclo completo: comercial → ingeniería → producción → calidad → finanzas.</p>
+    </div>
+    <div class="modules-grid">
+      <div class="mod-card reveal">
+        <div class="mod-card__icon">📊</div>
+        <div>
+          <div class="mod-card__title">Dashboard</div>
+          <div class="mod-card__desc">KPIs en vivo, alertas, OEE</div>
+        </div>
+      </div>
+      <div class="mod-card reveal">
+        <div class="mod-card__icon">📄</div>
+        <div>
+          <div class="mod-card__title">Cotizaciones</div>
+          <div class="mod-card__desc">PDFs profesionales con QR, conversión a orden con un click</div>
+        </div>
+      </div>
+      <div class="mod-card reveal">
+        <div class="mod-card__icon">🏭</div>
+        <div>
+          <div class="mod-card__title">Órdenes de Producción</div>
+          <div class="mod-card__desc">Rutas de pasos, seguimiento por QR, estado en tiempo real</div>
+        </div>
+      </div>
+      <div class="mod-card reveal">
+        <div class="mod-card__icon">📦</div>
+        <div>
+          <div class="mod-card__title">Inventario</div>
+          <div class="mod-card__desc">Stock por lote con FIFO/FEFO, trazabilidad completa</div>
+        </div>
+      </div>
+      <div class="mod-card reveal">
+        <div class="mod-card__icon">🔧</div>
+        <div>
+          <div class="mod-card__title">BOM</div>
+          <div class="mod-card__desc">Estructura de producto con revisiones y lifecycle</div>
+        </div>
+      </div>
+      <div class="mod-card reveal">
+        <div class="mod-card__icon">✅</div>
+        <div>
+          <div class="mod-card__title">Calidad (QC)</div>
+          <div class="mod-card__desc">IQC entrada + IPQC en ruta + OQC salida</div>
+        </div>
+      </div>
+      <div class="mod-card reveal">
+        <div class="mod-card__icon">🛒</div>
+        <div>
+          <div class="mod-card__title">Compras</div>
+          <div class="mod-card__desc">OC con QR, recepción, vínculo automático a IQC</div>
+        </div>
+      </div>
+      <div class="mod-card reveal">
+        <div class="mod-card__icon">📱</div>
+        <div>
+          <div class="mod-card__title">App Móvil PWA</div>
+          <div class="mod-card__desc">Operario escanea, planta sin internet sigue trabajando</div>
+        </div>
+      </div>
+      <div class="mod-card reveal">
+        <div class="mod-card__icon">🤖</div>
+        <div>
+          <div class="mod-card__title">Asistente IA</div>
+          <div class="mod-card__desc">Chat contextual que entiende donde estás y actúa</div>
+        </div>
+      </div>
+      <div class="mod-card reveal">
+        <div class="mod-card__icon">📐</div>
+        <div>
+          <div class="mod-card__title">Plantillas DXF</div>
+          <div class="mod-card__desc">Cliente pide medidas → genera BOM + DXF + PDF automático</div>
+        </div>
+      </div>
+      <div class="mod-card reveal">
+        <div class="mod-card__icon">📥</div>
+        <div>
+          <div class="mod-card__title">Importador masivo</div>
+          <div class="mod-card__desc">Excel/CSV con preview y mapeo de columnas</div>
+        </div>
+      </div>
+      <div class="mod-card reveal">
+        <div class="mod-card__icon">💰</div>
+        <div>
+          <div class="mod-card__title">Finanzas</div>
+          <div class="mod-card__desc">Dashboard, cierre de mes, costo real vs presupuesto</div>
+        </div>
+      </div>
+    </div>
+    <p class="modules-more">+ 10 módulos más</p>
+  </div>
+</section>
+
+<!-- ============== 7-STEP ONBOARDING ============== -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <span class="eyebrow eyebrow--orange">ARRANQUE RÁPIDO</span>
+      <h2 class="h-1">Del registro a la primera orden ejecutada en 5-7 días.</h2>
+      <p class="lede" style="margin:var(--s-4) auto 0;text-align:center">Sin consultores. Sin cargos por implementación. Asistido por la IA del producto.</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-step reveal">
+        <div class="tl-step__when">Día 1, 60 seg</div>
+        <div class="tl-step__title">Registro</div>
+        <div class="tl-step__desc">Email + password. Recibís serial FABRI-XXXX-XXXX por mail.</div>
+      </div>
+      <div class="tl-step reveal">
+        <div class="tl-step__when">Día 1, 10 min</div>
+        <div class="tl-step__title">Setup empresa</div>
+        <div class="tl-step__desc">Logo, formato de numeración, moneda, elección de industria.</div>
+      </div>
+      <div class="tl-step reveal">
+        <div class="tl-step__when">Día 1-2</div>
+        <div class="tl-step__title">Estructura</div>
+        <div class="tl-step__desc">Departamentos, usuarios, permisos por módulo, operadores de planta.</div>
+      </div>
+      <div class="tl-step reveal">
+        <div class="tl-step__when">Día 2-3</div>
+        <div class="tl-step__title">Catálogo + BOM</div>
+        <div class="tl-step__desc">Productos (manual o Excel), componentes, archivos técnicos por revisión.</div>
+      </div>
+      <div class="tl-step reveal">
+        <div class="tl-step__when">Día 3-4</div>
+        <div class="tl-step__title">Inventario + planta</div>
+        <div class="tl-step__desc">Items con lotes, máquinas, alertas de stock mínimo.</div>
+      </div>
+      <div class="tl-step reveal">
+        <div class="tl-step__when">Día 4-5</div>
+        <div class="tl-step__title">Primera cotización</div>
+        <div class="tl-step__desc">Cliente + producto → PDF con QR → conversión a orden con un click.</div>
+      </div>
+      <div class="tl-step reveal">
+        <div class="tl-step__when">Día 5-7</div>
+        <div class="tl-step__title">Primera orden ejecutada</div>
+        <div class="tl-step__desc">Imprimís QR, operario escanea, calidad aprueba IQC, orden cerrada.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== BEFORE VS AFTER ============== -->
+<section class="section bg-white">
+  <div class="container container--narrow">
+    <div class="section-head section-head--center reveal">
+      <span class="eyebrow eyebrow--orange">EL CAMBIO</span>
+      <h2 class="h-1">Así se trabaja sin FabriOS.<br>Así se trabaja con FabriOS.</h2>
+    </div>
+    <div class="compare-grid reveal">
+      <div class="compare-col compare-col--bad">
+        <h3>Sin FabriOS</h3>
+        <div class="compare-item"><span class="compare-icon">✗</span><span>7 Excels desincronizados</span></div>
+        <div class="compare-item"><span class="compare-icon">✗</span><span>Cuaderno del jefe de planta</span></div>
+        <div class="compare-item"><span class="compare-icon">✗</span><span>Grupo de WhatsApp con pedidos perdidos</span></div>
+        <div class="compare-item"><span class="compare-icon">✗</span><span>Inventario "a ojo"</span></div>
+        <div class="compare-item"><span class="compare-icon">✗</span><span>Si el encargado se enferma, la fábrica se para</span></div>
+        <div class="compare-item"><span class="compare-icon">✗</span><span>6 horas/semana reconciliando datos</span></div>
+      </div>
+      <div class="compare-col compare-col--good">
+        <h3>Con FabriOS</h3>
+        <div class="compare-item"><span class="compare-icon">✓</span><span>1 plataforma con datos en vivo</span></div>
+        <div class="compare-item"><span class="compare-icon">✓</span><span>Órdenes con QR, ruta de pasos</span></div>
+        <div class="compare-item"><span class="compare-icon">✓</span><span>Cotización → orden con un click</span></div>
+        <div class="compare-item"><span class="compare-icon">✓</span><span>Stock por lote FIFO/FEFO con trazabilidad</span></div>
+        <div class="compare-item"><span class="compare-icon">✓</span><span>Cualquier supervisor entra y ve el estado</span></div>
+        <div class="compare-item"><span class="compare-icon">✓</span><span>Tiempo libre para producir más</span></div>
+      </div>
+    </div>
+    <div class="compare-cta reveal">
+      <h3 class="h-3">FabriOS está en beta privada con cupo limitado.</h3>
+      <p>Buscamos de 5 a 8 fábricas piloto para validar el producto en producción real durante este 2026. Si crees que tu fábrica encaja, aplicá.</p>
+      <div class="compare-cta__btns">
+        <a href="empezar.html" class="btn btn--primary btn--lg">Aplicar a la beta →</a>
+        <a href="https://wa.me/000000000000?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20de%20la%20beta" class="btn btn--whatsapp btn--lg" target="_blank" rel="noopener" data-wa-link>Hablar por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== NUMBERS ============== -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <span class="eyebrow eyebrow--orange">NÚMEROS QUE IMPORTAN</span>
+      <h2 class="h-1">FabriOS no es un MVP.<br>Es producción real.</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat reveal">
+        <div class="stat__value mono" style="color:var(--orange)">47</div>
+        <div class="stat__label">Módulos integrados</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat__value mono" style="color:var(--cyan)">310</div>
+        <div class="stat__label">Endpoints de API</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat__value mono" style="color:var(--orange)">6</div>
+        <div class="stat__label">Industrias soportadas</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat__value mono" style="color:var(--cyan)">3</div>
+        <div class="stat__label">Idiomas (ES · EN · HE con RTL)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MULTI-INDUSTRY ============== -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow eyebrow--orange">UNA PLATAFORMA, SEIS INDUSTRIAS</span>
+      <h2 class="h-1">Una plataforma, seis industrias.</h2>
+      <p class="lede" style="margin-top:var(--s-4)">FabriOS adapta sus etiquetas, flujos y reportes a tu industria. No es un ERP genérico forzado.</p>
+    </div>
+    <div class="ind-grid">
+      <a href="industrias.html#metalurgia" class="ind-card reveal" data-ind="metalurgia">
+        <div class="ind-card__media placeholder placeholder--dark"><span>FOTO · CNC con chispas</span></div>
+        <div class="ind-card__body">
+          <div class="ind-card__title">Metalurgia</div>
+          <p>Órdenes de mecanizado, planos DXF paramétricos, control de cotas, IPQC en ruta.</p>
+        </div>
+      </a>
+      <a href="industrias.html#alimentos" class="ind-card reveal">
+        <div class="ind-card__media placeholder placeholder--dark"><span>FOTO · Línea de envasado</span></div>
+        <div class="ind-card__body">
+          <div class="ind-card__title">Alimentos</div>
+          <p>Lotes con vencimiento, FEFO automático, trazabilidad para SENASA/HACCP.</p>
+        </div>
+      </a>
+      <a href="industrias.html#textil" class="ind-card reveal">
+        <div class="ind-card__media placeholder placeholder--dark"><span>FOTO · Telar industrial</span></div>
+        <div class="ind-card__body">
+          <div class="ind-card__title">Textil</div>
+          <p>BOM por talles y colores, mermas por corte, producción por línea.</p>
+        </div>
+      </a>
+      <a href="industrias.html#plasticos" class="ind-card reveal">
+        <div class="ind-card__media placeholder placeholder--dark"><span>FOTO · Inyectora plástica</span></div>
+        <div class="ind-card__body">
+          <div class="ind-card__title">Plásticos</div>
+          <p>Inyección, molde, ciclos por máquina, scrap por turno.</p>
+        </div>
+      </a>
+      <a href="industrias.html#quimica" class="ind-card reveal">
+        <div class="ind-card__media placeholder placeholder--dark"><span>FOTO · Reactor químico</span></div>
+        <div class="ind-card__body">
+          <div class="ind-card__title">Química</div>
+          <p>Fórmulas con tolerancias, lotes con MSDS, control de pureza.</p>
+        </div>
+      </a>
+      <a href="industrias.html#carpinteria" class="ind-card reveal">
+        <div class="ind-card__media placeholder placeholder--dark"><span>FOTO · Taller de madera</span></div>
+        <div class="ind-card__body">
+          <div class="ind-card__title">Carpintería</div>
+          <p>Cubicación de madera, optimización de corte, herrajes y acabados.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============== CUSTOM SERVICES ============== -->
+<section class="section bg-dark">
+  <div class="container">
+    <div class="section-head section-head--center reveal">
+      <span class="eyebrow">SERVICIOS A MEDIDA</span>
+      <h2 class="h-1" style="color:var(--white)">¿Necesitás algo diferente?<br>Lo construyo para vos.</h2>
+      <p class="lede" style="margin:var(--s-4) auto 0;text-align:center;color:var(--slate-300)">Si FabriOS no encaja con tu fábrica, te armo un sistema a medida.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card reveal">
+        <span class="svc-card__badge">DESDE 4 SEMANAS</span>
+        <div class="svc-card__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12H2M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><circle cx="12" cy="12" r="10"/></svg>
+        </div>
+        <h3>Software a medida en la nube</h3>
+        <ul>
+          <li>ERP y sistemas de gestión</li>
+          <li>Inventario, producción, calidad</li>
+          <li>Cotizaciones y finanzas</li>
+          <li>Diseñado para tu flujo exacto</li>
+        </ul>
+        <p class="svc-card__example">Ej: Sistema de gestión para panadería con 3 sucursales</p>
+        <div class="svc-card__cta">
+          <a href="https://wa.me/000000000000?text=Hola%2C%20quiero%20cotizar%20Software%20a%20medida" class="btn btn--whatsapp" target="_blank" rel="noopener" data-wa-link>Solicitar cotización</a>
+        </div>
+      </div>
+      <div class="svc-card reveal">
+        <span class="svc-card__badge">TU IDEA FUNCIONANDO</span>
+        <div class="svc-card__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <h3>App / Plataforma web</h3>
+        <ul>
+          <li>Portal de clientes o marketplace</li>
+          <li>Pagos online y catálogo</li>
+          <li>Reservas y notificaciones</li>
+          <li>Responsive y multi-idioma</li>
+        </ul>
+        <p class="svc-card__example">Ej: Portal de turnos online para clínica dental</p>
+        <div class="svc-card__cta">
+          <a href="https://wa.me/000000000000?text=Hola%2C%20quiero%20cotizar%20App%20%2F%20Plataforma%20web" class="btn btn--whatsapp" target="_blank" rel="noopener" data-wa-link>Solicitar cotización</a>
+        </div>
+      </div>
+      <div class="svc-card reveal">
+        <span class="svc-card__badge">MONITOREO 24/7</span>
+        <div class="svc-card__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Automatización IoT</h3>
+        <ul>
+          <li>Sensores en máquinas</li>
+          <li>Dashboard en tiempo real</li>
+          <li>Alertas automáticas</li>
+          <li>Mantenimiento predictivo</li>
+        </ul>
+        <p class="svc-card__example">Ej: Dashboard de 5 máquinas CNC con alertas WhatsApp</p>
+        <div class="svc-card__cta">
+          <a href="https://wa.me/000000000000?text=Hola%2C%20quiero%20cotizar%20Automatizaci%C3%B3n%20IoT" class="btn btn--whatsapp" target="_blank" rel="noopener" data-wa-link>Solicitar cotización</a>
+          <a href="demo.html" class="btn btn--ghost">Ver demo</a>
+        </div>
+      </div>
+      <div class="svc-card reveal">
+        <span class="svc-card__badge">RESULTADOS EN 2 SEMANAS</span>
+        <div class="svc-card__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3>Consultoría de procesos</h3>
+        <ul>
+          <li>Mapeo de procesos</li>
+          <li>Eliminación de cuellos de botella</li>
+          <li>Optimización de costos</li>
+          <li>Documentación y capacitación</li>
+        </ul>
+        <p class="svc-card__example">Ej: Diagnóstico operativo para fábrica de muebles</p>
+        <div class="svc-card__cta">
+          <a href="https://wa.me/000000000000?text=Hola%2C%20quiero%20cotizar%20Consultor%C3%ADa%20de%20procesos" class="btn btn--whatsapp" target="_blank" rel="noopener" data-wa-link>Solicitar cotización</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FABRICONTROL COMPANY ============== -->
+<section class="section company">
+  <div class="container">
+    <div class="company__grid">
+      <div class="company__copy reveal">
+        <span class="eyebrow">FABRICONTROL · LA EMPRESA</span>
+        <h2 class="h-1" style="margin-top:var(--s-3)">Software industrial<br>hecho por gente de fábrica.</h2>
+        <p class="lede" style="margin-top:var(--s-4)">FabriControl no nació en un coworking. Nació en un taller. Lo fundó Julio Mirabal, ingeniero mecánico con 20 años en la trinchera: fundiciones, mecanizado, mantenimiento. Sabe lo que es un Excel que se rompe en plena producción.</p>
+        <blockquote class="company__quote">
+          "Construimos las herramientas que nos hubiera gustado tener cuando éramos los del overol. FabriOS es la primera. Vienen más."
+          <cite>— Julio Mirabal · Fundador</cite>
+        </blockquote>
+      </div>
+      <div class="company__cards reveal">
+        <div class="company-card">
+          <div class="company-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div>
+            <div class="company-card__title">Hecho por industriales</div>
+            <p class="company-card__desc">Cada feature pasó por una fábrica antes de llegar a tu pantalla. Diseñamos pensando en la planta, no en la oficina.</p>
+          </div>
+        </div>
+        <div class="company-card">
+          <div class="company-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div>
+            <div class="company-card__title">LATAM + Israel</div>
+            <p class="company-card__desc">Equipo distribuido entre Buenos Aires, Tel Aviv y Ciudad de México. Soporte en tu zona horaria, en tu idioma, con tu mismo modelo mental.</p>
+          </div>
+        </div>
+        <div class="company-card">
+          <div class="company-card__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+          </div>
+          <div>
+            <div class="company-card__title">Más productos en camino</div>
+            <p class="company-card__desc">FabriOS es el primero. <strong>FabriSense</strong> (sensores IoT plug-and-play) llega en 2026. Y vienen más bajo el paraguas FabriControl.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== HOW TO START ============== -->
+<section class="section bg-dark">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">CÓMO EMPEZAR</span>
+      <h2 class="h-1">Empezás hoy. En producción mañana.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step__num mono">01</div>
+        <h3 class="h-3">Te registrás en 60 segundos</h3>
+        <p>Email, contraseña, nombre de tu empresa, industria. Listo.</p>
+      </div>
+      <div class="step__arrow" aria-hidden="true">→</div>
+      <div class="step reveal">
+        <div class="step__num mono">02</div>
+        <h3 class="h-3">Tu licencia se crea automática</h3>
+        <p>Sin esperar aprobaciones, sin llamadas. Entrás al sistema al instante.</p>
+      </div>
+      <div class="step__arrow" aria-hidden="true">→</div>
+      <div class="step reveal">
+        <div class="step__num mono">03</div>
+        <h3 class="h-3">Cargás tu Excel y arrancás</h3>
+        <p>Importador masivo, soporte por WhatsApp, 6 meses gratis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============== APRENDE EN 2 MINUTOS ============== -->
+<section class="section bg-light">
+  <div class="container">
+    <div class="home-videos__head reveal">
+      <div>
+        <span class="eyebrow eyebrow--orange">APRENDE EN 2 MINUTOS</span>
+        <h2 class="h-1" style="margin-top:var(--s-3)">Mirá FabriOS<br>en acción.</h2>
+      </div>
+      <a href="aprende.html" class="btn btn--ghost btn--lg">Ver todos los videos →</a>
+    </div>
+    <div id="home-videos" class="featured-grid"></div>
+  </div>
+</section>
+
+<!-- ============== FINAL CTA ============== -->
+<section class="section bg-white">
+  <div class="container container--narrow">
+    <div class="cta-box reveal">
+      <span class="tag-pulse"><span class="tag-pulse__dot"></span>PROGRAMA BETA · CUPOS LIMITADOS</span>
+      <h2 class="h-1" style="margin-top:var(--s-5);color:var(--white)">Probá FabriOS 6 meses, gratis.</h2>
+      <p class="lede" style="color:rgba(255,255,255,0.9);margin-top:var(--s-4)">Sin tarjeta. Sin contratos. Sin compromiso. Si no te sirve, te ayudamos a exportar todos tus datos.</p>
+      <div class="cta-box__cta">
+        <a href="empezar.html" class="btn btn--lg" style="background:var(--white);color:var(--slate-900)">Crear mi cuenta gratis →</a>
+      </div>
+      <p class="mono" style="font-size:12px;letter-spacing:0.06em;color:rgba(255,255,255,0.7);margin-top:var(--s-4)">PROGRAMA DE ACCESO ANTICIPADO · CUPOS LIMITADOS</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <a href="index.html" class="logo" style="color:var(--white)">
+          <span class="logo__mark">F</span><span>FabriControl</span>
+        </a>
+        <p class="footer__tagline" data-i18n="footer.tagline">El sistema operativo de las fábricas pequeñas y medianas.</p>
+        <div class="footer__socials">
+          <a href="https://www.linkedin.com/in/juliomirabal/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.8 0-5 2.2-5 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5v-14c0-2.8-2.2-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.3c-1 0-1.7-.8-1.7-1.7s.8-1.7 1.7-1.7c1 0 1.7.8 1.7 1.7s-.7 1.7-1.7 1.7zm13.5 12.3h-3v-5.6c0-1.4-.5-2.4-1.8-2.4-1 0-1.6.7-1.9 1.4-.1.2-.1.6-.1.9v5.7h-3v-11h3v1.5c.4-.6 1.2-1.5 2.9-1.5 2.1 0 3.7 1.4 3.7 4.3v6.7z"/></svg></a>
+          <a href="https://x.com/juliomirabal2" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.youtube.com/@NQPodcast-z7p" target="_blank" rel="noopener" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61571999961373" target="_blank" rel="noopener" aria-label="Facebook"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 data-i18n="footer.products">Productos</h4>
+        <ul>
+          <li><a href="index.html"><span data-i18n="footer.fabrios">FabriOS</span><span class="footer-tag footer-tag--active" data-i18n="footer.fabrios.tag">activo</span></a></li>
+          <li><span style="cursor:default;color:var(--slate-400)"><span data-i18n="footer.fabrisense">FabriSense</span><span class="footer-tag footer-tag--soon" data-i18n="footer.fabrisense.tag">próximamente</span></span></li>
+          <li><span style="cursor:default;color:var(--slate-400)"><span data-i18n="footer.more">Más productos</span><span class="footer-tag footer-tag--dev" data-i18n="footer.more.tag">en desarrollo</span></span></li>
+          <li><a href="aprende.html" data-i18n="nav.learn">Aprende</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="footer.company">Empresa</h4>
+        <ul>
+          <li><a href="contacto.html" data-i18n="footer.contact">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="footer.legal">Legal</h4>
+        <ul>
+          <li><a href="terminos.html" data-i18n="footer.terms">Términos</a></li>
+          <li><a href="privacidad.html" data-i18n="footer.privacy">Privacidad</a></li>
+          <li><a href="cookies.html" data-i18n="footer.cookies">Cookies</a></li>
+        <li class="footer__app-login"><a href="https://fabrios-app.onrender.com" target="_blank" rel="noopener">¿Ya tenés cuenta? Entrá a FabriOS →</a></li></ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span data-i18n="footer.copy">© 2026 FabriControl · Hecho con orgullo en Latinoamérica</span>
+      <span class="mono">ES · EN · HE</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== WHATSAPP FAB ============== -->
+<a href="https://wa.me/000000000000?text=Hola%2C%20vi%20FabriControl%20y%20quiero%20saber%20m%C3%A1s" class="wa-fab" target="_blank" rel="noopener" aria-label="Chateá con nosotros en WhatsApp" data-wa-link>
+  <span class="wa-fab__icon">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3 2.9 1.2 2.9.8 3.4.7.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 4.9L2 22l5.2-1.3c1.4.8 3 1.2 4.7 1.2h.1c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+  </span>
+  <span class="wa-fab__label" data-i18n="wa.label">Chateá con nosotros</span>
+</a>
+
+<script src="assets/app.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>
