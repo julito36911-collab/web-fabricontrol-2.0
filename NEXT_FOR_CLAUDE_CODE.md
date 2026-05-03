@@ -41,143 +41,196 @@ Sos developer en el repo `C:\web-fabricontrol-2.0\` (sitio web marketing FabriCo
 
 ---
 
-## SESION ACTUAL — Ajustar form de empezar.html al contract del backend
+## SESION ACTUAL — Eliminar form custom de empezar.html y reemplazar por CTA al wizard de FabriOS
 
-El Cowork de FabriOS confirmo que el endpoint `POST https://fabrios-api.onrender.com/api/register/` esta LIVE y funcionando (smoke test 200 con serial real `FABRI-C272-0041-9215`, CORS OK desde fabricontrol.online).
+**Decision de Julio (2026-05-03):** en vez de mantener un form custom en `empezar.html` y sincronizar 11 campos con el backend, **eliminamos el form** y enviamos directo al wizard de registro de la app FabriOS (`https://fabrios-app.onrender.com/register`), que ya esta probado en produccion (198 tests E2E PASS).
 
-**Pero el form actual de `empezar.html` tiene 3 mismatches con el contract del backend** que harian que cualquier intento de registro devuelva 400. Hay que arreglarlos antes de difundir la web.
+**Por que:** el wizard de FabriOS funciona bien, pide lo basico (empresa + admin + email + password + industria + modulos), crea la cuenta al toque y devuelve serial + login. Mantener un form propio duplica logica, exige sincronizar shape, validaciones y mensajes de error → mas bugs y mantenimiento.
+
+**Lo que NO se captura en el wizard de FabriOS** (whatsapp, cargo, pais, ciudad, empleados, sitio_web) se pide DESPUES uno-a-uno por WhatsApp / email cuando se onboardea al cliente. En etapa beta tiene mas sentido conocer cada lead personalmente.
 
 ### Contexto
 
-El backend espera valores **case-sensitive y sin tildes** para `industria`, y **guion corto sin tilde** en `empleados`. Tambien hay 7 codigos de error 400 que el form tiene que mapear a mensajes claros para el usuario.
+Documento completo de la decision: `C:\Users\julit\AppData\Roaming\Claude\local-agent-mode-sessions\239c60e4-b4d7-46e7-bcf0-fe6aef582722\b93f6535-2707-432f-814e-4ba3394afefb\local_f45439b3-debc-4c02-8496-a46b4e8db2be\uploads\53488e39-28ba-4397-9c30-27d3b951231b-1777840098666_RESPUESTA_COWORK_WEB_REEMPLAZAR_FORM.md`
+
+**Bugs anteriores que YA NO APLICAN** (porque el form se elimina):
+- Mismatches de `industria` y `empleados` con backend
+- Mapeo de errores 400
+- Pantalla de exito con serial
+
+Se marcan como `[SUPERSEDED]` en BUGS_PENDIENTES.md.
 
 Documento completo del contract: `C:\Users\julit\AppData\Roaming\Claude\local-agent-mode-sessions\239c60e4-b4d7-46e7-bcf0-fe6aef582722\b93f6535-2707-432f-814e-4ba3394afefb\local_f45439b3-debc-4c02-8496-a46b4e8db2be\uploads\RESPUESTA_COWORK_WEB_REGISTRO.md` (lo leyo Cowork ya — todo lo necesario esta en esta tarea).
 
 ### TAREA
 
-#### 1. Ajustar `<select id="industry">` en `empezar.html`
+#### 1. Eliminar el form custom de `empezar.html`
 
-Estructura actual (mal):
+Borrar TODA la seccion del form de registro:
+- Bloque del formulario `<form data-register-form>` con sus 11 campos (nombre, email, phone-cc, phone, role, pw, pw2, company, country, city, industry, size, web).
+- Indicadores de fortaleza de password.
+- Checkboxes de terminos.
+- Boton "Crear mi licencia gratis".
+- Cualquier mensaje de error / spinner relacionado al form.
+
+Tambien eliminar de `assets/site.js`:
+- La funcion `setupRegisterForm()` completa.
+- La constante `REGISTER_ENDPOINT`.
+- Las funciones helper `showSuccess()`, `showError()` (si solo se usan por el form de registro — verificar antes de borrar).
+- La llamada a `setupRegisterForm()` desde el init.
+
+#### 2. Reemplazar el form por CTA grande al wizard de FabriOS
+
+En el lugar donde estaba el form, poner el siguiente bloque (adaptar a la paleta y tipografias del sitio — Space Grotesk para headlines, naranja `#F97316` para CTA):
+
 ```html
-<option>Metalurgia</option>
-<option>Alimentos</option>
-<option>Textil</option>
-<option>Plásticos</option>
-<option>Química</option>
-<option>Carpintería</option>
-<option>Otra</option>
+<section class="hero-empezar">
+  <span class="badge mono">PROGRAMA DE ACCESO ANTICIPADO</span>
+
+  <h1 class="h-display">6 meses gratis.<br>Sin tarjeta. Sin compromiso.</h1>
+
+  <p class="lede">
+    FabriOS esta en programa beta. Estamos sumando fabricas reales
+    que quieran ser parte del producto desde el principio.
+    A cambio: 6 meses de acceso completo gratis.
+  </p>
+
+  <div class="status-badge">
+    <span class="dot dot--live"></span>
+    PROGRAMA ACTIVO · REGISTRO ABIERTO
+  </div>
+
+  <a href="https://fabrios-app.onrender.com/register?ref=acceso-anticipado"
+     class="btn btn--primary btn--xl"
+     target="_self">
+    Empezar gratis ahora →
+  </a>
+
+  <p class="hint">
+    Toma 60 segundos. Tu cuenta queda lista al instante.<br>
+    Recibis serial por email + acceso inmediato.
+  </p>
+</section>
 ```
 
-Estructura objetivo:
+**Notas:**
+- `target="_self"` (reemplaza la pestana). Decision de Julio.
+- Query param `?ref=acceso-anticipado` queda preparado para tracking futuro.
+- Usar las clases CSS que ya existen en el sitio (btn, btn--primary, btn--xl, badge, lede, mono, dot--live, etc.). Si alguna no existe, crearla en `assets/styles.css` consistente con el resto del diseno.
+
+#### 3. Mantener seccion "Que incluye tu acceso"
+
+Despues del hero, mantener / agregar una seccion con la lista de features incluidas:
+
 ```html
-<option value="metalurgia">Metalurgia</option>
-<option value="alimentos">Alimentos</option>
-<option value="textil">Textil</option>
-<option value="plasticos">Plásticos</option>
-<option value="quimica">Química</option>
-<option value="carpinteria">Carpintería</option>
+<section class="section bg-light">
+  <div class="container">
+    <span class="kicker mono">QUE INCLUYE TU ACCESO</span>
+    <h2 class="h-1">Todo el producto. Sin recortes.</h2>
+
+    <ul class="features-list">
+      <li>Ordenes de produccion ilimitadas</li>
+      <li>Inventario por lote con trazabilidad FIFO/FEFO</li>
+      <li>BOM multinivel con revisiones</li>
+      <li>Cotizaciones con PDF profesional</li>
+      <li>Codigos QR ilimitados</li>
+      <li>Control de calidad (IQC + IPQC + OQC)</li>
+      <li>Engineering Change Orders (ECO)</li>
+      <li>App movil PWA offline</li>
+      <li>Asistente IA con 50 consultas/dia</li>
+      <li>Multi-idioma (Espanol, Ingles, Hebreo)</li>
+      <li>Backup automatico en Google Drive</li>
+      <li>Soporte WhatsApp 24/7 con asistente IA + humano en horario laboral</li>
+      <li>Usuarios ilimitados</li>
+      <li>Importador masivo desde Excel</li>
+    </ul>
+  </div>
+</section>
 ```
 
-**Cambios concretos:**
-- Sumar `value="..."` en minusculas y sin tildes a las 6 opciones validas.
-- **ELIMINAR** la opcion `<option>Otra</option>` — el backend no la acepta y devuelve 400 si llega.
-- Mantener el label visible con mayuscula y tilde (queda lindo para el usuario, lo que importa es el `value`).
+Estilo: 2 columnas en desktop, 1 en mobile. Cada item con un check naranja antes del texto.
 
-#### 2. Ajustar `<select id="size">` en `empezar.html`
+#### 4. CTA secundario al final de la pagina
 
-Estructura actual (mal):
+Al final de empezar.html, antes del footer, sumar un segundo CTA para los que scrollearon:
+
 ```html
-<option>1–5</option>
-<option>6–15</option>
-<option>16–30</option>
-<option>31–50</option>
-<option>Más de 50</option>
+<section class="section bg-dark cta-final">
+  <div class="container" style="text-align:center;">
+    <h2 class="h-1" style="color:var(--white)">Listo para arrancar?</h2>
+    <p class="lede" style="color:var(--slate-300)">
+      6 meses gratis. Sin tarjeta. 60 segundos.
+    </p>
+    <a href="https://fabrios-app.onrender.com/register?ref=acceso-anticipado"
+       class="btn btn--primary btn--xl"
+       target="_self">
+      Crear mi cuenta gratis →
+    </a>
+  </div>
+</section>
 ```
 
-> El simbolo entre numeros es un guion largo `–` (en dash, U+2013). El backend espera guion corto `-` (hyphen, U+002D). Y `Más de 50` con tilde, el backend espera `Mas de 50` sin tilde.
+#### 5. Limpieza de CSS
 
-Estructura objetivo:
-```html
-<option value="1-5">1–5</option>
-<option value="6-15">6–15</option>
-<option value="16-30">16–30</option>
-<option value="31-50">31–50</option>
-<option value="Mas de 50">Más de 50</option>
+En `assets/empezar.css` (y en `assets/styles.css` si hay clases del form ahi), eliminar todos los estilos huerfanos:
+- `.form-error`, `.is-invalid`, `.pw-strength`, `.pw-strength span`
+- `.checkbox`, `.input`, `.select` SI solo se usaban en este form (chequear antes — quizas otras paginas las usan).
+- Cualquier clase que solo aplicaba al form de registro.
+
+Sumar las clases nuevas que falten para el CTA: `.hero-empezar`, `.status-badge`, `.dot--live`, `.btn--xl`, `.features-list`, `.cta-final`.
+
+#### 6. i18n del nuevo contenido
+
+El sitio es trilingue ES / EN / HE. Sumar los strings nuevos al diccionario en `assets/site.js`:
+
+```javascript
+// ES
+'empezar.badge': 'PROGRAMA DE ACCESO ANTICIPADO',
+'empezar.title': '6 meses gratis. Sin tarjeta. Sin compromiso.',
+'empezar.lede': 'FabriOS esta en programa beta...',
+'empezar.status': 'PROGRAMA ACTIVO · REGISTRO ABIERTO',
+'empezar.cta.primary': 'Empezar gratis ahora',
+'empezar.cta.hint': 'Toma 60 segundos. Tu cuenta queda lista al instante.',
+'empezar.includes.kicker': 'QUE INCLUYE TU ACCESO',
+'empezar.includes.title': 'Todo el producto. Sin recortes.',
+'empezar.cta-final.title': 'Listo para arrancar?',
+'empezar.cta-final.lede': '6 meses gratis. Sin tarjeta. 60 segundos.',
+'empezar.cta-final.btn': 'Crear mi cuenta gratis',
+
+// EN: traducir
+// HE: traducir (mantener RTL)
 ```
 
-**Cambios concretos:**
-- Sumar `value="..."` con guion corto y sin tilde a las 5 opciones.
-- Mantener el label visible bonito (con guion largo y tilde para que se vea natural en espanol).
+Y poner `data-i18n="empezar.title"` etc. en los elementos del HTML.
 
-#### 3. Mapeo de errores 400 en el JS del form
-
-En `assets/site.js` (o donde este la logica de submit del form de registro), reemplazar el manejo generico actual con mapeo de los 7 codigos de error que devuelve el backend.
-
-Los codigos del backend y el mensaje sugerido para el usuario:
-
-| Codigo del backend (`detail`) | Mensaje al usuario |
-|--------------------------------|---------------------|
-| `email_already_registered` | "Este email ya esta registrado. <a href='https://fabrios-app.onrender.com/login'>Iniciar sesion</a>" |
-| `invalid_email` | "Email invalido. Revisa el formato." |
-| `empresa_too_short` | "El nombre de empresa debe tener al menos 2 caracteres." |
-| `password_too_short` | "La contrasena debe tener al menos 8 caracteres." |
-| `industria_invalida` | "Industria no valida. Selecciona una opcion del menu." |
-| `empleados_invalido` | "Tamano de empresa no valido. Selecciona una opcion." |
-| `registration_closed` | "El registro esta temporalmente cerrado. Intenta mas tarde." |
-
-**Adicional:**
-- HTTP 429 (`too_many_registrations`): "Demasiados intentos desde tu IP. Espera 1 hora e intenta de nuevo."
-- HTTP 500 / network error: "Error de conexion. Revisa tu internet o intentalo en unos minutos."
-- Cualquier `detail` no listado: "Hubo un error con los datos. Revisalos e intenta de nuevo."
-
-#### 4. Pantalla de exito al registrarse (HTTP 200)
-
-El backend devuelve:
-```json
-{
-  "success": true,
-  "message": "Cuenta creada. Revise su email.",
-  "serial": "FABRI-XXXX-XXXX-XXXX",
-  "email_sent": true
-}
-```
-
-**Reemplazar el form** por una pantalla de exito que muestre:
-- Titulo grande: "Bienvenido a FabriOS"
-- Texto: "Tu cuenta esta lista. Tu numero de licencia:"
-- Serial en formato grande (mono, naranja, copiable): `FABRI-C272-0041-9215`
-- Texto: "Te mandamos las credenciales por email. Revisa tu casilla (y la carpeta de spam por las dudas)."
-- Boton primario: "Entrar a FabriOS" → linkea a `https://fabrios-app.onrender.com/login`
-- Boton secundario: "Avisame por WhatsApp" → linkea a `wa.me/000000000000?text=Hola%2C%20acabo%20de%20crear%20mi%20cuenta%20en%20FabriOS%20con%20serial%20...`
-
-Guardar en localStorage `lastSerial` para que si el usuario refresca la pagina, siga viendo el serial.
-
-#### 5. Validacion local
+#### 7. Validacion local
 
 - `python -m http.server 8000` y abrir `http://localhost:8000/empezar.html`
-- Inspeccionar el HTML rendereado: confirmar que las opciones de los selects tienen los `value=...` correctos.
-- Probar el form con datos validos (email unico, ej `test+YYYYMMDDhhmm@fabricontrol.online`, password 8+ caracteres).
 - Verificar:
-  - [ ] Submit exitoso devuelve 200 y muestra pantalla con serial real.
-  - [ ] Submit con email ya usado devuelve 400 con mensaje "Este email ya esta registrado".
-  - [ ] Submit con password de 7 caracteres devuelve mensaje "minimo 8 caracteres".
-  - [ ] El boton de submit muestra spinner / se deshabilita mientras espera.
-  - [ ] El select de industria solo tiene 6 opciones validas (sin "Otra").
-  - [ ] Los values de los selects van en minuscula sin tilde / guion corto.
+  - [ ] Form custom YA NO existe. No quedan inputs / selects / submit del registro.
+  - [ ] Hero con CTA grande naranja "Empezar gratis ahora" visible y centrado.
+  - [ ] Click en CTA primario y secundario abre `https://fabrios-app.onrender.com/register?ref=acceso-anticipado` en la MISMA pestana.
+  - [ ] Seccion "Todo el producto. Sin recortes." con 14 features visible.
+  - [ ] CTA secundario al final visible.
+  - [ ] Mobile viewport (414px) sin overflow, CTAs centrados, texto legible.
+  - [ ] Selector ES/EN/HE cambia el texto. Hebreo en RTL.
+  - [ ] Footer y header sin cambios.
+  - [ ] 0 errores JS en consola del browser.
 
-Si algun caso falla, debug y arreglar antes de cerrar tarea.
-
-#### 6. Commit local + reportar
+#### 8. Commit local + reportar
 
 ```bash
 git add -A
-git commit -m "fix: alinear form de empezar.html al contract del backend FabriOS
+git commit -m "feat: eliminar form custom de empezar.html, reemplazar por CTA al wizard de FabriOS
 
-- industria: 6 opciones con value en minuscula sin tilde, sacada 'Otra'
-- empleados: 5 opciones con value en guion corto sin tilde
-- Mapeo de 7 codigos error 400 + 429 + 500 con mensajes claros
-- Pantalla de exito muestra serial FABRI-XXXX-XXXX-XXXX devuelto por backend
-- Boton 'Entrar a FabriOS' linkea al login real"
+- Borrado form 11 campos + setupRegisterForm() de site.js
+- Hero con CTA grande -> https://fabrios-app.onrender.com/register
+- Seccion 'Todo el producto. Sin recortes.' con 14 features
+- CTA secundario al final
+- i18n ES/EN/HE de los strings nuevos
+- Limpieza de CSS huerfano del form viejo
+
+Decision: usar el wizard de FabriOS ya validado (198 tests E2E PASS) en vez de mantener un form custom. Captura whatsapp/cargo/pais/ciudad despues por WhatsApp en onboarding 1-a-1."
 ```
 
 NO push. Julio lo hace despues de validar.
@@ -186,76 +239,88 @@ NO push. Julio lo hace despues de validar.
 
 ```
 TAREA_ACTIVA: true
-SESION: form-fix-contract-backend-2026-05-03
+SESION: replace-form-with-cta-2026-05-03
 DEPLOY_PENDIENTE: true (Julio hace git push despues de validar)
 PUSH_INCLUYE: commits 01039c1 + 09d1aca + el de esta sesion (3 commits suben de una)
 SCREENSHOTS_LISTOS: false (otro Cowork los esta generando en paralelo)
 WHATSAPP_NUMERO: placeholder (Julio lo setea despues con su agente IA)
+RATE_LIMIT_BACKEND: posiblemente bloqueado por IP de Julio (testeo previo). Si Julio quiere registrarse, reiniciar backend en Render (Manual Deploy → Deploy latest commit).
 ```
 
 ### REGLAS DE LA SESION
 
 - Reportar EN ESTE ARCHIVO (seccion "REPORTAR AQUI"), no solo en chat.
-- Validar contra el endpoint REAL (no mockear) — el backend esta LIVE en Render.
-- Email de prueba unico cada vez (timestamp en el sufijo).
+- NO mantener compatibilidad con el form viejo. Eliminarlo limpio.
+- Validar visualmente con preview local antes de commit.
 - Tras cerrar la tarea, sobreescribir "SESION ACTUAL" con `## SESION CERRADA — [tema]` y dejar reporte completo en SESIONES ANTERIORES.
 
 ---
 
 ## REPORTAR AQUI (Claude Code escribe progreso)
 
-### Estado: COMPLETADO (6/6 pasos). Listo para git push.
+### Estado: COMPLETADO (8/8 pasos). Listo para git push.
 
-#### Paso 1: `<select id="industry">` ajustado ✅
-- 6 opciones validas con `value="..."` minuscula sin tilde: `metalurgia`, `alimentos`, `textil`, `plasticos`, `quimica`, `carpinteria`
-- **Eliminada opcion "Otra"** — backend la rechaza
-- Labels visibles preservan mayuscula y tilde para UX
+#### Paso 1: Form custom eliminado ✅
+- Borrada toda la seccion `.empezar-split` de `empezar.html` con sus 11 campos (name, email, phone-cc, phone, role, pw, pw2, company, country, city, industry, size, web)
+- Borrados indicadores de password strength, checkboxes de terminos, boton submit, mensajes de error y pantalla de exito custom
 
-#### Paso 2: `<select id="size">` ajustado ✅
-- 5 opciones con `value="..."` guion corto sin tilde: `1-5`, `6-15`, `16-30`, `31-50`, `Mas de 50`
-- Labels visibles preservan guion largo `–` y tilde para UX
+#### Paso 2: Hero con CTA principal ✅
+- Reemplazo: hero centrado con badge `PROGRAMA DE ACCESO ANTICIPADO`, h1 "6 meses gratis. Sin tarjeta. Sin compromiso.", lede, badge "REGISTRO ABIERTO"
+- CTA grande naranja `btn--primary btn--xl`: "Empezar gratis ahora →" → `https://fabrios-app.onrender.com/register?ref=acceso-anticipado` con `target="_self"`
+- Hint mono debajo: "Toma 60 segundos · Tu cuenta queda lista al instante · Recibís serial por email"
 
-#### Paso 3: Mapeo de errores en `assets/site.js` ✅
-- Constante `ERROR_MESSAGES` con 7 codigos backend + 429 + 500 + network + unknown
-- Funcion `mapErrorDetail(detail)` resuelve cada codigo a mensaje claro
-- `email_already_registered` incluye link HTML a `https://fabrios-app.onrender.com/login`
-- `showError` cambiado a `innerHTML` para soportar el link
+#### Paso 3: Seccion "Que incluye" ✅
+- Mantenida con misma lista de 14 features
+- Layout reescrito como `.features-list` grid 2-col desktop / 1-col mobile, check naranja antes de cada item
+- Quote card con testimonio movida a esta seccion
 
-#### Paso 4: Pantalla de exito reescrita ✅
-- HTML actualizado en `empezar.html`: titulo "Bienvenido a FabriOS" (h-1) + texto + serial box copiable (mono, naranja, `user-select:all`) + 2 botones
-- JS `showSuccess(form, serial, skipScroll)`: actualiza display del serial, pre-carga WA link con `Hola, acabo de crear mi cuenta en FabriOS con serial XXX`, guarda en `localStorage.lastSerial`
-- `setupRegisterForm` revisa `localStorage.lastSerial` al cargar — si existe, muestra success directo (persistencia post-refresh)
-- Boton "Entrar a FabriOS" → `fabrios-app.onrender.com/login`
-- Boton "Avisame por WhatsApp" → `wa.me/000000000000` con mensaje incluyendo serial
+#### Paso 4: CTA secundario al final ✅
+- Nueva seccion `.cta-final` antes del footer, fondo dark
+- "¿Listo para arrancar?" + "6 meses gratis. Sin tarjeta. 60 segundos." + boton XL al mismo wizard
 
-#### Paso 5: Validacion local ✅
-- `preview_eval` confirma 6 industry options + 5 size options con values exactos al contract
-- Mock fetch 200 con serial → pantalla exito muestra `FABRI-A1B2-C3D4-E5F6`, form oculto, WA con serial, localStorage guardado
-- Mock fetch 400 con `email_already_registered` → error box muestra mensaje correcto con link HTML
-- Refresh post-success: serial persiste, form oculto, success visible
+#### Paso 5: Limpieza de JS ✅
+- Borrado `setupRegisterForm()` completo de `assets/site.js`
+- Borrada constante `REGISTER_ENDPOINT`
+- Borradas `ERROR_MESSAGES`, `mapErrorDetail()`, `showSuccess()`, `showError()`
+- Quitada llamada a `setupRegisterForm()` del init
+- Agregado cleanup de `localStorage.lastSerial` (residuo de la sesion anterior)
+
+#### Paso 6: Limpieza de CSS ✅
+- `assets/empezar.css` reescrito: borradas `.empezar-form-card`, `.empezar-form-wrap`, `.pw-strength`, `.input.is-invalid`. Renombrado `.check-list` a `.features-list` con grid 2-col + RTL support.
+- `assets/styles.css`: borradas `.form-error` (huerfana), `.pw-strength` (huerfana). Preservadas `.input.is-invalid`, `.form-success`, `.checkbox.is-invalid` (compartidas con demo.html).
+
+#### Paso 7: i18n ES/EN/HE ✅
+- 11 strings nuevos agregados a los 3 diccionarios en `assets/site.js`:
+  - `empezar.badge`, `empezar.title`, `empezar.lede`, `empezar.status`
+  - `empezar.cta.primary`, `empezar.cta.hint`
+  - `empezar.includes.kicker`, `empezar.includes.title`
+  - `empezar.cta-final.title`, `empezar.cta-final.lede`, `empezar.cta-final.btn`
+- Atributos `data-i18n` aplicados a los 11 elementos correspondientes en `empezar.html`
+
+#### Paso 8: Validacion local ✅
+- preview_eval: form 100% eliminado (0 inputs, 0 selects, 0 textareas)
+- 2 CTAs apuntan a `fabrios-app.onrender.com/register?ref=acceso-anticipado` con `target="_self"`
+- 14 items en `.features-list`, `.cta-final` presente
+- ES → EN → HE: todos los strings cambian. Hebreo en RTL correcto.
+- demo.html intacto (form de demo sigue funcionando, 4 inputs + 3 selects + form-success accesible)
+- 9/9 paginas devuelven HTTP 200
 - 0 errores JS en consola
-- CORS contra endpoint real bloqueado desde localhost (esperable — solo fabricontrol.online esta permitido). Validacion final con datos reales sera post-deploy.
-
-#### Paso 6: BUGS_PENDIENTES.md actualizado + commit ✅
-- Bug del form marcado [HECHO] con detalle completo del fix
-- Commit local pendiente al final de este reporte. Sin push.
 
 ---
 
 > **Listo para deploy. Pasos para Julio:**
 > 1. `git status` — verificar working tree limpio
-> 2. `git push origin main` — sube los 3 commits acumulados (`01039c1` + `09d1aca` + el de esta sesion)
+> 2. `git push origin main` — sube **1 commit nuevo** (los 3 anteriores `01039c1`, `09d1aca`, `1fade26` ya fueron pusheados)
 > 3. Esperar ~3 min al GitHub Action: https://github.com/julito36911-collab/web-fabricontrol-2.0/actions
 > 4. Abrir `https://fabricontrol.online/empezar.html` en incognito (Ctrl+Shift+N), esperar ~5 min cache CDN
-> 5. **Smoke test del form** con datos reales:
->    - Email unico (`test+YYYYMMDDhhmm@fabricontrol.online`)
->    - Password 8+ caracteres
->    - Industry: cualquiera de las 6
->    - Size: cualquiera de las 5
->    - Submit → debe devolver 200 y mostrar pantalla con serial real
-> 6. Test de error 400: reusar el mismo email → debe mostrar "Este email ya esta registrado" con link a login
-> 7. **IMPORTANTE — limpieza manual en Hostinger** (de la sesion anterior, sigue valido):
->    - Si quedaron archivos del deploy anterior (`comparacion.html`, `documentacion.html`, etc.), borrarlos a mano del File Manager. El FTP-Deploy-Action solo agrega/actualiza, NO borra del servidor.
+> 5. **Smoke test del CTA**:
+>    - Click "Empezar gratis ahora →" → debe abrir el wizard de FabriOS en la misma pestana
+>    - Completar registro real desde el wizard
+>    - Volver a empezar.html (history back) → la pagina de marketing debe seguir intacta
+>    - Probar tambien el CTA final al pie de la pagina
+> 6. **Validacion mobile**: probar en mobile real o DevTools 414px — CTAs centrados, hero legible.
+> 7. **IMPORTANTE — limpieza manual en Hostinger** (sigue valido de sesiones anteriores):
+>    - Si quedaron archivos del deploy anterior, borrarlos del File Manager. El FTP-Deploy-Action solo agrega/actualiza, NO borra del servidor.
 
 ---
 

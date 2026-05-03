@@ -663,24 +663,14 @@ h1, h2, h3, h4 {
 }
 @keyframes sp { to { transform: rotate(360deg); } }
 
-/* Form invalid + error + success states */
+/* Form invalid state (used by demo form) */
 .input.is-invalid, .select.is-invalid, .textarea.is-invalid {
   border-color: #DC2626;
   box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.10);
 }
 .checkbox.is-invalid { color: #DC2626; }
 
-.form-error {
-  display: none;
-  background: #FEF2F2;
-  border: 1px solid #FECACA;
-  color: #B91C1C;
-  border-radius: var(--radius);
-  padding: 12px 14px;
-  font-size: 14px;
-  margin-bottom: var(--s-4);
-}
-
+/* Form success (used by demo form) */
 .form-success {
   display: none;
   background: linear-gradient(180deg, #ECFDF5 0%, #FFFFFF 100%);
@@ -701,14 +691,6 @@ h1, h2, h3, h4 {
 .form-success h3 { font-family: var(--f-headline); font-size: 24px; margin-bottom: var(--s-3); }
 .form-success p { color: var(--slate-600); max-width: 42ch; margin: 0 auto var(--s-5); }
 .form-success__actions { display: flex; gap: var(--s-3); justify-content: center; flex-wrap: wrap; }
-
-/* Password strength bars */
-.pw-strength { display: flex; gap: 4px; margin-top: 6px; }
-.pw-strength span {
-  flex: 1; height: 4px; border-radius: 2px;
-  background: var(--slate-200);
-  transition: background 200ms ease;
-}
 
 /* Lang switcher with flags */
 .lang button {

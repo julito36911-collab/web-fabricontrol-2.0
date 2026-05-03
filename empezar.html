@@ -55,186 +55,57 @@
   </div>
 </header>
 
-<!-- HERO -->
+<main id="main">
+
+<!-- HERO con CTA principal -->
 <section class="empezar-hero bg-dark">
   <div class="empezar-hero__bg" aria-hidden="true"></div>
-  <div class="container empezar-hero__inner">
-    <span class="eyebrow">PROGRAMA DE ACCESO ANTICIPADO</span>
-    <h1 class="h-display" style="margin-top:var(--s-4);color:var(--white)">6 meses gratis.<br>Sin tarjeta. Sin compromiso.</h1>
-    <p class="lede" style="margin-top:var(--s-5);max-width:64ch">FabriOS está en programa beta. Estamos sumando fábricas reales que quieran ser parte del producto desde el principio. A cambio: 6 meses de acceso completo gratis.</p>
+  <div class="container empezar-hero__inner" style="text-align:center">
+    <span class="eyebrow" data-i18n="empezar.badge">PROGRAMA DE ACCESO ANTICIPADO</span>
+    <h1 class="h-display" style="margin-top:var(--s-4);color:var(--white)" data-i18n="empezar.title">6 meses gratis.<br>Sin tarjeta. Sin compromiso.</h1>
+    <p class="lede" style="margin:var(--s-5) auto 0;max-width:64ch;color:var(--slate-300)" data-i18n="empezar.lede">FabriOS está en programa beta. Estamos sumando fábricas reales que quieran ser parte del producto desde el principio. A cambio: 6 meses de acceso completo gratis.</p>
     <div style="margin-top:var(--s-6)">
-      <span class="tag-pulse"><span class="tag-pulse__dot"></span>PROGRAMA ACTIVO · REGISTRO ABIERTO</span>
+      <span class="tag-pulse"><span class="tag-pulse__dot"></span><span data-i18n="empezar.status">PROGRAMA ACTIVO · REGISTRO ABIERTO</span></span>
     </div>
+    <div style="margin-top:var(--s-7)">
+      <a href="https://fabrios-app.onrender.com/register?ref=acceso-anticipado" class="btn btn--primary btn--xl" target="_self" data-i18n="empezar.cta.primary">Empezar gratis ahora →</a>
+    </div>
+    <p class="mono" style="font-size:12px;color:var(--slate-400);letter-spacing:0.04em;margin-top:var(--s-5)" data-i18n="empezar.cta.hint">Toma 60 segundos · Tu cuenta queda lista al instante · Recibís serial por email</p>
   </div>
 </section>
 
-<!-- 2-COL: Includes + Form -->
-<section class="empezar-split">
-  <div class="container empezar-split__inner">
-    <!-- LEFT: includes -->
-    <div class="empezar-includes reveal">
-      <span class="eyebrow eyebrow--orange">QUÉ INCLUYE TU ACCESO</span>
-      <h2 class="h-2" style="margin-top:var(--s-3)">Todo el producto. Sin recortes.</h2>
-      <ul class="check-list">
-        <li>Órdenes de producción ilimitadas</li>
-        <li>Inventario por lote con trazabilidad FIFO/FEFO</li>
-        <li>BOM multinivel con revisiones</li>
-        <li>Cotizaciones con PDF profesional</li>
-        <li>Códigos QR ilimitados</li>
-        <li>Control de calidad (IQC + IPQC + OQC)</li>
-        <li>Engineering Change Orders (ECO)</li>
-        <li>App móvil PWA offline</li>
-        <li>Asistente IA con 50 consultas/día</li>
-        <li>Multi-idioma (Español, Inglés, Hebreo)</li>
-        <li>Backup automático en Google Drive</li>
-        <li>Soporte WhatsApp 24/7 con asistente IA + humano en horario laboral</li>
-        <li>Usuarios ilimitados</li>
-        <li>Importador masivo desde Excel</li>
-      </ul>
-
-      <div class="quote-card">
-        <div class="quote-card__bar"></div>
-        <p>"Probamos FabriOS un sábado a la noche. El lunes ya estábamos cargando órdenes reales. No hubo una sola llamada de venta."</p>
-        <div class="quote-card__by">
-          <div class="quote-card__avatar">JM</div>
-          <div>
-            <div class="quote-card__name">Beta tester · Metalúrgica del sur</div>
-            <div class="mono" style="font-size:11px;color:var(--slate-500);letter-spacing:0.06em">CASO REAL · MARZO 2026</div>
-          </div>
-        </div>
-      </div>
+<!-- QUE INCLUYE -->
+<section class="section bg-light">
+  <div class="container container--narrow">
+    <div class="section-head section-head--center reveal">
+      <span class="eyebrow eyebrow--orange" data-i18n="empezar.includes.kicker">QUÉ INCLUYE TU ACCESO</span>
+      <h2 class="h-1" data-i18n="empezar.includes.title">Todo el producto. Sin recortes.</h2>
     </div>
+    <ul class="features-list reveal">
+      <li>Órdenes de producción ilimitadas</li>
+      <li>Inventario por lote con trazabilidad FIFO/FEFO</li>
+      <li>BOM multinivel con revisiones</li>
+      <li>Cotizaciones con PDF profesional</li>
+      <li>Códigos QR ilimitados</li>
+      <li>Control de calidad (IQC + IPQC + OQC)</li>
+      <li>Engineering Change Orders (ECO)</li>
+      <li>App móvil PWA offline</li>
+      <li>Asistente IA con 50 consultas/día</li>
+      <li>Multi-idioma (Español, Inglés, Hebreo)</li>
+      <li>Backup automático en Google Drive</li>
+      <li>Soporte WhatsApp 24/7 con asistente IA + humano en horario laboral</li>
+      <li>Usuarios ilimitados</li>
+      <li>Importador masivo desde Excel</li>
+    </ul>
 
-    <!-- RIGHT: form -->
-    <div class="empezar-form-wrap reveal">
-      <div class="empezar-form-card">
-        <div class="empezar-form-card__head">
-          <h2 class="h-2">Crear cuenta</h2>
-          <p style="color:var(--slate-600);margin-top:8px">Datos mínimos para crear tu licencia. Sin spam, sin llamadas no deseadas.</p>
-        </div>
-
-        <form data-register-form novalidate>
-          <div class="form-section">
-            <div class="form-section__title">— Sobre vos</div>
-            <div class="field-grid">
-              <div class="field field--full">
-                <label class="field__label" for="name">Nombre y apellido</label>
-                <input class="input" type="text" id="name" required placeholder="Ej: Julio Mirabal">
-              </div>
-              <div class="field field--full">
-                <label class="field__label" for="email">Email</label>
-                <input class="input" type="email" id="email" required placeholder="tu@empresa.com">
-              </div>
-              <div class="field field--full">
-                <label class="field__label" for="phone">WhatsApp</label>
-                <div class="input-group">
-                  <select class="select" id="phone-cc" required>
-                    <option>+54</option><option>+1</option><option>+34</option><option>+972</option><option>+55</option>
-                  </select>
-                  <input class="input" type="tel" id="phone" required placeholder="11 5555 5555">
-                </div>
-                <span class="field__hint">Es nuestro canal principal de soporte</span>
-              </div>
-              <div class="field field--full">
-                <label class="field__label" for="role">Cargo en la empresa</label>
-                <select class="select" id="role" required>
-                  <option value="">Seleccioná tu cargo…</option>
-                  <option>Dueño / Socio</option>
-                  <option>Gerente general</option>
-                  <option>Gerente de producción</option>
-                  <option>Encargado de planta</option>
-                  <option>Otro</option>
-                </select>
-              </div>
-              <div class="field">
-                <label class="field__label" for="pw">Contraseña</label>
-                <input class="input" type="password" id="pw" required placeholder="Mínimo 8 caracteres">
-                <div class="pw-strength"><span></span><span></span><span></span><span></span></div>
-              </div>
-              <div class="field">
-                <label class="field__label" for="pw2">Confirmar contraseña</label>
-                <input class="input" type="password" id="pw2" required>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-section">
-            <div class="form-section__title">— Sobre tu empresa</div>
-            <div class="field-grid">
-              <div class="field field--full">
-                <label class="field__label" for="company">Nombre o razón social</label>
-                <input class="input" type="text" id="company" required placeholder="Ej: Metalúrgica del Sur S.A.">
-              </div>
-              <div class="field">
-                <label class="field__label" for="country">País</label>
-                <select class="select" id="country" required>
-                  <option value="">Seleccioná…</option>
-                  <option>🇦🇷 Argentina</option>
-                  <option>🇲🇽 México</option>
-                  <option>🇨🇱 Chile</option>
-                  <option>🇨🇴 Colombia</option>
-                  <option>🇺🇾 Uruguay</option>
-                  <option>🇪🇸 España</option>
-                  <option>🇮🇱 Israel</option>
-                  <option>🇺🇸 Estados Unidos</option>
-                </select>
-              </div>
-              <div class="field">
-                <label class="field__label" for="city">Ciudad</label>
-                <input class="input" type="text" id="city" required placeholder="Ej: Rosario">
-              </div>
-              <div class="field">
-                <label class="field__label" for="industry">Industria</label>
-                <select class="select" id="industry" required>
-                  <option value="">Seleccioná…</option>
-                  <option value="metalurgia">Metalurgia</option>
-                  <option value="alimentos">Alimentos</option>
-                  <option value="textil">Textil</option>
-                  <option value="plasticos">Plásticos</option>
-                  <option value="quimica">Química</option>
-                  <option value="carpinteria">Carpintería</option>
-                </select>
-              </div>
-              <div class="field">
-                <label class="field__label" for="size">Empleados</label>
-                <select class="select" id="size" required>
-                  <option value="">Seleccioná…</option>
-                  <option value="1-5">1–5</option>
-                  <option value="6-15">6–15</option>
-                  <option value="16-30">16–30</option>
-                  <option value="31-50">31–50</option>
-                  <option value="Mas de 50">Más de 50</option>
-                </select>
-              </div>
-              <div class="field field--full">
-                <label class="field__label" for="web">Sitio web <span style="color:var(--slate-400);font-weight:400">(opcional)</span></label>
-                <input class="input" type="url" id="web" placeholder="https://...">
-              </div>
-            </div>
-          </div>
-
-          <div style="display:grid;gap:12px;margin-top:var(--s-5)">
-            <label class="checkbox"><input type="checkbox" required> Acepto los <a href="#" style="color:var(--orange);text-decoration:underline">términos</a> y la <a href="#" style="color:var(--orange);text-decoration:underline">política de privacidad</a></label>
-            <label class="checkbox"><input type="checkbox"> Quiero recibir tips y novedades por WhatsApp</label>
-          </div>
-
-          <button type="submit" class="btn btn--primary btn--xl" style="width:100%;margin-top:var(--s-5)">Crear mi licencia gratis →</button>
-
-          <p class="mono" style="font-size:11px;color:var(--slate-500);letter-spacing:0.04em;margin-top:var(--s-4);text-align:center">Te llega un email de bienvenida con tu serial. Podés entrar al sistema en menos de 60 segundos.</p>
-        </form>
-
-        <div class="form-success">
-          <div class="form-success__icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <h3 class="h-1" style="margin-top:var(--s-4)">Bienvenido a FabriOS</h3>
-          <p style="margin-top:var(--s-3)">Tu cuenta está lista. Tu número de licencia:</p>
-          <div class="serial-box mono" data-serial-display style="font-size:24px;color:var(--orange);background:rgba(249,115,22,0.08);border:1px solid rgba(249,115,22,0.3);border-radius:8px;padding:var(--s-4);margin:var(--s-4) 0;letter-spacing:0.06em;text-align:center;user-select:all;cursor:text">FABRI-XXXX-XXXX-XXXX</div>
-          <p>Te mandamos las credenciales por email. Revisá tu casilla (y la carpeta de spam por las dudas).</p>
-          <div class="form-success__actions" style="margin-top:var(--s-5)">
-            <a href="https://fabrios-app.onrender.com/login" class="btn btn--primary" target="_blank" rel="noopener">Entrar a FabriOS</a>
-            <a href="https://wa.me/000000000000?text=Hola%2C%20acabo%20de%20crear%20mi%20cuenta%20en%20FabriOS" class="btn btn--whatsapp-solid" target="_blank" rel="noopener" data-success-wa>Avisame por WhatsApp</a>
-          </div>
+    <div class="quote-card reveal" style="margin-top:var(--s-7)">
+      <div class="quote-card__bar"></div>
+      <p>"Probamos FabriOS un sábado a la noche. El lunes ya estábamos cargando órdenes reales. No hubo una sola llamada de venta."</p>
+      <div class="quote-card__by">
+        <div class="quote-card__avatar">JM</div>
+        <div>
+          <div class="quote-card__name">Beta tester · Metalúrgica del sur</div>
+          <div class="mono" style="font-size:11px;color:var(--slate-500);letter-spacing:0.06em">CASO REAL · MARZO 2026</div>
         </div>
       </div>
     </div>
@@ -348,7 +219,20 @@
       </div>
     </div>
   </div>
-</section></main>
+</section>
+
+<!-- CTA FINAL -->
+<section class="section bg-dark cta-final">
+  <div class="container" style="text-align:center">
+    <h2 class="h-1" style="color:var(--white)" data-i18n="empezar.cta-final.title">¿Listo para arrancar?</h2>
+    <p class="lede" style="color:var(--slate-300);margin-top:var(--s-4)" data-i18n="empezar.cta-final.lede">6 meses gratis. Sin tarjeta. 60 segundos.</p>
+    <div style="margin-top:var(--s-6)">
+      <a href="https://fabrios-app.onrender.com/register?ref=acceso-anticipado" class="btn btn--primary btn--xl" target="_self" data-i18n="empezar.cta-final.btn">Crear mi cuenta gratis →</a>
+    </div>
+  </div>
+</section>
+
+</main>
 <footer class="footer">
   <div class="container">
     <div class="footer__grid">

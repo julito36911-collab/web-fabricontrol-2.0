@@ -1,11 +1,10 @@
 // FabriControl — site-wide JS
 // Handles: i18n (ES/EN/HE + RTL), language persistence, header injection helpers,
-// WhatsApp widget animation, reveal-on-scroll, accordion, form validation,
-// real backend submission, video gallery + modal.
+// WhatsApp widget animation, reveal-on-scroll, accordion, demo form,
+// video gallery + modal.
 
 (() => {
   const WA_NUMBER = '000000000000';
-  const REGISTER_ENDPOINT = 'https://fabrios-api.onrender.com/api/register/';
 
   // ---------- i18n ----------
   const dictionaries = {
@@ -37,6 +36,17 @@
       'footer.privacy': 'Privacidad',
       'footer.cookies': 'Cookies',
       'footer.copy': '© 2026 FabriControl · Hecho con orgullo en Latinoamérica',
+      'empezar.badge': 'PROGRAMA DE ACCESO ANTICIPADO',
+      'empezar.title': '6 meses gratis. Sin tarjeta. Sin compromiso.',
+      'empezar.lede': 'FabriOS está en programa beta. Estamos sumando fábricas reales que quieran ser parte del producto desde el principio. A cambio: 6 meses de acceso completo gratis.',
+      'empezar.status': 'PROGRAMA ACTIVO · REGISTRO ABIERTO',
+      'empezar.cta.primary': 'Empezar gratis ahora →',
+      'empezar.cta.hint': 'Toma 60 segundos · Tu cuenta queda lista al instante · Recibís serial por email',
+      'empezar.includes.kicker': 'QUÉ INCLUYE TU ACCESO',
+      'empezar.includes.title': 'Todo el producto. Sin recortes.',
+      'empezar.cta-final.title': '¿Listo para arrancar?',
+      'empezar.cta-final.lede': '6 meses gratis. Sin tarjeta. 60 segundos.',
+      'empezar.cta-final.btn': 'Crear mi cuenta gratis →',
     },
     en: {
       'nav.home': 'Home',
@@ -66,6 +76,17 @@
       'footer.privacy': 'Privacy',
       'footer.cookies': 'Cookies',
       'footer.copy': '© 2026 FabriControl · Built with pride in Latin America',
+      'empezar.badge': 'EARLY ACCESS PROGRAM',
+      'empezar.title': '6 months free. No credit card. No strings attached.',
+      'empezar.lede': 'FabriOS is in beta. We are onboarding real factories that want to shape the product from the start. In return: 6 months of full access, free.',
+      'empezar.status': 'PROGRAM ACTIVE · REGISTRATION OPEN',
+      'empezar.cta.primary': 'Get started free →',
+      'empezar.cta.hint': 'Takes 60 seconds · Your account is ready instantly · Serial sent by email',
+      'empezar.includes.kicker': "WHAT'S INCLUDED",
+      'empezar.includes.title': 'The full product. No cuts.',
+      'empezar.cta-final.title': 'Ready to start?',
+      'empezar.cta-final.lede': '6 months free. No credit card. 60 seconds.',
+      'empezar.cta-final.btn': 'Create my free account →',
     },
     he: {
       'nav.home': 'דף הבית',
@@ -95,6 +116,17 @@
       'footer.privacy': 'פרטיות',
       'footer.cookies': 'עוגיות',
       'footer.copy': '© 2026 FabriControl · נבנה בגאווה באמריקה הלטינית',
+      'empezar.badge': 'תוכנית גישה מוקדמת',
+      'empezar.title': '6 חודשים חינם. בלי כרטיס אשראי. בלי התחייבות.',
+      'empezar.lede': 'FabriOS נמצא בבטא. אנו מצרפים מפעלים אמיתיים שרוצים להיות חלק מהמוצר מההתחלה. בתמורה: 6 חודשי גישה מלאה, חינם.',
+      'empezar.status': 'התוכנית פעילה · הרישום פתוח',
+      'empezar.cta.primary': 'התחל בחינם עכשיו →',
+      'empezar.cta.hint': 'לוקח 60 שניות · החשבון שלך מוכן מיד · קבל סיריאל באימייל',
+      'empezar.includes.kicker': 'מה כלול בגישה שלך',
+      'empezar.includes.title': 'המוצר השלם. בלי קיצוצים.',
+      'empezar.cta-final.title': 'מוכן להתחיל?',
+      'empezar.cta-final.lede': '6 חודשים חינם. בלי כרטיס אשראי. 60 שניות.',
+      'empezar.cta-final.btn': 'צור את החשבון שלי בחינם →',
     },
   };
 
@@ -171,174 +203,9 @@
   }
 
   // ---------- Forms ----------
-  function setupRegisterForm() {
-    const form = document.querySelector('form[data-register-form]');
-    if (!form) return;
-
-    const pwInput = form.querySelector('#pw');
-    const pwBars = form.querySelectorAll('.pw-strength span');
-    if (pwInput && pwBars.length) {
-      pwInput.addEventListener('input', () => {
-        const v = pwInput.value;
-        let s = 0;
-        if (v.length >= 8) s++;
-        if (/[A-Z]/.test(v) && /[a-z]/.test(v)) s++;
-        if (/\d/.test(v)) s++;
-        if (/[^A-Za-z0-9]/.test(v) || v.length >= 12) s++;
-        pwBars.forEach((b, i) => {
-          b.style.background = i < s
-            ? (s <= 1 ? '#DC2626' : s === 2 ? '#F97316' : s === 3 ? '#EAB308' : '#22C55E')
-            : 'var(--slate-200)';
-        });
-      });
-    }
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const required = form.querySelectorAll('[required]');
-      let valid = true;
-      required.forEach(el => {
-        const ok = el.type === 'checkbox' ? el.checked : !!el.value.trim();
-        el.classList.toggle('is-invalid', !ok);
-        if (!ok) valid = false;
-      });
-      // Email check
-      const email = form.querySelector('#email');
-      if (email && email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-        email.classList.add('is-invalid'); valid = false;
-      }
-      // Phone min 10 digits
-      const phone = form.querySelector('#phone');
-      if (phone && phone.value.replace(/\D/g, '').length < 10) {
-        phone.classList.add('is-invalid'); valid = false;
-      }
-      // Password match
-      const pw = form.querySelector('#pw');
-      const pw2 = form.querySelector('#pw2');
-      if (pw && pw2 && pw.value !== pw2.value) {
-        pw2.classList.add('is-invalid'); valid = false;
-      }
-      // Min length
-      if (pw && pw.value.length < 8) { pw.classList.add('is-invalid'); valid = false; }
-
-      const errBox = form.querySelector('.form-error');
-      if (errBox) errBox.style.display = 'none';
-
-      if (!valid) return;
-
-      const payload = {
-        nombre: form.querySelector('#name')?.value || '',
-        email: email?.value || '',
-        whatsapp: (form.querySelector('#phone-cc')?.value || '') + ' ' + (phone?.value || ''),
-        cargo: form.querySelector('#role')?.value || '',
-        password: pw?.value || '',
-        empresa: form.querySelector('#company')?.value || '',
-        pais: form.querySelector('#country')?.value || '',
-        ciudad: form.querySelector('#city')?.value || '',
-        industria: form.querySelector('#industry')?.value || '',
-        empleados: form.querySelector('#size')?.value || '',
-        sitio_web: form.querySelector('#web')?.value || '',
-      };
-
-      const submitBtn = form.querySelector('button[type=submit]');
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.dataset.originalText = submitBtn.textContent;
-        submitBtn.innerHTML = '<span class="spinner"></span> Creando tu licencia…';
-      }
-
-      try {
-        const res = await fetch(REGISTER_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-        if (res.ok) {
-          let serial = '';
-          try { const j = await res.json(); serial = j.serial || ''; } catch(_) {}
-          showSuccess(form, serial);
-        } else if (res.status === 400) {
-          let detail = '';
-          try { const j = await res.json(); detail = j.detail || j.error || ''; } catch(_) {}
-          showError(form, mapErrorDetail(detail));
-        } else if (res.status === 429) {
-          showError(form, ERROR_MESSAGES.too_many_registrations);
-        } else if (res.status >= 500) {
-          showError(form, ERROR_MESSAGES.server_error);
-        } else {
-          showError(form, ERROR_MESSAGES.unknown);
-        }
-      } catch (err) {
-        showError(form, ERROR_MESSAGES.network);
-      } finally {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = submitBtn.dataset.originalText || 'Crear mi licencia gratis →';
-        }
-      }
-    });
-
-    form.querySelectorAll('input, select, textarea').forEach(el => {
-      el.addEventListener('input', () => el.classList.remove('is-invalid'));
-      el.addEventListener('change', () => el.classList.remove('is-invalid'));
-    });
-
-    // Restore success screen if user refreshed after a successful registration
-    const lastSerial = localStorage.getItem('lastSerial');
-    if (lastSerial) showSuccess(form, lastSerial, /*skipScroll*/ true);
-  }
-
-  // Map backend error codes to user-friendly messages
-  const ERROR_MESSAGES = {
-    email_already_registered: 'Este email ya está registrado. <a href="https://fabrios-app.onrender.com/login" target="_blank" rel="noopener" style="color:var(--orange);text-decoration:underline">Iniciar sesión</a>',
-    invalid_email: 'Email inválido. Revisá el formato.',
-    empresa_too_short: 'El nombre de empresa debe tener al menos 2 caracteres.',
-    password_too_short: 'La contraseña debe tener al menos 8 caracteres.',
-    industria_invalida: 'Industria no válida. Seleccioná una opción del menú.',
-    empleados_invalido: 'Tamaño de empresa no válido. Seleccioná una opción.',
-    registration_closed: 'El registro está temporalmente cerrado. Intentá más tarde.',
-    too_many_registrations: 'Demasiados intentos desde tu IP. Esperá 1 hora e intentá de nuevo.',
-    server_error: 'Error del servidor. Intentalo en unos minutos o escribinos por WhatsApp.',
-    network: 'Error de conexión. Revisá tu internet o intentalo en unos minutos.',
-    unknown: 'Hubo un error con los datos. Revisalos e intentá de nuevo.',
-  };
-
-  function mapErrorDetail(detail) {
-    if (!detail) return ERROR_MESSAGES.unknown;
-    return ERROR_MESSAGES[detail] || ERROR_MESSAGES.unknown;
-  }
-
-  function showSuccess(form, serial, skipScroll) {
-    const wrap = form.closest('.empezar-form-card') || form.parentElement;
-    const success = wrap?.querySelector('.form-success');
-    if (!success) return;
-
-    if (serial) {
-      try { localStorage.setItem('lastSerial', serial); } catch(_) {}
-      const display = success.querySelector('[data-serial-display]');
-      if (display) display.textContent = serial;
-      // Pre-fill WhatsApp link with serial
-      const waBtn = success.querySelector('[data-success-wa]');
-      if (waBtn) {
-        const msg = encodeURIComponent(`Hola, acabo de crear mi cuenta en FabriOS con serial ${serial}`);
-        waBtn.href = `https://wa.me/${WA_NUMBER}?text=${msg}`;
-      }
-    }
-
-    form.style.display = 'none';
-    success.style.display = 'block';
-    if (!skipScroll) success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
-  function showError(form, msg) {
-    let box = form.querySelector('.form-error');
-    if (!box) {
-      box = document.createElement('div');
-      box.className = 'form-error';
-      form.insertBefore(box, form.querySelector('button[type=submit]'));
-    }
-    box.innerHTML = msg;
-    box.style.display = 'block';
-  }
+  // (Register form removed — empezar.html now redirects to fabrios-app.onrender.com/register wizard.
+  //  Cleared old leftover localStorage from previous form-based flow.)
+  try { localStorage.removeItem('lastSerial'); } catch(_) {}
 
   // Demo form (simple, no backend)
   function setupDemoForm() {
@@ -577,7 +444,6 @@
     setupLangSwitcher();
     setupReveal();
     setupAccordion();
-    setupRegisterForm();
     setupDemoForm();
     setupVideos();
     setupMenu();

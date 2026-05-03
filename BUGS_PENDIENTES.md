@@ -69,7 +69,25 @@ Si no se puede arreglar (bug del navegador, decision de diseño, etc.):
 
 <!-- Bugs nuevos van debajo de esta linea -->
 
-## [HECHO] Form de empezar.html tiene 3 mismatches con contract del backend
+## [HECHO] Eliminar form custom de empezar.html, reemplazar por CTA al wizard de FabriOS
+- Sev: ALTA (decision arquitectonica)
+- Area: Empezar
+- URL: empezar.html + assets/site.js + assets/empezar.css + assets/styles.css
+
+**Fix**: Form custom de 11 campos eliminado completamente. Reemplazado por:
+- Hero con CTA grande naranja "Empezar gratis ahora →" → `https://fabrios-app.onrender.com/register?ref=acceso-anticipado` (`target="_self"`)
+- Seccion "Todo el producto. Sin recortes." con 14 features en grid 2-col / 1-col mobile
+- CTA secundario "Crear mi cuenta gratis →" al final, mismo destino
+- i18n trilingue ES/EN/HE de los 11 strings nuevos (`empezar.badge`, `empezar.title`, `empezar.lede`, `empezar.status`, `empezar.cta.primary`, `empezar.cta.hint`, `empezar.includes.kicker`, `empezar.includes.title`, `empezar.cta-final.title`, `empezar.cta-final.lede`, `empezar.cta-final.btn`)
+- JS: borrada funcion `setupRegisterForm()` completa, constante `REGISTER_ENDPOINT`, `ERROR_MESSAGES`, `mapErrorDetail()`, `showSuccess()`, `showError()`, llamada al init. Cleanup de `localStorage.lastSerial`.
+- CSS: borradas reglas huerfanas (`.form-error`, `.pw-strength`, `.empezar-form-card`, `.empezar-form-wrap`). Preservadas las compartidas con demo.html (`.input.is-invalid`, `.form-success`, `.checkbox.is-invalid`).
+- Agregada `.features-list` con grid 2-col + RTL support en empezar.css
+
+**Validacion**: preview local OK. Form 100% eliminado (0 inputs/selects/textareas). 2 CTAs apuntan al wizard correctamente con target=_self. ES/EN/HE funcionan + RTL hebreo OK. demo.html sigue funcionando (form intacto). 9/9 paginas HTTP 200. 0 errores JS.
+
+**Decision de fondo**: usar el wizard de FabriOS ya validado (198 tests E2E PASS) en vez de mantener un form custom. Captura whatsapp/cargo/pais/ciudad despues por WhatsApp en onboarding 1-a-1.
+
+### Issues originalmente reportados (ya no aplican):
 - Sev: ALTA (bloquea registros reales)
 - Area: Empezar (form de registro)
 - URL: empezar.html + assets/site.js
