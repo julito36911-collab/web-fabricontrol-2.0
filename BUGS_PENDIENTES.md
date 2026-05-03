@@ -131,5 +131,26 @@ Si no se puede arreglar (bug del navegador, decision de diseño, etc.):
 - Area: estructura del repo
 - URL: C:\web-fabricontrol-2.0\
 
-**Fix**: (1) `frontend/` renombrado a `frontend-react-legacy/` como backup. (2) Web nueva copiada de `fabricontrol_web_v1/` a raiz del repo (sin `uploads/`). (3) `.github/workflows/deploy.yml` simplificado para FTP directo sin npm install/build. (4) Sitemap actualizado con 9 paginas.
-**Validacion**: repo sirve HTML estatico directo, deploy.yml apunta a raiz.
+**Fix sesion 1**: (1) `frontend/` renombrado a `frontend-react-legacy/` como backup. (2) Web nueva copiada de `fabricontrol_web_v1/` a raiz del repo (sin `uploads/`). (3) `.github/workflows/deploy.yml` simplificado para FTP directo sin npm install/build. (4) Sitemap actualizado con 9 paginas.
+**Fix sesion 2**: Cleanup de archivos legacy en raiz completado (ver bug siguiente).
+**Validacion**: raiz solo con archivos de la web nueva + `frontend-react-legacy/` como backup.
+
+## [HECHO] Archivos y carpetas legacy del React build viejo en raiz del repo
+- Sev: ALTA
+- Area: estructura del repo / SEO
+- URL: C:\web-fabricontrol-2.0\
+
+**Fix**: Borrados 3 archivos (`comparacion.html`, `documentacion.html`, `asset-manifest.json`) y 9 carpetas (`assets/css/`, `assets/img/`, `assets/js/`, `audio/`, `static/`, `productos/`, `en/`, `he/`, `_old_recursos/`). `frontend-react-legacy/` preservado como backup.
+**Validacion**: `ls assets/` muestra solo archivos del nuevo diseno. Legacy files devuelven 404 en preview local.
+
+## [HECHO] terminos.html / privacidad.html / cookies.html: contenido contradice modelo beta
+- Sev: ALTA
+- Area: Legal
+- URL: terminos.html, privacidad.html, cookies.html
+
+**Fix**: Reescritas las 3 paginas legales desde cero, adaptadas al modelo beta:
+- `terminos.html`: 7 secciones (Aceptacion, Acceso Anticipado 6 meses gratis, Licencia, Propiedad datos, Confidencialidad, Limitacion responsabilidad, Cancelacion/Jurisdiccion). Cero menciones a precios/suscripcion anual.
+- `privacidad.html`: 5 secciones (Datos recopilados incl. WhatsApp, Uso, Almacenamiento Render+MongoDB Atlas multi-tenant+Google Drive backup, Control acceso con audit log, Derechos GDPR).
+- `cookies.html`: 4 secciones (Que es cookie, Tecnicas+preferencias+analiticas futuro, Control por navegador, Contacto). Sin tracking publicitario.
+- Las 3 trilingues ES/EN/HE con `data-lang` bloques. Fecha actualizada a 3 mayo 2026.
+**Validacion**: preview local OK, selector idiomas funciona, 0 errores JS, grep confirma 0 menciones a suscripcion/anual/precios/USD.

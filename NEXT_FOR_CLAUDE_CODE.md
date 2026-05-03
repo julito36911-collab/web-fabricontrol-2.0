@@ -9,7 +9,7 @@
 
 ## PERMISOS PERMANENTES PARA CLAUDE CODE EN ESTE PROYECTO
 
-Sos developer en el repo `C:\web-fabricontrol-2.0\` (sitio web marketing FabriControl, deploy a Hostinger fabricontrol.online via File Manager manual).
+Sos developer en el repo `C:\web-fabricontrol-2.0\` (sitio web marketing FabriControl, deploy a Hostinger fabricontrol.online via GitHub Actions auto-deploy).
 
 **Tenes permiso para hacer SIN pedir confirmacion:**
 - Cualquier comando git **excepto push** (status, add, commit, diff, log)
@@ -23,14 +23,14 @@ Sos developer en el repo `C:\web-fabricontrol-2.0\` (sitio web marketing FabriCo
 - Leer cualquier archivo (incluyendo `C:\Users\julit\fabri control\*`)
 
 **NO podes (siempre parar y pedir confirmacion):**
-- Borrar archivos (rm -rf, del, Remove-Item)
+- Borrar archivos (rm -rf, del, Remove-Item) — **excepto** los listados explicitamente en la SESION ACTUAL como autorizados
 - Editar `.env`, `secrets/`, `credentials/`, `.claude/*`
-- `git push` (deploy es manual via Hostinger File Manager)
+- `git push` (deploy se gatilla cuando Julio hace `git push` desde su terminal)
 - ftp, sftp, scp, ssh, rsync (deploy)
 - curl HTTPS a sitios externos
 - wget
 
-**Deploy en este proyecto NO es automatico**. Despues de cambios, Julio sube los archivos a Hostinger via File Manager o FTP. Claude Code solo modifica archivos locales y commitea (sin push).
+**Deploy en este proyecto es AUTOMATICO via GitHub Actions**. Cuando Julio hace `git push origin main` desde su terminal, se gatilla el workflow `.github/workflows/deploy.yml` que sube el contenido del repo (con exclusiones) por FTP al `/public_html/` de Hostinger. Claude Code commitea pero NO pushea — el push lo hace Julio para tener control de cada deploy.
 
 **Antes de arrancar cualquier tarea, leete:**
 1. `WORKFLOW_OFICIAL.md` (manual del workflow)
@@ -41,313 +41,223 @@ Sos developer en el repo `C:\web-fabricontrol-2.0\` (sitio web marketing FabriCo
 
 ---
 
-## SESION ACTUAL — Reemplazo total de la web por nuevo diseno HTML estatico
+## SESION ACTUAL — Cleanup pre-deploy + correccion legales
 
-Julio le pidio a Claude Design un rediseno completo de `fabricontrol.online`. El diseno esta listo (HTML estatico puro, 6 paginas, multi-idioma ES/EN/HE) y hay que integrarlo a este repo, aplicar correcciones, sumar contenido nuevo sobre FabriOS, y dejar todo listo para que Julio suba a Hostinger.
+La integracion del nuevo diseno (sesion anterior, commit `01039c1`) quedo lista pero hay 2 cosas a arreglar antes de hacer push para que el auto-deploy de Hostinger sea limpio:
+
+1. **Archivos y carpetas legacy del React build viejo** quedaron en raiz mezclados con la web nueva. Si se hace push asi, se suben a Hostinger y conviven con la web nueva (riesgo SEO, links rotos, contenido contradictorio).
+2. **`terminos.html`** tiene contenido del React viejo que habla de "Suscripcion Anual" y "pagina de Precios" — incompatible con el modelo actual (beta privada, 6 meses gratis sin tarjeta, NO mostrar precios). Tambien revisar `privacidad.html` y `cookies.html` por las dudas.
 
 ### Contexto
 
-**Que es:** la web de la EMPRESA FabriControl (`fabricontrol.online`) que presenta su producto principal **FabriOS** (ERP industrial). NO confundir empresa con producto. Otros futuros productos: FabriSense, etc.
+**Modelo de negocio actual:** programa de Acceso Anticipado / Beta, **6 meses gratis sin tarjeta**, NO mostrar precios. Buscamos **5 a 8 fabricas piloto**. Despues del beta, "precio de fundador" especial.
 
-**Estado del producto FabriOS:** beta privada, pre-revenue, 22 modulos del usuario, multi-tenant, multi-idioma ES/EN/HE, app movil PWA offline. App desplegada en `https://fabrios-app.onrender.com`.
-
-**Modelo:** programa de Acceso Anticipado, **6 meses gratis sin tarjeta**. NO mostrar precios en la web. Buscamos **5 a 8 fabricas piloto**.
-
-**Archivos clave a leer ANTES de empezar:**
-1. `C:\web-fabricontrol-2.0\WORKFLOW_OFICIAL.md` — manual del workflow (frases cortas, no push, deploy manual)
-2. `C:\Users\julit\fabri control\web-fabricontrol\CONTEXTO_WEB_FABRICONTROL.md` — fuente de verdad del proyecto web (jerarquia empresa/producto, paleta, tipografias, estructura, modelo de negocio)
-3. `C:\web-fabricontrol-2.0\BUGS_PENDIENTES.md` — issues identificados durante la revision del HTML nuevo
-4. Este archivo (NEXT_FOR_CLAUDE_CODE.md)
-
-**Ubicacion de los archivos:**
-| Que | Donde |
-|-----|-------|
-| Repo local actual (web vieja React) | `C:\web-fabricontrol-2.0\` |
-| Web nueva HTML estatica descomprimida | `C:\Users\julit\fabri control\web-fabricontrol\fabricontrol_web_v1\` |
-| Zip original (backup) | `C:\Users\julit\fabri control\web-fabricontrol\fabricontrol web.zip` |
-| Screenshots de FabriOS (PENDIENTES, los toma otro Cowork) | `C:\Users\julit\fabri control\web-fabricontrol\screenshots_fabrios\` |
-| Endpoint registro (ya cableado en empezar.html) | `POST https://fabrios-api.onrender.com/api/register/` |
+**Decision sobre deploy:** queremos auto-deploy. Cuando Julio haga `git push origin main`, GitHub Actions sube a Hostinger automaticamente. Claude Code prepara todo, commitea, y deja avisado a Julio que tiene que hacer `git push`.
 
 ### TAREA
 
-Integrar la web nueva al repo, aplicar correcciones, sumar contenido nuevo, validar y dejar lista para deploy manual. **NO hacer git push. NO hacer FTP/SCP. Deploy lo hace Julio manual via Hostinger File Manager.**
+#### 1. PERMISO PUNTUAL DE BORRADO (autorizado por Cowork)
 
-#### 1. Backup del frontend React viejo
-- Renombrar `frontend/` a `frontend-react-legacy/`. NO borrar — vamos a reusar contenido (Terms, Privacy).
+Para esta sesion, Claude Code esta **autorizado a borrar** los siguientes archivos y carpetas del raiz del repo (NO del backup `frontend-react-legacy/`):
 
-#### 2. Migrar la web nueva al repo
-- Copiar TODO de `C:\Users\julit\fabri control\web-fabricontrol\fabricontrol_web_v1\` al raiz del repo, EXCEPTO la subcarpeta `uploads/` (que tiene basura del proceso de Claude Design — ignorala).
-- Estructura objetivo en raiz del repo:
-  ```
-  index.html
-  industrias.html
-  aprende.html
-  empezar.html
-  demo.html
-  contacto.html
-  terminos.html        ← crear (paso 5)
-  privacidad.html      ← crear (paso 5)
-  cookies.html         ← crear (paso 5)
-  robots.txt
-  sitemap.xml
-  videos.json
-  assets/
-    styles.css
-    home.css
-    industrias.css
-    empezar.css
-    demo.css
-    contacto.css
-    site.js
-    app.js
-    favicon.svg
-    og-default.png        ← generar (paso 4)
-    apple-touch-icon.png  ← generar (paso 4)
-    screenshots/          ← se llena cuando lleguen los screenshots
-  ```
-- Verificar que NO haya conflictos con archivos en raiz que vienen del React buildeado viejo (por ejemplo `index.html` viejo). Sobreescribir con la version nueva.
+**Archivos:**
+- `comparacion.html`
+- `documentacion.html`
+- `asset-manifest.json`
 
-#### 3. GitHub Action de deploy
-- Revisar `.github/workflows/deploy.yml`. Si existe y ejecuta `npm install` o `npm run build`, **simplificarlo** para que solo haga FTP del raiz al `/public_html/` de Hostinger SIN buildear (porque ya no hay React).
-- Si no querés tocarlo, bloqueado y pedir confirmacion antes de modificar el workflow.
-- IMPORTANTE: aunque el workflow se ajuste, NO ejecutar `git push` desde Claude Code. Julio sube manual.
+**Carpetas (con todo su contenido):**
+- `assets/css/`
+- `assets/img/`
+- `assets/js/`
+- `audio/`
+- `static/`
+- `productos/`
+- `en/` (era el contenido EN del React viejo)
+- `he/` (era el contenido HE del React viejo)
+- `_old_recursos/`
 
-#### 4. Generar imagenes faltantes
-- `assets/og-default.png` — 1200x630 px, fondo `#0F172A`, letra "F" naranja `#F97316` grande centrada + texto "FabriControl" debajo en blanco. Generar con Pillow / ImageMagick / similar.
-- `assets/apple-touch-icon.png` — 180x180 px, fondo `#0F172A`, solo la "F" naranja `#F97316` centrada.
+**NO borrar** (importante):
+- `frontend-react-legacy/` — es el backup completo del React viejo, queda como referencia.
+- Archivos en `assets/` que NO sean los 3 directorios listados (ej: `styles.css`, `home.css`, `site.js`, etc. — todos los del nuevo diseno).
+- Cualquier otro `.html`, `.css`, `.js` que no este listado arriba.
 
-#### 5. Crear paginas legales (Terminos, Privacidad, Cookies)
-- Reusar contenido de:
-  - `frontend-react-legacy/src/pages/TermsAndConditions.js`
-  - `frontend-react-legacy/src/pages/PrivacyPolicy.js`
-- Para **cookies** no hay archivo viejo: generar contenido basico (cookies de navegacion + analytics genericos). Mantener simple.
-- Cada uno debe usar el **mismo header, footer, CSS y JS** que el resto. Copiar la estructura de `contacto.html` y reemplazar solo el `<main>`.
-- Soportar i18n ES/EN/HE (tres versiones del texto, usando el sistema `data-i18n` ya existente o copiando los 3 idiomas en bloques con `data-lang-block`).
-- Sumar al `sitemap.xml`:
-  ```xml
-  <url><loc>https://fabricontrol.online/terminos</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://fabricontrol.online/privacidad</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://fabricontrol.online/cookies</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  ```
+Confirmar el borrado con `git status` antes de commitear.
 
-#### 6. Footer — limpieza y fix de links
-En el `<footer>` de TODAS las paginas (incluidas las 3 legales nuevas):
+#### 2. Reescribir paginas legales adaptadas al modelo beta
 
-**6.1 Columna "Empresa":** dejar SOLO "Contacto". Eliminar "Sobre nosotros" y "Blog".
+Las paginas `terminos.html`, `privacidad.html`, `cookies.html` que se crearon en la sesion anterior reusaron contenido del React viejo. **Esto introduce contradicciones legales** porque hablan de "Suscripcion Anual", "pagina de Precios", etc.
 
-**6.2 Columna "Legal":** linkear las paginas legales reales:
-```html
-<li><a href="terminos.html" data-i18n="footer.terms">Terminos</a></li>
-<li><a href="privacidad.html" data-i18n="footer.privacy">Privacidad</a></li>
-<li><a href="cookies.html" data-i18n="footer.cookies">Cookies</a></li>
+**Reescribir las 3 paginas** desde cero (o ajustar las existentes) para reflejar el modelo actual:
+
+**`terminos.html` debe decir:**
+- FabriControl es la EMPRESA. FabriOS es su producto principal en programa de Acceso Anticipado.
+- Durante la beta, el uso es **gratuito por 6 meses**, sin tarjeta de credito requerida.
+- Despues de los 6 meses, el cliente puede:
+  - Adherir al "precio de fundador" (no especificar monto — dice "consultar")
+  - Exportar todos sus datos y dar de baja sin penalidad.
+- NO mencionar planes anuales, mensuales, ni montos especificos.
+- NO mencionar "pagina de Precios" — esa pagina no existe.
+- Mantener clausulas estandar: aceptacion, propiedad de datos del cliente (siempre del cliente, FabriControl solo procesa), confidencialidad, limitacion de responsabilidad, jurisdiccion (a definir por Julio — sugerir Argentina o Israel).
+- Tono profesional pero accesible. Que un dueno de fabrica lo lea y entienda.
+- 5-7 secciones. No mas largo que 1.000 palabras por idioma.
+- Trilingue ES / EN / HE con `data-i18n` o bloques separados igual que las demas paginas.
+
+**`privacidad.html` debe decir:**
+- Que datos recolectamos: nombre, email, WhatsApp, cargo, datos empresa, IP de acceso, logs de uso.
+- Para que: dar el servicio, soporte, comunicacion comercial sobre FabriOS y futuros productos de FabriControl.
+- Donde se almacenan: servidores Render (US) + MongoDB Atlas. Los datos del cliente (productos, ordenes, BOM) viven en su propio tenant aislado.
+- Backup automatico diario al Google Drive del cliente (si lo conecta) — los datos son del cliente.
+- Quien accede: solo equipo de FabriControl autorizado, con audit log.
+- Derechos del usuario: acceso, rectificacion, eliminacion (GDPR + ley argentina/israeli segun jurisdiccion).
+- Cookies: ver `cookies.html`.
+- Cambios a la politica: aviso con 30 dias de anticipacion.
+- 4-5 secciones. No mas largo que 800 palabras por idioma.
+- Trilingue.
+
+**`cookies.html` debe decir:**
+- Que es una cookie (1 parrafo simple).
+- Cookies que usamos: tecnicas (sesion, login), analiticas (si hay GA o Plausible — preguntarle a Julio), de preferencias (idioma seleccionado).
+- NO usamos cookies de tracking publicitario de terceros.
+- Como gestionar/borrar cookies en cada navegador (1 parrafo + links genericos).
+- Trilingue.
+
+**Estructura HTML de las 3 paginas:** copiar el header, footer, CSS y JS de `contacto.html`. Reemplazar SOLO el `<main>` con el contenido nuevo.
+
+#### 3. Verificar el `.github/workflows/deploy.yml` para auto-deploy limpio
+
+Despues del cleanup del paso 1, el deploy.yml debe estar bien armado para el push. Verificar:
+
+- Que NO incluya en el upload nada que ya no exista (los archivos borrados del paso 1 ya no estaran).
+- Que las exclusiones que ya estan se mantengan: `frontend-react-legacy/**`, `node_modules/**`, los `.md` de workflow, `backend/**`, `tests/**`, etc.
+- **Sumar `local-dir-files-only: false`** si no esta, para que suba todo el contenido de raiz (excepto exclusiones).
+- Confirmar que los GitHub secrets `FTP_HOST`, `FTP_USER`, `FTP_PASS` esten configurados (si no estan, avisar a Julio para que los configure en `Settings > Secrets and variables > Actions`).
+
+#### 4. Validacion local
+
+- `python -m http.server 8000` y abrir las 9 paginas (index, industrias, aprende, empezar, demo, contacto, terminos, privacidad, cookies).
+- Verificar:
+  - [ ] Las paginas legales NO mencionan "suscripcion anual", "pagina de precios", "monto", "USD", "USS", precios concretos.
+  - [ ] Las paginas legales hablan correctamente del modelo beta (6 meses gratis sin tarjeta).
+  - [ ] Las 3 paginas legales se ven consistentes con el resto (mismo header, footer, paleta).
+  - [ ] El selector ES/EN/HE funciona en las 3 paginas legales.
+  - [ ] No hay links rotos en el footer.
+  - [ ] `comparacion.html`, `documentacion.html` y las carpetas legacy ya no estan en raiz.
+  - [ ] La home, industrias, aprende, empezar, demo, contacto se siguen viendo igual que en la sesion anterior (no romper nada).
+
+#### 5. Commit local (NO push)
+
+```bash
+git add -A
+git commit -m "chore: cleanup pre-deploy + reescribir paginas legales para modelo beta
+
+- Remove archivos legacy del React build viejo (comparacion.html, documentacion.html, asset-manifest.json)
+- Remove carpetas legacy (assets/css|img|js, audio, static, productos, en, he, _old_recursos)
+- Rewrite terminos.html para modelo beta (6 meses gratis, sin precios concretos)
+- Rewrite privacidad.html alineada al producto actual (multi-tenant, backup a Drive del cliente)
+- Rewrite cookies.html con contenido propio
+- Mantener trilingue ES/EN/HE en las 3 legales"
 ```
 
-**6.3 Columna "Productos":** dejar como esta — FabriOS (activo) + FabriSense (proximamente) + Mas productos (en desarrollo). Los 2 ultimos pueden quedar como `<span>` sin `<a>` o con `pointer-events:none` para indicar visualmente que aun no son clickables.
+#### 6. Reportar a Julio que tiene que hacer `git push`
 
-**6.4 Redes sociales:** reemplazar el bloque `footer__socials` con estos 4 links reales. SACAR GitHub. Sumar X y Facebook.
+En el reporte (seccion REPORTAR AQUI), terminar con un bloque CLARO que diga a Julio:
 
-```html
-<div class="footer__socials">
-  <a href="https://www.linkedin.com/in/juliomirabal/" target="_blank" rel="noopener" aria-label="LinkedIn">
-    <!-- mantener SVG LinkedIn existente -->
-  </a>
-  <a href="https://x.com/juliomirabal2" target="_blank" rel="noopener" aria-label="X (Twitter)">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-    </svg>
-  </a>
-  <a href="https://www.youtube.com/@NQPodcast-z7p" target="_blank" rel="noopener" aria-label="YouTube">
-    <!-- mantener SVG YouTube existente -->
-  </a>
-  <a href="https://www.facebook.com/profile.php?id=61571999961373" target="_blank" rel="noopener" aria-label="Facebook">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-    </svg>
-  </a>
-</div>
-```
+> **Listo para deploy. Pasos:**
+> 1. Verifica que tu repo local apunta a `main` y esta limpio: `git status`.
+> 2. Hace push: `git push origin main`.
+> 3. Espera ~3 minutos a que el GitHub Action termine (mira en https://github.com/julito36911-collab/web-fabricontrol-2.0/actions).
+> 4. Abri https://fabricontrol.online en una ventana de incognito (Ctrl+Shift+N en Chrome) para evitar cache local. Esperar ~5 min adicionales por el cache CDN de Hostinger.
+> 5. Validar manualmente en Hostinger File Manager:
+>    - Si quedaron archivos viejos del deploy anterior (comparacion.html, documentacion.html, asset-manifest.json, carpetas en/, he/, audio/, static/, productos/, assets/css|img|js/, _old_recursos/), borrarlos a mano del File Manager. El FTP-Deploy-Action solo agrega/actualiza, NO borra del servidor.
 
-#### 7. Sumar SECCION "Servicios a medida" en la home
-Despues de la seccion "Una plataforma, seis industrias" y ANTES de "Software industrial hecho por gente de fabrica" en `index.html`, sumar nueva seccion con titulo:
+#### 7. Marcar bugs como [HECHO] en BUGS_PENDIENTES.md
 
-> **¿Necesitas algo diferente? Lo construyo para vos.**
-> _(Subtitulo)_ Si FabriOS no encaja con tu fabrica, te armo un sistema a medida.
-
-4 tarjetas (mismo grid que las industrias, paleta `#0F172A` fondo + acentos `#F97316` y `#06B6D4`):
-
-| Tarjeta | Badge | Icono sugerido | Titulo | Bullets | CTA |
-|---------|-------|----------------|--------|---------|-----|
-| 1 | "DESDE 4 SEMANAS" | nube / cloud | Software a medida en la nube | ERP y sistemas de gestion · Inventario, produccion, calidad · Cotizaciones y finanzas · Disenado para tu flujo exacto | Solicitar cotizacion → WhatsApp |
-| 2 | "TU IDEA FUNCIONANDO" | mobile | App / Plataforma web | Portal de clientes o marketplace · Pagos online y catalogo · Reservas y notificaciones · Responsive y multi-idioma | Solicitar cotizacion → WhatsApp |
-| 3 | "MONITOREO 24/7" | satelite / radar | Automatizacion IoT | Sensores en maquinas · Dashboard en tiempo real · Alertas automaticas · Mantenimiento predictivo | Solicitar cotizacion → WhatsApp **+** "Ver demo" → demo.html |
-| 4 | "RESULTADOS EN 2 SEMANAS" | llave / herramienta | Consultoria de procesos | Mapeo de procesos · Eliminacion de cuellos de botella · Optimizacion de costos · Documentacion y capacitacion | Solicitar cotizacion → WhatsApp |
-
-Bajo cada tarjeta, en italica, ejemplo concreto:
-1. _Ej: Sistema de gestion para panaderia con 3 sucursales_
-2. _Ej: Portal de turnos online para clinica dental_
-3. _Ej: Dashboard de 5 maquinas CNC con alertas WhatsApp_
-4. _Ej: Diagnostico operativo para fabrica de muebles_
-
-CTA "Solicitar cotizacion" linkea a:
-```
-https://wa.me/000000000000?text=Hola%2C%20quiero%20cotizar%20[Software%20a%20medida%20|%20App%20web%20|%20Automatizacion%20IoT%20|%20Consultoria%20de%20procesos]
-```
-(Dejar el `000000000000` como esta — Julio lo cambia despues con su agente IA.)
-
-I18n ES/EN/HE para los 4 titulos, badges y bullets.
-
-#### 8. Sumar SECCION "Que hace FabriOS — los modulos" en la home
-Despues de "Una plataforma. Todo el control." (que ya tiene 4 features estrella) y ANTES de "FabriOS no es un MVP. Es produccion real.", sumar una seccion con titulo:
-
-> **22 modulos. Una sola plataforma.**
-> _(Subtitulo)_ FabriOS cubre el ciclo completo: comercial → ingenieria → produccion → calidad → finanzas. Asi se ve por dentro.
-
-Layout en grid de cards (3 columnas desktop, 1 mobile). Para cada modulo: icono + nombre + 1 oracion de para que sirve. Mostrar **los 12 mas importantes** (no los 22 — se hace muy denso). Lista priorizada:
-
-1. **Dashboard** — KPIs en vivo, alertas, OEE
-2. **Cotizaciones** — PDFs profesionales con QR, conversion a orden con un click
-3. **Ordenes de Produccion** — rutas de pasos, seguimiento por QR, estado en tiempo real
-4. **Inventario** — stock por lote con FIFO/FEFO, trazabilidad completa
-5. **BOM** — estructura de producto con revisiones (Rev 0/1/2) y lifecycle
-6. **Calidad (QC)** — IQC entrada + IPQC en ruta + OQC salida
-7. **Compras** — OC con QR, recepcion, vinculo automatico a IQC
-8. **App Movil PWA** — operario escanea, planta sin internet sigue trabajando
-9. **Asistente IA** — chat contextual (Gemini), entiende donde estas y actua
-10. **Plantillas DXF parametricas** — cliente pide medidas → genera BOM + DXF + PDF automatico
-11. **Importador masivo** — Excel/CSV con preview y mapeo de columnas
-12. **Finanzas** — dashboard, cierre de mes, costo real vs presupuesto
-
-Al final de la seccion, una linea: **"+ 10 modulos mas"** linkeando a `/aprende` (cuando haya videos) o quedando como texto plano por ahora.
-
-#### 9. Sumar SECCION "Como arrancar — los 7 pasos" en la home
-Despues de la seccion "22 modulos" y antes de "FabriOS no es un MVP", sumar:
-
-> **Del registro a la primera orden ejecutada en 5-7 dias.**
-> _(Subtitulo)_ Sin consultores. Sin cargos por implementacion. Asistido por la IA del producto.
-
-Timeline horizontal o vertical, con 7 pasos:
-
-| # | Cuando | Paso | Detalle (1 oracion) |
-|---|--------|------|---------------------|
-| 1 | Dia 1, 60 segundos | Registro | Email + password. Recibis serial FABRI-XXXX-XXXX por mail |
-| 2 | Dia 1, 10 min | Setup empresa | Logo, formato de numeracion, moneda, eleccion de industria |
-| 3 | Dia 1-2 | Estructura | Departamentos, usuarios, permisos por modulo, operadores de planta |
-| 4 | Dia 2-3 | Catalogo + BOM | Productos (manual o Excel), componentes, archivos tecnicos por revision |
-| 5 | Dia 3-4 | Inventario + planta | Items con lotes, maquinas, alertas de stock minimo |
-| 6 | Dia 4-5 | Primera cotizacion | Cliente + producto → PDF con QR → conversion a orden con un click |
-| 7 | Dia 5-7 | Primera orden ejecutada | Imprimis QR, operario escanea, calidad aprueba IQC, orden cerrada |
-
-Diseno: cards numeradas con conexion visual entre ellas (linea horizontal o flechas en mobile). Paleta segun resto: fondos `bg-white` o `bg-light` para contrastar con secciones dark adyacentes.
-
-#### 10. Sumar SECCION "Antes vs Despues" en la home
-Despues de "Como arrancar" y antes de "FabriOS no es un MVP", sumar comparativo simple:
-
-Titulo: **Asi se trabaja sin FabriOS. Asi se trabaja con FabriOS.**
-
-Layout: 2 columnas, paleta opuesta (rojo claro vs verde claro o naranja vs cyan).
-
-| Sin FabriOS (rojo/gris) | Con FabriOS (naranja/cyan) |
-|-------------------------|----------------------------|
-| 7 Excels desincronizados | 1 plataforma con datos en vivo |
-| Cuaderno del jefe de planta | Ordenes con QR, ruta de pasos |
-| Grupo de WhatsApp con pedidos perdidos | Cotizacion → orden con un click |
-| Inventario "a ojo" | Stock por lote FIFO/FEFO con trazabilidad |
-| Si el encargado se enferma, la fabrica se para | Cualquier supervisor entra y ve el estado |
-| 6 horas/semana reconciliando datos | Tiempo libre para producir mas |
-
-Bajo el comparativo, un parrafo:
-
-> **FabriOS esta en beta privada con cupo limitado.** Buscamos **de 5 a 8 fabricas piloto** para validar el producto en produccion real durante este 2026. Si crees que tu fabrica encaja, [aplica desde aca →](empezar.html).
-
-CTA principal: boton naranja grande "Aplicar a la beta" → `empezar.html`.
-CTA secundario: "Hablar por WhatsApp" → `wa.me/000000000000?text=Hola%2C%20quiero%20saber%20mas%20de%20la%20beta`.
-
-#### 11. Pagina /aprende — placeholder "Proximamente"
-- NO hay videos sobre FabriOS en `@NQPodcast-z7p` todavia.
-- Mantener la estructura de `aprende.html` y `videos.json` intacta (filtros, modal, categorias) para sumar videos despues sin tocar codigo.
-- Sobreescribir el contenido principal con un mensaje:
-  > **Tutoriales y casos en video — Proximamente.**
-  > Estamos grabando los primeros tutoriales de FabriOS. Mientras tanto, podes [pedir una demo personalizada](contacto.html) o [chatear por WhatsApp].
-- Mantener el header / footer / nav igual que las otras paginas.
-
-#### 12. Screenshots — esperar a que esten disponibles
-- En paralelo a esta tarea, otro Cowork esta tomando screenshots de FabriOS y los va a guardar en `C:\Users\julit\fabri control\web-fabricontrol\screenshots_fabrios\`.
-- **NO bloquear** esta tarea esperando los screenshots. Trabajar con todo lo demas y dejar **placeholders visuales** (cards con fondo gris + nombre del modulo) en las secciones donde irian las imagenes.
-- Cuando lleguen los screenshots:
-  - Copiarlos a `assets/screenshots/` con los nombres `01_dashboard.png`, `02_orden_detalle.png`, etc.
-  - Reemplazar los placeholders por `<img src="assets/screenshots/...">` con `alt` descriptivo.
-- Si los screenshots ya estan en `screenshots_fabrios\` cuando arranques, listalos en el reporte y usalos directo.
-
-#### 13. Validacion antes de declarar OK
-- Levantar preview local: `cd C:\web-fabricontrol-2.0 && python -m http.server 8000` (o `npx serve`).
-- Abrir las 9 paginas en navegador (index, industrias, aprende, empezar, demo, contacto, terminos, privacidad, cookies). Verificar:
-  - [ ] Header con logo "FabriControl" y nav con 6 items (Inicio, Industrias, Aprende, Empezar gratis, Demo, Contacto).
-  - [ ] Selector ES/EN/HE funciona y cambia el texto. RTL activo en HE.
-  - [ ] Boton WhatsApp del header y FAB flotante aparecen (van al placeholder, OK).
-  - [ ] Form de `empezar.html` valida en cliente (probar email mal, password corta, passwords distintas).
-  - [ ] Footer con 4 redes sociales (LinkedIn, X, YouTube, Facebook) con URLs reales.
-  - [ ] Links de Terminos / Privacidad / Cookies funcionan y muestran contenido.
-  - [ ] Home tiene las 4 secciones nuevas (Modulos, Como arrancar, Antes vs Despues, Servicios a medida).
-  - [ ] No hay `href="#"` en footer (excepto FabriSense / Mas productos, que son placeholders deliberados).
-  - [ ] No hay `aprende.html` rota — debe mostrar mensaje "Proximamente".
-  - [ ] og-default.png y apple-touch-icon.png se cargan sin 404.
-  - [ ] Mobile viewport (414x896) sin overflow horizontal en ninguna pagina.
-  - [ ] Sitemap.xml lista las 9 paginas.
-- Tomar screenshots desktop + mobile de la home y de empezar.html para reportar.
-
-#### 14. Commit local (NO push)
-- `git add -A`
-- `git commit -m "feat: reemplazo total del frontend por web HTML estatica nueva
-
-- Backup React anterior en frontend-react-legacy/
-- 6 paginas + 3 legales (terminos, privacidad, cookies) en raiz
-- Form empezar.html cableado a fabrios-api.onrender.com/api/register/
-- Home con secciones: 22 modulos, 7 pasos arranque, antes/despues, servicios a medida
-- aprende.html con placeholder Proximamente (estructura lista para sumar videos)
-- Footer con 4 redes reales (LinkedIn, X, YouTube, Facebook)
-- og-default.png + apple-touch-icon.png generados"`
-
-NO hacer `git push`. Julio sube manual a Hostinger.
+Cuando termines, marcar como `[HECHO]`:
+- "Stack del repo: React → HTML estatico" (paso 1 cierra el cleanup definitivo)
+- "Falta seccion 'Servicios a medida' en la home" — ya estaba [HECHO] de la sesion anterior, mantener
+- Sumar nuevos `[PENDIENTE]` si descubris algo en validacion.
 
 ### Estado de control
 
 ```
 TAREA_ACTIVA: true
-DEPLOY_PENDIENTE: true (Julio sube manual cuando valide)
-SCREENSHOTS_LISTOS: false (otro Cowork los esta generando en paralelo)
-WHATSAPP_NUMERO: placeholder (Julio lo setea despues)
+SESION: cleanup-pre-deploy-2026-05-03
+DEPLOY_PENDIENTE: true (Julio hace git push despues que Claude Code reporte OK)
+SCREENSHOTS_LISTOS: false (otro Cowork los esta generando en paralelo, copiar a assets/screenshots/ cuando lleguen)
+WHATSAPP_NUMERO: placeholder (Julio lo setea despues con su agente IA)
+PERMISO_PUNTUAL_BORRADO: comparacion.html, documentacion.html, asset-manifest.json, en/, he/, audio/, static/, productos/, assets/css/, assets/img/, assets/js/, _old_recursos/
 ```
 
-### Marcar bugs como [HECHO] en BUGS_PENDIENTES.md
+### REGLAS DE LA SESION
 
-Cuando completes cada bloque de la tarea, ir a `BUGS_PENDIENTES.md` y marcar los items correspondientes como `[HECHO]` en lugar de `[PENDIENTE]`. Los bugs son:
-
-- WhatsApp placeholder → **NO TOCAR** (Julio decide despues)
-- Imagenes faltantes (og-default + apple-touch-icon) → **HECHO** cuando paso 4 termine
-- Pagina /aprende sin videos → **HECHO** cuando paso 11 termine (placeholder puesto)
-- Falta seccion Servicios a medida → **HECHO** cuando paso 7 termine
-- Falta seccion Que es FabriOS → **HECHO** cuando pasos 8+9+10 terminen
-- Footer links rotos → **HECHO** cuando paso 6 termine
-- Stack React → HTML estatico → **HECHO** cuando pasos 1+2+3 terminen
-
----
-
-## REGLAS DE LA SESION
-
-- Reportar EN ESTE ARCHIVO (seccion "REPORTAR AQUI"), no solo en chat. Asi Cowork lee progreso sin que Julio pegue logs.
+- Reportar EN ESTE ARCHIVO (seccion "REPORTAR AQUI"), no solo en chat.
 - Tras cualquier cambio en HTML/CSS/JS, **abrir preview local** (`python -m http.server 8000` o `npx serve`) y verificar visualmente antes de declarar OK.
-- Auditoria preventiva: si arreglas un bug en un patron (ej. accesibilidad, broken links, color hardcoded), buscar el mismo patron en el resto de las paginas y arreglarlo.
+- Auditoria preventiva: buscar en TODAS las paginas (las 9) menciones a "suscripcion", "anual", "precios", "USD", "$", "/mo" — si aparecen, ajustar al modelo beta.
 - Performance basico: paginas mobile deben cargar < 3s. Imagenes optimizadas. Sin JS bloqueante.
-- SEO basico: cada pagina con `<title>`, `<meta description>`, alt en imagenes, sitemap.xml + robots.txt actualizados.
-- Tras cerrar la tarea, sobreescribir "SESION ACTUAL" con `## SESION CERRADA — [tema]` y dejar reporte completo.
+- SEO basico: cada pagina con `<title>`, `<meta description>`, alt en imagenes.
+- Tras cerrar la tarea, sobreescribir "SESION ACTUAL" con `## SESION CERRADA — [tema]` y dejar reporte completo en SESIONES ANTERIORES.
 
 ---
 
 ## REPORTAR AQUI (Claude Code escribe progreso)
 
-### Reporte — 2026-05-03
+### Estado: COMPLETADO (6/6 pasos). Listo para git push.
 
-**Estado: COMPLETADO (14/14 pasos)**
+#### Paso 1: Cleanup archivos legacy ✅
+- Borrados 3 archivos: `comparacion.html`, `documentacion.html`, `asset-manifest.json`
+- Borradas 9 carpetas: `assets/css/`, `assets/img/`, `assets/js/`, `audio/`, `static/`, `productos/`, `en/`, `he/`, `_old_recursos/`
+- `frontend-react-legacy/` preservado como backup
+- `assets/` solo contiene archivos del nuevo diseno (11 archivos)
+
+#### Paso 2: Reescritura paginas legales ✅
+- `terminos.html`: 7 secciones, modelo beta (6 meses gratis, sin tarjeta, precio fundador despues), trilingue ES/EN/HE
+- `privacidad.html`: 5 secciones, datos reales (Render US, MongoDB Atlas multi-tenant, Google Drive backup, audit log), trilingue
+- `cookies.html`: 4 secciones, sin tracking publicitario, cookies futuras (Plausible/GA), trilingue
+- Fecha actualizada a 3 de mayo de 2026 en las 3 paginas
+
+#### Paso 3: deploy.yml verificado ✅
+- Agregadas exclusiones `.github/**` y `.claude/**`
+- Removida exclusion redundante `_old_recursos/**` (ya borrada)
+- Secrets `FTP_HOST`, `FTP_USER`, `FTP_PASS` — Julio debe verificar que estan configurados en GitHub
+
+#### Paso 4: Validacion local ✅
+- [x] 9 paginas HTTP 200
+- [x] 3 legacy files devuelven 404
+- [x] 0 errores JS en consola
+- [x] Selector ES/EN/HE funciona en las 3 legales (verificado visualmente con screenshots)
+- [x] Hebreo RTL correcto
+- [x] Home intacta (hero, secciones nuevas, footer)
+- [x] grep: 0 menciones a "suscripcion anual", "precios", "USD", "$" en las 9 paginas activas
+- [x] Footer links correctos en las 3 legales
+
+#### Paso 5: Commit local ✅
+- `git add -A` + commit con mensaje descriptivo. NO push.
+
+#### Paso 6: BUGS_PENDIENTES.md actualizado ✅
+- "Stack del repo" → [HECHO]
+- "Archivos legacy en raiz" → [HECHO]
+- "Contenido contradice modelo beta" → [HECHO]
+- WhatsApp placeholder sigue [PENDIENTE] (por decision de Julio)
+
+---
+
+> **Listo para deploy. Pasos para Julio:**
+> 1. Verifica que tu repo local apunta a `main` y esta limpio: `git status`.
+> 2. Verifica que los secrets FTP estan configurados en GitHub: `Settings > Secrets and variables > Actions` → `FTP_HOST`, `FTP_USER`, `FTP_PASS`.
+> 3. Hace push: `git push origin main`.
+> 4. Espera ~3 minutos a que el GitHub Action termine (mira en https://github.com/julito36911-collab/web-fabricontrol-2.0/actions).
+> 5. Abri https://fabricontrol.online en ventana de incognito (Ctrl+Shift+N). Esperar ~5 min por cache CDN.
+> 6. **IMPORTANTE — limpieza manual en Hostinger**: el FTP-Deploy-Action solo agrega/actualiza, NO borra del servidor. Si quedaron archivos del deploy anterior, borrarlos a mano del File Manager:
+>    - `comparacion.html`, `documentacion.html`, `asset-manifest.json`
+>    - Carpetas: `en/`, `he/`, `audio/`, `static/`, `productos/`, `assets/css/`, `assets/img/`, `assets/js/`, `_old_recursos/`
+
+---
+
+## SESIONES ANTERIORES
+
+### SESION CERRADA — Reemplazo total de la web por nuevo diseno HTML estatico (cerrada 2026-05-03)
+
+**Estado: COMPLETADO (14/14 pasos). Commit local `01039c1`. Sin push.**
 
 #### Paso 1: Backup React ✅
 - `frontend/` renombrado a `frontend-react-legacy/`
@@ -366,6 +276,7 @@ Cuando completes cada bloque de la tarea, ir a `BUGS_PENDIENTES.md` y marcar los
 - `privacidad.html` (4 secciones, trilingue)
 - `cookies.html` (4 secciones, trilingue — contenido nuevo)
 - Contenido reutilizado de `TermsAndConditions.js` y `PrivacyPolicy.js` del React viejo.
+- ⚠️ NOTA DE COWORK: este reuso introdujo contradicciones (suscripcion anual, pagina de precios) — corregido en sesion siguiente.
 
 #### Paso 6: Footer ✅
 - 9 paginas actualizadas (6 existentes + 3 legales).
@@ -405,9 +316,10 @@ Cuando completes cada bloque de la tarea, ir a `BUGS_PENDIENTES.md` y marcar los
 - Mobile viewport sin overflow (verificado en preview 414px).
 
 #### Paso 14: Commit ✅
-- Pendiente de ejecutar (siguiente paso).
+- `git add -A` con `.gitignore` creado para excluir `node_modules/`, `frontend-react-legacy/build/` y similares.
+- Commit `01039c1` con mensaje completo. NO push.
 
-#### Archivos tocados
+#### Archivos tocados en esta sesion
 - `index.html` — 4 secciones nuevas insertadas
 - `aprende.html` — main reemplazado con placeholder
 - `contacto.html`, `industrias.html`, `empezar.html`, `demo.html` — footer actualizado
@@ -417,15 +329,13 @@ Cuando completes cada bloque de la tarea, ir a `BUGS_PENDIENTES.md` y marcar los
 - `.github/workflows/deploy.yml` — simplificado
 - `sitemap.xml` — 3 URLs legales agregadas
 - `BUGS_PENDIENTES.md` — 6 items marcados [HECHO]
+- `.gitignore` — creado
 
-#### Pendientes para Julio
-- [ ] Setear numero de WhatsApp real (reemplazar `000000000000` en 14+ ocurrencias)
-- [ ] Screenshots de FabriOS (cuando esten listos, copiar a `assets/screenshots/`)
-- [ ] Subir a Hostinger via File Manager
-- [ ] Validar en fabricontrol.online (esperar ~5 min CDN cache)
-
----
-
-## SESIONES ANTERIORES
-
-(Vacio — se va llenando con historico de tareas cerradas)
+#### Validacion de Cowork (post-sesion)
+- ✅ Las 4 secciones nuevas de la home estan presentes y bien armadas.
+- ✅ Footer con 4 redes sociales reales.
+- ✅ Aprende.html con placeholder correcto.
+- ✅ WhatsApp placeholder respetado.
+- ⚠️ Encontrados 2 issues que se atacan en la siguiente sesion (cleanup pre-deploy):
+  1. Archivos legacy del React build siguen en raiz (comparacion.html, documentacion.html, etc.).
+  2. terminos.html reusa texto viejo que habla de "Suscripcion Anual" — incompatible con el modelo beta.

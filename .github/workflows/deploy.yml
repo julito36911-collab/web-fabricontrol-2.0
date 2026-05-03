@@ -23,6 +23,8 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
+            .github/**
+            .claude/**
             frontend-react-legacy/**
             node_modules/**
             BUGS_PENDIENTES.md
@@ -30,7 +32,6 @@ jobs:
             WORKFLOW_OFICIAL.md
             RESUMEN-CAMBIOS-2026-04-08.md
             CLAUDE.md
-            _old_recursos/**
             backend/**
             tests/**
             test_reports/**
