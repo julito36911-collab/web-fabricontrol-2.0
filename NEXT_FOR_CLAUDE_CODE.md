@@ -41,7 +41,99 @@ Sos developer en el repo `C:\web-fabricontrol-2.0\` (sitio web marketing FabriCo
 
 ---
 
-## SESION ACTUAL — Integrar 6 fotos de industrias en index.html y industrias.html
+## SESION ACTUAL — Setear numero WhatsApp real en todas las paginas
+
+La sesion anterior (fotos industrias) cerro OK con commits `15d125c`, `e26bbb3`, `b1c8cab`. Las 6 imagenes funcionan en produccion. **PERO el paso 8 que pedia cambiar el placeholder `000000000000` por `972526489461` quedo SIN HACER.**
+
+Verificacion (Cowork, 2026-05-04 via grep en repo local):
+- 24+ ocurrencias de `000000000000` en aprende, contacto, cookies, empezar, index, industrias, privacidad, terminos.html.
+- 0 ocurrencias de `972526489461`.
+- En produccion el chat de WhatsApp abre a un numero invalido y NO conecta con Julio.
+
+### Contexto
+
+Julio confirmo el numero real: **+972 52-648-9461**. En formato wa.me (sin "+", sin espacios, sin guiones): `972526489461`.
+
+### TAREA
+
+#### 1. Buscar y reemplazar el placeholder
+
+```bash
+# desde C:\web-fabricontrol-2.0\
+grep -rln "000000000000" *.html assets/  # listar archivos afectados
+```
+
+Reemplazar EN TODAS las ocurrencias:
+```
+000000000000  →  972526489461
+```
+
+Archivos esperados (8 paginas + posiblemente assets/site.js si hay constante):
+- `aprende.html`, `contacto.html`, `cookies.html`, `empezar.html`, `index.html`, `industrias.html`, `privacidad.html`, `terminos.html`
+- Verificar si `assets/site.js` tiene constante `WA_NUMBER` o similar — si si, actualizarla tambien.
+
+NO TOCAR los `.md` historicos (NEXT, BUGS, sesiones cerradas) — esos son referencia historica del bug.
+
+#### 2. Auditoria preventiva (regla 57)
+
+Despues del reemplazo:
+```bash
+grep -rn "000000000000" *.html assets/
+```
+
+Debe devolver **0 matches** en archivos productivos.
+
+```bash
+grep -rn "972526489461" *.html assets/ | wc -l
+```
+
+Debe devolver **24+ matches** (las que antes eran placeholder).
+
+#### 3. Validacion local
+
+```bash
+python -m http.server 8000
+```
+
+Abrir cualquier pagina, click en el boton WhatsApp del header o en el FAB flotante. La URL que abre debe ser:
+```
+https://wa.me/972526489461?text=...
+```
+
+NO `https://wa.me/000000000000?text=...`.
+
+#### 4. Commit local
+
+```bash
+git add -A
+git commit -m "feat: setear numero WhatsApp real (+972 52-648-9461) en todas las paginas
+
+- Reemplazadas 24+ ocurrencias del placeholder 000000000000 por 972526489461
+- Afecta los botones WhatsApp del header y el FAB flotante en las 8 paginas activas
+- Pendiente desde sesion de fotos industrias (paso 8 que no se ejecuto)"
+```
+
+NO push. Julio lo hace para gatillar el deploy automatico.
+
+### Estado de control
+
+```
+TAREA_ACTIVA: true
+SESION: setear-whatsapp-2026-05-04
+DEPLOY_PENDIENTE: true (Julio hace git push despues de validar)
+WHATSAPP_NUMERO: 972526489461 (Julio confirmo)
+```
+
+### REGLAS DE LA SESION
+
+- Reportar EN ESTE ARCHIVO seccion REPORTAR AQUI.
+- Confirmar con `grep` antes de declarar OK.
+- Validacion visual obligatoria (click real al boton WhatsApp del header local).
+- Tras cerrar, sobreescribir SESION ACTUAL con SESION CERRADA y mover a SESIONES ANTERIORES.
+
+---
+
+## SESION ACTUAL ANTERIOR (referencia historica) — Integrar 6 fotos de industrias en index.html y industrias.html
 
 Julio genero las 6 fotos industriales con Nano Banana 2 y las guardo en `assets/industrias/`. Cada foto coincide con su industria pero los nombres tienen typos (sin guion bajo, espacios, una sin "0" inicial). Hay que renombrar, optimizar peso, y reemplazar los placeholders de fondo rayado oscuro por los `<img>` reales.
 

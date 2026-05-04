@@ -69,6 +69,26 @@ Si no se puede arreglar (bug del navegador, decision de diseño, etc.):
 
 <!-- Bugs nuevos van debajo de esta linea -->
 
+## [HECHO] APP_URL en Render fabrios-api apunta a dominio inexistente
+
+**Fix aplicado 2026-05-04**: Julio cambio la env var `APP_URL` en Render `fabrios-api` de `https://app.fabricontrol.online` a `https://fabrios-app.onrender.com`. Validado con segundo smoke test E2E: el email de reset-password llega con link directo y funcional, login con pwd nueva → dashboard cargado correctamente.
+
+### Detalle original:
+- Sev: ALTA (afecta forgot password y cualquier link generado por el backend hacia la app)
+- Area: Backend FabriOS / DevOps
+- URL afectada: emails de reset-password, posibles emails futuros que linkeen a la app
+- Pasos:
+  1. Disparar forgot-password en `https://fabrios-app.onrender.com/forgot-password` con email valido.
+  2. Abrir el email de reset que llega.
+  3. Click en el link.
+- Esperado: abre `https://fabrios-app.onrender.com/reset-password?token=XXX`
+- Resultado: abre `https://app.fabricontrol.online/reset-password?token=XXX` → DNS_PROBE_FINISHED_NXDOMAIN (el dominio no existe).
+- **Causa**: variable de entorno `APP_URL` en Render del service `fabrios-api` esta seteada a `https://app.fabricontrol.online` pero ese subdominio no esta configurado en DNS (Hostinger) ni como custom domain en Render.
+- **Workaround validado**: navegar manualmente a la URL correcta sustituyendo el dominio. El token sigue siendo valido y el flow completo funciona (verificado en smoke test E2E 2026-05-04).
+- **Fix corto** (recomendado AHORA): editar la env var `APP_URL` en Render fabrios-api → cambiar a `https://fabrios-app.onrender.com`. Save → redeploy automatico. Ya no se rompe el flow.
+- **Fix largo** (opcional, mejor para branding): configurar el subdominio `app.fabricontrol.online` en DNS de Hostinger apuntando a Render, y agregar como custom domain en el service `fabrios-app`. Despues, dejar `APP_URL=https://app.fabricontrol.online` (lo que ya esta).
+- **Smoke test E2E ejecutado 2026-05-04**: 8/8 pasos OK con workaround. Documento completo en sesion del NEXT_FOR_CLAUDE_CODE.md (cuando aplique).
+
 ## [PENDIENTE] assets/demo.css quedo huerfano tras eliminar demo.html
 - Sev: BAJA
 - Area: Empezar / cleanup
@@ -141,7 +161,16 @@ Si no se puede arreglar (bug del navegador, decision de diseño, etc.):
 
 **Validacion**: preview local OK. Selects renderean values correctos. Pantalla de exito muestra serial mockeado correctamente. Mapeo de errores funciona con mock fetch (verificado con `email_already_registered`). Persistencia post-refresh funciona. 0 errores JS. CORS desde localhost bloqueado (esperable — backend solo acepta fabricontrol.online), sera validado por Julio post-deploy.
 
-## [PENDIENTE] Numero de WhatsApp es placeholder en 14 ocurrencias
+## [HECHO] Numero de WhatsApp es placeholder en 14 ocurrencias
+
+**Fix 2026-05-05**: Julio dio el numero `+972526489461` (Israel). Reemplazadas las 30 ocurrencias de `000000000000` por `972526489461` (formato sin `+`) en:
+- 8 paginas HTML: `index.html` (7), `industrias.html` (8), `aprende.html` (3), `empezar.html` (2), `contacto.html` (3), `terminos.html` (2), `privacidad.html` (2), `cookies.html` (2)
+- `assets/site.js`: constante `WA_NUMBER`
+- Cache bumpeado v=20260505a → v=20260505b para forzar fresh load del JS
+
+**Validacion**: Cualquier link wa.me ahora abre WhatsApp con el numero real de Julio + mensaje pre-cargado segun contexto (industria especifica, soporte general, etc.).
+
+### Detalle original:
 - Sev: ALTA
 - Area: Home / Industrias / Aprende / Empezar / Demo / Contacto
 - URL: todas las paginas, header CTA + boton flotante WhatsApp

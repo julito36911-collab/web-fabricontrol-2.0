@@ -4,7 +4,7 @@
 // video gallery + modal.
 
 (() => {
-  const WA_NUMBER = '000000000000';
+  const WA_NUMBER = '972526489461';
 
   // ---------- i18n ----------
   const dictionaries = {
