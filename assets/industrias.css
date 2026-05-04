@@ -32,8 +32,19 @@
   align-items: center;
 }
 .ind-strip--reverse .ind-strip__inner > .ind-strip__media { order: 2; }
-.ind-strip__media { overflow: hidden; border-radius: var(--radius-lg, 16px); }
-.ind-strip__img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
+.ind-strip__media {
+  overflow: hidden;
+  border-radius: var(--radius-lg, 16px);
+  aspect-ratio: 16 / 10;
+  position: relative;
+}
+.ind-strip__img,
+.ind-strip__media img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block;
+}
 
 .ind-strip__icon {
   width: 64px; height: 64px;
