@@ -159,7 +159,7 @@
     });
     // Lang toggle visual state
     document.querySelectorAll('.lang button').forEach(b => {
-      b.classList.toggle('is-active', b.dataset.lang === lang);
+      b.classList.toggle('is-active', b.dataset.setLang === lang);
     });
   }
 
@@ -182,9 +182,9 @@
   function setupLangSwitcher() {
     document.querySelectorAll('.lang').forEach(group => {
       group.addEventListener('click', (e) => {
-        const btn = e.target.closest('button[data-lang]');
+        const btn = e.target.closest('button[data-set-lang]');
         if (!btn) return;
-        applyLang(btn.dataset.lang);
+        applyLang(btn.dataset.setLang);
       });
     });
   }

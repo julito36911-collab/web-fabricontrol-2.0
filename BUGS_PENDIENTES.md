@@ -69,6 +69,16 @@ Si no se puede arreglar (bug del navegador, decision de diseño, etc.):
 
 <!-- Bugs nuevos van debajo de esta linea -->
 
+## [PENDIENTE] assets/demo.css quedo huerfano tras eliminar demo.html
+- Sev: BAJA
+- Area: Empezar / cleanup
+- URL: assets/demo.css
+- Pasos:
+  1. Verificar: `grep -l "demo.css" *.html` despues de eliminar demo.html
+- Esperado: ningun HTML referencia demo.css → se puede borrar
+- Resultado: demo.css sigue en `assets/` del repo (y en Hostinger Julio lo borro manualmente).
+- **Accion**: borrar `assets/demo.css` del repo en proxima sesion de Claude Code (sumar al permiso puntual de borrado).
+
 ## [HECHO] demo.html no es necesaria — eliminar
 - Sev: ALTA
 - Area: Demo / nav / sitemap
