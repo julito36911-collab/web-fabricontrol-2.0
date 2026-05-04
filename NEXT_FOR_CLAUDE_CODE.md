@@ -185,17 +185,36 @@ Abrir `http://localhost:8000/` y verificar:
 - [ ] Network tab del DevTools: cada imagen pesa < 250 KB.
 - [ ] Lo mismo en industrias.html.
 
-#### 8. Commit local + reportar
+#### 8. ACTUALIZAR el numero de WhatsApp en TODAS las ocurrencias
+
+Julio confirmo el numero real: **+972 52-648-9461**.
+
+En formato wa.me (sin "+", sin espacios, sin guiones): `972526489461`.
+
+Buscar y reemplazar en TODOS los archivos del repo:
+```
+000000000000  →  972526489461
+```
+
+Auditoria preventiva (regla 57): correr `grep -rn "000000000000" .` despues del reemplazo. Debe devolver **0 matches** en archivos productivos (`.html`, `.js`, `.css`, `.md` de configuracion). Si aparece en algun `.md` historico (NEXT, BUGS, sesiones cerradas), ESO NO TOCAR — es referencia historica.
+
+Archivos esperados con ocurrencias:
+- 8 paginas HTML (index, industrias, aprende, empezar, contacto, terminos, privacidad, cookies): 2-3 cada una
+- `assets/site.js`: variable `WA_NUMBER` o similar (si existe)
+- Total esperado: ~14-18 reemplazos
+
+Tras reemplazar, verificar visualmente que un click en cualquier boton WhatsApp del header o FAB flotante abra `https://wa.me/972526489461?text=...` con mensaje pre-cargado.
+
+#### 9. Commit local + reportar
 
 ```bash
 git add -A
-git commit -m "feat: agregar 6 fotos industriales en index.html e industrias.html
+git commit -m "feat: agregar 6 fotos industriales + setear numero WhatsApp real
 
 - Renombradas y optimizadas 6 imagenes a < 200KB cada una (5.2MB → ~1MB total)
-- Reemplazados 6 placeholders rayados por <img> reales
-- alt text descriptivo por imagen
+- Reemplazados 6 placeholders rayados por <img> reales con alt descriptivo
 - CSS object-fit: cover en .ind-card__media img
-- Generadas con Nano Banana 2 (Gemini 3.1 Flash Image), 16:9 → ajustadas a 16:10 con object-fit"
+- WhatsApp: 000000000000 → 972526489461 (Julio +972 52-648-9461) en 14+ ocurrencias"
 ```
 
 NO push. Julio lo hace.
