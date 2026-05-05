@@ -202,6 +202,109 @@
     });
   }
 
+  // ---------- Carrusel (aprende page) ----------
+  function setupCarrusel() {
+    document.querySelectorAll('[data-carrusel]').forEach(carrusel => {
+      const slides = carrusel.querySelectorAll('.carrusel__slide');
+      const dotsContainer = carrusel.querySelector('.carrusel__dots');
+      const btnPrev = carrusel.querySelector('.carrusel__btn--prev');
+      const btnNext = carrusel.querySelector('.carrusel__btn--next');
+      if (!slides.length || !dotsContainer) return;
+
+      let current = 0;
+      let timer = null;
+      const AUTO_MS = 6000;
+
+      // Generar dots
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'carrusel__dot' + (i === 0 ? ' is-active' : '');
+        dot.setAttribute('aria-label', `Slide ${i + 1} de ${slides.length}`);
+        dot.addEventListener('click', () => { goTo(i); restartAuto(); });
+        dotsContainer.appendChild(dot);
+      });
+      const dots = dotsContainer.querySelectorAll('.carrusel__dot');
+
+      function goTo(idx) {
+        slides[current].classList.remove('is-active');
+        dots[current].classList.remove('is-active');
+        current = (idx + slides.length) % slides.length;
+        slides[current].classList.add('is-active');
+        dots[current].classList.add('is-active');
+      }
+      function next() { goTo(current + 1); }
+      function prev() { goTo(current - 1); }
+
+      function startAuto() {
+        stopAuto();
+        timer = setInterval(next, AUTO_MS);
+      }
+      function stopAuto() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+      function restartAuto() { stopAuto(); startAuto(); }
+
+      btnNext.addEventListener('click', () => { next(); restartAuto(); });
+      btnPrev.addEventListener('click', () => { prev(); restartAuto(); });
+
+      // Pausa al hover
+      carrusel.addEventListener('mouseenter', stopAuto);
+      carrusel.addEventListener('mouseleave', startAuto);
+
+      // Swipe en mobile
+      let touchStartX = 0;
+      carrusel.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        stopAuto();
+      }, { passive: true });
+      carrusel.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 50) {
+          if (dx < 0) next(); else prev();
+        }
+        startAuto();
+      });
+
+      // Lightbox al click
+      let lightbox = document.querySelector('.carrusel-lightbox');
+      if (!lightbox) {
+        lightbox = document.createElement('div');
+        lightbox.className = 'carrusel-lightbox';
+        lightbox.innerHTML = '<img alt="" />';
+        lightbox.addEventListener('click', () => lightbox.classList.remove('is-open'));
+        document.body.appendChild(lightbox);
+      }
+      slides.forEach((slide) => {
+        slide.addEventListener('click', () => {
+          const img = slide.querySelector('img');
+          if (!img) return;
+          const lbImg = lightbox.querySelector('img');
+          lbImg.src = img.src;
+          lbImg.alt = img.alt;
+          lightbox.classList.add('is-open');
+        });
+      });
+
+      // Teclado: ESC cierra lightbox, flechas navegan (cuando lightbox cerrado)
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') lightbox.classList.remove('is-open');
+        if (lightbox.classList.contains('is-open')) return;
+        if (e.key === 'ArrowRight') { next(); restartAuto(); }
+        if (e.key === 'ArrowLeft') { prev(); restartAuto(); }
+      });
+
+      // Auto-play solo cuando la seccion esta visible
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+          entries.forEach(e => e.isIntersecting ? startAuto() : stopAuto());
+        }, { threshold: 0.3 }).observe(carrusel);
+      } else {
+        startAuto();
+      }
+    });
+  }
+
   // ---------- Forms ----------
   // (Register form removed — empezar.html now redirects to fabrios-app.onrender.com/register wizard.
   //  Cleared old leftover localStorage from previous form-based flow.)
@@ -444,6 +547,7 @@
     setupLangSwitcher();
     setupReveal();
     setupAccordion();
+    setupCarrusel();
     setupDemoForm();
     setupVideos();
     setupMenu();

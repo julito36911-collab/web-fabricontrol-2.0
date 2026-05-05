@@ -41,7 +41,438 @@ Sos developer en el repo `C:\web-fabricontrol-2.0\` (sitio web marketing FabriCo
 
 ---
 
-## SESION ACTUAL — Setear numero WhatsApp real en todas las paginas
+## SESION CERRADA — Carrusel de 8 slides en /aprende (cerrada 2026-05-05)
+
+**Estado: COMPLETADO. Listo para git push.**
+
+### Sintesis
+- 8 imagenes renombradas + comprimidas con Pillow (PNG→JPG q85): 01_problema.jpg ... 08_cta_beta.jpg. Todas <150KB. Total 1.0 MB.
+- aprende.html: placeholder "Proximamente" reemplazado por seccion `<section class="carrusel-section">` con hero + carrusel de 8 slides + mensaje complementario "Pronto: tutoriales en video con Julio Mirabal".
+- CSS: agregado bloque "Carrusel" al final de styles.css (.carrusel, .carrusel__track, .carrusel__slide, .carrusel__btn, .carrusel__dots, .carrusel-lightbox + RTL support + media query mobile <720px).
+- JS: agregada funcion `setupCarrusel()` en site.js. Soporta auto-play 6s, hover-pause, IntersectionObserver (auto-play solo cuando visible), click → lightbox, ESC cierra, ArrowLeft/Right navega, swipe touch en mobile, dots clickables.
+- Llamada `setupCarrusel()` agregada al init DOMContentLoaded.
+- Cache bumpeado a `?v=20260505c` en aprende.html.
+- i18n trilingue: hero h1 + lede + eyebrow + h2 + lede del carrusel + caption mono + mensaje final + 2 CTAs.
+
+### Validacion local (preview_eval)
+- 8 slides + 8 dots renderizados, slide 0 activa al cargar.
+- Click `next` → slide 1. Click dot 4 → slide 4. Click `prev` → slide 3.
+- Click slide → lightbox abre con imagen correcta. Click lightbox → cierra.
+- Switch a HE → htmlLang=he, dir=rtl, h1 traducido a hebreo, eyebrow traducido.
+- 0 errores JS en consola.
+
+### REPORTAR AQUI
+
+(Reporte movido arriba a la sesion cerrada.)
+
+---
+
+## SESION ACTUAL ANTERIOR (referencia historica) — Carrusel de 8 slides en /aprende
+
+La sesion anterior (setear WhatsApp real) cerro OK con commit `a44af6e` pusheado. Ahora hay que sumar un carrusel de 8 imagenes infograficas en `/aprende` que cuente el storytelling completo de FabriOS (problema → solucion → 7 dias arranque → CTA beta).
+
+### Contexto
+
+Las 8 imagenes ya estan generadas (NotebookLM + edicion en Grok + cleanup Cowork). Estan en `C:\web-fabricontrol-2.0\assets\carrusel\` con estos nombres:
+
+| # | Archivo | Tema | Tamaño |
+|---|---------|------|--------|
+| 1 | `IMG1.jpeg` | Hook "Si tu fabrica vive en Excel" | 1423x800, ~150 KB |
+| 2 | `IMG2.png` | "FabriOS: El sistema operativo de tu fabrica" + dashboard | 1360x752, ~210 KB |
+| 3 | `IMG3.png` | Dia 1 — Setup y Registro | 1360x752, ~250 KB |
+| 4 | `IMG4.png` | Dias 2-3 — Ingenieria + BOM + ECO | 1360x752, ~280 KB |
+| 5 | `IMG5.png` | Dias 4-5 — De la cotizacion a la maquina | 1360x752, ~285 KB |
+| 6 | `IMG6.png` | Dias 5-7 — Trazabilidad QR en planta (mobile + offline) | 1360x752, ~215 KB |
+| 7 | `IMG7.png` | Dia 7 — Entrega y control total | 1360x752, ~215 KB |
+| 8 | `IMG8.png` | CTA — Programa de Acceso Anticipado + iPhone mockup + URL | 1360x752, ~265 KB |
+
+Aspect ratio aprox 16:9 (no exactamente, hay leve variacion entre 1360x752 = 1.81:1 y 1423x800 = 1.78:1). Para el carrusel usar 16:9 contenedor con `object-fit: contain` (preserva texto sin cropear).
+
+### Donde va
+
+`aprende.html` — REEMPLAZAR el bloque actual de placeholder "Proximamente — Estamos grabando los primeros tutoriales de FabriOS" por el carrusel.
+
+Despues del carrusel, mantener un mensaje complementario:
+> "Pronto: tutoriales en video con Julio Mirabal. Mientras tanto, mira el flujo completo en las slides de arriba."
+
+### TAREA
+
+#### 1. Renombrar imagenes al estandar de la tarea
+
+```bash
+cd C:\web-fabricontrol-2.0\assets\carrusel
+ren IMG1.jpeg 01_problema.jpg
+ren IMG2.png 02_solucion.png
+ren IMG3.png 03_dia1_setup.png
+ren IMG4.png 04_dias23_ingenieria.png
+ren IMG5.png 05_dias45_cotizacion.png
+ren IMG6.png 06_dias57_qr.png
+ren IMG7.png 07_dia7_entrega.png
+ren IMG8.png 08_cta_beta.png
+```
+
+#### 2. Optimizar peso (todas a JPG quality 85, < 250 KB)
+
+Las PNG actuales son grandes. Convertir las 7 PNGs a JPG comprimido:
+
+```python
+from PIL import Image
+import os
+SRC = "assets/carrusel"
+for f in sorted(os.listdir(SRC)):
+    if f.lower().endswith('.png'):
+        img = Image.open(f"{SRC}/{f}").convert('RGB')
+        new_name = f.replace('.png', '.jpg')
+        img.save(f"{SRC}/{new_name}", 'JPEG', quality=85, optimize=True, progressive=True)
+        os.remove(f"{SRC}/{f}")
+        print(f"{f} → {new_name}: {os.path.getsize(SRC+'/'+new_name)//1024} KB")
+```
+
+Resultado esperado: 8 archivos `.jpg`, cada uno < 250 KB. Total < 2 MB.
+
+#### 3. Crear el carrusel en `aprende.html`
+
+Insertar la seccion HTML en lugar del placeholder actual. Estructura recomendada:
+
+```html
+<section class="section bg-dark carrusel-section">
+  <div class="container">
+    <span class="kicker mono">EL FLUJO COMPLETO</span>
+    <h2 class="h-1" style="color:var(--white)">De Excel al control total en 7 dias.</h2>
+    <p class="lede" style="color:var(--slate-300);max-width:800px">
+      <span data-lang="es">Mira el storytelling de FabriOS: el problema, la solucion, los 7 dias del onboarding, y como aplicar al programa beta.</span>
+      <span data-lang="en">See the FabriOS storytelling: the problem, the solution, the 7-day onboarding, and how to apply to the beta program.</span>
+      <span data-lang="he">ראו את סיפור FabriOS: הבעיה, הפתרון, 7 ימי ההטמעה, וכיצד להירשם לתוכנית הבטא.</span>
+    </p>
+
+    <div class="carrusel" data-carrusel>
+      <div class="carrusel__track">
+        <figure class="carrusel__slide is-active">
+          <img src="assets/carrusel/01_problema.jpg" alt="Si tu fabrica vive en Excel, este es tu problema" loading="eager" width="1600" height="900">
+        </figure>
+        <figure class="carrusel__slide">
+          <img src="assets/carrusel/02_solucion.jpg" alt="FabriOS, el sistema operativo de tu fabrica" loading="lazy" width="1600" height="900">
+        </figure>
+        <figure class="carrusel__slide">
+          <img src="assets/carrusel/03_dia1_setup.jpg" alt="Dia 1: setup y registro en FabriOS" loading="lazy" width="1600" height="900">
+        </figure>
+        <figure class="carrusel__slide">
+          <img src="assets/carrusel/04_dias23_ingenieria.jpg" alt="Dias 2 y 3: ingenieria bajo control con BOM y ECO" loading="lazy" width="1600" height="900">
+        </figure>
+        <figure class="carrusel__slide">
+          <img src="assets/carrusel/05_dias45_cotizacion.jpg" alt="Dias 4 y 5: de la cotizacion a la maquina" loading="lazy" width="1600" height="900">
+        </figure>
+        <figure class="carrusel__slide">
+          <img src="assets/carrusel/06_dias57_qr.jpg" alt="Dias 5 al 7: trazabilidad QR en planta con app movil offline" loading="lazy" width="1600" height="900">
+        </figure>
+        <figure class="carrusel__slide">
+          <img src="assets/carrusel/07_dia7_entrega.jpg" alt="Dia 7: entrega y control total con FEFO y costos en vivo" loading="lazy" width="1600" height="900">
+        </figure>
+        <figure class="carrusel__slide">
+          <img src="assets/carrusel/08_cta_beta.jpg" alt="Programa de Acceso Anticipado de FabriOS, 5 fabricas piloto, 6 meses gratis" loading="lazy" width="1600" height="900">
+        </figure>
+      </div>
+
+      <button class="carrusel__btn carrusel__btn--prev" type="button" aria-label="Anterior">‹</button>
+      <button class="carrusel__btn carrusel__btn--next" type="button" aria-label="Siguiente">›</button>
+
+      <div class="carrusel__dots" role="tablist" aria-label="Slide indicador">
+        <!-- 8 dots generados via JS -->
+      </div>
+    </div>
+
+    <p class="hint" style="color:var(--slate-400);text-align:center;margin-top:var(--s-4)">
+      <span data-lang="es">Tap en una imagen para verla en grande. Auto-avanza cada 6 segundos.</span>
+      <span data-lang="en">Tap an image to view full-size. Auto-advances every 6 seconds.</span>
+      <span data-lang="he">לחץ על תמונה כדי לראות אותה במלואה. מתקדם אוטומטית כל 6 שניות.</span>
+    </p>
+  </div>
+</section>
+```
+
+#### 4. CSS del carrusel (en `assets/styles.css` o `assets/aprende.css` si existe)
+
+```css
+.carrusel {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: var(--s-6) auto 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  background: var(--slate-900);
+  aspect-ratio: 16 / 9;
+}
+.carrusel__track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.carrusel__slide {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 600ms ease;
+  cursor: zoom-in;
+}
+.carrusel__slide.is-active { opacity: 1; }
+.carrusel__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: var(--slate-900);
+}
+.carrusel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.55);
+  color: var(--white);
+  border: none;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 200ms ease;
+}
+.carrusel__btn:hover { background: var(--orange); }
+.carrusel__btn--prev { left: 12px; }
+.carrusel__btn--next { right: 12px; }
+.carrusel__dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+.carrusel__dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  border: none;
+  cursor: pointer;
+  transition: background 200ms ease, transform 200ms ease;
+  padding: 0;
+}
+.carrusel__dot.is-active {
+  background: var(--orange);
+  transform: scale(1.3);
+}
+
+/* Lightbox */
+.carrusel-lightbox {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.92);
+  display: none;
+  align-items: center; justify-content: center;
+  z-index: 9999;
+  cursor: zoom-out;
+  padding: var(--s-4);
+}
+.carrusel-lightbox.is-open { display: flex; }
+.carrusel-lightbox img {
+  max-width: 95vw; max-height: 95vh;
+  object-fit: contain;
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .carrusel__btn { width: 40px; height: 40px; font-size: 24px; }
+  .carrusel__btn--prev { left: 6px; }
+  .carrusel__btn--next { right: 6px; }
+}
+```
+
+#### 5. JavaScript del carrusel (en `assets/site.js`)
+
+```javascript
+function setupCarrusel() {
+  document.querySelectorAll('[data-carrusel]').forEach(carrusel => {
+    const slides = carrusel.querySelectorAll('.carrusel__slide');
+    const dotsContainer = carrusel.querySelector('.carrusel__dots');
+    const btnPrev = carrusel.querySelector('.carrusel__btn--prev');
+    const btnNext = carrusel.querySelector('.carrusel__btn--next');
+    if (!slides.length || !dotsContainer) return;
+
+    let current = 0;
+    let timer = null;
+    const AUTO_MS = 6000;
+
+    // Generar dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'carrusel__dot' + (i === 0 ? ' is-active' : '');
+      dot.setAttribute('aria-label', `Slide ${i + 1} de ${slides.length}`);
+      dot.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(dot);
+    });
+    const dots = dotsContainer.querySelectorAll('.carrusel__dot');
+
+    function goTo(idx) {
+      slides[current].classList.remove('is-active');
+      dots[current].classList.remove('is-active');
+      current = (idx + slides.length) % slides.length;
+      slides[current].classList.add('is-active');
+      dots[current].classList.add('is-active');
+    }
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    function startAuto() {
+      stopAuto();
+      timer = setInterval(next, AUTO_MS);
+    }
+    function stopAuto() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+
+    btnNext.addEventListener('click', () => { next(); startAuto(); });
+    btnPrev.addEventListener('click', () => { prev(); startAuto(); });
+
+    // Pausa al hover
+    carrusel.addEventListener('mouseenter', stopAuto);
+    carrusel.addEventListener('mouseleave', startAuto);
+
+    // Swipe en mobile
+    let touchStartX = 0;
+    carrusel.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      stopAuto();
+    }, { passive: true });
+    carrusel.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) {
+        if (dx < 0) next(); else prev();
+      }
+      startAuto();
+    });
+
+    // Lightbox al click
+    let lightbox = document.querySelector('.carrusel-lightbox');
+    if (!lightbox) {
+      lightbox = document.createElement('div');
+      lightbox.className = 'carrusel-lightbox';
+      lightbox.innerHTML = '<img alt="" />';
+      lightbox.addEventListener('click', () => lightbox.classList.remove('is-open'));
+      document.body.appendChild(lightbox);
+    }
+    slides.forEach((slide, i) => {
+      slide.addEventListener('click', () => {
+        const img = slide.querySelector('img');
+        const lbImg = lightbox.querySelector('img');
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lightbox.classList.add('is-open');
+      });
+    });
+
+    // Cerrar lightbox con ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') lightbox.classList.remove('is-open');
+      if (e.key === 'ArrowRight' && !lightbox.classList.contains('is-open')) { next(); startAuto(); }
+      if (e.key === 'ArrowLeft' && !lightbox.classList.contains('is-open')) { prev(); startAuto(); }
+    });
+
+    // Arrancar auto-play si la seccion esta visible
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach(e => e.isIntersecting ? startAuto() : stopAuto());
+      }, { threshold: 0.3 }).observe(carrusel);
+    } else {
+      startAuto();
+    }
+  });
+}
+
+// Llamar setupCarrusel() en el init de site.js
+```
+
+Sumar la llamada `setupCarrusel();` en el bloque de inicializacion (donde estan `setupLangSwitcher()`, `setupReveal()`, etc.).
+
+#### 6. Eliminar el placeholder "Proximamente"
+
+En `aprende.html`, eliminar el bloque actual con icono de video y texto "Proximamente — Estamos grabando los primeros tutoriales". Reemplazar por la seccion `<section class="section bg-dark carrusel-section">` del paso 3.
+
+Mantener el mensaje complementario al final:
+```html
+<p class="lede" style="text-align:center;color:var(--slate-400)">
+  <span data-lang="es">Pronto: tutoriales en video con Julio Mirabal.</span>
+  <span data-lang="en">Coming soon: video tutorials with Julio Mirabal.</span>
+  <span data-lang="he">בקרוב: מדריכי וידאו עם חוליו מירבל.</span>
+</p>
+```
+
+#### 7. Cache busting
+
+Bumpear el query param `?v=` en los `<link>` de CSS y `<script src>` de JS en aprende.html (y en cualquier pagina que comparta CSS/JS si fuera necesario). Ejemplo: `?v=20260505c`.
+
+#### 8. Validacion local
+
+```bash
+python -m http.server 8000
+```
+
+Abrir `http://localhost:8000/aprende.html` y verificar:
+- [ ] El carrusel aparece debajo del header con la primera slide visible (problema/Excel).
+- [ ] Auto-avance cada 6 segundos.
+- [ ] Click en flecha derecha → siguiente slide.
+- [ ] Click en flecha izquierda → slide anterior.
+- [ ] Click en un dot → va a esa slide.
+- [ ] Hover sobre el carrusel → pausa el auto-avance.
+- [ ] Mouse out → reanuda.
+- [ ] Click en una slide → abre lightbox a pantalla completa. Click en lightbox → cierra.
+- [ ] ESC → cierra lightbox.
+- [ ] En mobile (DevTools 414px) → swipe lateral funciona.
+- [ ] Cambiar idioma (ES → EN → HE) → el kicker, titulo, lede, hint cambian. Las imagenes se mantienen (texto en español).
+- [ ] HE muestra RTL (las flechas y la posicion del texto se invierten correctamente).
+- [ ] Console del browser: 0 errores.
+- [ ] Network tab: las 8 imagenes pesan < 250 KB cada una. La 1 carga eager, las 2-8 carga lazy cuando se acerca el scroll.
+- [ ] Loop infinito: despues de la slide 8, vuelve a la 1 sin glitch.
+
+#### 9. Commit local
+
+```bash
+git add -A
+git commit -m "feat: carrusel de 8 slides en /aprende con storytelling completo de FabriOS
+
+- Reemplazado placeholder 'Proximamente' por carrusel de 8 imagenes
+- Auto-play 6s con pausa al hover
+- Controles: flechas, dots, swipe mobile, teclado, lightbox al click
+- 8 imagenes optimizadas a < 250KB cada una en assets/carrusel/
+- Storytelling: problema → solucion → 7 dias arranque → CTA beta
+- i18n del kicker/titulo/lede/hint en ES/EN/HE
+- Cache bumpeado a ?v=20260505c"
+```
+
+NO push. Julio lo hace para gatillar el deploy automatico.
+
+### Estado de control
+
+```
+TAREA_ACTIVA: true
+SESION: carrusel-aprende-2026-05-05
+DEPLOY_PENDIENTE: true (Julio hace git push despues de validar)
+WHATSAPP_NUMERO: 972526489461 (ya seteado, no tocar)
+PERMISO_PUNTUAL_BORRADO: archivos `IMG1.jpeg`, `IMG2.png` ... `IMG8.png` en `assets/carrusel/` autorizados a borrar tras renombrar al estandar `01_problema.jpg` ... `08_cta_beta.jpg`.
+```
+
+### REGLAS DE LA SESION
+
+- Reportar EN ESTE ARCHIVO seccion REPORTAR AQUI.
+- Validacion visual obligatoria con preview local — abrir las 8 slides una por una con flechas/dots y verificar.
+- En mobile (414px) verificar swipe + lightbox.
+- Tras cerrar la tarea, mover SESION ACTUAL a SESIONES ANTERIORES como SESION CERRADA.
+
+---
+
+## SESION ACTUAL ANTERIOR (referencia historica) — Setear numero WhatsApp real en todas las paginas
 
 La sesion anterior (fotos industrias) cerro OK con commits `15d125c`, `e26bbb3`, `b1c8cab`. Las 6 imagenes funcionan en produccion. **PERO el paso 8 que pedia cambiar el placeholder `000000000000` por `972526489461` quedo SIN HACER.**
 

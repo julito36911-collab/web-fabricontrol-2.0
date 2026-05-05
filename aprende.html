@@ -19,7 +19,7 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="assets/styles.css?v=20260505b">
+<link rel="stylesheet" href="assets/styles.css?v=20260505c">
 </head>
 <body>
 
@@ -57,31 +57,84 @@
   <section class="learn-hero">
     <div class="container">
       <h1 class="h-display">
-        <span data-lang="es">Tutoriales y casos en video</span>
-        <span data-lang="en">Tutorials and case studies on video</span>
-        <span data-lang="he">מדריכים ומקרי שימוש בווידאו</span>
+        <span data-lang="es">Cómo funciona FabriOS, en 8 slides</span>
+        <span data-lang="en">How FabriOS works, in 8 slides</span>
+        <span data-lang="he">איך FabriOS עובד, ב-8 שקופיות</span>
       </h1>
       <p class="lede" style="margin-top:var(--s-4)">
-        <span data-lang="es">Próximamente — Estamos grabando los primeros tutoriales de FabriOS.</span>
-        <span data-lang="en">Coming soon — We are recording the first FabriOS tutorials.</span>
-        <span data-lang="he">בקרוב — אנו מקליטים את המדריכים הראשונים של FabriOS.</span>
+        <span data-lang="es">Del problema al control total: 7 días de onboarding contados con imágenes.</span>
+        <span data-lang="en">From the problem to full control: 7 days of onboarding told with images.</span>
+        <span data-lang="he">מהבעיה לשליטה מלאה: 7 ימי הטמעה מסופרים בתמונות.</span>
       </p>
     </div>
   </section>
+
+  <section class="section bg-dark carrusel-section">
+    <div class="container">
+      <span class="eyebrow eyebrow--orange" style="display:block;text-align:center">
+        <span data-lang="es">EL FLUJO COMPLETO</span>
+        <span data-lang="en">THE FULL FLOW</span>
+        <span data-lang="he">הזרימה המלאה</span>
+      </span>
+      <h2 class="h-1" style="color:var(--white);text-align:center;margin-top:var(--s-3)">
+        <span data-lang="es">De Excel al control total en 7 días.</span>
+        <span data-lang="en">From Excel to full control in 7 days.</span>
+        <span data-lang="he">מ-Excel לשליטה מלאה ב-7 ימים.</span>
+      </h2>
+      <p class="lede" style="color:var(--slate-300);max-width:800px;margin:var(--s-4) auto 0;text-align:center">
+        <span data-lang="es">Mirá el storytelling de FabriOS: el problema, la solución, los 7 días del onboarding, y cómo aplicar al programa beta.</span>
+        <span data-lang="en">See the FabriOS storytelling: the problem, the solution, the 7-day onboarding, and how to apply to the beta program.</span>
+        <span data-lang="he">ראו את סיפור FabriOS: הבעיה, הפתרון, 7 ימי ההטמעה, וכיצד להירשם לתוכנית הבטא.</span>
+      </p>
+
+      <div class="carrusel" data-carrusel>
+        <div class="carrusel__track">
+          <figure class="carrusel__slide is-active">
+            <img src="assets/carrusel/01_problema.jpg?v=20260505c" alt="Si tu fabrica vive en Excel, este es tu problema" loading="eager" width="1423" height="800">
+          </figure>
+          <figure class="carrusel__slide">
+            <img src="assets/carrusel/02_solucion.jpg?v=20260505c" alt="FabriOS, el sistema operativo de tu fabrica" loading="lazy" width="1360" height="752">
+          </figure>
+          <figure class="carrusel__slide">
+            <img src="assets/carrusel/03_dia1_setup.jpg?v=20260505c" alt="Dia 1: setup y registro en FabriOS" loading="lazy" width="1360" height="752">
+          </figure>
+          <figure class="carrusel__slide">
+            <img src="assets/carrusel/04_dias23_ingenieria.jpg?v=20260505c" alt="Dias 2 y 3: ingenieria bajo control con BOM y ECO" loading="lazy" width="1360" height="752">
+          </figure>
+          <figure class="carrusel__slide">
+            <img src="assets/carrusel/05_dias45_cotizacion.jpg?v=20260505c" alt="Dias 4 y 5: de la cotizacion a la maquina" loading="lazy" width="1360" height="752">
+          </figure>
+          <figure class="carrusel__slide">
+            <img src="assets/carrusel/06_dias57_qr.jpg?v=20260505c" alt="Dias 5 al 7: trazabilidad QR en planta con app movil offline" loading="lazy" width="1360" height="752">
+          </figure>
+          <figure class="carrusel__slide">
+            <img src="assets/carrusel/07_dia7_entrega.jpg?v=20260505c" alt="Dia 7: entrega y control total con FEFO y costos en vivo" loading="lazy" width="1360" height="752">
+          </figure>
+          <figure class="carrusel__slide">
+            <img src="assets/carrusel/08_cta_beta.jpg?v=20260505c" alt="Programa de Acceso Anticipado de FabriOS, 5 fabricas piloto, 6 meses gratis" loading="lazy" width="1360" height="752">
+          </figure>
+        </div>
+
+        <button class="carrusel__btn carrusel__btn--prev" type="button" aria-label="Anterior">‹</button>
+        <button class="carrusel__btn carrusel__btn--next" type="button" aria-label="Siguiente">›</button>
+
+        <div class="carrusel__dots" role="tablist" aria-label="Slide indicador"></div>
+      </div>
+
+      <p class="mono" style="color:var(--slate-400);text-align:center;margin-top:var(--s-5);font-size:12px;letter-spacing:0.04em">
+        <span data-lang="es">Tap en una imagen para verla en grande · Auto-avanza cada 6 segundos</span>
+        <span data-lang="en">Tap an image to view full-size · Auto-advances every 6 seconds</span>
+        <span data-lang="he">לחץ על תמונה כדי לראות אותה במלואה · מתקדם אוטומטית כל 6 שניות</span>
+      </p>
+    </div>
+  </section>
+
   <section class="section bg-white">
     <div class="container container--narrow" style="text-align:center;padding:var(--s-9) var(--s-5)">
-      <div class="icon-square icon-square--cyan" style="margin:0 auto var(--s-5)">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-      </div>
-      <h2 class="h-2" style="margin-bottom:var(--s-4)">
-        <span data-lang="es">Los primeros videos están en producción.</span>
-        <span data-lang="en">The first videos are in production.</span>
-        <span data-lang="he">הסרטונים הראשונים בייצור.</span>
-      </h2>
-      <p class="lede" style="margin:0 auto var(--s-5);text-align:center">
-        <span data-lang="es">Mientras tanto, podés escribirnos por WhatsApp o aplicar a la beta para empezar a usar FabriOS.</span>
-        <span data-lang="en">In the meantime, you can write to us on WhatsApp or apply to the beta to start using FabriOS.</span>
-        <span data-lang="he">בינתיים, אפשר לכתוב לנו בוואטסאפ או להירשם לבטא כדי להתחיל להשתמש ב-FabriOS.</span>
+      <p class="lede" style="color:var(--slate-600);margin-bottom:var(--s-5)">
+        <span data-lang="es">Pronto: tutoriales en video con Julio Mirabal. Mientras tanto, mirá el flujo completo arriba.</span>
+        <span data-lang="en">Coming soon: video tutorials with Julio Mirabal. In the meantime, see the full flow above.</span>
+        <span data-lang="he">בקרוב: מדריכי וידאו עם חוליו מירבל. בינתיים, צפו בזרימה המלאה למעלה.</span>
       </p>
       <div style="display:flex;gap:var(--s-3);justify-content:center;flex-wrap:wrap">
         <a href="empezar.html" class="btn btn--primary btn--lg">
@@ -152,7 +205,7 @@
   <span class="wa-fab__label" data-i18n="wa.label">Chateá con nosotros</span>
 </a>
 
-<script src="assets/app.js?v=20260505b"></script>
-<script src="assets/site.js?v=20260505b"></script>
+<script src="assets/app.js?v=20260505c"></script>
+<script src="assets/site.js?v=20260505c"></script>
 </body>
 </html>
